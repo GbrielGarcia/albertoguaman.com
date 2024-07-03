@@ -1,0 +1,2 @@
+
+export 'locale.dart';

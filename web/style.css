@@ -1,0 +1,28 @@
+@font-face {
+    font-family: Minecraftia;
+    src: url('assets/fonts/minecraft_font.ttf') format('truetype');
+  }
+
+
+
+body, html {
+      font-family: 'Minecraftia';
+      cursor: url('mause.png'), auto;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #141820;
+      color: white;
+}
+
+.custom-cursor {
+  cursor: url('mause.png'), auto;
+}
+
+  a {
+    text-decoration: none;
+        font-size: 24px;
+
+  }

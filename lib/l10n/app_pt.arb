@@ -1,0 +1,17 @@
+{
+  "@@locale": "pt",
+  "hello": "Olá",
+  "proyectRealized": "Projetos realizados",
+  "selectLanguage": "Selecionar o idioma",
+  "contacMe": "Contacte-me",
+  "company": "Empresa:",
+  "country": "País:",
+  "project": "Projeto:",
+  "employment": "Emprego:",
+  "skills": "Habilidades:",
+  "administratorIt": "Administrador TI",
+  "seeProject": "ver projeto",
+  "webDeveloperAndDataAnalyst": "Desenvolvedor da Web e analista de dados",
+  "descriptionAbout": "Sou um freelancer equatoriano apaixonado por tecnologia, com experiência em administração de sistemas, desenvolvimento web e aplicativos móveis. Formado em Tecnologia de Desenvolvimento de Software, sempre me mantenho atualizado neste dinâmico mundo tecnológico. Atualmente, estou me especializando em análise de dados com o Power BI."
+
+}
