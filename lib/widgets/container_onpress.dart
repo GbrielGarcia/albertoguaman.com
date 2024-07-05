@@ -1,10 +1,11 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../utils/utils.dart';
 
-Widget containerOnpress(VoidCallback onPressed, String title) {
+Widget containerOnpress(VoidCallback onPressed, String title,
+    {bool? activate}) {
   return Stack(
     children: [
       Container(
@@ -41,38 +42,50 @@ Widget containerOnpress(VoidCallback onPressed, String title) {
           ),
         ),
       ),
-      Positioned(
-        left: 0,
-        bottom: 0,
-        child: Container(
-          height: 10,
-          width: 10,
-          color: Colors.brown,
+      Visibility(
+        visible: activate ?? true,
+        child: Positioned(
+          left: 0,
+          bottom: 0,
+          child: Container(
+            height: 10,
+            width: 10,
+            color: Colors.brown,
+          ),
         ),
       ),
-      Positioned(
-        right: 0,
-        top: 0,
-        child: Container(
-          height: 10,
-          width: 10,
-          color: Colors.brown,
+      Visibility(
+        visible: activate ?? true,
+        child: Positioned(
+          right: 0,
+          top: 0,
+          child: Container(
+            height: 10,
+            width: 10,
+            color: Colors.brown,
+          ),
         ),
       ),
-      Positioned(
-        child: Container(
-          height: 10,
-          width: 10,
-          color: Colors.brown,
+      Visibility(
+        visible: activate ?? true,
+        child: Positioned(
+          child: Container(
+            height: 10,
+            width: 10,
+            color: Colors.brown,
+          ),
         ),
       ),
-      Positioned(
-        right: 0,
-        bottom: 0,
-        child: Container(
-          height: 10,
-          width: 10,
-          color: Colors.brown,
+      Visibility(
+        visible: activate ?? true,
+        child: Positioned(
+          right: 0,
+          bottom: 0,
+          child: Container(
+            height: 10,
+            width: 10,
+            color: Colors.brown,
+          ),
         ),
       ),
     ],

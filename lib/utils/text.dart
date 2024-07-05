@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StyleText {
+
   static TextStyle textStyleClass(
       {double? fontSize, FontWeight? fontWeight, Color? color}) {
     return TextStyle(
@@ -10,4 +11,14 @@ class StyleText {
       color: color ?? Colors.white,
     );
   }
+
+  static TextStyle textStyleClassClasi(
+      {double? fontSize, FontWeight? fontWeight, Color? color}) {
+    return TextStyle(fontSize: fontSize ?? 20.0,
+      fontWeight: fontWeight ?? FontWeight.w100,
+      color: color ?? Colors.black,
+    );
+  }
+
+
 }

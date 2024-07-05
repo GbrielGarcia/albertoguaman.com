@@ -7,7 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 import '/provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'router/routers.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   setPathUrlStrategy();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
@@ -37,18 +41,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final localProvider = Provider.of<LocaleProvider>(context);
 
-    return MaterialApp(
-      title: 'Alberto Guaman',
-      debugShowCheckedModeBanner: false,
+    return MaterialApp.router(
       locale: localProvider.locale,
+      debugShowCheckedModeBanner: false,
+      title: 'Alberto Guaman',
+      routerDelegate: goRouter.routerDelegate,
       supportedLocales: AppLocalizations.supportedLocales,
+      routeInformationParser: goRouter.routeInformationParser,
+      routeInformationProvider: goRouter.routeInformationProvider,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       theme: ThemeData(
-        fontFamily: 'Minecraftia',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
     );
   }
 }
