@@ -24,6 +24,9 @@
   "desingFlutter": "Flutter Designs",
   "resource": "Resources",
   "portfolioStyle": "My portfolio in the style of",
+  "professionalWebsite": "Professional Website",
   "informationAbout": "Hello Alberto, I would like more information about:",
-  "meetMe": "Meet with me"
+  "meetMe": "Meet with me",
+  "open": "Open",
+  "googlePlay": "Google Play"
 }
