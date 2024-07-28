@@ -7,4 +7,5 @@ class AssetsUtil {
   static String imgContainerMinecraft = 'assets/img/container.jpeg';
   static String imgContainerMiniMinecraft = 'assets/img/container_mine.png';
   static String imgProyectLogoTinguar = 'assets/img/logo-tinguar.png';
+  static String imgProyectLogoTuEnlaceTinguar = 'assets/img/tu-enlace-logo.png';
 }

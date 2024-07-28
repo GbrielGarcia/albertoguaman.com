@@ -210,58 +210,103 @@ class _HomeOriginalState extends State<HomeOriginal> {
                       decoration: BoxDecoration(
                           color: items.color,
                           border: Border.all(color: Colors.black, width: 0.2)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Stack(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              items.name.toUpperCase(),
-                              style: StyleText.textStyleOriginal(
-                                  fontSize: 10.0 * textScaleFactor),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              items.description.toUpperCase(),
-                              style: StyleText.textStyleOriginal(
-                                  fontSize: 8.0 * textScaleFactor),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () => launchUrl(items.url),
-                            child: containerBorder(
-                              color: UtilsColor.colorOriginalPorfolio,
-                              top: true,
-                              right: true,
-                              width: 210.0,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Text('visualizar proyecto'.toUpperCase()),
-                                    const SizedBox(width: 5.0),
-                                    const Icon(
-                                        Icons.arrow_circle_right_outlined)
-                                  ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 10.0),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: horizontal),
+                                child: Text(
+                                  items.name.toUpperCase(),
+                                  style: StyleText.textStyleOriginal(
+                                      fontSize: 7.0 * textScaleFactor),
                                 ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: horizontal),
+                                child: Text(
+                                  items.description.toUpperCase(),
+                                  style: StyleText.textStyleOriginal(
+                                      fontSize: 8.0 * textScaleFactor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const Spacer(),
+                              containerBorder(
+                                width: size.width,
+                                height: 200.0,
+                                child: Image.asset(items.logo),
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () => launchUrl(items.url),
+                                child: containerBorder(
+                                  color: UtilsColor.colorOriginalPorfolio,
+                                  top: true,
+                                  right: true,
+                                  width: 210.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Text('visualizar proyecto'
+                                            .toUpperCase()),
+                                        const SizedBox(width: 5.0),
+                                        const Icon(
+                                            Icons.arrow_circle_right_outlined)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: containerBorder(
+                              width: 20,
+                              height: size.height,
+                              color: UtilsColor.colorOriginalPorfolioB,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end, // Alinea el contenido a la derecha
+                                children: [
+                                  const SizedBox(height: 5.0),
+                                  for (var letter in items.tecnology[0].split(',').join().split(''))
+                                    Center(
+                                      child: Text(
+                                        letter.toUpperCase(),
+                                        style: StyleText.textStyleOriginal(
+                                          fontSize: 11.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: UtilsColor.colorOriginalPorfolio,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           )
+
                         ],
                       ),
                     );
                   },
                 ),
               ),
+
               containerBorder(
-                  height: 50,
+                  height: 50.0,
                   color: UtilsColor.colorOriginalPorfolioB,
                   child: Container()),
               containerBorder(
-                  width: size.width, height: 50.0, child: Container()),
+                width: size.width,
+                height: 50.0,
+                child: Container(),
+              ),
             ],
           ),
         ),
@@ -312,78 +357,22 @@ final List<PortafolioItem> portafolioItems = [
   PortafolioItem(
     company: 'Tinguar',
     name: 'Tu enlace',
-    description: 'Crear, gestiona de manera sencilla tus enlaces de whatsapp',
+    description: 'Crear, gestiona de manera sencilla tus enlaces de whatsapp.',
     tecnology: ['Flutter, Dart, Firebase,'],
-    logo: AssetsUtil.imgProyectLogoTinguar,
+    logo: AssetsUtil.imgProyectLogoTuEnlaceTinguar,
     url:
         'https://play.google.com/store/apps/details?id=com.tinguardevtechnology.generador_acortador_whatsapp',
     color: UtilsColor.colorOriginalPorfolioG,
   ),
   PortafolioItem(
       company: 'Sciedtec',
-      name:
-          'Creacion de certificados de manera automatica mediante un archivo csv',
-      description: 'Crear, gestiona de manera sencilla tus enlaces de whatsapp',
+      name: 'Cerfificados automaticos.',
+      description:
+          'Generador de certificados mediante csv y diseños personalizados.',
       tecnology: ['Flutter, Dart, Firebase,'],
       logo: AssetsUtil.imgProyectLogoTinguar,
       url: '',
       color: UtilsColor.colorOriginalPorfolioP),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolio),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolioG),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolioP),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolioG),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolioP),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolio),
-  PortafolioItem(
-      company: 'Sciedtec',
-      name: 'Pagina web',
-      description: 'Sitio web con diseño educativo.',
-      tecnology: ['WordPress, Elementor, Css'],
-      logo: AssetsUtil.imgProyectLogoTinguar,
-      url: 'http://sciedtec.com/',
-      color: UtilsColor.colorOriginalPorfolioG)
 ];
 
 Widget containerBorder(
