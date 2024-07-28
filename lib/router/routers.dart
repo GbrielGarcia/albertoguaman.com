@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../home/home.dart';
-import '../home/porfolio/home.dart';
+import '../home/porfolio/porfolio.dart';
 import 'router.dart';
 
 final goRouter = GoRouter(
@@ -11,7 +11,7 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/',
       pageBuilder: (context, state) {
-        return transitionPageRouter(state.pageKey, const Home());
+        return transitionPageRouter(state.pageKey, const OriginalPorfolio());
       },
     ),
     GoRoute(

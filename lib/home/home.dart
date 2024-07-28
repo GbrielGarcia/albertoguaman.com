@@ -130,43 +130,41 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  iconWidget(
-                    FontAwesomeIcons.linkedin,
-                    () {
-                      if (kDebugMode) {
-                        print('linkeding');
-                      }
+                  iconWidget(FontAwesomeIcons.linkedin, () {
+                    if (kDebugMode) {
+                      print('linkeding');
+                    }
 
-                      html.window.open(
-                        'https://www.linkedin.com/in/albertoguaman/',
-                        'Linkedin',
-                      );
-                    },
-                    color: Colors.black,
-                  ),
-                  iconWidget(
-                    FontAwesomeIcons.instagram,
-                    () {
-                      html.window.open(
-                        'https://www.instagram.com/albertoguamandev/',
-                        'Instagram',
-                      );
-                    },
-                    color: Colors.black,
-                  ),
-                  iconWidget(
-                    FontAwesomeIcons.tiktok,
-                    () {
-                      if (kDebugMode) {
-                        print('linkeding');
-                      }
-                      html.window.open(
-                        'https://www.tiktok.com/@albertoguaman.com',
-                        'Tiktok',
-                      );
-                    },
-                    color: Colors.black,
-                  ),
+                    html.window.open(
+                      'https://www.linkedin.com/in/albertoguaman/',
+                      'Linkedin',
+                    );
+                  }, color: Colors.black, message: 'Linkedin'),
+                  iconWidget(FontAwesomeIcons.github, () {
+                    if (kDebugMode) {
+                      print('github');
+                    }
+
+                    html.window.open(
+                      'https://github.com/GbrielGarcia',
+                      'GitHub',
+                    );
+                  }, color: Colors.black, message: 'GitHub'),
+                  iconWidget(FontAwesomeIcons.instagram, () {
+                    html.window.open(
+                      'https://www.instagram.com/albertoguamandev/',
+                      'Instagram',
+                    );
+                  }, color: Colors.black, message: 'Instagram'),
+                  iconWidget(FontAwesomeIcons.tiktok, () {
+                    if (kDebugMode) {
+                      print('Tiktok');
+                    }
+                    html.window.open(
+                      'https://www.tiktok.com/@albertoguaman.com',
+                      'Tiktok',
+                    );
+                  }, color: Colors.black, message: 'Tiktok'),
                 ],
               ),
               const SizedBox(height: 40.0),
@@ -190,8 +188,8 @@ class Home extends StatelessWidget {
               InkeContainerInfo(
                   onTap: () {
                     html.window.open(
-                      'https://play.google.com/store/apps/dev?id=6037160514505433183','Google Play'
-                    );
+                        'https://play.google.com/store/apps/dev?id=6037160514505433183',
+                        'Google Play');
                   },
                   text: al!.googlePlay),
               InkeContainerInfo(
@@ -215,6 +213,16 @@ class Home extends StatelessWidget {
               InkeContainerInfo(
                   onTap: () => linkWhatsApp(al!.servicesDisWeb),
                   text: al!.servicesDisWebTitle),
+              InkeContainerInfo(
+                  title: 'Curriculum Vitae',
+                  activate: true,
+                  onTap: () {
+                    html.window.open(
+                      'https://drive.google.com/file/d/1V4BXrrYgGVe74kshzq2-E9wM3SLJ8K_q/view?usp=sharing',
+                      'CV - Actual',
+                    );
+                  },
+                  text: 'CV Actual'),
               const SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

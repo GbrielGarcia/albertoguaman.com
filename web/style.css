@@ -6,8 +6,7 @@
 
 
 body, html {
-      font-family: 'Minecraftia';
-      cursor: url('mause.png'), auto;
+
       height: 100%;
       margin: 0;
       display: flex;
