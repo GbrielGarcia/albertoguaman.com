@@ -1,11 +1,8 @@
-
-
-
 import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
 
-Widget rowInfoContainer(String title, description) {
+Widget rowInfoContainer(String title, description, int style) {
   return Padding(
     padding: const EdgeInsets.only(
       left: 8.0,
@@ -17,25 +14,29 @@ Widget rowInfoContainer(String title, description) {
       children: [
         SizedBox(
           width: 135.0,
-          child: Text(
-            title,
-            style: StyleText.textStyleClass(
-                fontSize: 17.0, fontWeight: FontWeight.bold),
-          ),
+          child: Text(title,
+              style: style == 1
+                  ? StyleText.textStyleOriginal(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold,
+                      color: UtilsColor.colorOriginalPorfolioB)
+                  : StyleText.textStyleClass(
+                      fontSize: 17.0, fontWeight: FontWeight.bold)),
         ),
         Flexible(
           flex: 2,
           child: Text(
             description,
-            style: StyleText.textStyleClass(
-                fontSize: 17.0, fontWeight: FontWeight.bold),
+            style: style == 1
+                ? StyleText.textStyleOriginal(
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.bold,
+                    color: UtilsColor.colorOriginalPorfolioB)
+                : StyleText.textStyleClass(
+                    fontSize: 17.0, fontWeight: FontWeight.bold),
           ),
         ),
       ],
     ),
   );
 }
-
-
-
-

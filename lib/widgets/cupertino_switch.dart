@@ -8,11 +8,11 @@ import '../utils/utils.dart';
 class CupertinoSwitchW extends StatelessWidget {
   final TextStyle textStyle;
 
-  final bool activate;
-  const CupertinoSwitchW({
+  final int style;
+  CupertinoSwitchW({
     Key? key,
     required this.textStyle,
-    required this.activate,
+    required this.style,
   }) : super(key: key);
 
   @override
@@ -21,22 +21,28 @@ class CupertinoSwitchW extends StatelessWidget {
 
     return Container(
       width: 150,
-      decoration: true == activate
+      decoration: style == 1
           ? BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2),
+              color: UtilsColor.colorOriginalPorfolioG,
+              border: Border.all(
+                  color: UtilsColor.colorOriginalPorfolioB, width: 2),
             )
-          : BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AssetsUtil.imgBackgroundMinecraft,
-            ),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.4),
-              BlendMode.darken,
-            ),
-          )
-      ),
+          : style == 2
+              ? BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      AssetsUtil.imgBackgroundMinecraft,
+                    ),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.4),
+                      BlendMode.darken,
+                    ),
+                  ),
+                )
+              : BoxDecoration(
+                  border: Border.all(width: 2),
+                ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

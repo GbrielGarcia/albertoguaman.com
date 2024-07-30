@@ -1,3 +1,4 @@
+import 'package:albertoguaman/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,8 +28,8 @@ class StyleText {
     FontWeight? fontWeight,
   }) {
     return GoogleFonts.alegreya(textStyle: TextStyle(
-      fontSize: fontSize ?? 35.0,
-      color: color ??  Colors.black,
+      fontSize: fontSize ?? 20.0,
+      color: color ??  UtilsColor.colorOriginalPorfolioW,
       fontWeight: fontWeight ?? FontWeight.w100
     ));
   }

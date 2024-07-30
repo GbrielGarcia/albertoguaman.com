@@ -1,4 +1,3 @@
-
 class AssetsUtil {
   static String imgAlbertoGuaman = 'assets/img/tinguar - alberto guaman.png';
   static String imgAlbertoGuamanOriginal = 'assets/img/alberto-guaman.png';
@@ -8,4 +7,5 @@ class AssetsUtil {
   static String imgContainerMiniMinecraft = 'assets/img/container_mine.png';
   static String imgProyectLogoTinguar = 'assets/img/logo-tinguar.png';
   static String imgProyectLogoTuEnlaceTinguar = 'assets/img/tu-enlace-logo.png';
+  static String imgProyectLogoTuEnlaceSciedtec = 'assets/img/tu-enlace-logo-sciedtec.png';
 }

@@ -9,33 +9,34 @@ class Responsive extends StatelessWidget {
   const Responsive({
     Key? key,
     required this.mobile,
+    this.mobileLarge,
     this.tablet,
     required this.desktop,
-    this.mobileLarge,
   }) : super(key: key);
 
   static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width <= 400;
+      MediaQuery.of(context).size.width < 600;
 
   static bool isMobileLarge(BuildContext context) =>
-      MediaQuery.of(context).size.width <= 700;
+      MediaQuery.of(context).size.width >= 600 &&
+          MediaQuery.of(context).size.width < 768;
 
   static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width < 1024;
+      MediaQuery.of(context).size.width >= 768 &&
+          MediaQuery.of(context).size.width < 1200;
 
   static bool isDesktop(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 1024;
-
-
+      MediaQuery.of(context).size.width >= 1200;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    if (size.width >= 1024) {
+
+    if (isDesktop(context)) {
       return desktop;
-    } else if (size.width >= 700 && tablet != null) {
+    } else if (isTablet(context) && tablet != null) {
       return tablet!;
-    } else if (size.width >= 500 && mobileLarge != null) {
+    } else if (isMobileLarge(context) && mobileLarge != null) {
       return mobileLarge!;
     } else {
       return mobile;

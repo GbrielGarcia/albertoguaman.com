@@ -130,6 +130,15 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  containerOnpress(() {
+                    html.window.open(
+                      'https://tunegocio.pro/G4YbU',
+                      'WhastApp',
+                    );
+                  }, al!.contacMe,
+                      activate: false,
+                      style:
+                          StyleText.textStyleClassClasi(color: Colors.white)),
                   iconWidget(FontAwesomeIcons.linkedin, () {
                     if (kDebugMode) {
                       print('linkeding');
@@ -169,11 +178,26 @@ class Home extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               InkeContainerInfo(
-                  onTap: () => linkWhatsApp(al!.informationAbout),
-                  text: al!.meetMe),
+                  title: 'Curriculum Vitae',
+                  activate: true,
+                  onTap: () {
+                    html.window.open(
+                      'https://drive.google.com/file/d/1V4BXrrYgGVe74kshzq2-E9wM3SLJ8K_q/view?usp=sharing',
+                      'CV - Actual',
+                    );
+                  },
+                  text: 'CV Actual'),
+              // InkeContainerInfo(
+              //     onTap: () => linkWhatsApp(al!.informationAbout),
+              //     text: al!.meetMe),
               InkeContainerInfo(
                   title: al!.portfolioStyle,
                   activate: true,
+                  onTap: () {
+                    context.go('/original');
+                  },
+                  text: al!.original),
+              InkeContainerInfo(
                   onTap: () {
                     context.go('/portafolio');
                   },
@@ -213,16 +237,6 @@ class Home extends StatelessWidget {
               InkeContainerInfo(
                   onTap: () => linkWhatsApp(al!.servicesDisWeb),
                   text: al!.servicesDisWebTitle),
-              InkeContainerInfo(
-                  title: 'Curriculum Vitae',
-                  activate: true,
-                  onTap: () {
-                    html.window.open(
-                      'https://drive.google.com/file/d/1V4BXrrYgGVe74kshzq2-E9wM3SLJ8K_q/view?usp=sharing',
-                      'CV - Actual',
-                    );
-                  },
-                  text: 'CV Actual'),
               const SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -245,7 +259,7 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: CupertinoSwitchW(
         textStyle: StyleText.textStyleClassClasi(),
-        activate: true,
+        style: 3,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

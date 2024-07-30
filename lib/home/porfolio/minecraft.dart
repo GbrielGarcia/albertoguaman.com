@@ -192,13 +192,13 @@ class Portafolio extends StatelessWidget {
                 Text(
                   al!.proyectRealized,
                   style: StyleText.textStyleClass(
-                    fontSize: Responsive.isDesktop(context) ? 75 : 50,
+                    fontSize: Responsive.isDesktop(context) ? 75 : 40,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40.0),
-                DynamicContainersList(dataList: dataList),
+                DynamicContainersList(dataList: dataList, style: 2,),
                 const SizedBox(height: 50.0)
               ],
             ),
@@ -207,7 +207,7 @@ class Portafolio extends StatelessWidget {
       ),
       floatingActionButton: CupertinoSwitchW(
         textStyle: StyleText.textStyleClass(),
-        activate: false,
+        style: 2,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

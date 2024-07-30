@@ -1,3 +1,5 @@
+import 'package:albertoguaman/utils/color.dart';
+
 List<Map<String, dynamic>> dataList = [
   {
     'title': 'Tinguar ',
@@ -6,6 +8,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Flutter, Dart, Firebase',
     'jobs': 'Freelancer',
     'link': 'https://tiendas.tinguar.com/',
+    'color': UtilsColor.colorOriginalPorfolioP
   },
   {
     'title': 'Sciedtec ',
@@ -14,6 +17,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Js, Css, Wordpress',
     'jobs': 'Contrato',
     'link': 'https://sciedtec.com/',
+    'color': UtilsColor.colorOriginalPorfolioG
   },
   {
     'title': 'N/A ',
@@ -22,6 +26,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Flutter, Dart, SqLite',
     'jobs': 'Freelancer',
     'link': 'https://itsjapon.edu.ec/apps/',
+    'color': UtilsColor.colorOriginalPorfolioP
   },
   {
     'title': 'N/A ',
@@ -30,6 +35,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Flutter, Dart',
     'jobs': 'Propio',
     'link': 'https://albertoguaman.com',
+    'color': UtilsColor.colorOriginalPorfolioG
   },
   {
     'title': 'All Clean Ways ',
@@ -38,6 +44,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Js, Css, Wordpress',
     'jobs': 'Freelancer',
     'link': 'https://allcleanways.com/',
+    'color': UtilsColor.colorOriginalPorfolioP
   },
   {
     'title': 'Inox Hierro ',
@@ -46,6 +53,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Js, Css, Wordpress',
     'jobs': 'Freelancer',
     'link': 'https://inoxhierroec.com/',
+    'color': UtilsColor.colorOriginalPorfolioG
   },
   {
     'title': 'Arminox ',
@@ -54,6 +62,7 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Js, Css, Wordpress',
     'jobs': 'Freelancer',
     'link': 'https://arminoxec.com/',
+    'color': UtilsColor.colorOriginalPorfolioP
   },
   {
     'title': 'Lars Tree Service ',
@@ -62,5 +71,6 @@ List<Map<String, dynamic>> dataList = [
     'skill': 'Js, Css, Wordpress',
     'jobs': 'Freelancer',
     'link': 'https://larstreeservice.com/',
+    'color': UtilsColor.colorOriginalPorfolioG
   }
 ];

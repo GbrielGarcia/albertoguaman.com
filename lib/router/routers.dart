@@ -11,13 +11,19 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/',
       pageBuilder: (context, state) {
-        return transitionPageRouter(state.pageKey, const OriginalPorfolio());
+        return transitionPageRouter(state.pageKey, const Home());
       },
     ),
     GoRoute(
       path: '/portafolio',
       pageBuilder: (context, state) {
         return transitionPageRouter(state.pageKey, const Portafolio());
+      },
+    ),
+    GoRoute(
+      path: '/original',
+      pageBuilder: (context, state) {
+        return transitionPageRouter(state.pageKey, const OriginalPorfolio());
       },
     )
   ],

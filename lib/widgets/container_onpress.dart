@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/utils.dart';
 
 Widget containerOnpress(VoidCallback onPressed, String title,
-    {bool? activate}) {
+    {bool? activate, TextStyle? style}) {
   return Stack(
     children: [
       Container(
@@ -32,7 +32,7 @@ Widget containerOnpress(VoidCallback onPressed, String title,
                 const SizedBox(width: 5.0),
                 Text(
                   title,
-                  style: StyleText.textStyleClass(
+                  style: style ?? StyleText.textStyleClass(
                     fontSize: 15.0,
                     color: Colors.white,
                   ),
