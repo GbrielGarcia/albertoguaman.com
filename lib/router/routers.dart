@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../home/home.dart';
@@ -10,19 +11,19 @@ final goRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
-      pageBuilder: (context, state) {
+      pageBuilder: (BuildContext context, GoRouterState state) {
         return transitionPageRouter(state.pageKey, const Home());
       },
     ),
     GoRoute(
       path: '/portafolio',
-      pageBuilder: (context, state) {
+      pageBuilder: (BuildContext context, GoRouterState state) {
         return transitionPageRouter(state.pageKey, const Portafolio());
       },
     ),
     GoRoute(
       path: '/original',
-      pageBuilder: (context, state) {
+      pageBuilder: (BuildContext context, GoRouterState state) {
         return transitionPageRouter(state.pageKey, const OriginalPorfolio());
       },
     )
