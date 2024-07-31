@@ -174,6 +174,15 @@ class Home extends StatelessWidget {
                       'Tiktok',
                     );
                   }, color: Colors.black, message: 'Tiktok'),
+                  containerOnpress(() {
+                    html.window.open(
+                      'https://blog.albertoguaman.com/',
+                      'Blog',
+                    );
+                  }, 'Blog',
+                      activate: false,
+                      style: StyleText.textStyleClassClasi(color: Colors.white),
+                      icon: FontAwesomeIcons.blog),
                 ],
               ),
               const SizedBox(height: 40.0),

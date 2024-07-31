@@ -5,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/utils.dart';
 
 Widget containerOnpress(VoidCallback onPressed, String title,
-    {bool? activate, TextStyle? style}) {
+    {bool? activate, TextStyle? style, IconData? icon}) {
   return Stack(
     children: [
       Container(
         color: Colors.transparent,
         height: 50,
         child: Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(4.0),
           child: TextButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.blue),
@@ -25,17 +25,18 @@ Widget containerOnpress(VoidCallback onPressed, String title,
             onPressed: onPressed,
             child: Row(
               children: [
-                const FaIcon(
-                  FontAwesomeIcons.whatsapp,
+                FaIcon(
+                  icon ?? FontAwesomeIcons.whatsapp,
                   color: Colors.white,
                 ),
-                const SizedBox(width: 5.0),
+                const SizedBox(width: 4.0),
                 Text(
                   title,
-                  style: style ?? StyleText.textStyleClass(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                  ),
+                  style: style ??
+                      StyleText.textStyleClass(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                      ),
                 ),
               ],
             ),
