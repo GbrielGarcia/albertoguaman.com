@@ -25,7 +25,7 @@ class CupertinoSwitchW extends StatelessWidget {
           ? BoxDecoration(
               color: UtilsColor.colorOriginalPorfolioG,
               border: Border.all(
-                  color: UtilsColor.colorOriginalPorfolioB, width: 2),
+                  color: UtilsColor.colorDarkGrey, width: 2),
             )
           : style == 2
               ? BoxDecoration(

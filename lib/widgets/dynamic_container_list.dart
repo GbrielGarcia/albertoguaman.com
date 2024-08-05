@@ -90,7 +90,7 @@ class DynamicContainersList extends StatelessWidget {
                             al!.seeProject.toUpperCase(),
                             style: style == 1
                                 ? StyleText.textStyleOriginal(
-                                    color: UtilsColor.colorOriginalPorfolioB)
+                                    color: UtilsColor.colorDarkGrey)
                                 : StyleText.textStyleClass(),
                             textAlign: TextAlign.center,
                           ),

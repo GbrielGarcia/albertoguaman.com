@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
           color: const Color(0xffebddff),
           child: Column(
             children: [
-              const SizedBox(height: 30.0),
+              const SizedBox(height: 20.0),
               Responsive(
                 mobile: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +125,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 40.0),
+              const SizedBox(height: 20.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -137,8 +137,8 @@ class Home extends StatelessWidget {
                     );
                   }, al!.contacMe,
                       activate: false,
-                      style:
-                          StyleText.textStyleClassClasi(color: Colors.white)),
+                      style: StyleText.textStyleClassClasi(color: Colors.white),
+                      color: UtilsColor.colorDarkGrey),
                   iconWidget(FontAwesomeIcons.linkedin, () {
                     if (kDebugMode) {
                       print('linkeding');
@@ -174,18 +174,27 @@ class Home extends StatelessWidget {
                       'Tiktok',
                     );
                   }, color: Colors.black, message: 'Tiktok'),
+                ],
+              ),
+              const SizedBox(height: 20.0),
+
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   containerOnpress(() {
                     html.window.open(
                       'https://blog.albertoguaman.com/',
                       'Blog',
                     );
-                  }, 'Blog',
+                  }, al!.readMyBlog,
                       activate: false,
                       style: StyleText.textStyleClassClasi(color: Colors.white),
-                      icon: FontAwesomeIcons.blog),
+                      icon: FontAwesomeIcons.blog,
+                      color: UtilsColor.colorBlue),
                 ],
               ),
-              const SizedBox(height: 40.0),
+              const SizedBox(height: 20.0),
               InkeContainerInfo(
                   title: 'Curriculum Vitae',
                   activate: true,
@@ -195,7 +204,7 @@ class Home extends StatelessWidget {
                       'CV - Actual',
                     );
                   },
-                  text: 'CV Actual'),
+                  text: 'CV - 2024'),
               // InkeContainerInfo(
               //     onTap: () => linkWhatsApp(al!.informationAbout),
               //     text: al!.meetMe),
@@ -225,16 +234,7 @@ class Home extends StatelessWidget {
                         'Google Play');
                   },
                   text: al!.googlePlay),
-              InkeContainerInfo(
-                  title: al!.resource,
-                  activate: true,
-                  onTap: () {
-                    html.window.open(
-                      'https://github.com/tinguar/flutter',
-                      'GitHub Tinguar',
-                    );
-                  },
-                  text: al!.desingFlutter),
+
               InkeContainerInfo(
                   title: al!.services,
                   activate: true,
@@ -246,6 +246,16 @@ class Home extends StatelessWidget {
               InkeContainerInfo(
                   onTap: () => linkWhatsApp(al!.servicesDisWeb),
                   text: al!.servicesDisWebTitle),
+              InkeContainerInfo(
+                  title: al!.resource,
+                  activate: true,
+                  onTap: () {
+                    html.window.open(
+                      'https://github.com/tinguar/flutter',
+                      'GitHub Tinguar',
+                    );
+                  },
+                  text: al!.desingFlutter),
               const SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

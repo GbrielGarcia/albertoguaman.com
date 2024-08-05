@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/utils.dart';
 
 Widget containerOnpress(VoidCallback onPressed, String title,
-    {bool? activate, TextStyle? style, IconData? icon}) {
+    {bool? activate, TextStyle? style, IconData? icon, Color? color}) {
   return Stack(
     children: [
       Container(
@@ -15,7 +15,7 @@ Widget containerOnpress(VoidCallback onPressed, String title,
           padding: const EdgeInsets.all(4.0),
           child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.blue),
+              backgroundColor: MaterialStateProperty.all( color ?? Colors.blue),
               shape: MaterialStateProperty.all(
                 const RoundedRectangleBorder(
                   borderRadius: BorderRadius.zero,

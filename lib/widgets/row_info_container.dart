@@ -19,7 +19,7 @@ Widget rowInfoContainer(String title, description, int style) {
                   ? StyleText.textStyleOriginal(
                       fontSize: 17.0,
                       fontWeight: FontWeight.bold,
-                      color: UtilsColor.colorOriginalPorfolioB)
+                      color: UtilsColor.colorDarkGrey)
                   : StyleText.textStyleClass(
                       fontSize: 17.0, fontWeight: FontWeight.bold)),
         ),
@@ -31,7 +31,7 @@ Widget rowInfoContainer(String title, description, int style) {
                 ? StyleText.textStyleOriginal(
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,
-                    color: UtilsColor.colorOriginalPorfolioB)
+                    color: UtilsColor.colorDarkGrey)
                 : StyleText.textStyleClass(
                     fontSize: 17.0, fontWeight: FontWeight.bold),
           ),

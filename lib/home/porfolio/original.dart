@@ -24,7 +24,7 @@ class OriginalPorfolio extends StatelessWidget {
     final al = AppLocalizations.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: UtilsColor.colorOriginalPorfolioB,
+      backgroundColor: UtilsColor.colorDarkGrey,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -197,7 +197,7 @@ class OriginalPorfolio extends StatelessWidget {
       ),
       floatingActionButton: CupertinoSwitchW(
         textStyle: StyleText.textStyleOriginal(
-            color: UtilsColor.colorOriginalPorfolioB),
+            color: UtilsColor.colorDarkGrey),
         style: 1,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
