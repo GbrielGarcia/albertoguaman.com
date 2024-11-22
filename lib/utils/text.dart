@@ -33,4 +33,32 @@ class StyleText {
       fontWeight: fontWeight ?? FontWeight.w100
     ));
   }
+
+  static TextStyle textStyleOriginalDark({
+    double? fontSize,
+    double? minFontSize,
+    double? maxFontSize,
+    Color? color,
+    FontWeight? fontWeight,
+    BuildContext? context, // Requiere el contexto para calcular el tamaño responsivo
+  }) {
+    double calculatedFontSize = fontSize ?? 25.0;
+
+    // Si minFontSize y maxFontSize están definidos, ajustamos el tamaño
+    if (context != null && (minFontSize != null || maxFontSize != null)) {
+      final screenWidth = MediaQuery.of(context).size.width;
+      calculatedFontSize = (screenWidth * 0.05).clamp(
+        minFontSize ?? double.negativeInfinity,
+        maxFontSize ?? double.infinity,
+      );
+    }
+
+    return GoogleFonts.alegreya(
+      textStyle: TextStyle(
+        fontSize: calculatedFontSize,
+        color: color ?? UtilsColor.colorDarkGrey,
+        fontWeight: fontWeight ?? FontWeight.w100,
+      ),
+    );
+  }
 }

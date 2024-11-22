@@ -28,8 +28,8 @@ class OriginalPorfolio extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: [                const SizedBox(height: 30.0),
-
+            children: [
+              const SizedBox(height: 30.0),
               Column(
                 children: <Widget>[
                   Responsive(
@@ -196,8 +196,7 @@ class OriginalPorfolio extends StatelessWidget {
         ),
       ),
       floatingActionButton: CupertinoSwitchW(
-        textStyle: StyleText.textStyleOriginal(
-            color: UtilsColor.colorDarkGrey),
+        textStyle: StyleText.textStyleOriginal(color: UtilsColor.colorDarkGrey),
         style: 1,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

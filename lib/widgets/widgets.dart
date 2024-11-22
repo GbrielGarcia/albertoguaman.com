@@ -7,3 +7,4 @@ export 'container_onpress.dart';
 export 'color_icon.dart';
 export 'cupertino_switch.dart';
 export 'ink_container_info.dart';
+export 'container_responsive.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'firebase_options.dart';
-import 'home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '/provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
