@@ -49,10 +49,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: goRouter.routeInformationParser,
       routeInformationProvider: goRouter.routeInformationProvider,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true),
     );
   }
 }

@@ -16,21 +16,21 @@ class HomePortfolio extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: UtilsColor.colorOriginalPorfolioP,
-      appBar: AppBar(
-        title: Text(
-          'Bienvenido a mi Portafolio'.toUpperCase(),
-          style: StyleText.textStyleOriginalDark(
-            color: UtilsColor.colorDarkGrey,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: UtilsColor.colorOriginalPorfolioG,
-      ),
+      backgroundColor: UtilsColor.colorHomePrimary,
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Bienvenido a mi Portafolio'.toUpperCase(),
+      //     style: StyleText.textStyleOriginalDark(
+      //       color: UtilsColor.colorDarkGrey,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: UtilsColor.colorOriginalPorfolioG,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.only(top: SizeUtils.l),
+          padding: EdgeInsets.only(top: SizeUtils.l),
           child: Responsive(
             mobile: _buildLayout(
               context,
@@ -71,10 +71,88 @@ class HomePortfolio extends StatelessWidget {
           child: _buildDescription(context, al!.descriptionAbout),
         ),
         SizedBox(height: SizeUtils.l),
-        _buildRowIcon(al)
+        _buildRowIcon(al),
+        SizedBox(height: SizeUtils.l),
+        Padding(
+          padding: padding,
+          child: _buildTitleData(al.proyectRealized),
+        ),
+        SizedBox(height: SizeUtils.l),
+
+
+        SizedBox(height: SizeUtils.l),
+        Padding(
+          padding: padding,
+          child: _buildTitleData(al.experience),
+        ),
+        SizedBox(height: SizeUtils.l),
       ],
     );
   }
+
+  Widget _buildStackContainerProyect(BuildContext context, String number, Color colorNumber) {
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(SizeUtils.s)),
+                border: Border.all(color: UtilsColor.colorDarkGrey)),
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: SizeUtils.s,
+                right: SizeUtils.xl,
+                top: SizeUtils.s1,
+                bottom: SizeUtils.m,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(top: SizeUtils.l),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Sistema Arcano',
+                      style: StyleText.textStyleOriginalDark(
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Descripcion de sistemas arcano',
+                      style: StyleText.textStyleOriginalDark(
+                        fontSize: null,
+                        minFontSize: SizeUtils.s, // 15
+                        maxFontSize: SizeUtils.l, // 20
+                        context: context,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+            top: 0,
+            left: 0,
+            child: Container(
+                color: colorNumber,
+                child: Padding(
+                  padding: EdgeInsets.all(SizeUtils.m),
+                  child: Text(
+                    number,
+                    style: StyleText.textStyleOriginalDark(
+                      fontSize: null,
+                      minFontSize: SizeUtils.l, // 10
+                      maxFontSize: SizeUtils.l1, // 15
+                      context: context,
+                    ),
+                  ),
+                )))
+      ],
+    );
+  }
+
+
 
   Widget _buildContent(BuildContext context, AppLocalizations? al,
       {required bool isMobile}) {
@@ -92,16 +170,42 @@ class HomePortfolio extends StatelessWidget {
           mainAxisAlignment:
               isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
-            Text(
-              'Alberto Guaman',
-              style: StyleText.textStyleOriginalDark(
-                fontWeight: FontWeight.bold,
-                fontSize: null,
-                minFontSize: SizeUtils.l2, // 30
-                maxFontSize: SizeUtils.xl, // 40
-                context: context,
+            RichText(
+              text: TextSpan(
+                style: StyleText.textStyleOriginalDark(
+                  fontWeight: FontWeight.bold,
+                  fontSize: null,
+                  minFontSize: SizeUtils.l2, // 30
+                  maxFontSize: SizeUtils.xl, // 40
+                  context: context,
+                ), // Default style for all spans
+                children: <TextSpan>[
+                  const TextSpan(text: 'Saludos soy '),
+                  // TextSpan(
+                  //   text: 'Portafolio',
+                  //   style: TextStyle(
+                  //       fontWeight: FontWeight.bold, color: Colors.green),
+                  // ),
+                  // TextSpan(text: ' soy '),
+                  TextSpan(
+                    text: 'Alberto Guaman',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: UtilsColor.colorHomePrimaryGreen),
+                  ),
+                ],
               ),
             ),
+            // Text(
+            //   'Alberto Guaman',
+            //   style: StyleText.textStyleOriginalDark(
+            //     fontWeight: FontWeight.bold,
+            //     fontSize: null,
+            //     minFontSize: SizeUtils.l2, // 30
+            //     maxFontSize: SizeUtils.xl, // 40
+            //     context: context,
+            //   ),
+            // ),
             SizedBox(width: SizeUtils.m),
             Icon(
               Icons.verified,
@@ -157,81 +261,45 @@ class HomePortfolio extends StatelessWidget {
     );
   }
 
+  Widget _buildTitleData(String text) {
+    return Column(
+      children: [
+        linerSpace(),
+        ResponsiveText(
+          text: text.toUpperCase(),
+          minSize: SizeUtils.l1, // 30
+          maxSize: SizeUtils.xxl3, // 35
+          style: StyleText.textStyleOriginalDark(fontWeight: FontWeight.bold),
+        ),
+        linerSpace(),
+      ],
+    );
+  }
+
   Widget _buildRowIcon(AppLocalizations? al) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        containerOnpress(() {
-          html.window.open(
-            'https://tunegocio.pro/G4YbU',
-            'WhastApp',
-          );
-        }, al!.contacMe,
-            activate: false,
-            style: StyleText.textStyleOriginalDark(
-                color: UtilsColor.colorOriginalPorfolioW)),
-        iconWidget(FontAwesomeIcons.linkedin, () {
-          if (kDebugMode) {
-            print('linkeding');
-          }
-
-          html.window.open(
-            'https://www.linkedin.com/in/albertoguaman/',
-            'Linkedin',
-          );
-        }, color: UtilsColor.colorDarkGrey),
-        iconWidget(FontAwesomeIcons.instagram, () {
-          html.window.open(
-            'https://www.instagram.com/albertoguamandev/',
-            'Instagram',
-          );
-        }, color: UtilsColor.colorDarkGrey),
-        iconWidget(FontAwesomeIcons.tiktok, () {
-          if (kDebugMode) {
-            print('linkeding');
-          }
-          html.window.open(
-            'https://www.tiktok.com/@albertoguaman.com',
-            'Tiktok',
-          );
-        }, color: UtilsColor.colorDarkGrey),
+        ContainerButtonWidget(
+          al: al,
+          text: al!.contacMe,
+          onTap: () =>
+              html.window.open('https://tunegocio.pro/G4YbU', 'WhastApp'),
+          colorText: UtilsColor.colorOriginalW,
+        ),
+        SizedBox(width: SizeUtils.l),
+        ContainerButtonWidget(
+          al: al,
+          text: 'CV - 2024',
+          color: Colors.transparent,
+          onTap: () {
+            if (kDebugMode) {
+              print('cv');
+            }
+          },
+        ),
       ],
-    );
-  }
-}
-
-class ResponsiveText extends StatelessWidget {
-  final String text;
-  final double minSize;
-  final double maxSize;
-  final TextStyle? style;
-  final TextAlign? textAlign;
-
-  const ResponsiveText({
-    Key? key,
-    required this.text,
-    required this.minSize,
-    required this.maxSize,
-    this.style,
-    this.textAlign,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // Obtenemos el ancho de la pantalla
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    // Calculamos el tamaño del texto
-    double calculatedFontSize =
-        screenWidth * 0.05; // Ajusta 0.05 según tus necesidades
-    double fontSize = calculatedFontSize.clamp(minSize, maxSize);
-
-    return Text(
-      text,
-      style:
-          style?.copyWith(fontSize: fontSize) ?? TextStyle(fontSize: fontSize),
-      textAlign: textAlign,
     );
   }
 }
