@@ -9,4 +9,5 @@ class SizeUtils {
   static double xxl = 70.0;
   static double xxl2 = 75.0;
   static double xxl3 = 90.0;
+  static double xxl4 = 120.0;
 }

@@ -78,19 +78,61 @@ class HomePortfolio extends StatelessWidget {
           child: _buildTitleData(al.proyectRealized),
         ),
         SizedBox(height: SizeUtils.l),
-
-
-        SizedBox(height: SizeUtils.l),
         Padding(
           padding: padding,
           child: _buildTitleData(al.experience),
         ),
-        SizedBox(height: SizeUtils.l),
+        SizedBox(height: SizeUtils.l)
       ],
     );
   }
 
-  Widget _buildStackContainerProyect(BuildContext context, String number, Color colorNumber) {
+  Widget _buildRowIconData(AppLocalizations? al) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        iconWidget(FontAwesomeIcons.tiktok, () {
+          if (kDebugMode) {
+            print('linkeding');
+          }
+          html.window.open(
+            'https://www.tiktok.com/@albertoguaman.com',
+            'Tiktok',
+          );
+        }, message: 'Tiktok', color: UtilsColor.colorDarkGrey),
+        iconWidget(FontAwesomeIcons.linkedin, () {
+          if (kDebugMode) {
+            print('linkeding');
+          }
+
+          html.window.open(
+            'https://www.linkedin.com/in/albertoguaman/',
+            'Linkedin',
+          );
+        }, message: 'Linkedin', color: UtilsColor.colorDarkGrey),
+        iconWidget(FontAwesomeIcons.facebook, () {
+          if (kDebugMode) {
+            print('Facebook');
+          }
+
+          html.window.open(
+            'https://www.facebook.com/albertoguamantinguar',
+            'Facebook',
+          );
+        }, message: 'Facebook', color: UtilsColor.colorDarkGrey),
+        iconWidget(FontAwesomeIcons.instagram, () {
+          html.window.open(
+            'https://www.instagram.com/albertoguamandev/',
+            'Instagram',
+          );
+        }, message: 'Instagram', color: UtilsColor.colorDarkGrey),
+      ],
+    );
+  }
+
+  Widget _buildStackContainerProyect(
+      BuildContext context, String number, Color colorNumber) {
     return Stack(
       children: [
         Padding(
@@ -152,12 +194,10 @@ class HomePortfolio extends StatelessWidget {
     );
   }
 
-
-
   Widget _buildContent(BuildContext context, AppLocalizations? al,
       {required bool isMobile}) {
     final avatar = CircleAvatar(
-      maxRadius: SizeUtils.xxl2,
+      maxRadius: SizeUtils.xxl4,
       backgroundColor: UtilsColor.colorOriginalPorfolioW,
       backgroundImage: AssetImage(AssetsUtil.imgAlbertoGuaman),
     );
@@ -221,12 +261,15 @@ class HomePortfolio extends StatelessWidget {
           maxSize: SizeUtils.l1, // 30
           style: StyleText.textStyleOriginalDark(),
         ),
-        ResponsiveText(
-          text: al.webDeveloperAndDataAnalyst,
-          minSize: SizeUtils.l, // 20
-          maxSize: SizeUtils.l1, // 30
-          style: StyleText.textStyleOriginalDark(),
-        ),
+        // ResponsiveText(
+        //   text: al.webDeveloperAndDataAnalyst,
+        //   minSize: SizeUtils.l, // 20
+        //   maxSize: SizeUtils.l1, // 30
+        //   style: StyleText.textStyleOriginalDark(),
+        // ),
+        SizedBox(height: SizeUtils.s),
+
+        _buildRowIconData(al)
       ],
     );
 
@@ -244,7 +287,7 @@ class HomePortfolio extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   avatar,
-                  SizedBox(width: SizeUtils.s),
+                  SizedBox(width: SizeUtils.l2),
                   info,
                 ],
               ),
