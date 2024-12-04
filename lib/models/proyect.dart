@@ -4,6 +4,15 @@ List<Map<String, dynamic>> dataList = [
   {
     'title': 'Tinguar ',
     'country': 'Ecuador ',
+    'proyect': 'Horarios CNEL',
+    'skill': 'Flutter, Dart, Firebase',
+    'jobs': 'Freelancer',
+    'link': 'https://cnel-ficha.tinguar.com/',
+    'color': UtilsColor.colorOriginalPorfolioG
+  },
+  {
+    'title': 'Tinguar ',
+    'country': 'Ecuador ',
     'proyect': 'Generador de link',
     'skill': 'Flutter, Dart, Firebase',
     'jobs': 'Freelancer',
@@ -19,6 +28,17 @@ List<Map<String, dynamic>> dataList = [
     'link': 'https://sciedtec.com/',
     'color': UtilsColor.colorOriginalPorfolioG
   },
+
+  {
+    'title': 'N/A ',
+    'country': 'Ecuador ',
+    'proyect': 'Ver todos los proyectos',
+    'skill': 'Flutter, Dart, SqLite',
+    'jobs': 'Freelancer',
+    'link': 'https://itsjapon.edu.ec/apps/',
+    'color': UtilsColor.colorOriginalPorfolioP
+  },
+
   {
     'title': 'N/A ',
     'country': 'Ecuador ',

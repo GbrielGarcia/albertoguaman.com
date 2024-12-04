@@ -1,3 +1,4 @@
+import 'package:albertoguaman/models/models.dart';
 import 'package:albertoguaman/utils/text.dart';
 import 'package:albertoguaman/utils/utils.dart';
 import 'package:albertoguaman/widgets/widgets.dart';
@@ -6,9 +7,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
-class HomePortfolio extends StatelessWidget {
+class HomePortfolio extends StatefulWidget {
   const HomePortfolio({super.key});
+
+  @override
+  State<HomePortfolio> createState() => _HomePortfolioState();
+}
+
+class _HomePortfolioState extends State<HomePortfolio> {
+  late List<bool> inHovered;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // inHovered.addAll(List.filled(dataList.length, false));
+    inHovered = List<bool>.filled(dataList.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +34,6 @@ class HomePortfolio extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: UtilsColor.colorHomePrimary,
-      // appBar: AppBar(
-      //   title: Text(
-      //     'Bienvenido a mi Portafolio'.toUpperCase(),
-      //     style: StyleText.textStyleOriginalDark(
-      //       color: UtilsColor.colorDarkGrey,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: UtilsColor.colorOriginalPorfolioG,
-      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: SizeUtils.l),
@@ -36,12 +42,14 @@ class HomePortfolio extends StatelessWidget {
               context,
               al,
               isMobile: true,
+              inHovered: inHovered,
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
             ),
             desktop: _buildLayout(
               context,
               al,
               isMobile: false,
+              inHovered: inHovered,
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.15),
             ),
           ),
@@ -60,6 +68,7 @@ class HomePortfolio extends StatelessWidget {
     AppLocalizations? al, {
     required bool isMobile,
     required EdgeInsets padding,
+    required List<bool> inHovered,
   }) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,11 +89,105 @@ class HomePortfolio extends StatelessWidget {
         SizedBox(height: SizeUtils.l),
         Padding(
           padding: padding,
+          child: _buildGridProject(inHovered),
+        ),
+        SizedBox(height: SizeUtils.l),
+        Padding(
+          padding: padding,
           child: _buildTitleData(al.experience),
         ),
         SizedBox(height: SizeUtils.l)
       ],
     );
+  }
+
+  Widget _buildGridProject(List<bool> inHovered) {
+    return GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: Responsive.isDesktop(context)
+              ? 2
+              : Responsive.isMobile(context)
+                  ? 1
+                  : 2,
+          childAspectRatio: 7 / 3,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: dataList.length > 4 ? 4 : dataList.length,
+        itemBuilder: (_, index) {
+          final dataReturn = dataList[index];
+          final String? projectText = dataReturn['proyect'];
+          return MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                inHovered[index] = true;
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                inHovered[index] = false;
+              });
+            },
+            child: GestureDetector(
+              onTap: () {
+                if (kDebugMode) {
+                  print('click ${dataReturn['proyect']}');
+                }
+              },
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  AnimatedOpacity(
+                    opacity: inHovered[index] ? 0.3 : 1.0,
+                    duration: const Duration(milliseconds: 100),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: dataReturn['color'],
+                        border: Border.all(),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(SizeUtils.s)),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(SizeUtils.s),
+                            child: ResponsiveText(
+                              text: (index == 3 && projectText != null)
+                                  ? projectText.toUpperCase()
+                                  : projectText?.toUpperCase() ?? 'Sin título',
+                              minSize: index == 3
+                                  ? SizeUtils.xl
+                                  : SizeUtils.s1, // 10
+                              maxSize: index == 3
+                                  ? SizeUtils.xxl2
+                                  : SizeUtils.l, // 15
+                              style: StyleText.textStyleOriginalDark(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (inHovered[index])
+                    Positioned.fill(
+                        child: Center(
+                      child: Icon(
+                        Icons.link,
+                        color: UtilsColor.colorDarkGrey,
+                        size: 100,
+                      ),
+                    ))
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   Widget _buildRowIconData(AppLocalizations? al) {
@@ -221,12 +324,6 @@ class HomePortfolio extends StatelessWidget {
                 ), // Default style for all spans
                 children: <TextSpan>[
                   const TextSpan(text: 'Saludos soy '),
-                  // TextSpan(
-                  //   text: 'Portafolio',
-                  //   style: TextStyle(
-                  //       fontWeight: FontWeight.bold, color: Colors.green),
-                  // ),
-                  // TextSpan(text: ' soy '),
                   TextSpan(
                     text: 'Alberto Guaman',
                     style: TextStyle(
@@ -236,16 +333,6 @@ class HomePortfolio extends StatelessWidget {
                 ],
               ),
             ),
-            // Text(
-            //   'Alberto Guaman',
-            //   style: StyleText.textStyleOriginalDark(
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: null,
-            //     minFontSize: SizeUtils.l2, // 30
-            //     maxFontSize: SizeUtils.xl, // 40
-            //     context: context,
-            //   ),
-            // ),
             SizedBox(width: SizeUtils.m),
             Icon(
               Icons.verified,
@@ -261,14 +348,7 @@ class HomePortfolio extends StatelessWidget {
           maxSize: SizeUtils.l1, // 30
           style: StyleText.textStyleOriginalDark(),
         ),
-        // ResponsiveText(
-        //   text: al.webDeveloperAndDataAnalyst,
-        //   minSize: SizeUtils.l, // 20
-        //   maxSize: SizeUtils.l1, // 30
-        //   style: StyleText.textStyleOriginalDark(),
-        // ),
         SizedBox(height: SizeUtils.s),
-
         _buildRowIconData(al)
       ],
     );
@@ -330,6 +410,7 @@ class HomePortfolio extends StatelessWidget {
           onTap: () =>
               html.window.open('https://tunegocio.pro/G4YbU', 'WhastApp'),
           colorText: UtilsColor.colorOriginalW,
+          message: 'WhastApp',
         ),
         SizedBox(width: SizeUtils.l),
         ContainerButtonWidget(
@@ -341,6 +422,7 @@ class HomePortfolio extends StatelessWidget {
               print('cv');
             }
           },
+          message: al.view,
         ),
       ],
     );

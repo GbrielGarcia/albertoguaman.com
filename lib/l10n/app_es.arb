@@ -12,7 +12,7 @@
   "administratorIt": "Administrador de TI",
   "seeProject": "ver proyecto",
   "webDeveloperAndDataAnalyst": "Desarrollador web y analista de datos",
-  "descriptionAbout": "Soy un freelance apasionado por la tecnología desde Ecuador, con experiencia en administración de sistemas, desarrollo web y aplicaciones móviles. Titulado en Tecnología en Desarrollo de Software, me mantengo siempre actualizado en este dinámico mundo tecnológico. Actualmente, me estoy especializando en análisis de datos con Power BI.",
+  "descriptionAbout": "Soy un profesional freelance apasionado por la tecnología, originario de Ecuador, con experiencia en administración de sistemas, desarrollo web y aplicaciones móviles. Titulado en Tecnología en Desarrollo de Software, me esfuerzo por mantenerme al día en este mundo tecnológico en constante evolución. Actualmente, me desempeño como agente de proyectos, liderando iniciativas innovadoras y ofreciendo soluciones efectivas.",
   "services": "Servicios de",
   "servicesApp": "Hola Alberto, quiero más información sobre desarrollo de apps:",
   "servicesAppTitle": "Desarrollo de apps",
@@ -32,5 +32,7 @@
   "github": "GitHub",
   "original" : "original",
   "readMyBlog": "Lee mi Blog",
-  "experience": "Experiencia"
+  "experience": "Experiencia",
+  "view": "Visualizar"
+
 }

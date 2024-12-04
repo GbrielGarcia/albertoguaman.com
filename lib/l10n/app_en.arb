@@ -12,7 +12,7 @@
   "administratorIt": "IT Administrator",
   "seeProject": "see project",
   "webDeveloperAndDataAnalyst": "Web developer and data analyst",
-  "descriptionAbout": "I am a freelance passionate about technology from Ecuador, with experience in systems administration, web development and mobile applications. With a degree in Software Development Technology, I always keep myself updated in this dynamic technological world. Currently, I am specializing in data analysis with Power BI.",
+  "descriptionAbout": "I am a freelance professional passionate about technology, originally from Ecuador, with experience in systems administration, web development and mobile applications. With a degree in Software Development Technology, I strive to keep up to date in this constantly evolving technological world. Currently, I work as a project manager, leading innovative initiatives and offering effective solutions.",
   "services": "Services",
   "servicesApp": "Hi Alberto, I want more information about app development:",
   "servicesAppTitle": "App development",
@@ -32,6 +32,7 @@
   "github": "GitHub",
   "original" : "original",
   "readMyBlog": "Read my Blog",
-    "experience": "Experience"
+    "experience": "Experience",
+  "view": "View"
 
 }

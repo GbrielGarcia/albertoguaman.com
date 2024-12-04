@@ -1,4 +1,5 @@
 import 'package:albertoguaman/utils/color.dart';
+import 'package:albertoguaman/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,5 +61,34 @@ class StyleText {
         fontWeight: fontWeight ?? FontWeight.w100,
       ),
     );
+  }
+
+
+  static TextStyle textPortfolio({
+    double? fontSize,
+    Color? color,
+    FontWeight? fontWeight,
+    Color? colorBackgroundColor,
+  }) {
+    return GoogleFonts.alegreya(textStyle: TextStyle(
+        fontSize: fontSize ?? SizeUtils.l,
+        color: color ??  UtilsColor.colorSecondaryWhite,
+        fontWeight: fontWeight ?? FontWeight.w100,
+      backgroundColor:  colorBackgroundColor ?? Colors.transparent
+    ));
+  }
+
+  static TextStyle textPortfolioDancingScript({
+    double? fontSize,
+    Color? color,
+    FontWeight? fontWeight,
+    Color? colorBackgroundColor,
+  }) {
+    return GoogleFonts.kaushanScript(textStyle: TextStyle(
+        fontSize: fontSize ?? SizeUtils.l2,
+        color: color ??  UtilsColor.colorPrimaryDark,
+        fontWeight: fontWeight ?? FontWeight.bold,
+        backgroundColor:  colorBackgroundColor ?? Colors.transparent
+    ));
   }
 }
