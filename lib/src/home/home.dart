@@ -192,22 +192,12 @@ class _PortfolioScreenState extends State<HomeSrc> {
             itemCount: infoProjectModel.length,
             itemBuilder: (context, index) {
               final project = infoProjectModel[index];
-              return GestureDetector(
-                onTap: () {
-                  // Alternar el estado de hovered en dispositivos móviles
-                  setState(() {
-                    inHovered[index] = !inHovered[index];
-                  });
-                },
-                child: MouseRegion(
-                  onEnter: (_) {
+              return tooltipW(
+                'Más información',
+                GestureDetector(
+                  onTap: () {
                     setState(() {
-                      inHovered[index] = true;
-                    });
-                  },
-                  onExit: (_) {
-                    setState(() {
-                      inHovered[index] = false;
+                      inHovered[index] = !inHovered[index];
                     });
                   },
                   child: Stack(
@@ -218,46 +208,39 @@ class _PortfolioScreenState extends State<HomeSrc> {
                         child: Card(
                           color: UtilsColor.colorYellow,
                           elevation: 4,
-                          child: IntrinsicHeight(
-                            child: Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.all(SizeUtils.s),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(project.title,
-                                        style: StyleText.textPortfolio(
-                                          color: UtilsColor.colorPrimaryDark,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    SizedBox(height: SizeUtils.s),
-                                    Text(
-                                      project.description,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: StyleText.textPortfolio(
-                                        color: UtilsColor.colorPrimaryDark,
-                                      ),
-                                    ),
-                                  ],
+                          child: Padding(
+                            padding: EdgeInsets.all(SizeUtils.s),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(project.title,
+                                    style: StyleText.textPortfolio(
+                                      color: UtilsColor.colorPrimaryDark,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(height: SizeUtils.s),
+                                Text(
+                                  project.description,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: StyleText.textPortfolio(
+                                    color: UtilsColor.colorPrimaryDark,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       if (inHovered[index])
                         Center(
-                          child: IntrinsicHeight(
-                            child: Expanded(
-                                child: Padding(
-                              padding: EdgeInsets.all(SizeUtils.s),
-                              child: containerBottom(
-                                  () => laucherURL(project.buttonVoidCall),
-                                  project.title,
-                                  'Ver proyecto',
-                                  padding: 0),
-                            )),
+                          child: Padding(
+                            padding: EdgeInsets.all(SizeUtils.s),
+                            child: containerBottom(
+                                () => laucherURL(project.buttonVoidCall),
+                                project.title,
+                                'Ver proyecto',
+                                padding: 0),
                           ),
                         ),
                       Positioned(
@@ -421,7 +404,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
       children: sections
           .map(
             (section) => GestureDetector(
-              onTap: ()  {
+              onTap: () {
                 _scrollToSection(section);
                 Navigator.pop(context);
               },
