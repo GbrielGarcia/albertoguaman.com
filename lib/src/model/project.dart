@@ -2,7 +2,7 @@ import 'package:albertoguaman/src/util/assets.dart';
 
 class ProjectModel {
   final String photo;
-  final String type;
+  final List<String> type;
   final String title;
   final String description;
   final String buttonText;
@@ -21,36 +21,35 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: Assets.projectOne,
-      type: 'Desarrollo Web',
-      title: 'Horarios Energia ( CNEL )',
-      description: 'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
+      type: [],
+      title: 'Horarios Energia ( WEB )',
+      description:
+          'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: 'Desarrollo Web',
-      title: 'Horarios Energia ( CNEL )',
-      description: 'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
+      type: [],
+      title: 'Horarios Energia ( CHAT BOT )',
+      description:
+          'Consulta los cortes de energía a través de nuestro chatbot en WhatsApp.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
+      buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: 'Desarrollo Web',
-      title: 'Horarios Energia ( CNEL )',
-      description: 'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
+      type: [],
+      title: 'Tarot Pragmático',
+      description:
+          'Sistema Arcano para cliente de CHILE, desarrollado con Flutter.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),  ProjectModel(
-      photo: Assets.projectOne,
-      type: 'Desarrollo Web',
-      title: 'Horarios Energia ( CNEL )',
-      description: 'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
+      buttonVoidCall: 'https://perfil.tarotpragmatico.com/'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: 'Desarrollo Web',
-      title: 'Horarios Energia ( CNEL )',
-      description: 'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
+      type: [],
+      title: 'Página Web Educativa (CMS)',
+      description:
+          'Página realizada con WordPress y Elementor para una empresa ecuatoriana de educación.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
+      buttonVoidCall: 'https://sciedtec.com/'),
+
 ];

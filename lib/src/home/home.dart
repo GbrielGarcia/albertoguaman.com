@@ -16,38 +16,18 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "../../utils/assets.dart";
 import "../util/util.dart";
+import 'package:responsive_layout_grid/responsive_layout_grid.dart';
 
-class HomeSrc extends StatelessWidget {
+final List<String> sections = ['Sobre Mí', 'Proyectos'];
+
+class HomeSrc extends StatefulWidget {
   const HomeSrc({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final al = AppLocalizations.of(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: UtilsColor.colorPink,
-        centerTitle: true,
-        title: _buildPowered(),
-      ),
-      drawer: context.isMobile || context.isMobileLarge
-          ? _buildDrawer(context, al)
-          : null,
-      backgroundColor: UtilsColor.colorPrimaryDark,
-      body: const PortfolioScreen(),
-    );
-  }
+  State<HomeSrc> createState() => _PortfolioScreenState();
 }
 
-class PortfolioScreen extends StatefulWidget {
-  const PortfolioScreen({super.key});
-
-  @override
-  State<PortfolioScreen> createState() => _PortfolioScreenState();
-}
-
-class _PortfolioScreenState extends State<PortfolioScreen> {
-  final List<String> sections = ['Sobre Mí', 'Proyectos', 'Experiencia'];
+class _PortfolioScreenState extends State<HomeSrc> {
   late List<bool> inHovered;
 
   final ScrollController _scrollController = ScrollController();
@@ -90,60 +70,107 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     final al = AppLocalizations.of(context);
     final List<ProjectModel> projects = infoProjectModel;
 
-    return Responsive(
-      mobile: SingleChildScrollView(
-        controller: _scrollController,
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            SizedBox(height: SizeUtils.xl1),
-            _buildAvatar(context, al),
-            SizedBox(width: SizeUtils.m),
-            _buildRowName(context),
-            SizedBox(height: SizeUtils.xl),
-            _buildSectionsRow(context, sections),
-            SizedBox(height: SizeUtils.xl),
-            _buildSectionContent('', sectionKeys['Sobre Mí']!),
-            _buildAboutMe(al),
-            _buildSectionContent('', sectionKeys['Proyectos']!),
-            _buildProject(al, context),
-            _buildSectionContent('', sectionKeys['Experiencia']!),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: UtilsColor.colorPink,
+        centerTitle: true,
+        title: _buildPowered(),
       ),
-      desktop: SingleChildScrollView(
-        controller: _scrollController,
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            SizedBox(height: SizeUtils.xl1),
-            SizedBox(
-              height: context.screenHeight * 0.25,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+      drawer: context.isMobile || context.isMobileLarge
+          ? Container(
+              width: context.screenWidth / 2,
+              decoration: BoxDecoration(
+                  color: UtilsColor.colorPrimaryDark,
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(SizeUtils.m)),
+              child: Column(
                 children: [
-                  _buildAvatar(context, al),
-                  SizedBox(width: SizeUtils.l1),
-                  _buildRowName(context),
+                  SizedBox(height: SizeUtils.xl1),
+                  _buildAvatar(context, al, maxRadius: SizeUtils.xl),
+                  SizedBox(width: SizeUtils.m),
+                  _buildRowName(context,
+                      visibility: true, text: 'Alberto Guaman'.toUpperCase()),
+                  SizedBox(height: SizeUtils.s1),
+                  _buildSectionsColumn(context, sections),
                 ],
               ),
-            ),
-            SizedBox(height: SizeUtils.l),
-            _buildSectionsRow(context, sections),
-            SizedBox(height: SizeUtils.l),
-            _buildSectionContent('', sectionKeys['Sobre Mí']!),
-            _buildAboutMe(al),
-            _buildSectionContent('', sectionKeys['Proyectos']!),
-            _buildProject(al, context),
-            _buildSectionContent('', sectionKeys['Experiencia']!),
-          ],
+            )
+          : null,
+      backgroundColor: UtilsColor.colorPrimaryDark,
+      body: Responsive(
+        mobile: SingleChildScrollView(
+          controller: _scrollController,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              SizedBox(height: SizeUtils.xl1),
+              _buildAvatar(context, al),
+              SizedBox(width: SizeUtils.m),
+              _buildRowName(context),
+              SizedBox(height: SizeUtils.xl),
+              _buildSectionsRow(context, sections),
+              SizedBox(height: SizeUtils.xl),
+              _buildSectionContent('', sectionKeys['Sobre Mí']!),
+              _buildAboutMe(al),
+              _buildSectionContent('', sectionKeys['Proyectos']!),
+              _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Experiencia']!),
+            ],
+          ),
+        ),
+        desktop: SingleChildScrollView(
+          controller: _scrollController,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              SizedBox(height: SizeUtils.xl1),
+              SizedBox(
+                height: context.screenHeight * 0.25,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildAvatar(context, al),
+                    SizedBox(width: SizeUtils.l1),
+                    _buildRowName(context),
+                  ],
+                ),
+              ),
+              SizedBox(height: SizeUtils.l),
+              _buildSectionsRow(context, sections),
+              SizedBox(height: SizeUtils.l),
+              _buildSectionContent('', sectionKeys['Sobre Mí']!),
+              _buildAboutMe(al),
+              _buildSectionContent('', sectionKeys['Proyectos']!),
+              _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Experiencia']!),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildProject(AppLocalizations? al, BuildContext context) {
+    final int crossAxisCount = context.isDesktop
+        ? 2
+        : context.isTabletLarge
+            ? 2
+            : context.isTablet
+                ? 2
+                : context.isMobileLarge
+                    ? 1
+                    : 1;
+    final double mainAxisExtent = context.isDesktop
+        ? 125
+        : context.isTabletLarge
+            ? 125
+            : context.isTablet
+                ? 125
+                : context.isMobileLarge
+                    ? 125
+                    : 125;
+
     return ResponsiveCenter(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -152,23 +179,27 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         _buildContainerInfo(
           al,
           GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: context.isDesktop
-                    ? 2
-                    : context.isMobile
-                        ? 1
-                        : 2,
-                childAspectRatio: 7 / 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemCount: infoProjectModel.length,
-              itemBuilder: (BuildContext context, index) {
-                final project = infoProjectModel[index];
-
-                return MouseRegion(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.all(SizeUtils.l),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              mainAxisExtent: 125,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 2,
+            ),
+            itemCount: infoProjectModel.length,
+            itemBuilder: (context, index) {
+              final project = infoProjectModel[index];
+              return GestureDetector(
+                onTap: () {
+                  // Alternar el estado de hovered en dispositivos móviles
+                  setState(() {
+                    inHovered[index] = !inHovered[index];
+                  });
+                },
+                child: MouseRegion(
                   onEnter: (_) {
                     setState(() {
                       inHovered[index] = true;
@@ -179,105 +210,89 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       inHovered[index] = false;
                     });
                   },
-                  child: AnimatedOpacity(
-                    opacity: inHovered[index] ? 0.3 : 1.0,
-                    duration: const Duration(milliseconds: 100),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 2.0,
+                  child: Stack(
+                    children: [
+                      AnimatedOpacity(
+                        opacity: inHovered[index] ? 0.2 : 1.0,
+                        duration: const Duration(milliseconds: 100),
+                        child: Card(
+                          color: UtilsColor.colorYellow,
+                          elevation: 4,
+                          child: IntrinsicHeight(
+                            child: Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.all(SizeUtils.s),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(project.title,
+                                        style: StyleText.textPortfolio(
+                                          color: UtilsColor.colorPrimaryDark,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                    SizedBox(height: SizeUtils.s),
+                                    Text(
+                                      project.description,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: StyleText.textPortfolio(
+                                        color: UtilsColor.colorPrimaryDark,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                          child: Image.asset(
-                            project.photo,
-                            fit: BoxFit
-                                .cover, // Ajusta cómo se escala la imagen dentro del contenedor
+                        ),
+                      ),
+                      if (inHovered[index])
+                        Center(
+                          child: IntrinsicHeight(
+                            child: Expanded(
+                                child: Padding(
+                              padding: EdgeInsets.all(SizeUtils.s),
+                              child: containerBottom(
+                                  () => laucherURL(project.buttonVoidCall),
+                                  project.title,
+                                  'Ver proyecto',
+                                  padding: 0),
+                            )),
                           ),
                         ),
-                        SizedBox(height: SizeUtils.l),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              project.title,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              project.description,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            SizedBox(height: 8),
-                            containerBottom(
-                                    () => laucherURL(project.buttonVoidCall),
-                                project.title,
-                                'Ver proyecto',
-                                padding: 0),
-                          ],
-                        ),
-                      ],
-                    ),
+                      Positioned(
+                          top: -10,
+                          right: 0,
+                          child: Container(
+                              padding: EdgeInsets.all(SizeUtils.m),
+                              decoration: BoxDecoration(
+                                color: UtilsColor.colorBlue,
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: Text('${index + 1}',
+                                  style: StyleText.textPortfolio(
+                                      fontSize: SizeUtils.xl))))
+                    ],
                   ),
-                );
-              }),
-          // StaggeredGrid.count(
-          //   crossAxisCount: context.isTablet ? 4 : 4,
-          //   mainAxisSpacing: 10.0,
-          //   crossAxisSpacing: 10.0,
-          //   children: infoProjectModel.map((project) {
-          //     return StaggeredGridTile.count(
-          //         crossAxisCellCount:
-          //             context.isMobile || context.isMobileLarge ? 4 : 2,
-          //         mainAxisCellCount:
-          //             context.isMobile || context.isMobileLarge ? 4 : 2,
-          //         child: Column(
-          //           children: [
-          //             Container(
-          //               decoration: BoxDecoration(
-          //                 border: Border.all(
-          //                   color: Colors.black, // Color del borde
-          //                   width: 2.0, // Ancho del borde
-          //                 ),
-          //               ),
-          //               child: Image.asset(
-          //                 project.photo,
-          //                 fit: BoxFit
-          //                     .cover, // Ajusta cómo se escala la imagen dentro del contenedor
-          //               ),
-          //             ),
-          //             SizedBox(height: SizeUtils.l),
-          //             Column(
-          //               crossAxisAlignment: CrossAxisAlignment.start,
-          //               children: [
-          //                 Text(
-          //                   project.title,
-          //                   style: TextStyle(fontWeight: FontWeight.bold),
-          //                 ),
-          //                 SizedBox(height: 4),
-          //                 Text(
-          //                   project.description,
-          //                   style: TextStyle(color: Colors.black),
-          //                 ),
-          //                 SizedBox(height: 8),
-          //                 containerBottom(
-          //                     () => laucherURL(project.buttonVoidCall),
-          //                     project.title,
-          //                     'Ver proyecto',
-          //                     padding: 0),
-          //               ],
-          //             ),
-          //           ],
-          //         ));
-          //   }).toList(),
-          // ),
+                ),
+              );
+            },
+          ),
           color: UtilsColor.colorPink,
           title: 'Proyectos'.toUpperCase(),
         )
       ],
     ));
+  }
+
+  Widget _buildContainerGrid() {
+    return Container(
+      decoration: BoxDecoration(
+          color: UtilsColor.colorSecondaryWhite,
+          border: Border.all(),
+          borderRadius: BorderRadius.circular(SizeUtils.m)),
+      child: Text('adsd'),
+    );
   }
 
   Widget _buildAboutMe(AppLocalizations? al) {
@@ -400,6 +415,37 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
+  Widget _buildSectionsColumn(BuildContext context, List<String> sections) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: sections
+          .map(
+            (section) => GestureDetector(
+              onTap: ()  {
+                _scrollToSection(section);
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(SizeUtils.s),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Text(
+                    section,
+                    style: StyleText.textPortfolio(
+                      fontSize: SizeUtils.l1.sizeScaled(
+                        context.screenWidth,
+                        minSize: SizeUtils.l,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+
   Widget _buildSectionContent(String title, GlobalKey key) {
     return Container(
       key: key,
@@ -410,25 +456,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               fontSize: SizeUtils.s1)),
     );
   }
-}
-
-Widget _buildDrawer(BuildContext context, AppLocalizations? al) {
-  return Container(
-    width: context.screenWidth / 2,
-    decoration: BoxDecoration(
-        color: UtilsColor.colorPrimaryDark,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(SizeUtils.m)),
-    child: Column(
-      children: [
-        SizedBox(height: SizeUtils.xl1),
-        _buildAvatar(context, al, maxRadius: SizeUtils.xl),
-        SizedBox(width: SizeUtils.m),
-        _buildRowName(context,
-            visibility: true, text: 'Alberto Guaman'.toUpperCase()),
-      ],
-    ),
-  );
 }
 
 Widget _buildPowered() {

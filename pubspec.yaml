@@ -30,6 +30,8 @@ dependencies:
   html: ^0.15.5
   flutter_animate: ^4.5.2
   animated_text_kit: ^4.2.2
+  responsive_grid_list: ^1.4.0
+  responsive_layout_grid: ^1.1.2
 
 dev_dependencies:
   flutter_test:
