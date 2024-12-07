@@ -1,3 +1,4 @@
+import 'package:albertoguaman/src/widget/size_text.dart';
 import 'package:albertoguaman/utils/color.dart';
 import 'package:albertoguaman/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,11 @@ class StyleText {
     Color? color,
     FontWeight? fontWeight,
   }) {
-    return GoogleFonts.alegreya(textStyle: TextStyle(
-      fontSize: fontSize ?? 20.0,
-      color: color ??  UtilsColor.colorOriginalPorfolioW,
-      fontWeight: fontWeight ?? FontWeight.w100
-    ));
+    return GoogleFonts.alegreya(
+        textStyle: TextStyle(
+            fontSize: fontSize ?? 20.0,
+            color: color ?? UtilsColor.colorOriginalPorfolioW,
+            fontWeight: fontWeight ?? FontWeight.w100));
   }
 
   static TextStyle textStyleOriginalDark({
@@ -41,7 +42,8 @@ class StyleText {
     double? maxFontSize,
     Color? color,
     FontWeight? fontWeight,
-    BuildContext? context, // Requiere el contexto para calcular el tamaño responsivo
+    BuildContext?
+        context, // Requiere el contexto para calcular el tamaño responsivo
   }) {
     double calculatedFontSize = fontSize ?? 25.0;
 
@@ -63,19 +65,18 @@ class StyleText {
     );
   }
 
-
   static TextStyle textPortfolio({
     double? fontSize,
     Color? color,
     FontWeight? fontWeight,
     Color? colorBackgroundColor,
   }) {
-    return GoogleFonts.alegreya(textStyle: TextStyle(
-        fontSize: fontSize ?? SizeUtils.l,
-        color: color ??  UtilsColor.colorSecondaryWhite,
-        fontWeight: fontWeight ?? FontWeight.w100,
-      backgroundColor:  colorBackgroundColor ?? Colors.transparent
-    ));
+    return GoogleFonts.alegreya(
+        textStyle: TextStyle(
+            fontSize: fontSize ?? SizeUtils.l,
+            color: color ?? UtilsColor.colorSecondaryWhite,
+            fontWeight: fontWeight ?? FontWeight.w100,
+            backgroundColor: colorBackgroundColor ?? Colors.transparent));
   }
 
   static TextStyle textPortfolioDancingScript({
@@ -84,11 +85,26 @@ class StyleText {
     FontWeight? fontWeight,
     Color? colorBackgroundColor,
   }) {
-    return GoogleFonts.kaushanScript(textStyle: TextStyle(
-        fontSize: fontSize ?? SizeUtils.l2,
-        color: color ??  UtilsColor.colorPrimaryDark,
-        fontWeight: fontWeight ?? FontWeight.bold,
-        backgroundColor:  colorBackgroundColor ?? Colors.transparent
-    ));
+    return GoogleFonts.kaushanScript(
+        textStyle: TextStyle(
+            fontSize: fontSize ?? SizeUtils.l2,
+            color: color ?? UtilsColor.colorPrimaryDark,
+            fontWeight: fontWeight ?? FontWeight.bold,
+            backgroundColor: colorBackgroundColor ?? Colors.transparent));
+  }
+}
+
+class TextStyleSize {
+  static double textTitleSize(double screenWidth) {
+    return SizeUtils.l1.sizeScaled(screenWidth, minSize: SizeUtils.l);
+  }
+
+
+  static double textTitleSectionSize(double screenWidth) {
+    return SizeUtils.xl1.sizeScaled(screenWidth, minSize: SizeUtils.xl);
+  }
+
+  static double textDescriptionSize(double screenWidth) {
+    return SizeUtils.l.sizeScaled(screenWidth, minSize: SizeUtils.s1);
   }
 }

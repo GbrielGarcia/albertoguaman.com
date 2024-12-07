@@ -22,7 +22,7 @@ List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: Assets.projectOne,
       type: [],
-      title: 'Horarios Energia ( WEB )',
+      title: 'Horarios Energia',
       description:
           'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
       buttonText: 'ver proyecto',
@@ -30,7 +30,7 @@ List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: Assets.projectOne,
       type: [],
-      title: 'Horarios Energia ( CHAT BOT )',
+      title: 'Horarios Energia',
       description:
           'Consulta los cortes de energía a través de nuestro chatbot en WhatsApp.',
       buttonText: 'ver proyecto',
@@ -46,7 +46,7 @@ List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: Assets.projectOne,
       type: [],
-      title: 'Página Web Educativa (CMS)',
+      title: 'Página Web Educativa',
       description:
           'Página realizada con WordPress y Elementor para una empresa ecuatoriana de educación.',
       buttonText: 'ver proyecto',

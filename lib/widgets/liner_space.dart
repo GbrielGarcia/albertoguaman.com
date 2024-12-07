@@ -4,7 +4,7 @@ import '../utils/utils.dart';
 
 Widget linerSpace() {
   return Container(
-      height: 1.0, width: double.infinity, color: UtilsColor.colorDarkGrey);
+      height: 2.0, width: double.infinity, color: UtilsColor.colorSecondaryWhite);
 }
 
 Widget linerSpaceV( BuildContext context) {

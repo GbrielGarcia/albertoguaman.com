@@ -1,7 +1,7 @@
 class SizeUtils {
   static double m = 5.0;
   static double s = 10.0;
-  static double s1 = 15.0;
+  static double s1 = 15.5;
   static double l = 20.0;
   static double l1 = 25.0;
   static double l2 = 30.0;

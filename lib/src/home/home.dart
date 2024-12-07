@@ -18,7 +18,12 @@ import "../../utils/assets.dart";
 import "../util/util.dart";
 import 'package:responsive_layout_grid/responsive_layout_grid.dart';
 
-final List<String> sections = ['Sobre Mí', 'Proyectos'];
+final List<String> sections = [
+  'Sobre Mí',
+  'Proyectos',
+  'Publicaciones',
+  'Experiencia'
+];
 
 class HomeSrc extends StatefulWidget {
   const HomeSrc({super.key});
@@ -29,20 +34,23 @@ class HomeSrc extends StatefulWidget {
 
 class _PortfolioScreenState extends State<HomeSrc> {
   late List<bool> inHovered;
+  late List<bool> inHoveredBook;
 
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> sectionKeys = {
     'Sobre Mí': GlobalKey(),
     'Proyectos': GlobalKey(),
     'Experiencia': GlobalKey(),
+    'Publicaciones': GlobalKey(),
+    'Experiencia': GlobalKey()
   };
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // inHovered.addAll(List.filled(dataList.length, false));
     inHovered = List<bool>.filled(infoProjectModel.length, false);
+    inHoveredBook = List<bool>.filled(infoButtonModel.length, false);
   }
 
   @override
@@ -68,7 +76,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
   @override
   Widget build(BuildContext context) {
     final al = AppLocalizations.of(context);
-    final List<ProjectModel> projects = infoProjectModel;
 
     return Scaffold(
       appBar: AppBar(
@@ -114,7 +121,14 @@ class _PortfolioScreenState extends State<HomeSrc> {
               _buildAboutMe(al),
               _buildSectionContent('', sectionKeys['Proyectos']!),
               _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Publicaciones']!),
+              _buildPublications(al),
               _buildSectionContent('', sectionKeys['Experiencia']!),
+              _buildExperience(al),
+              // iconDataRow(),
+              // SizedBox(height: SizeUtils.s),
+              footerData(al, context.screenWidth),
+              SizedBox(height: SizeUtils.xl1),
             ],
           ),
         ),
@@ -143,11 +157,149 @@ class _PortfolioScreenState extends State<HomeSrc> {
               _buildAboutMe(al),
               _buildSectionContent('', sectionKeys['Proyectos']!),
               _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Publicaciones']!),
+              _buildPublications(al),
               _buildSectionContent('', sectionKeys['Experiencia']!),
+              _buildExperience(al),
+              // iconDataRow(),
+              // SizedBox(height: SizeUtils.xl),
+              footerData(al, context.screenWidth),
+              SizedBox(height: SizeUtils.xl1),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildExperience(AppLocalizations? al) {
+    return ResponsiveCenter(
+      child: _buildContainerInfo(
+        al,
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: infoExperienceModel.length,
+          itemBuilder: (context, index) {
+            final experience = infoExperienceModel[index];
+            return Padding(
+              padding:
+                  EdgeInsets.symmetric(vertical: index != 1 ? 0 : SizeUtils.s),
+              child: _buildCardInfo(
+                  () {},
+                  1.0,
+                  Colors.transparent,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(experience.title.toUpperCase(),
+                          style: StyleText.textPortfolio(
+                            fontSize: TextStyleSize.textTitleSize(
+                                context.screenWidth),
+                            fontWeight: FontWeight.bold,
+                          )),
+                      SizedBox(height: SizeUtils.m),
+                      Text(experience.type,
+                          style: StyleText.textPortfolio(
+                            fontSize: TextStyleSize.textDescriptionSize(
+                                context.screenWidth),
+                            fontWeight: FontWeight.bold,
+                          )),
+                      SizedBox(height: SizeUtils.m),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: experience.description.map((desc) {
+                          return Text(
+                            desc,
+                            style: StyleText.textPortfolio(
+                                fontSize: TextStyleSize.textDescriptionSize(
+                                    context.screenWidth)),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: SizeUtils.s1),
+                      linerSpace()
+                    ],
+                  ),
+                  'url',
+                  'urlTitle',
+                  'view',
+                  experience.data,
+                  Colors.transparent,
+                  [],
+                  titleToolTip: true,
+                  positioned: true,
+                  elevation: true),
+            );
+          },
+        ),
+        color: Colors.transparent,
+        title: 'Experiencia',
+      ),
+    );
+  }
+
+  Widget _buildPublications(AppLocalizations? al) {
+    return ResponsiveCenter(
+      child: _buildContainerInfo(
+          al,
+          ListView.builder(
+            shrinkWrap: true,
+            // padding: EdgeInsets.all(SizeUtils.m ),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: infoBookModel.length,
+            itemBuilder: (context, index) {
+              final book = infoBookModel[index];
+              if (kDebugMode) {
+                print(index);
+              }
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: index != 1 ? 0 : SizeUtils.s),
+                child: _buildCardInfo(
+                  () {
+                    setState(() {
+                      inHoveredBook[index] = !inHoveredBook[index];
+                    });
+                  },
+                  inHoveredBook[index] ? 0.2 : 1.0,
+                  UtilsColor.colorSecondaryWhite,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(book.title,
+                          style: StyleText.textPortfolio(
+                            color: UtilsColor.colorPrimaryDark,
+                            fontSize: TextStyleSize.textTitleSize(
+                                context.screenWidth),
+                            fontWeight: FontWeight.bold,
+                          )),
+                      SizedBox(height: SizeUtils.m),
+                      Text(
+                        book.description,
+                        maxLines: context.isDesktop ? 4 : 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: StyleText.textPortfolio(
+                            color: UtilsColor.colorPrimaryDark,
+                            fontSize: TextStyleSize.textDescriptionSize(
+                                context.screenWidth)),
+                      ),
+                    ],
+                  ),
+                  book.buttonVoidCall,
+                  book.buttonVoidCall,
+                  book.buttonText,
+                  '${index + 1}',
+                  UtilsColor.colorPink,
+                  [inHoveredBook[index]],
+                ),
+              );
+            },
+          ),
+          title: 'Publicaciones',
+          color: UtilsColor.colorPrimaryDark),
     );
   }
 
@@ -162,119 +314,137 @@ class _PortfolioScreenState extends State<HomeSrc> {
                     ? 1
                     : 1;
     final double mainAxisExtent = context.isDesktop
-        ? 125
+        ? 130
         : context.isTabletLarge
-            ? 125
+            ? 130
             : context.isTablet
                 ? 125
                 : context.isMobileLarge
                     ? 125
-                    : 125;
+                    : 150;
 
     return ResponsiveCenter(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        _buildContainerInfo(
-          al,
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(SizeUtils.l),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              mainAxisExtent: 125,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 2,
-            ),
-            itemCount: infoProjectModel.length,
-            itemBuilder: (context, index) {
-              final project = infoProjectModel[index];
-              return tooltipW(
-                'Más información',
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      inHovered[index] = !inHovered[index];
-                    });
-                  },
-                  child: Stack(
-                    children: [
-                      AnimatedOpacity(
-                        opacity: inHovered[index] ? 0.2 : 1.0,
-                        duration: const Duration(milliseconds: 100),
-                        child: Card(
-                          color: UtilsColor.colorYellow,
-                          elevation: 4,
-                          child: Padding(
-                            padding: EdgeInsets.all(SizeUtils.s),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(project.title,
-                                    style: StyleText.textPortfolio(
-                                      color: UtilsColor.colorPrimaryDark,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                SizedBox(height: SizeUtils.s),
-                                Text(
-                                  project.description,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: StyleText.textPortfolio(
-                                    color: UtilsColor.colorPrimaryDark,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      if (inHovered[index])
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(SizeUtils.s),
-                            child: containerBottom(
-                                () => laucherURL(project.buttonVoidCall),
-                                project.title,
-                                'Ver proyecto',
-                                padding: 0),
-                          ),
-                        ),
-                      Positioned(
-                          top: -10,
-                          right: 0,
-                          child: Container(
-                              padding: EdgeInsets.all(SizeUtils.m),
-                              decoration: BoxDecoration(
-                                color: UtilsColor.colorBlue,
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Text('${index + 1}',
-                                  style: StyleText.textPortfolio(
-                                      fontSize: SizeUtils.xl))))
-                    ],
+        child: _buildContainerInfo(
+      al,
+      GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        // padding: EdgeInsets.all(SizeUtils.l),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          mainAxisExtent: mainAxisExtent,
+          crossAxisSpacing: SizeUtils.s1,
+          mainAxisSpacing: SizeUtils.s1,
+          childAspectRatio: 2,
+        ),
+        itemCount: infoProjectModel.length,
+        itemBuilder: (context, index) {
+          final project = infoProjectModel[index];
+          return _buildCardInfo(() {
+            setState(() {
+              inHovered[index] = !inHovered[index];
+            });
+          },
+              inHovered[index] ? 0.2 : 1.0,
+              UtilsColor.colorYellow,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(project.title,
+                      style: StyleText.textPortfolio(
+                        color: UtilsColor.colorPrimaryDark,
+                        fontSize:
+                            TextStyleSize.textTitleSize(context.screenWidth),
+                        fontWeight: FontWeight.bold,
+                      )),
+                  SizedBox(height: SizeUtils.m),
+                  Text(
+                    project.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: StyleText.textPortfolio(
+                        color: UtilsColor.colorPrimaryDark,
+                        fontSize: TextStyleSize.textDescriptionSize(
+                            context.screenWidth)),
                   ),
-                ),
-              );
-            },
-          ),
-          color: UtilsColor.colorPink,
-          title: 'Proyectos'.toUpperCase(),
-        )
-      ],
+                ],
+              ),
+              project.buttonVoidCall,
+              project.buttonVoidCall,
+              project.title,
+              '${index + 1}',
+              UtilsColor.colorBlue,
+              [inHovered[index]]);
+        },
+      ),
+      color: UtilsColor.colorPink,
+      title: 'Proyectos'.toUpperCase(),
     ));
   }
 
-  Widget _buildContainerGrid() {
-    return Container(
-      decoration: BoxDecoration(
-          color: UtilsColor.colorSecondaryWhite,
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(SizeUtils.m)),
-      child: Text('adsd'),
+  Widget _buildCardInfo(
+    VoidCallback onTap,
+    double opacity,
+    Color color,
+    Widget child,
+    String url,
+    String urlTitle,
+    String view,
+    String titleShape,
+    Color colorShape,
+    List<bool> listBool, {
+    bool? titleToolTip = false,
+    bool? positioned = false,
+    bool? elevation = false,
+  }) {
+    return tooltipW(
+      titleToolTip == false ? 'Más información' : '',
+      GestureDetector(
+        onTap: onTap,
+        child: Stack(
+          children: [
+            AnimatedOpacity(
+              opacity: opacity,
+              duration: const Duration(milliseconds: 100),
+              child: Card(
+                color: color,
+                elevation: elevation == false ? 4 : 0,
+                child: Padding(
+                  padding: EdgeInsets.all(SizeUtils.s),
+                  child: child,
+                ),
+              ),
+            ),
+            if (listBool.isNotEmpty && listBool.any((boolValue) => boolValue))
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.all(SizeUtils.s),
+                    child: containerBottom(
+                        () => laucherURL(url), urlTitle, view,
+                        padding: 0),
+                  ),
+                ),
+              ),
+            // ... (
+            Positioned(
+                top: -10,
+                right: 0,
+                child: Container(
+                    padding: EdgeInsets.all(SizeUtils.m),
+                    decoration: BoxDecoration(
+                      color: colorShape,
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Text(titleShape,
+                        style: StyleText.textPortfolio(
+                            fontSize: positioned == false
+                                ? SizeUtils.xl
+                                : SizeUtils.l))))
+          ],
+        ),
+      ),
     );
   }
 
@@ -286,9 +456,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
             al,
             Text(al!.descriptionAbout,
                 style: StyleText.textPortfolio(
-                  fontSize: SizeUtils.l
-                      .sizeScaled(context.screenWidth, minSize: SizeUtils.s1),
-                  // colorBackgroundColor: UtilsColor.colorPinkSecondary,
+                  fontSize:
+                      TextStyleSize.textDescriptionSize(context.screenWidth),
                 )),
             title: 'sobre mi'.toUpperCase(),
           ),
@@ -296,15 +465,15 @@ class _PortfolioScreenState extends State<HomeSrc> {
             children: [
               containerBottom(() => laucherURL('https://tunegocio.pro/AWcDD'),
                   '+593 99 860 2204', 'contactame'),
-              Flexible(
-                  flex: 1,
-                  child: _buildContainerInfo(al, Container(),
-                      height: SizeUtils.xlq)),
               containerBottom(
                   () => laucherURL(
                       'https://drive.google.com/file/d/1kP70ATjZv5zFK-fHNsw4u5fQMZR7Erhd/view?usp=sharing'),
                   'Google Driver',
                   'cv 2024'),
+              Flexible(
+                  flex: 1,
+                  child: _buildContainerInfo(al, Container(),
+                      height: SizeUtils.xlq)),
             ],
           )
         ],
@@ -349,7 +518,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
         height: height,
         decoration: BoxDecoration(
             color: color ?? UtilsColor.colorBlue,
-            border: Border.all(),
+            border: Border.all(color: color ?? UtilsColor.colorBlue),
             borderRadius: BorderRadius.circular(SizeUtils.m)),
         child: Padding(
           padding: EdgeInsets.all(SizeUtils.s),
@@ -358,9 +527,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
               Text(title ?? '',
                   style: StyleText.textPortfolio(
                     fontWeight: FontWeight.bold,
-                    fontSize: SizeUtils.xl1
-                        .sizeScaled(context.screenWidth, minSize: SizeUtils.xl),
-                    // colorBackgroundColor: UtilsColor.colorPinkSecondary,
+                    fontSize:
+                        TextStyleSize.textTitleSectionSize(context.screenWidth),
                   )),
               child,
             ],
@@ -384,10 +552,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
                   child: Text(
                     section,
                     style: StyleText.textPortfolio(
-                      fontSize: SizeUtils.l1.sizeScaled(
-                        context.screenWidth,
-                        minSize: SizeUtils.s1,
-                      ),
+                      fontSize:
+                          TextStyleSize.textDescriptionSize(context.screenWidth),
                     ),
                   ),
                 ),
@@ -415,10 +581,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
                   child: Text(
                     section,
                     style: StyleText.textPortfolio(
-                      fontSize: SizeUtils.l1.sizeScaled(
-                        context.screenWidth,
-                        minSize: SizeUtils.l,
-                      ),
+                      fontSize:
+                          TextStyleSize.textTitleSize(context.screenWidth),
                     ),
                   ),
                 ),
@@ -486,9 +650,7 @@ Widget _buildRowName(
             style: StyleText.textPortfolio(
               fontWeight: FontWeight.bold,
               color: UtilsColor.colorYellow,
-              fontSize: SizeUtils.l1
-                  .sizeScaled(context.screenWidth, minSize: SizeUtils.s1),
-              // colorBackgroundColor: UtilsColor.colorPinkSecondary,
+              fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
             )),
         SizedBox(width: SizeUtils.m),
         visibility == false
@@ -499,49 +661,60 @@ Widget _buildRowName(
                   Text('Alberto Guaman'.toUpperCase(),
                       style: StyleText.textPortfolio(
                         fontWeight: FontWeight.bold,
-                        fontSize: SizeUtils.xl1.sizeScaled(context.screenWidth,
-                            minSize: SizeUtils.xl),
-                        // colorBackgroundColor: UtilsColor.colorPinkSecondary,
+                        fontSize: TextStyleSize.textTitleSectionSize(
+                            context.screenWidth),
                       )),
-                  // SizedBox(width: SizeUtils.m),
-                  // Icon(
-                  //   Icons.verified,
-                  //   size: SizeUtils.xl,
-                  //   color: UtilsColor.colorBlue,
-                  // ),
-                  // animatedText(),
                 ],
               )
             : Container(),
-        visibility == false
-            ? Padding(
-                padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  spacing: SizeUtils.s1,
-                  runSpacing: SizeUtils.s1,
-                  children: infoButtonModel.map((button) {
-                    return tooltipW(
-                        button.url,
-                        Material(
-                          color: UtilsColor.colorSecondaryWhite,
-                          shape: const CircleBorder(),
-                          child: IconButton(
-                            icon: FaIcon(
-                              button.icon,
-                              color: UtilsColor.colorDarkPrimary,
-                              size: SizeUtils.l2,
-                            ),
-                            onPressed: () => laucherURL(button.url),
-                            hoverColor: UtilsColor.colorPinkSecondary,
-                          ),
-                        ));
-                  }).toList(),
-                ),
-              )
-            : Container()
+        visibility == false ? iconDataRow() : Container()
       ],
     ),
+  );
+}
+
+Widget iconDataRow() {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
+    child: Wrap(
+      alignment: WrapAlignment.start,
+      spacing: SizeUtils.s1,
+      runSpacing: SizeUtils.s1,
+      children: infoButtonModel.map((button) {
+        return tooltipW(
+            button.url,
+            Material(
+              color: UtilsColor.colorSecondaryWhite,
+              shape: const CircleBorder(),
+              child: IconButton(
+                icon: FaIcon(
+                  button.icon,
+                  color: UtilsColor.colorDarkPrimary,
+                  size: SizeUtils.l2,
+                ),
+                onPressed: () => laucherURL(button.url),
+                hoverColor: UtilsColor.colorPinkSecondary,
+              ),
+            ));
+      }).toList(),
+    ),
+  );
+}
+
+Widget footerData(AppLocalizations? al, double screenWidth) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text('${al!.madeWithFlutter} 💕'.toUpperCase(),
+          style: StyleText.textPortfolio(
+            fontSize: TextStyleSize.textDescriptionSize(screenWidth),
+            fontWeight: FontWeight.bold,
+          )),
+      const Icon(
+        Icons.flutter_dash,
+        color: Colors.lightBlue,
+      )
+    ],
   );
 }
 
@@ -559,403 +732,6 @@ Widget tooltipW(String message, Widget child) {
   );
 }
 
-//
-// class PortfolioScreen extends StatefulWidget {
-//   const PortfolioScreen({super.key});
-//
-//   @override
-//   State<PortfolioScreen> createState() => _PortfolioScreenState();
-// }
-//
-// class _PortfolioScreenState extends State<PortfolioScreen>
-//     with SingleTickerProviderStateMixin {
-//   late TabController _tabController;
-//
-//   final List<String> tabs = ['Portafolio', 'Resumen', 'Contáctanos'];
-//   late List<Widget> screens;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _tabController = TabController(length: tabs.length, vsync: this);
-//
-//     screens = [
-//       ListView.builder(
-//           shrinkWrap: true,
-//           // physics: NeverScrollableScrollPhysics(),
-//           itemCount: infoProjectModel.length,
-//           itemBuilder: (context, index) {
-//             final infoProject = infoProjectModel[index];
-//             return Responsive(
-//                 mobile: Padding(
-//                   padding: EdgeInsets.all(SizeUtils.s1),
-//                   child: Column(
-//                     children: [
-//                       photoProject(infoProject.photo),
-//                       _buildInfoProject(infoProject, child: Container()),
-//                       linerSpace(),
-//                     ],
-//                   ),
-//                 ),
-//                 desktop: Column(
-//                   children: [
-//                     _buildInfoProject(infoProject),
-//                     SizedBox(height: SizeUtils.m),
-//                     linerSpace(),
-//                     SizedBox(height: SizeUtils.m),
-//                   ],
-//                 ));
-//           }),
-//       const Placeholder(color: Colors.orange),
-//       const Placeholder(color: Colors.cyanAccent),
-//     ];
-//   }
-//
-//   @override
-//   void dispose() {
-//     _tabController.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final al = AppLocalizations.of(context);
-//     return Responsive(
-//       mobile: Column(
-//         children: [
-//           _buildTabBar(),
-//           Expanded(
-//               child: TabBarView(controller: _tabController, children: screens)),
-//         ],
-//       ),
-//       tablet: Column(
-//         children: [
-//           _buildTabBar(),
-//           Expanded(
-//               child: TabBarView(controller: _tabController, children: screens)),
-//         ],
-//       ),
-//       desktop: Row(
-//         children: [
-//           Flexible(
-//             flex: 3,
-//             child: SingleChildScrollView(
-//               controller: ScrollController(),
-//               child: infoData(
-//                 al!,
-//                 context,
-//               ),
-//             ),
-//           ),
-//           VerticalDivider(color: UtilsColor.colorDarkPrimary, width: 1),
-//           Flexible(
-//             flex: 6,
-//             child: Column(
-//               children: [
-//                 _buildTabBar(), // TabBar para pantallas grandes
-//                 Expanded(
-//                     child: TabBarView(
-//                         controller: _tabController, children: screens)),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Widget _buildInfoProject(ProjectModel infoProject, {Widget? child}) {
-//     return Responsive(
-//       mobile: SizedBox(
-//         height: 275.0,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             child ?? photoProject(infoProject.photo),
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 SizedBox(height: SizeUtils.m),
-//                 Text(
-//                   infoProject.type.toUpperCase(),
-//                   style: StyleText.textPortfolio(fontSize: SizeUtils.s1),
-//                 ),
-//                 SizedBox(height: SizeUtils.m),
-//                 Text(
-//                   infoProject.title,
-//                   style: StyleText.textPortfolio(fontSize: SizeUtils.l2),
-//                 ),
-//                 SizedBox(
-//                   width: context.screenWidth / 2.5,
-//                   child: Text(
-//                     infoProject.description,
-//                     style: StyleText.textPortfolio(
-//                         fontWeight: FontWeight.w100,
-//                         color: UtilsColor.colorBrownSecondary),
-//                   ),
-//                 ),
-//                 const Spacer(),
-//                 containerBottom(() {}, infoProject.buttonText,
-//                     color: UtilsColor.colorPinkPrimary,
-//                     colorBorder: UtilsColor.colorDarkPrimary),
-//                 SizedBox(height: SizeUtils.s1),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//       desktop: Padding(
-//         padding: EdgeInsets.all(SizeUtils.s1),
-//         child: SizedBox(
-//           height: 300.0,
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             children: [
-//               child ?? photoProject(infoProject.photo),
-//               Padding(
-//                 padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       infoProject.type.toUpperCase(),
-//                       style: StyleText.textPortfolio(fontSize: SizeUtils.s1),
-//                     ),
-//                     SizedBox(height: SizeUtils.m),
-//                     Text(
-//                       infoProject.title,
-//                       style: StyleText.textPortfolio(fontSize: SizeUtils.l2),
-//                     ),
-//                     SizedBox(
-//                       width: context.screenWidth / 5,
-//                       child: Text(
-//                         infoProject.description,
-//                         style: StyleText.textPortfolio(
-//                             fontWeight: FontWeight.w100,
-//                             color: UtilsColor.colorBrownSecondary),
-//                       ),
-//                     ),
-//                     const Spacer(),
-//                     containerBottom(() {}, infoProject.buttonText,
-//                         color: UtilsColor.colorPinkPrimary,
-//                         colorBorder: UtilsColor.colorDarkPrimary)
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   Widget _buildTabBar() {
-//     return TabBar(
-//       controller: _tabController,
-//       tabs: List.generate(
-//         tabs.length,
-//         (index) => Tab(
-//           child: Text(
-//             tabs[index].toUpperCase(),
-//             style: StyleText.textPortfolio(
-//               fontWeight: FontWeight.bold,
-//               fontSize: SizeUtils.s1 + 3,
-//               color: UtilsColor.colorDarkPrimary,
-//             ),
-//           ),
-//         ),
-//       ),
-//       indicatorColor: UtilsColor.colorDarkPrimary,
-//       indicatorWeight: 3.0,
-//     );
-//   }
-//
-// // class PortfolioScreen extends StatefulWidget {
-// //   const PortfolioScreen({super.key});
-// //
-// //   @override
-// //   State<PortfolioScreen> createState() => _PortfolioScreenState();
-// // }
-// //
-// // class _PortfolioScreenState extends State<PortfolioScreen> {
-// //   int _currentIndex = 0;
-// //   final List<String> tabs = [' portafolio ', 'Resumen', 'contactanos'];
-// //
-// //   final List<Widget> screens = [
-// //     ListView.builder(
-// //         shrinkWrap: true,
-// //         physics: NeverScrollableScrollPhysics(),
-// //         itemCount: infoProjectModel.length,
-// //         itemBuilder: (context, index) {
-// //           final infoProject = infoProjectModel[index];
-// //           return Responsive(
-// //               mobile: Padding(
-// //                 padding: EdgeInsets.all(SizeUtils.s1),
-// //                 child: Column(
-// //                   children: [
-// //                     photoProject(infoProject.photo),
-// //                   ],
-// //                 ),
-// //               ),
-// //               desktop: Column(
-// //                 children: [
-// //                   Padding(
-// //                     padding: EdgeInsets.all(SizeUtils.s1),
-// //                     child: SizedBox(
-// //                       height: 300.0,
-// //                       child: Row(
-// //                         children: [
-// //                           photoProject(infoProject.photo),
-// //                           Padding(
-// //                             padding:
-// //                                 EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-// //                             child: Column(
-// //                               crossAxisAlignment: CrossAxisAlignment.start,
-// //                               children: [
-// //                                 Text(
-// //                                   infoProject.type.toUpperCase(),
-// //                                   style: StyleText.textPortfolio(
-// //                                       fontSize: SizeUtils.s1),
-// //                                 ),
-// //                                 SizedBox(height: SizeUtils.m),
-// //                                 Text(
-// //                                   infoProject.title,
-// //                                   style: StyleText.textPortfolio(
-// //                                       fontSize: SizeUtils.l2),
-// //                                 ),
-// //                                 SizedBox(
-// //                                   width: context.screenWidth / 5,
-// //                                   child: Text(
-// //                                     infoProject.description,
-// //                                     style: StyleText.textPortfolio(
-// //                                         fontWeight: FontWeight.w100,
-// //                                         color: UtilsColor.colorBrownSecondary),
-// //                                   ),
-// //                                 ),
-// //                                 // Expanded (child: Container(),),
-// //                                 const Spacer(),
-// //                                 containerBottom(() {}, infoProject.buttonText,
-// //                                     color: UtilsColor.colorPinkPrimary,
-// //                                     colorBorder: UtilsColor.colorDarkPrimary)
-// //                               ],
-// //                             ),
-// //                           ),
-// //                         ],
-// //                       ),
-// //                     ),
-// //                   ),
-// //                   SizedBox(height: SizeUtils.m),
-// //                   linerSpace(),
-// //                   SizedBox(height: SizeUtils.m),
-// //                 ],
-// //               ));
-// //         }),
-// //     Container(),
-// //     Center(
-// //         child:
-// //             Text('Contenido de Pantalla 3', style: StyleText.textPortfolio())),
-// //   ];
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     final al = AppLocalizations.of(context);
-// //
-// //     return Responsive(
-// //       mobile: Column(
-// //         children: [infoData(al!, context)],
-// //       ),
-// //       mobileLarge: Column(
-// //         children: [infoData(al, context)],
-// //       ),
-// //       tablet: Column(
-// //         children: [
-// //           Expanded(
-// //             child: infoDataScreen(),
-// //           )
-// //         ],
-// //       ),
-// //       desktop: Row(
-// //         crossAxisAlignment: CrossAxisAlignment.start,
-// //         children: [
-// //           context.screenWidth > 1300
-// //               ? SingleChildScrollView(
-// //                   child: SizedBox(width: 400.0, child: infoData(al, context)))
-// //               : Container(),
-// //           linerSpaceV(context),
-// //           Flexible(flex: 4, child: infoDataScreen())
-// //         ],
-// //       ),
-// //     );
-// //   }
-// //
-//
-// // }
-// //
-//   Widget photoProject(String photo) {
-//     return Container(
-//         alignment: AlignmentDirectional(1, 1),
-//         decoration: BoxDecoration(
-//           border: Border.all(
-//             color: UtilsColor.colorDarkPrimary, // Set border color to red
-//             width: 1, // Set border width
-//           ),
-//         ),
-//         child: Image.asset(
-//           photo,
-//           scale: 1,
-//         ));
-//   }
-//
-// //
-//   Widget infoData(AppLocalizations al, BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         SizedBox(height: SizeUtils.s1),
-//         rowInfoName(),
-//         SizedBox(height: SizeUtils.s1),
-//         // Padding(
-//         //     padding: EdgeInsets.symmetric(
-//         //         horizontal: SizeUtils.s1, vertical: SizeUtils.s),
-//         //     child: infoDescription(al)),
-//         // SizedBox(height: SizeUtils.s1),
-//         // linerSpace(),
-//         SizedBox(height: SizeUtils.s1),
-//         photoUser(),
-//         Padding(
-//           padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-//           child: Wrap(
-//             alignment: WrapAlignment.start,
-//             spacing: SizeUtils.s1,
-//             runSpacing: SizeUtils.s1,
-//             children: infoButtonModel.map((button) {
-//               return Material(
-//                 color: UtilsColor.colorPinkSecondary, // Fondo rojo
-//                 shape: const CircleBorder(), // Forma circular
-//                 child: IconButton(
-//                   icon: FaIcon(
-//                     button.icon,
-//                     color: UtilsColor.colorDarkPrimary,
-//                     size: SizeUtils.l2,
-//                   ),
-//                   onPressed: () => laucherURL(button.url),
-//                   hoverColor: UtilsColor.colorPinkPrimary,
-//                 ),
-//               );
-//             }).toList(),
-//           ),
-//         ),
-//         SizedBox(height: SizeUtils.s1),
-//       ],
-//     );
-//   }
-//
-// //
-
-//
-// //
 Widget animatedText() {
   return SizedBox(
       child: DefaultTextStyle(
@@ -981,79 +757,3 @@ Widget animatedText() {
     ),
   ));
 }
-//
-// //
-//   Widget infoDescription(AppLocalizations al) {
-//     return Text(al.descriptionAbout, style: StyleText.textPortfolio());
-//   }
-//
-//   Widget photoUser() {
-//     return Padding(
-//       padding: EdgeInsets.all(SizeUtils.s1),
-//       child: const Placeholder(),
-//     );
-//   }
-//
-//   Widget containerBottom(
-//     VoidCallback onTap,
-//     String text, {
-//     Color? color,
-//     Color? colorBorder,
-//   }) {
-//     return InkWell(
-//       hoverColor: Colors.transparent,
-//       onTap: onTap,
-//       child: Container(
-//         decoration: BoxDecoration(
-//             color: color ?? UtilsColor.colorPinkSecondary,
-//             border: Border.all(
-//               color: colorBorder ?? UtilsColor.colorPinkSecondary,
-//             ),
-//             borderRadius: BorderRadius.circular(SizeUtils.s1)),
-//         child: Padding(
-//           padding: EdgeInsets.all(SizeUtils.s),
-//           child: Text(
-//             text.toUpperCase(),
-//             style: StyleText.textPortfolio(
-//               fontSize: SizeUtils.s1,
-//               fontWeight: FontWeight.w500,
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-// // class DiagonalClipper extends CustomClipper<Path> {
-// //   @override
-// //   Path getClip(Size size) {
-// //     final Path path = Path();
-// //     path.moveTo(0, 0); // Punto inicial (esquina superior izquierda)
-// //     path.lineTo(size.width - 40, 0); // Línea superior
-// //     path.lineTo(size.width, size.height); // Diagonal al borde inferior derecho
-// //     path.lineTo(0, size.height); // Línea inferior
-// //     path.close(); // Cerrar el camino
-// //     return path;
-// //   }
-// //
-// //   @override
-// //   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-// //     return false; // No se necesita recalcular el clip a menos que cambie el diseño
-// //   }
-// // }
-//
-// //   containerBottom(
-// //   () => laucherURL(button.url),
-// //   button.name,
-// // );
-//
-// //
-// // Padding(
-// //     padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-// //     child: Row(
-// //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// //       children: infoButtonModel.map((button) {
-// //         return containerBottom(() => laucherURL(button.url), button.name);
-// //       }).toList(),
-// //     )),
