@@ -4,6 +4,7 @@ class SizeUtils {
   static double s1 = 15.5;
   static double l = 20.0;
   static double l1 = 25.0;
+  static int particleCount = 25;
   static double l2 = 30.0;
   static double xl = 40.0;
   static double xlq = 45.0;
