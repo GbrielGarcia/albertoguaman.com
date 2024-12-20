@@ -1,24 +1,15 @@
-import "package:albertoguaman/src/model/button.dart";
 import "package:albertoguaman/src/model/model.dart";
-import "package:albertoguaman/src/util/responsive.dart";
-import "package:albertoguaman/src/widget/size_text.dart";
-import "package:albertoguaman/utils/color.dart";
-import "package:albertoguaman/utils/size.dart";
-import "package:albertoguaman/utils/text.dart";
-import "package:albertoguaman/widgets/container_responsive.dart";
-import "package:albertoguaman/widgets/liner_space.dart";
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/foundation.dart";
-import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import "../../utils/assets.dart";
-import "../../widgets/widgets.dart";
+import "../../utils/utils.dart";
 import "../util/util.dart";
-import 'package:responsive_layout_grid/responsive_layout_grid.dart';
 import 'package:animated_background/animated_background.dart';
+
+import "../widget/widget.dart";
 
 final List<String> sections = [
   'Sobre Mí',
@@ -665,7 +656,7 @@ Widget _buildAvatar(BuildContext context, AppLocalizations? al,
     {double? maxRadius}) {
   return CircleAvatar(
     maxRadius: maxRadius ?? SizeUtils.xxl3,
-    backgroundColor: UtilsColor.colorOriginalPorfolioW,
+    backgroundColor: UtilsColor.colorSecondaryWhite,
     backgroundImage: AssetImage(AssetsUtil.imgAlbertoGuaman),
   );
 }
@@ -726,7 +717,7 @@ Widget iconDataRow() {
               child: IconButton(
                 icon: FaIcon(
                   button.icon,
-                  color: UtilsColor.colorDarkPrimary,
+                  color: UtilsColor.colorPrimaryDark,
                   size: SizeUtils.l2,
                 ),
                 onPressed: () => laucherURL(button.url),
@@ -738,22 +729,7 @@ Widget iconDataRow() {
   );
 }
 
-Widget footerData(AppLocalizations? al, double screenWidth) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text('${al!.madeWithFlutter} 💕'.toUpperCase(),
-          style: StyleText.textPortfolio(
-            fontSize: TextStyleSize.textDescriptionSize(screenWidth),
-            fontWeight: FontWeight.bold,
-          )),
-      const Icon(
-        Icons.flutter_dash,
-        color: Colors.lightBlue,
-      )
-    ],
-  );
-}
+
 
 Widget tooltipW(String message, Widget child) {
   return Tooltip(

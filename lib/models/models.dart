@@ -1,1 +1,0 @@
-export 'proyect.dart';
