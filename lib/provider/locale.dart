@@ -11,9 +11,13 @@ class LocaleProvider extends ChangeNotifier {
     } else {
       _locale = const Locale('es');
     }
+
+
     notifyListeners();
   }
 }
+
+
   //   if (newLocale == const Locale('en') ||
   //       newLocale == const Locale('pt') ||
   //       newLocale.languageCode != 'es') {

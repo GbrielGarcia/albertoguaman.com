@@ -3,16 +3,13 @@
   "hello": "Hello",
   "proyectRealized": "Realized Projects",
   "selectLanguage": "Select language",
-  "contacMe": "Contact me",
   "company": "Company:",
   "country": "Country:",
-  "project": "Project:",
   "employment": "Employment:",
   "skills": "Skills:",
   "administratorIt": "IT Administrator",
   "seeProject": "see project",
   "webDeveloperAndDataAnalyst": "Web developer and data analyst",
-  "descriptionAbout": "I am a freelance professional passionate about technology, originally from Ecuador, with experience in systems administration, web development and mobile applications. With a degree in Software Development Technology, I strive to keep up to date in this constantly evolving technological world. Currently, I work as a project manager, leading innovative initiatives and offering effective solutions.",
   "services": "Services",
   "servicesApp": "Hi Alberto, I want more information about app development:",
   "servicesAppTitle": "App development",
@@ -32,7 +29,31 @@
   "github": "GitHub",
   "original" : "original",
   "readMyBlog": "Read my Blog",
-    "experience": "Experience",
-  "view": "View"
+  "view": "View",
+
+
+
+  "descriptionAbout": "I am a freelance professional passionate about technology, originally from Ecuador, with experience in systems administration, web development and mobile applications. With a degree in Software Development Technology, I strive to keep up to date in this constantly evolving technological world. Currently, I work as a project manager, leading innovative initiatives and offering effective solutions.",
+  "experience": "Experience",
+  "project": "Projects",
+  "publications": "Publications",
+  "contacMe": "Contact me",
+  "aboutMe": "About Me",
+
+  "helloWordIam": "Hello, World! I am",
+  "freelancer": "Freelancer ",
+
+    "helpdeskManagement": "Helpdesk management and issue resolution, efficiently solving technical problems.",
+    "dataAnalysisAndMaintenance": "Data analysis and maintenance of educational sites with Moodle.",
+    "processAutomation": "Process automation and preventive maintenance of equipment.",
+    "flutterDevelopment": "Development and implementation of software using Flutter.",
+    "mobileWebInstructor": "Instructor of mobile and web application courses."
+,
+    "mobileWebDevelopment": "Development of mobile and web applications using Flutter.",
+    "mobileConsulting": "Consulting on the development of mobile applications with Flutter.",
+    "webDevelopment": "Web development with HTML, JavaScript, CSS, and Webflow.",
+    "onlineStoreCreation": "Creation of online stores using Odoo, WooCommerce, and WordPress.",
+    "mobileWebInstructorRepeat": "Instructor of mobile and web application courses."
+
 
 }

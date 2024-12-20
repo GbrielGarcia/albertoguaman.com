@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "../../utils/assets.dart";
+import "../../widgets/widgets.dart";
 import "../util/util.dart";
 import 'package:responsive_layout_grid/responsive_layout_grid.dart';
 import 'package:animated_background/animated_background.dart';
@@ -25,6 +26,9 @@ final List<String> sections = [
   'Publicaciones',
   'Experiencia'
 ];
+
+
+
 
 class HomeSrc extends StatefulWidget {
   const HomeSrc({super.key});
@@ -177,6 +181,7 @@ class _PortfolioScreenState extends State<HomeSrc>
         ),
         this,
       ),
+
     );
   }
 
@@ -264,7 +269,7 @@ class _PortfolioScreenState extends State<HomeSrc>
           },
         ),
         color: Colors.transparent,
-        title: 'Experiencia',
+        title: al!.experience,
       ),
     );
   }
@@ -343,13 +348,13 @@ class _PortfolioScreenState extends State<HomeSrc>
                     ? 1
                     : 1;
     final double mainAxisExtent = context.isDesktop
-        ? 130
+        ? 156
         : context.isTabletLarge
-            ? 130
+            ? 150
             : context.isTablet
-                ? 125
+                ? 156
                 : context.isMobileLarge
-                    ? 125
+                    ? 135
                     : 150;
 
     return ResponsiveCenter(
@@ -389,7 +394,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                   SizedBox(height: SizeUtils.m),
                   Text(
                     project.description,
-                    maxLines: 2,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: StyleText.textPortfolio(
                         color: UtilsColor.colorPrimaryDark,
@@ -493,7 +498,7 @@ class _PortfolioScreenState extends State<HomeSrc>
           Row(
             children: [
               containerBottom(() => laucherURL('https://tunegocio.pro/AWcDD'),
-                  '+593 99 860 2204', 'contactame'),
+                  '+593 99 860 2204', al.contacMe),
               containerBottom(
                   () => laucherURL(
                       'https://drive.google.com/file/d/1kP70ATjZv5zFK-fHNsw4u5fQMZR7Erhd/view?usp=sharing'),
@@ -669,13 +674,16 @@ Widget _buildRowName(
   BuildContext context, {
   bool? visibility = false,
   String? text,
+
+
 }) {
+  final al = AppLocalizations.of(context);
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
     child: Column(
       children: [
         SizedBox(height: SizeUtils.s),
-        Text(text ?? '¡Hola, Mundo! Yo soy'.toUpperCase(),
+        Text(text ?? al!.helloWordIam.toUpperCase(),
             style: StyleText.textPortfolio(
               fontWeight: FontWeight.bold,
               color: UtilsColor.colorYellow,

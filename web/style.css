@@ -1,18 +1,19 @@
 @font-face {
-    font-family: Minecraftia;
-    src: url('assets/fonts/minecraft_font.ttf') format('truetype');
+     font-family: Alegreya;
+        src: url('Alegreya-Regular.ttf') format('truetype');
   }
 
 
 
 body, html {
+    font-family: Alegreya, sans-serif;
 
       height: 100%;
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #141820;
+      background-color: #151515;
       color: white;
 }
 

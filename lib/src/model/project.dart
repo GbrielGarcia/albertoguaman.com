@@ -21,35 +21,61 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: Assets.projectOne,
-      type: [],
+      type: [
+        'Flutter',
+        'Dart',
+        'Firebase',
+      ],
       title: 'Horarios Energia',
       description:
-          'Aquí puedes acceder a los horarios de corte de energia programado por CNEL en tu zona.',
+          'Aquí puedes consultar los horarios de corte de energía programados por CNEL en tu zona.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: [],
-      title: 'Horarios Energia',
+      type: [
+        'Php',
+        'Meta (FACEBOOK)',
+      ],
+      title: 'Chat Bot Energia',
       description:
-          'Consulta los cortes de energía a través de nuestro chatbot en WhatsApp.',
+          'Consulta los cortes de energía de manera rápida y sencilla a través de nuestro chatbot en WhatsApp.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: [],
+      type: [
+        'Flutter',
+        'Dart',
+        'Firebase',
+      ],
       title: 'Tarot Pragmático',
       description:
-          'Sistema Arcano para cliente de CHILE, desarrollado con Flutter.',
+          'Sistema Arcano desarrollado en Flutter tanto para (Android & Web) para un cliente en Chile.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://perfil.tarotpragmatico.com/'),
   ProjectModel(
       photo: Assets.projectOne,
-      type: [],
-      title: 'Página Web Educativa',
+      type: ['Wordpress', 'Elementor', 'Css'],
+      title: 'Sciedtec',
       description:
-          'Página realizada con WordPress y Elementor para una empresa ecuatoriana de educación.',
+          'Página web desarrollada con WordPress y Elementor para una empresa ecuatoriana dedicada a la educación.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://sciedtec.com/'),
-
+  ProjectModel(
+      photo: Assets.projectOne,
+      type: ['Wordpress', 'Elementor', 'Css'],
+      title: 'Lars Tree Services',
+      description:
+          'Página web realizada con CMS para una empresa de EEUU. especialista en servicios de limpieza de árboles.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://larstreeservice.com/'),
+  ProjectModel(
+      photo: Assets.projectOne,
+      type: ['Wordpress', 'Elementor', 'Css'],
+      title: 'Arminox',
+      description:
+          'Página creada con un CMS para ofrecer servicios de metalurgia en Ecuador.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://arminoxec.com/'),
 ];

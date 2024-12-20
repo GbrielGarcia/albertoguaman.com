@@ -61,3 +61,7 @@ flutter:
     - family: Minecraftia
       fonts:
         - asset: assets/fonts/minecraft_font.ttf
+
+    - family: Alegreya
+      fonts:
+        - asset: assets/fonts/Alegreya/static/Alegreya-Regular.ttf
