@@ -1,6 +1,6 @@
 import 'package:albertoguaman/src/widget/size_text.dart';
-import 'package:albertoguaman/utils/color.dart';
-import 'package:albertoguaman/utils/utils.dart';
+import 'package:albertoguaman/src/utils/color.dart';
+import 'package:albertoguaman/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

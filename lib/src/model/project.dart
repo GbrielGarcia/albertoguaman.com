@@ -1,4 +1,5 @@
-import 'package:albertoguaman/src/util/assets.dart';
+
+import '../utils/utils.dart';
 
 class ProjectModel {
   final String photo;
@@ -20,7 +21,7 @@ class ProjectModel {
 
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: [
         'Flutter',
         'Dart',
@@ -32,7 +33,7 @@ List<ProjectModel> infoProjectModel = [
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: [
         'Php',
         'Meta (FACEBOOK)',
@@ -43,7 +44,7 @@ List<ProjectModel> infoProjectModel = [
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: [
         'Flutter',
         'Dart',
@@ -55,7 +56,7 @@ List<ProjectModel> infoProjectModel = [
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://perfil.tarotpragmatico.com/'),
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: ['Wordpress', 'Elementor', 'Css'],
       title: 'Sciedtec',
       description:
@@ -63,7 +64,7 @@ List<ProjectModel> infoProjectModel = [
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://sciedtec.com/'),
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: ['Wordpress', 'Elementor', 'Css'],
       title: 'Lars Tree Services',
       description:
@@ -71,7 +72,7 @@ List<ProjectModel> infoProjectModel = [
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://larstreeservice.com/'),
   ProjectModel(
-      photo: Assets.projectOne,
+      photo: AssetsUtil.projectOne,
       type: ['Wordpress', 'Elementor', 'Css'],
       title: 'Arminox',
       description:

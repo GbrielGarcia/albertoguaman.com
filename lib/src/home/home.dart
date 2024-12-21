@@ -1,13 +1,9 @@
 import "package:albertoguaman/src/model/model.dart";
 
-import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import "../../utils/utils.dart";
-import "../util/util.dart";
-import 'package:animated_background/animated_background.dart';
+import "../utils/utils.dart";
 
 import "../widget/widget.dart";
 
@@ -17,9 +13,6 @@ final List<String> sections = [
   'Publicaciones',
   'Experiencia'
 ];
-
-
-
 
 class HomeSrc extends StatefulWidget {
   const HomeSrc({super.key});
@@ -34,17 +27,10 @@ class _PortfolioScreenState extends State<HomeSrc>
   late List<bool> inHoveredBook;
 
   final ScrollController _scrollController = ScrollController();
-  final Map<String, GlobalKey> sectionKeys = {
-    'Sobre Mí': GlobalKey(),
-    'Proyectos': GlobalKey(),
-    'Experiencia': GlobalKey(),
-    'Publicaciones': GlobalKey(),
-    'Experiencia': GlobalKey()
-  };
+
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     inHovered = List<bool>.filled(infoProjectModel.length, false);
     inHoveredBook = List<bool>.filled(infoButtonModel.length, false);
@@ -59,13 +45,11 @@ class _PortfolioScreenState extends State<HomeSrc>
   void _scrollToSection(String section) {
     final key = sectionKeys[section];
     if (key?.currentContext != null) {
-      // Realiza el scroll asegurando que el texto quede justo en la parte superior de la pantalla
       Scrollable.ensureVisible(
         key!.currentContext!,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-        alignment:
-            0.0, // El texto debe estar en la parte superior de la pantalla
+        alignment: 0.0,
       );
     }
   }
@@ -100,7 +84,8 @@ class _PortfolioScreenState extends State<HomeSrc>
                       _buildSectionsColumn(context, sections),
                     ],
                   ),
-                  this, particleCount: SizeUtils.particleCount),
+                  this,
+                  particleCount: SizeUtils.particleCount),
             )
           : null,
       backgroundColor: UtilsColor.colorPrimaryDark,
@@ -172,28 +157,6 @@ class _PortfolioScreenState extends State<HomeSrc>
         ),
         this,
       ),
-
-    );
-  }
-
-  Widget animatedBackground(Widget child, TickerProvider vsync,
-      {int? particleCount}) {
-    return AnimatedBackground(
-      vsync: vsync,
-      behaviour: RandomParticleBehaviour(
-          options: ParticleOptions(
-        baseColor: UtilsColor.colorSecondaryWhite,
-        opacityChangeRate: 0.25,
-        particleCount: particleCount ?? 200,
-        minOpacity: 0.1,
-        maxOpacity: 0.9,
-        spawnOpacity: 0.3,
-        spawnMaxRadius: 5.0,
-        spawnMinRadius: 2.0,
-        spawnMaxSpeed: 150.0,
-        spawnMinSpeed: 50.0,
-      )),
-      child: child,
     );
   }
 
@@ -506,35 +469,6 @@ class _PortfolioScreenState extends State<HomeSrc>
     );
   }
 
-  Widget containerBottom(VoidCallback onTap, String message, String text,
-      {Color? color, Color? colorBorder, double? padding}) {
-    return Padding(
-      padding: EdgeInsets.all(padding ?? SizeUtils.s),
-      child: tooltipW(
-          message,
-          InkWell(
-            hoverColor: Colors.transparent,
-            onTap: onTap,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: color ?? UtilsColor.colorSecondaryWhite,
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(SizeUtils.m)),
-              child: Padding(
-                padding: EdgeInsets.all(SizeUtils.s),
-                child: Text(
-                  text.toUpperCase(),
-                  style: StyleText.textPortfolio(
-                      fontSize: SizeUtils.s1,
-                      fontWeight: FontWeight.w500,
-                      color: UtilsColor.colorPrimaryDark),
-                ),
-              ),
-            ),
-          )),
-    );
-  }
-
   Widget _buildContainerInfo(AppLocalizations? al, Widget child,
       {double? height, Color? color, String? title}) {
     return Padding(
@@ -665,8 +599,6 @@ Widget _buildRowName(
   BuildContext context, {
   bool? visibility = false,
   String? text,
-
-
 }) {
   final al = AppLocalizations.of(context);
   return Padding(
@@ -701,72 +633,32 @@ Widget _buildRowName(
   );
 }
 
-Widget iconDataRow() {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-    child: Wrap(
-      alignment: WrapAlignment.start,
-      spacing: SizeUtils.s1,
-      runSpacing: SizeUtils.s1,
-      children: infoButtonModel.map((button) {
-        return tooltipW(
-            button.url,
-            Material(
-              color: UtilsColor.colorSecondaryWhite,
-              shape: const CircleBorder(),
-              child: IconButton(
-                icon: FaIcon(
-                  button.icon,
-                  color: UtilsColor.colorPrimaryDark,
-                  size: SizeUtils.l2,
-                ),
-                onPressed: () => laucherURL(button.url),
-                hoverColor: UtilsColor.colorPinkSecondary,
-              ),
-            ));
-      }).toList(),
-    ),
-  );
-}
 
 
 
-Widget tooltipW(String message, Widget child) {
-  return Tooltip(
-    padding: EdgeInsets.all(SizeUtils.m),
-    message: message,
-    textStyle: StyleText.textPortfolio(fontSize: SizeUtils.s1),
-    margin: EdgeInsets.all(SizeUtils.m),
-    decoration: BoxDecoration(
-        color: UtilsColor.colorPrimaryDark,
-        border: Border.all(color: UtilsColor.colorSecondaryWhite),
-        borderRadius: BorderRadius.circular(SizeUtils.m)),
-    child: child,
-  );
-}
 
-Widget animatedText() {
-  return SizedBox(
-      child: DefaultTextStyle(
-    style: StyleText.textPortfolio(
-        fontWeight: FontWeight.bold,
-        fontSize: SizeUtils.l1,
-        colorBackgroundColor: UtilsColor.colorPinkSecondary),
-    child: AnimatedTextKit(
-      isRepeatingAnimation: false,
-      displayFullTextOnTap: true,
-      repeatForever: false,
-      animatedTexts: [
-        TyperAnimatedText(' Alberto Guaman'.toUpperCase(),
-            speed: Duration(milliseconds: SizeUtils.speed)),
-        // TyperAnimatedText(' Tecnólogo  en Sistemas'.toUpperCase(),
-        //     speed: Duration(milliseconds: SizeUtils.speed)),
-      ],
-      onTap: () {
-        if (kDebugMode) {
-          print("Tap Event");
-        }
-      },
-    ),
-  ));
-}
+// Widget animatedText() {
+//   return SizedBox(
+//       child: DefaultTextStyle(
+//     style: StyleText.textPortfolio(
+//         fontWeight: FontWeight.bold,
+//         fontSize: SizeUtils.l1,
+//         colorBackgroundColor: UtilsColor.colorPinkSecondary),
+//     child: AnimatedTextKit(
+//       isRepeatingAnimation: false,
+//       displayFullTextOnTap: true,
+//       repeatForever: false,
+//       animatedTexts: [
+//         TyperAnimatedText(' Alberto Guaman'.toUpperCase(),
+//             speed: Duration(milliseconds: SizeUtils.speed)),
+//         // TyperAnimatedText(' Tecnólogo  en Sistemas'.toUpperCase(),
+//         //     speed: Duration(milliseconds: SizeUtils.speed)),
+//       ],
+//       onTap: () {
+//         if (kDebugMode) {
+//           print("Tap Event");
+//         }
+//       },
+//     ),
+//   ));
+// }

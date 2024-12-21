@@ -1,4 +1,5 @@
-import '../util/util.dart';
+
+import '../utils/utils.dart';
 
 extension DoubleX on double {
   double sizeScaled(

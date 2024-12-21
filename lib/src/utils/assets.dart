@@ -1,4 +1,5 @@
 class AssetsUtil {
+    static String projectOne = 'assets/img/project/projecto-desarrollo_web_alberto-guaman.png';
   static String imgAlbertoGuaman = 'assets/img/tinguar - alberto guaman.png';
   static String imgAlbertoGuamanOriginal = 'assets/img/alberto-guaman.png';
   static String imgBackground = 'assets/img/background.jpg';
