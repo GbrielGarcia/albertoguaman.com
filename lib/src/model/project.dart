@@ -1,4 +1,3 @@
-
 import '../utils/utils.dart';
 
 class ProjectModel {
@@ -22,11 +21,15 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: [
-        'Flutter',
-        'Dart',
-        'Firebase',
-      ],
+      type: ['WordPress', 'Elementor', 'Hostinger'],
+      title: 'AxxonImagen',
+      description:
+          'Especialistas en diagnósticos por ecografícas para la ciudad de Santo Domingo.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://axxonimagen.com/'),
+  ProjectModel(
+      photo: AssetsUtil.projectOne,
+      type: ['Flutter', 'Dart', 'Firebase'],
       title: 'Horarios Energia',
       description:
           'Aquí puedes consultar los horarios de corte de energía programados por CNEL en tu zona.',
@@ -45,11 +48,7 @@ List<ProjectModel> infoProjectModel = [
       buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: [
-        'Flutter',
-        'Dart',
-        'Firebase',
-      ],
+      type: ['Flutter', 'Dart', 'Firebase'],
       title: 'Tarot Pragmático',
       description:
           'Sistema Arcano desarrollado en Flutter tanto para (Android & Web) para un cliente en Chile.',
