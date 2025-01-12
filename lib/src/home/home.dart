@@ -28,7 +28,6 @@ class _PortfolioScreenState extends State<HomeSrc>
 
   final ScrollController _scrollController = ScrollController();
 
-
   @override
   void initState() {
     super.initState();
@@ -71,91 +70,87 @@ class _PortfolioScreenState extends State<HomeSrc>
                   color: UtilsColor.colorPrimaryDark,
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(SizeUtils.m)),
-              child: animatedBackground(
-                  Column(
-                    children: [
-                      SizedBox(height: SizeUtils.xl1),
-                      _buildAvatar(context, al, maxRadius: SizeUtils.xl),
-                      SizedBox(width: SizeUtils.m),
-                      _buildRowName(context,
-                          visibility: true,
-                          text: 'Alberto Guaman'.toUpperCase()),
-                      SizedBox(height: SizeUtils.s1),
-                      _buildSectionsColumn(context, sections),
-                    ],
-                  ),
-                  this,
-                  particleCount: SizeUtils.particleCount),
+              child: Column(
+                children: [
+                  SizedBox(height: SizeUtils.xl1),
+                  buildAvatar(context, al, maxRadius: SizeUtils.xl),
+                  SizedBox(width: SizeUtils.m),
+                  buildRowName(context,
+                      visibility: true,
+
+visibilityNameW: true,
+                      text: 'Alberto Guaman'.toUpperCase()),
+                  SizedBox(height: SizeUtils.s1),
+                  _buildSectionsColumn(context, sections),
+                ],
+              ),
             )
           : null,
       backgroundColor: UtilsColor.colorPrimaryDark,
-      body: animatedBackground(
-        Responsive(
-          mobile: SingleChildScrollView(
-            controller: _scrollController,
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                SizedBox(height: SizeUtils.xl1),
-                _buildAvatar(context, al),
-                SizedBox(width: SizeUtils.m),
-                _buildRowName(context),
-                SizedBox(height: SizeUtils.xl),
-                _buildSectionsRow(context, sections),
-                SizedBox(height: SizeUtils.xl),
-                _buildSectionContent('', sectionKeys['Sobre Mí']!),
-                _buildAboutMe(al),
-                _buildSectionContent('', sectionKeys['Proyectos']!),
-                _buildProject(al, context),
-                _buildSectionContent('', sectionKeys['Publicaciones']!),
-                _buildPublications(al),
-                _buildSectionContent('', sectionKeys['Experiencia']!),
-                _buildExperience(al),
-                // iconDataRow(),
-                // SizedBox(height: SizeUtils.s),
-                footerData(al, context.screenWidth),
-                SizedBox(height: SizeUtils.xl1),
-              ],
-            ),
-          ),
-          desktop: SingleChildScrollView(
-            controller: _scrollController,
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                SizedBox(height: SizeUtils.xl1),
-                SizedBox(
-                  height: context.screenHeight * 0.25,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildAvatar(context, al),
-                      SizedBox(width: SizeUtils.l1),
-                      _buildRowName(context),
-                    ],
-                  ),
-                ),
-                SizedBox(height: SizeUtils.l),
-                _buildSectionsRow(context, sections),
-                SizedBox(height: SizeUtils.l),
-                _buildSectionContent('', sectionKeys['Sobre Mí']!),
-                _buildAboutMe(al),
-                _buildSectionContent('', sectionKeys['Proyectos']!),
-                _buildProject(al, context),
-                _buildSectionContent('', sectionKeys['Publicaciones']!),
-                _buildPublications(al),
-                _buildSectionContent('', sectionKeys['Experiencia']!),
-                _buildExperience(al),
-                // iconDataRow(),
-                // SizedBox(height: SizeUtils.xl),
-                footerData(al, context.screenWidth),
-                SizedBox(height: SizeUtils.xl1),
-              ],
-            ),
+      body: Responsive(
+        mobile: SingleChildScrollView(
+          controller: _scrollController,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              SizedBox(height: SizeUtils.xl1),
+              buildAvatar(context, al),
+              SizedBox(width: SizeUtils.m),
+              buildRowName(context),
+              SizedBox(height: SizeUtils.xl),
+              _buildSectionsRow(context, sections),
+              SizedBox(height: SizeUtils.xl),
+              _buildSectionContent('', sectionKeys['Sobre Mí']!),
+              _buildAboutMe(al),
+              _buildSectionContent('', sectionKeys['Proyectos']!),
+              _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Publicaciones']!),
+              _buildPublications(al),
+              _buildSectionContent('', sectionKeys['Experiencia']!),
+              _buildExperience(al),
+              // iconDataRow(),
+              // SizedBox(height: SizeUtils.s),
+              footerData(al, context.screenWidth),
+              SizedBox(height: SizeUtils.xl1),
+            ],
           ),
         ),
-        this,
+        desktop: SingleChildScrollView(
+          controller: _scrollController,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              SizedBox(height: SizeUtils.xl1),
+              SizedBox(
+                height: context.screenHeight * 0.25,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildAvatar(context, al),
+                    SizedBox(width: SizeUtils.l1),
+                    buildRowName(context),
+                  ],
+                ),
+              ),
+              SizedBox(height: SizeUtils.l),
+              _buildSectionsRow(context, sections),
+              SizedBox(height: SizeUtils.l),
+              _buildSectionContent('', sectionKeys['Sobre Mí']!),
+              _buildAboutMe(al),
+              _buildSectionContent('', sectionKeys['Proyectos']!),
+              _buildProject(al, context),
+              _buildSectionContent('', sectionKeys['Publicaciones']!),
+              _buildPublications(al),
+              _buildSectionContent('', sectionKeys['Experiencia']!),
+              _buildExperience(al),
+              // iconDataRow(),
+              // SizedBox(height: SizeUtils.xl),
+              footerData(al, context.screenWidth),
+              SizedBox(height: SizeUtils.xl1),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -586,7 +581,7 @@ Widget _buildPowered() {
   );
 }
 
-Widget _buildAvatar(BuildContext context, AppLocalizations? al,
+Widget buildAvatar(BuildContext context, AppLocalizations? al,
     {double? maxRadius}) {
   return CircleAvatar(
     maxRadius: maxRadius ?? SizeUtils.xxl3,
@@ -595,10 +590,12 @@ Widget _buildAvatar(BuildContext context, AppLocalizations? al,
   );
 }
 
-Widget _buildRowName(
+Widget buildRowName(
   BuildContext context, {
   bool? visibility = false,
+  bool? visibilityNameW = false,
   String? text,
+  double? fontSize,
 }) {
   final al = AppLocalizations.of(context);
   return Padding(
@@ -613,29 +610,23 @@ Widget _buildRowName(
               fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
             )),
         SizedBox(width: SizeUtils.m),
-        visibility == false
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Alberto Guaman'.toUpperCase(),
-                      style: StyleText.textPortfolio(
-                        fontWeight: FontWeight.bold,
-                        fontSize: TextStyleSize.textTitleSectionSize(
-                            context.screenWidth),
-                      )),
-                ],
-              )
-            : Container(),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            visibilityNameW == false ?   Text('Alberto Guaman'.toUpperCase(),
+                style: StyleText.textPortfolio(
+                  fontWeight: FontWeight.bold,
+                  fontSize: fontSize ??
+                      TextStyleSize.textTitleSectionSize(context.screenWidth),
+                )) : const SizedBox.shrink(),
+          ],
+        ),
         visibility == false ? iconDataRow() : Container()
       ],
     ),
   );
 }
-
-
-
-
 
 // Widget animatedText() {
 //   return SizedBox(

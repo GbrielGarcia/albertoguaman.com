@@ -20,7 +20,8 @@ class Responsive extends StatelessWidget {
   Widget build(BuildContext context) {
     if (context.isMobile) return mobile;
     if (context.isMobileLarge) return mobileLarge ?? mobile;
-    if (context.isTabletLarge) return tabletLarge ?? tablet ?? mobileLarge ?? mobile;
+    if (context.isTabletLarge)
+      return tabletLarge ?? tablet ?? mobileLarge ?? mobile;
     if (context.isTablet) return tablet ?? mobileLarge ?? mobile;
     return desktop;
   }
@@ -48,8 +49,13 @@ extension ResponsiveExtension on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
 
   bool get isMobile => screenWidth <= BreakpointValues.mobile; // Móvil
-  bool get isMobileLarge => screenWidth <= BreakpointValues.mobileLarge; // Móvil grande
-  bool get isTablet => screenWidth > BreakpointValues.mobileLarge && screenWidth < BreakpointValues.tablet; // Tablet
-  bool get isTabletLarge => screenWidth >= BreakpointValues.tablet && screenWidth < BreakpointValues.desktop; // Tablet grande
+  bool get isMobileLarge =>
+      screenWidth <= BreakpointValues.mobileLarge; // Móvil grande
+  bool get isTablet =>
+      screenWidth > BreakpointValues.mobileLarge &&
+      screenWidth < BreakpointValues.tablet; // Tablet
+  bool get isTabletLarge =>
+      screenWidth >= BreakpointValues.tablet &&
+      screenWidth < BreakpointValues.desktop; // Tablet grande
   bool get isDesktop => screenWidth >= BreakpointValues.desktop; // Escritorio
 }

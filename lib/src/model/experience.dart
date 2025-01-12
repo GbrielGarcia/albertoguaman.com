@@ -25,7 +25,7 @@ List<Experience> infoExperienceModel = [
       '- Instructora de cursos de aplicaciones móviles y web.',
     ],
     type: 'Administrador de TI',
-    data: '2022 - 2024',
+    data: '2022 Marzo - 2024 Enero',
     country: 'Ecuador ',
   ),
   Experience(
@@ -38,7 +38,7 @@ List<Experience> infoExperienceModel = [
       '- Instructora de cursos de aplicaciones móviles y web.',
     ],
     type: 'Autonomo',
-    data: '2020 - ∞',
+    data: '2020 Febrero - ∞',
     country: 'Ecuador ',
   ),
 ];
