@@ -3,6 +3,7 @@ import "package:albertoguaman/src/model/model.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
 
 import "../widget/widget.dart";
@@ -77,8 +78,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                   SizedBox(width: SizeUtils.m),
                   buildRowName(context,
                       visibility: true,
-
-visibilityNameW: true,
+                      visibilityNameW: true,
                       text: 'Alberto Guaman'.toUpperCase()),
                   SizedBox(height: SizeUtils.s1),
                   _buildSectionsColumn(context, sections),
@@ -108,8 +108,6 @@ visibilityNameW: true,
               _buildPublications(al),
               _buildSectionContent('', sectionKeys['Experiencia']!),
               _buildExperience(al),
-              // iconDataRow(),
-              // SizedBox(height: SizeUtils.s),
               footerData(al, context.screenWidth),
               SizedBox(height: SizeUtils.xl1),
             ],
@@ -136,6 +134,7 @@ visibilityNameW: true,
               SizedBox(height: SizeUtils.l),
               _buildSectionsRow(context, sections),
               SizedBox(height: SizeUtils.l),
+
               _buildSectionContent('', sectionKeys['Sobre Mí']!),
               _buildAboutMe(al),
               _buildSectionContent('', sectionKeys['Proyectos']!),
@@ -435,6 +434,10 @@ visibilityNameW: true,
     return ResponsiveCenter(
       child: Column(
         children: [
+          containerBottom(() {
+            context.go('/bio');
+          }, 'https://www.albertoguaman.com/bio', 'Enlaces Rapidos',
+              width: double.infinity),
           _buildContainerInfo(
             al,
             Text(al!.descriptionAbout,
@@ -614,12 +617,15 @@ Widget buildRowName(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            visibilityNameW == false ?   Text('Alberto Guaman'.toUpperCase(),
-                style: StyleText.textPortfolio(
-                  fontWeight: FontWeight.bold,
-                  fontSize: fontSize ??
-                      TextStyleSize.textTitleSectionSize(context.screenWidth),
-                )) : const SizedBox.shrink(),
+            visibilityNameW == false
+                ? Text('Alberto Guaman'.toUpperCase(),
+                    style: StyleText.textPortfolio(
+                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize ??
+                          TextStyleSize.textTitleSectionSize(
+                              context.screenWidth),
+                    ))
+                : const SizedBox.shrink(),
           ],
         ),
         visibility == false ? iconDataRow() : Container()

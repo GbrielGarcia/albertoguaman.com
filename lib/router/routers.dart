@@ -7,10 +7,10 @@ import 'router.dart';
 
 final goRouter = GoRouter(
   errorBuilder: (context, state) => const HomeSrc(),
-  initialLocation: '/bio',
+  initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
-      path: '/inicio',
+      path: '/',
       pageBuilder: (BuildContext context, GoRouterState state) {
         return transitionPageRouter(state.pageKey, const HomeSrc());
       },

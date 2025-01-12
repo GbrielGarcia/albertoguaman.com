@@ -1,7 +1,9 @@
+import "package:albertoguaman/router/routers.dart";
 import "package:albertoguaman/src/home/home.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 import "../model/model.dart";
 import "../utils/utils.dart";
 
@@ -12,12 +14,6 @@ class Bio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double getWidth(BuildContext context) {
-      if (context.isMobile || context.isMobileLarge || context.isTablet) {
-        return context.screenWidth * 0.9;
-      }
-      return context.screenWidth * 0.5;
-    }
 
     double getWidthText(BuildContext context) {
       if (context.isMobile || context.isMobileLarge || context.isTablet) {
@@ -54,6 +50,9 @@ class Bio extends StatelessWidget {
                 ),
               ),
               SizedBox(height: SizeUtils.xl),
+              containerBottom(() {
+                context.go('/');
+              }, 'https://www.albertoguaman.com/inicio', 'Portafolio', width: double.infinity),
               ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -61,7 +60,10 @@ class Bio extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final button = infoButtonModel[index];
                     return containerBottom(
-                        () => laucherURL(button.url), button.url, button.name);
+                      () => laucherURL(button.url),
+                      button.url,
+                      button.name,
+                    );
                   }),
             ],
           ),
