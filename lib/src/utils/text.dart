@@ -1,11 +1,9 @@
 import 'package:albertoguaman/src/widget/size_text.dart';
-import 'package:albertoguaman/src/utils/color.dart';
 import 'package:albertoguaman/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StyleText {
-
   static TextStyle textStyleOriginalDark({
     double? fontSize,
     double? minFontSize,
@@ -68,7 +66,6 @@ class TextStyleSize {
   static double textTitleSize(double screenWidth) {
     return SizeUtils.l1.sizeScaled(screenWidth, minSize: SizeUtils.l);
   }
-
 
   static double textTitleSectionSize(double screenWidth) {
     return SizeUtils.xl1.sizeScaled(screenWidth, minSize: SizeUtils.xl);

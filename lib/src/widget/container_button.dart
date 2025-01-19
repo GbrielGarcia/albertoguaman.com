@@ -13,7 +13,7 @@ Widget containerBottom(VoidCallback onTap, String message, String text,
           hoverColor: Colors.transparent,
           onTap: onTap,
           child: Container(
-            width: width ?? null,
+            width: width,
             decoration: BoxDecoration(
                 color: color ?? UtilsColor.colorSecondaryWhite,
                 border: Border.all(),

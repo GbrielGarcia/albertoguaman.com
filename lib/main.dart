@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LocaleProvider())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }

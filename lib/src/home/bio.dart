@@ -1,4 +1,3 @@
-import "package:albertoguaman/router/routers.dart";
 import "package:albertoguaman/src/home/home.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -14,7 +13,6 @@ class Bio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double getWidthText(BuildContext context) {
       if (context.isMobile || context.isMobileLarge || context.isTablet) {
         return context.screenWidth * 0.9;
@@ -52,7 +50,8 @@ class Bio extends StatelessWidget {
               SizedBox(height: SizeUtils.xl),
               containerBottom(() {
                 context.go('/');
-              }, 'https://www.albertoguaman.com/inicio', 'Portafolio', width: double.infinity),
+              }, 'https://www.albertoguaman.com/inicio', 'Portafolio',
+                  width: double.infinity),
               ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
