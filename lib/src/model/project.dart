@@ -21,6 +21,14 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: AssetsUtil.projectOne,
+      type: ['PhP', 'Laravel', 'MySql'],
+      title: 'Gestión integral de Cuentas',
+      description:
+          'Gestión integral de ventas 24/7 para servicios de Streaming, con recarga de saldo.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://tinguar.com/streaming-saas/'),
+  ProjectModel(
+      photo: AssetsUtil.projectOne,
       type: ['WordPress', 'Elementor', 'Hostinger'],
       title: 'AxxonImagen',
       description:
