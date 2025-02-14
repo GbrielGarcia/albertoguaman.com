@@ -453,7 +453,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                   '+593 99 860 2204', al.contacMe),
               containerBottom(
                   () => laucherURL(
-                      'https://drive.google.com/file/d/1kP70ATjZv5zFK-fHNsw4u5fQMZR7Erhd/view?usp=sharing'),
+                      'https://drive.google.com/file/d/1QY5pypA8L8R_j0ZkBpyzqWLi0oQf33Ej/view?usp=drive_link'),
                   'Google Driver',
                   'cv 2025'),
               Flexible(
