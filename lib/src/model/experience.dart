@@ -16,6 +16,29 @@ class Experience {
 
 List<Experience> infoExperienceModel = [
   Experience(
+    title: 'Freelancer',
+    description: [
+      '- Administración y mantenimiento de sitios web optimizando el rendimiento y mejorando la seguridad.',
+      '- Desarrollo web y aplicaciones móviles con Flutter, HTML, JavaScript, CSS y Wordpres.',
+      '- Administración y mantenimiento de sitios web optimizando el rendimiento y mejorando la seguridad.',
+      '- Estrategias de email marketing y automatización de correos para optimizar la comunicación con clientes.',
+    ],
+    type: 'Publicidad Digital y Desarrollador',
+    data: '∞',
+    country: 'Ecuador ',
+  ),
+  Experience(
+    title: 'Sciedtec',
+    description: [
+      '- Creación y optimización de campañas en Meta Business Suite (Facebook e Instagram Ads).',
+      '- Mantenimiento y actualización de contenido, optimización de rendimiento y SEO para mejorar la visibilidad online.',
+      '- Respuesta a consultas, interacción con clientes y fortalecimiento de la presencia online de la empresa.',
+    ],
+    type: 'Publicidad y Marketing',
+    data: '2024 Febrero - 2024 Septiembre',
+    country: 'Ecuador ',
+  ),
+  Experience(
     title: 'Sciedtec',
     description: [
       '- Gestión de helpdesk e incidencias, resolviendo problemas técnicos de manera eficiente.',
@@ -37,7 +60,7 @@ List<Experience> infoExperienceModel = [
       '- Creación de tiendas en línea utilizando Odoo, WooCommerce y WordPress.',
       '- Instructora de cursos de aplicaciones móviles y web.',
     ],
-    type: 'Autonomo',
+    type: 'Desarrollador y Consultor',
     data: '2020 Febrero - ∞',
     country: 'Ecuador ',
   ),

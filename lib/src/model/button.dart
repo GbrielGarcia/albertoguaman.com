@@ -32,7 +32,7 @@ List<ButtonModel> infoButtonModel = [
       icon: FontAwesomeIcons.instagram),
   ButtonModel(
       name: 'facebook',
-      url: 'https://www.facebook.com/albertoguamantinguar',
+      url: 'https://www.facebook.com/albertoguamancom',
       icon: FontAwesomeIcons.facebook),
   ButtonModel(
       name: 'github',

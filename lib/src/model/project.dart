@@ -29,6 +29,14 @@ List<ProjectModel> infoProjectModel = [
       buttonVoidCall: 'https://tinguar.com/streaming-saas/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
+      type: ['Flutter', 'Firebase', 'Dart'],
+      title: 'Creacion de enlaces cortos',
+      description:
+          'Creacion y Generador de enlaces cortos para WhatsApp con mensaje personalizado.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://tunegocio.tinguar.com/'),
+  ProjectModel(
+      photo: AssetsUtil.projectOne,
       type: ['WordPress', 'Elementor', 'Hostinger'],
       title: 'AxxonImagen',
       description:

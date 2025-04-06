@@ -60,9 +60,17 @@ class _PortfolioScreenState extends State<HomeSrc>
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: UtilsColor.colorPink,
+        // backgroundColor: UtilsColor.colorPink,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         centerTitle: true,
         title: _buildPowered(),
+        actionsIconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
       ),
       drawer: context.isMobile || context.isMobileLarge
           ? Container(
