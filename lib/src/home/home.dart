@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
-
+import 'package:zwidget/zwidget.dart';
 import "../widget/widget.dart";
 
 final List<String> sections = [
@@ -62,12 +62,12 @@ class _PortfolioScreenState extends State<HomeSrc>
       appBar: AppBar(
         // backgroundColor: UtilsColor.colorPink,
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: _buildPowered(),
-        actionsIconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
+        // elevation: 0,
+        // centerTitle: true,
+        // title: _buildPowered(),
+        // actionsIconTheme: const IconThemeData(
+        //   color: Colors.white,
+        // ),
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
@@ -102,7 +102,16 @@ class _PortfolioScreenState extends State<HomeSrc>
           child: Column(
             children: [
               SizedBox(height: SizeUtils.xl1),
-              buildAvatar(context, al),
+
+              Animater3D(
+                image: Image.asset(AssetsUtil.imgAlbertoGuaman),
+              ),
+              // buildAvatar3D(
+              //   context,
+              //   al,
+              // ),
+              // SizedBox(height: SizeUtils.xl1),
+              // buildAvatar(context, al),
               SizedBox(width: SizeUtils.m),
               buildRowName(context),
               SizedBox(height: SizeUtils.xl),
@@ -133,7 +142,10 @@ class _PortfolioScreenState extends State<HomeSrc>
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildAvatar(context, al),
+                    Animater3D(
+                      image: Image.asset(AssetsUtil.imgAlbertoGuaman),
+                    ),
+                    // buildAvatar(context, al),
                     SizedBox(width: SizeUtils.l1),
                     buildRowName(context),
                   ],

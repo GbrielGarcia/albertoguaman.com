@@ -33,6 +33,7 @@ dependencies:
   responsive_grid_list: ^1.4.0
   responsive_layout_grid: ^1.1.2
   animated_background: ^2.0.0
+  zwidget: ^0.0.2
 
 dev_dependencies:
   flutter_test:
