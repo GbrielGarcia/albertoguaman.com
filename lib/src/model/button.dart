@@ -12,7 +12,7 @@ class ButtonModel {
 List<ButtonModel> infoButtonModel = [
   ButtonModel(
       name: 'whatsapp',
-      url: 'https://tunegocio.pro/AWcDD',
+      url: 'https://wa.link/gqvop1',
       icon: FontAwesomeIcons.whatsapp),
   ButtonModel(
       name: 'Linkdin',

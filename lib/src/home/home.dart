@@ -5,7 +5,6 @@ import "package:flutter/material.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
-import 'package:zwidget/zwidget.dart';
 import "../widget/widget.dart";
 
 final List<String> sections = [
@@ -469,11 +468,11 @@ class _PortfolioScreenState extends State<HomeSrc>
           ),
           Row(
             children: [
-              containerBottom(() => laucherURL('https://tunegocio.pro/AWcDD'),
-                  '+593 99 860 2204', al.contacMe),
+              containerBottom(() => laucherURL('https://wa.link/gqvop1'),
+                  '+593 99 288 9078', al.contacMe),
               containerBottom(
                   () => laucherURL(
-                      'https://drive.google.com/file/d/1QY5pypA8L8R_j0ZkBpyzqWLi0oQf33Ej/view?usp=drive_link'),
+                      'https://docs.google.com/document/d/1WHM1NtsQxrI0gUqN2h7iud5w9PrJwEuf/edit?usp=sharing&ouid=107397151783524983957&rtpof=true&sd=true'),
                   'Google Driver',
                   'cv 2025'),
               Flexible(
