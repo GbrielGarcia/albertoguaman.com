@@ -1,5 +1,5 @@
 import "package:albertoguaman/src/home/home.dart";
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:albertoguaman/l10n/app_localizations.dart';
 
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
@@ -24,20 +24,35 @@ class Bio extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: UtilsColor.colorPrimaryDark,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: UtilsColor.colorSecondaryWhite,
+          onPressed: () => context.go('/'),
+          tooltip: 'Volver al inicio',
+        ),
+        title: Text(
+          'Sobre mí',
+          style: StyleText.textPortfolio(
+            fontSize: TextStyleSize.textTitleSize(context.screenWidth),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: ResponsiveCenter(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: SizeUtils.xl1),
-              buildAvatar(context, al),
-              SizedBox(width: SizeUtils.m),
               buildRowName(context, visibility: true),
               SizedBox(
                 width: getWidthText(context),
                 child: Center(
                   child: Text(
-                    al!.descriptionAbout,
+                    al?.descriptionAbout ?? '',
                     style: StyleText.textPortfolio(
                       fontWeight: FontWeight.bold,
                       fontSize: TextStyleSize.textDescriptionSize(
@@ -68,10 +83,12 @@ class Bio extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(vertical: SizeUtils.s1),
-        child: footerData(al, context.screenWidth),
-      ),
+      bottomNavigationBar: al != null
+          ? Padding(
+              padding: EdgeInsets.symmetric(vertical: SizeUtils.s1),
+              child: footerData(al, context.screenWidth),
+            )
+          : null,
     );
   }
 }

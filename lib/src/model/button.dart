@@ -12,28 +12,12 @@ class ButtonModel {
 List<ButtonModel> infoButtonModel = [
   ButtonModel(
       name: 'whatsapp',
-      url: 'https://wa.link/gqvop1',
+      url: 'https://wa.me/593992889078',
       icon: FontAwesomeIcons.whatsapp),
-  ButtonModel(
-      name: 'Linkdin',
-      url: 'https://www.linkedin.com/in/albertoguaman/',
-      icon: FontAwesomeIcons.linkedin),
-  ButtonModel(
-      name: 'google play',
-      url: 'https://play.google.com/store/apps/dev?id=6037160514505433183',
-      icon: FontAwesomeIcons.googlePlay),
   ButtonModel(
       name: 'tiktok',
       url: 'https://www.tiktok.com/@albertoguaman.com',
       icon: FontAwesomeIcons.tiktok),
-  ButtonModel(
-      name: 'instagram',
-      url: 'https://www.instagram.com/albertoguamandev/',
-      icon: FontAwesomeIcons.instagram),
-  ButtonModel(
-      name: 'facebook',
-      url: 'https://www.facebook.com/albertoguamancom',
-      icon: FontAwesomeIcons.facebook),
   ButtonModel(
       name: 'github',
       url: 'https://github.com/GbrielGarcia',

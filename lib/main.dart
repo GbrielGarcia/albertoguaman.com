@@ -4,7 +4,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '/provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:albertoguaman/l10n/app_localizations.dart';
 
 import 'router/routers.dart';
 

@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import "package:albertoguaman/src/model/model.dart";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:albertoguaman/l10n/app_localizations.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
 import "../widget/widget.dart";
@@ -21,22 +23,43 @@ class HomeSrc extends StatefulWidget {
   State<HomeSrc> createState() => _PortfolioScreenState();
 }
 
+/// Colores claros para la barra animada (fondo oscuro).
+final List<Color> _animatedBarColors = [
+  UtilsColor.colorYellow,
+  UtilsColor.colorPink,
+  UtilsColor.colorBlue,
+  Colors.cyanAccent,
+  Colors.greenAccent,
+  Colors.orangeAccent,
+];
+
 class _PortfolioScreenState extends State<HomeSrc>
     with TickerProviderStateMixin {
   late List<bool> inHovered;
   late List<bool> inHoveredBook;
 
   final ScrollController _scrollController = ScrollController();
+  Timer? _colorBarTimer;
+  int _barColorIndex = 0;
 
   @override
   void initState() {
     super.initState();
     inHovered = List<bool>.filled(infoProjectModel.length, false);
     inHoveredBook = List<bool>.filled(infoButtonModel.length, false);
+    _colorBarTimer = Timer.periodic(const Duration(milliseconds: 2500), (_) {
+      if (mounted) {
+        setState(() {
+          _barColorIndex =
+              (_barColorIndex + 1) % _animatedBarColors.length;
+        });
+      }
+    });
   }
 
   @override
   void dispose() {
+    _colorBarTimer?.cancel();
     _scrollController.dispose();
     super.dispose();
   }
@@ -81,8 +104,6 @@ class _PortfolioScreenState extends State<HomeSrc>
               child: Column(
                 children: [
                   SizedBox(height: SizeUtils.xl1),
-                  buildAvatar(context, al, maxRadius: SizeUtils.xl),
-                  SizedBox(width: SizeUtils.m),
                   buildRowName(context,
                       visibility: true,
                       visibilityNameW: true,
@@ -101,17 +122,6 @@ class _PortfolioScreenState extends State<HomeSrc>
           child: Column(
             children: [
               SizedBox(height: SizeUtils.xl1),
-
-              Animater3D(
-                image: Image.asset(AssetsUtil.imgAlbertoGuaman),
-              ),
-              // buildAvatar3D(
-              //   context,
-              //   al,
-              // ),
-              // SizedBox(height: SizeUtils.xl1),
-              // buildAvatar(context, al),
-              SizedBox(width: SizeUtils.m),
               buildRowName(context),
               SizedBox(height: SizeUtils.xl),
               _buildSectionsRow(context, sections),
@@ -135,21 +145,7 @@ class _PortfolioScreenState extends State<HomeSrc>
           child: Column(
             children: [
               SizedBox(height: SizeUtils.xl1),
-              SizedBox(
-                height: context.screenHeight * 0.25,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Animater3D(
-                      image: Image.asset(AssetsUtil.imgAlbertoGuaman),
-                    ),
-                    // buildAvatar(context, al),
-                    SizedBox(width: SizeUtils.l1),
-                    buildRowName(context),
-                  ],
-                ),
-              ),
+              buildRowName(context),
               SizedBox(height: SizeUtils.l),
               _buildSectionsRow(context, sections),
               SizedBox(height: SizeUtils.l),
@@ -174,64 +170,39 @@ class _PortfolioScreenState extends State<HomeSrc>
   }
 
   Widget _buildExperience(AppLocalizations? al) {
+    final grouped = <String, List<Experience>>{};
+    for (final e in infoExperienceModel) {
+      grouped.putIfAbsent(e.title, () => []).add(e);
+    }
+    final companies = grouped.keys.toList();
+
     return ResponsiveCenter(
       child: _buildContainerInfo(
         al,
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: infoExperienceModel.length,
-          itemBuilder: (context, index) {
-            final experience = infoExperienceModel[index];
+          itemCount: companies.length,
+          itemBuilder: (context, companyIndex) {
+            final companyName = companies[companyIndex];
+            final experiences = grouped[companyName]!;
+            final isTimeline = experiences.length > 1;
+
+            if (isTimeline) {
+              return Padding(
+                padding: EdgeInsets.only(
+                    bottom: companyIndex < companies.length - 1
+                        ? SizeUtils.xl
+                        : 0),
+                child: _buildCompanyTimeline(
+                    context, companyName, experiences),
+              );
+            }
+            final experience = experiences.single;
             return Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: index != 1 ? 0 : SizeUtils.s),
-              child: _buildCardInfo(
-                  () {},
-                  1.0,
-                  Colors.transparent,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(experience.title.toUpperCase(),
-                          style: StyleText.textPortfolio(
-                            fontSize: TextStyleSize.textTitleSize(
-                                context.screenWidth),
-                            fontWeight: FontWeight.bold,
-                          )),
-                      SizedBox(height: SizeUtils.m),
-                      Text(experience.type,
-                          style: StyleText.textPortfolio(
-                            fontSize: TextStyleSize.textDescriptionSize(
-                                context.screenWidth),
-                            fontWeight: FontWeight.bold,
-                          )),
-                      SizedBox(height: SizeUtils.m),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: experience.description.map((desc) {
-                          return Text(
-                            desc,
-                            style: StyleText.textPortfolio(
-                                fontSize: TextStyleSize.textDescriptionSize(
-                                    context.screenWidth)),
-                          );
-                        }).toList(),
-                      ),
-                      SizedBox(height: SizeUtils.s1),
-                      linerSpace()
-                    ],
-                  ),
-                  'url',
-                  'urlTitle',
-                  'view',
-                  experience.data,
-                  Colors.transparent,
-                  [],
-                  titleToolTip: true,
-                  positioned: true,
-                  elevation: true),
+              padding: EdgeInsets.symmetric(
+                  vertical: companyIndex != 1 ? 0 : SizeUtils.s),
+              child: _buildExperienceCard(experience),
             );
           },
         ),
@@ -239,6 +210,215 @@ class _PortfolioScreenState extends State<HomeSrc>
         title: al!.experience,
       ),
     );
+  }
+
+  Widget _buildCompanyTimeline(
+      BuildContext context, String companyName, List<Experience> experiences) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(companyName.toUpperCase(),
+            style: StyleText.textPortfolio(
+              fontSize: TextStyleSize.textTitleSize(context.screenWidth),
+              fontWeight: FontWeight.bold,
+            )),
+        SizedBox(height: SizeUtils.l),
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                width: 24,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (int i = 0; i < experiences.length; i++) ...[
+                      Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: UtilsColor.colorYellow,
+                          border: Border.all(
+                              color: UtilsColor.colorSecondaryWhite,
+                              width: 2),
+                        ),
+                      ),
+                      if (i < experiences.length - 1)
+                        Expanded(
+                          child: Center(
+                            child: Container(
+                              width: 2,
+                              color: UtilsColor.colorYellow,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ],
+                ),
+              ),
+              SizedBox(width: SizeUtils.s),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (int i = 0; i < experiences.length; i++) ...[
+                      _buildTimelineExperienceContent(
+                          context, experiences[i],
+                          isLast: i == experiences.length - 1),
+                      if (i < experiences.length - 1)
+                        SizedBox(height: SizeUtils.xl),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTimelineExperienceContent(
+      BuildContext context, Experience experience,
+      {bool isLast = false}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(experience.type,
+            style: StyleText.textPortfolio(
+              fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
+              fontWeight: FontWeight.bold,
+              color: UtilsColor.colorYellow,
+            )),
+        SizedBox(height: SizeUtils.s),
+        Text(experience.data,
+            style: StyleText.textPortfolio(
+              fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
+            )),
+        if (experience.stack != null && experience.stack!.isNotEmpty) ...[
+          SizedBox(height: SizeUtils.m),
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: SizeUtils.s, vertical: SizeUtils.m),
+            decoration: BoxDecoration(
+              color: UtilsColor.colorYellow.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(SizeUtils.m),
+              border: Border.all(color: UtilsColor.colorYellow, width: 1),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Stack: ',
+                    style: StyleText.textPortfolio(
+                      fontSize: TextStyleSize.textDescriptionSize(
+                          context.screenWidth),
+                      fontWeight: FontWeight.bold,
+                      color: UtilsColor.colorYellow,
+                    )),
+                Expanded(
+                  child: Text(experience.stack!,
+                      style: StyleText.textPortfolio(
+                        fontSize: TextStyleSize.textDescriptionSize(
+                            context.screenWidth),
+                        color: UtilsColor.colorYellow,
+                      )),
+                ),
+              ],
+            ),
+          ),
+        ],
+        SizedBox(height: SizeUtils.m),
+        ...experience.description.map((desc) => Padding(
+              padding: EdgeInsets.only(bottom: SizeUtils.s),
+              child: Text(desc,
+                  style: StyleText.textPortfolio(
+                      fontSize: TextStyleSize.textDescriptionSize(
+                          context.screenWidth))),
+            )),
+        if (!isLast) ...[SizedBox(height: SizeUtils.s1), linerSpace()],
+      ],
+    );
+  }
+
+  Widget _buildExperienceCard(Experience experience) {
+    return _buildCardInfo(
+        () {},
+        1.0,
+        Colors.transparent,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(experience.title.toUpperCase(),
+                style: StyleText.textPortfolio(
+                  fontSize: TextStyleSize.textTitleSize(context.screenWidth),
+                  fontWeight: FontWeight.bold,
+                )),
+            SizedBox(height: SizeUtils.m),
+            Text(experience.type,
+                style: StyleText.textPortfolio(
+                  fontSize: TextStyleSize.textDescriptionSize(
+                      context.screenWidth),
+                  fontWeight: FontWeight.bold,
+                )),
+            if (experience.stack != null &&
+                experience.stack!.isNotEmpty) ...[
+              SizedBox(height: SizeUtils.m),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeUtils.s, vertical: SizeUtils.m),
+                decoration: BoxDecoration(
+                  color: UtilsColor.colorYellow.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(SizeUtils.m),
+                  border: Border.all(color: UtilsColor.colorYellow, width: 1),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Stack: ',
+                        style: StyleText.textPortfolio(
+                          fontSize: TextStyleSize.textDescriptionSize(
+                              context.screenWidth),
+                          fontWeight: FontWeight.bold,
+                          color: UtilsColor.colorYellow,
+                        )),
+                    Expanded(
+                      child: Text(experience.stack!,
+                          style: StyleText.textPortfolio(
+                            fontSize: TextStyleSize.textDescriptionSize(
+                                context.screenWidth),
+                            color: UtilsColor.colorYellow,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            SizedBox(height: SizeUtils.m),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: experience.description.map((desc) {
+                return Text(desc,
+                    style: StyleText.textPortfolio(
+                        fontSize: TextStyleSize.textDescriptionSize(
+                            context.screenWidth)));
+              }).toList(),
+            ),
+            SizedBox(height: SizeUtils.s1),
+            linerSpace(),
+          ],
+        ),
+        'url',
+        'urlTitle',
+        'view',
+        experience.data,
+        Colors.transparent,
+        [],
+        titleToolTip: true,
+        positioned: true,
+        elevation: true);
   }
 
   Widget _buildPublications(AppLocalizations? al) {
@@ -324,63 +504,113 @@ class _PortfolioScreenState extends State<HomeSrc>
                     ? 135
                     : 150;
 
-    return ResponsiveCenter(
-        child: _buildContainerInfo(
-      al,
-      GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        // padding: EdgeInsets.all(SizeUtils.l),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          mainAxisExtent: mainAxisExtent,
-          crossAxisSpacing: SizeUtils.s1,
-          mainAxisSpacing: SizeUtils.s1,
-          childAspectRatio: 2,
-        ),
-        itemCount: infoProjectModel.length,
-        itemBuilder: (context, index) {
-          final project = infoProjectModel[index];
-          return _buildCardInfo(() {
+    final gridContent = GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        mainAxisExtent: mainAxisExtent,
+        crossAxisSpacing: SizeUtils.s1,
+        mainAxisSpacing: SizeUtils.s1,
+        childAspectRatio: 2,
+      ),
+      itemCount: infoProjectModel.length,
+      itemBuilder: (context, index) {
+        final project = infoProjectModel[index];
+        return _buildCardInfo(
+          () {
             setState(() {
               inHovered[index] = !inHovered[index];
             });
           },
-              inHovered[index] ? 0.2 : 1.0,
-              UtilsColor.colorYellow,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(project.title,
-                      style: StyleText.textPortfolio(
-                        color: UtilsColor.colorPrimaryDark,
-                        fontSize:
-                            TextStyleSize.textTitleSize(context.screenWidth),
-                        fontWeight: FontWeight.bold,
-                      )),
-                  SizedBox(height: SizeUtils.m),
-                  Text(
-                    project.description,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: StyleText.textPortfolio(
-                        color: UtilsColor.colorPrimaryDark,
-                        fontSize: TextStyleSize.textDescriptionSize(
-                            context.screenWidth)),
-                  ),
-                ],
+          inHovered[index] ? 0.2 : 1.0,
+          UtilsColor.colorYellow,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(project.title,
+                  style: StyleText.textPortfolio(
+                    color: UtilsColor.colorPrimaryDark,
+                    fontSize:
+                        TextStyleSize.textTitleSize(context.screenWidth),
+                    fontWeight: FontWeight.bold,
+                  )),
+              SizedBox(height: SizeUtils.m),
+              Text(
+                project.description,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: StyleText.textPortfolio(
+                    color: UtilsColor.colorPrimaryDark,
+                    fontSize: TextStyleSize.textDescriptionSize(
+                        context.screenWidth)),
               ),
-              project.buttonVoidCall,
-              project.buttonVoidCall,
-              project.title,
-              '${index + 1}',
-              UtilsColor.colorBlue,
-              [inHovered[index]]);
-        },
+            ],
+          ),
+          project.buttonVoidCall,
+          project.buttonVoidCall,
+          project.title,
+          '${index + 1}',
+          UtilsColor.colorBlue,
+          [inHovered[index]],
+        );
+      },
+    );
+
+    return ResponsiveCenter(
+      child: Padding(
+        padding: EdgeInsets.all(SizeUtils.s),
+        child: Container(
+          decoration: BoxDecoration(
+            color: UtilsColor.colorPink,
+            border: Border.all(color: UtilsColor.colorPink),
+            borderRadius: BorderRadius.circular(SizeUtils.m),
+          ),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              dividerColor: Colors.transparent,
+              expansionTileTheme: ExpansionTileThemeData(
+                iconColor: UtilsColor.colorSecondaryWhite,
+                collapsedIconColor: UtilsColor.colorSecondaryWhite,
+                textColor: UtilsColor.colorSecondaryWhite,
+                collapsedTextColor: UtilsColor.colorSecondaryWhite,
+              ),
+            ),
+            child: ExpansionTile(
+              initiallyExpanded: false,
+              tilePadding: EdgeInsets.symmetric(
+                  horizontal: SizeUtils.s, vertical: SizeUtils.s),
+              title: Text(
+                'Proyectos (${infoProjectModel.length})',
+                style: StyleText.textPortfolio(
+                  fontWeight: FontWeight.bold,
+                  fontSize:
+                      TextStyleSize.textTitleSectionSize(context.screenWidth),
+                  color: UtilsColor.colorSecondaryWhite,
+                ),
+              ),
+              subtitle: Padding(
+                padding: EdgeInsets.only(top: SizeUtils.s),
+                child: Text(
+                  'Clic para ver la lista de proyectos',
+                  style: StyleText.textPortfolio(
+                    fontSize: TextStyleSize.textDescriptionSize(
+                        context.screenWidth),
+                    color: UtilsColor.colorSecondaryWhite,
+                  ),
+                ),
+              ),
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(SizeUtils.s),
+                  child: gridContent,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      color: UtilsColor.colorPink,
-      title: 'Proyectos'.toUpperCase(),
-    ));
+    );
   }
 
   Widget _buildCardInfo(
@@ -468,17 +698,44 @@ class _PortfolioScreenState extends State<HomeSrc>
           ),
           Row(
             children: [
-              containerBottom(() => laucherURL('https://wa.link/gqvop1'),
+              containerBottom(() => laucherURL('https://wa.me/593992889078'),
                   '+593 99 288 9078', al.contacMe),
               containerBottom(
                   () => laucherURL(
-                      'https://docs.google.com/document/d/1WHM1NtsQxrI0gUqN2h7iud5w9PrJwEuf/edit?usp=sharing&ouid=107397151783524983957&rtpof=true&sd=true'),
-                  'Google Driver',
-                  'cv 2025'),
+                      'https://drive.google.com/file/d/18jFg4BXgPFWq1vjJT83cUB9OuJaEMYmH/view?usp=sharing'),
+                  'Google Drive',
+                  'cv 2026'),
               Flexible(
                   flex: 1,
-                  child: _buildContainerInfo(al, Container(),
-                      height: SizeUtils.xlq)),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final maxH = constraints.maxHeight;
+                      final maxW = constraints.maxWidth;
+                      final height = maxH.isFinite && maxH > 0
+                          ? maxH.clamp(0.0, SizeUtils.xlq)
+                          : SizeUtils.xlq;
+                      final color = _animatedBarColors[_barColorIndex];
+                      return Padding(
+                        padding: EdgeInsets.all(SizeUtils.s),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 1200),
+                          curve: Curves.easeInOut,
+                          width: maxW,
+                          height: height,
+                          decoration: BoxDecoration(
+                            color: color,
+                            border: Border.all(color: color),
+                            borderRadius:
+                                BorderRadius.circular(SizeUtils.m),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(SizeUtils.s),
+                            child: const SizedBox.shrink(),
+                          ),
+                        ),
+                      );
+                    },
+                  )),
             ],
           )
         ],
@@ -488,6 +745,20 @@ class _PortfolioScreenState extends State<HomeSrc>
 
   Widget _buildContainerInfo(AppLocalizations? al, Widget child,
       {double? height, Color? color, String? title}) {
+    final content = Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(title ?? '',
+            style: StyleText.textPortfolio(
+              fontWeight: FontWeight.bold,
+              fontSize:
+                  TextStyleSize.textTitleSectionSize(context.screenWidth),
+            )),
+        child,
+      ],
+    );
     return Padding(
       padding: EdgeInsets.all(SizeUtils.s),
       child: Container(
@@ -498,17 +769,9 @@ class _PortfolioScreenState extends State<HomeSrc>
             borderRadius: BorderRadius.circular(SizeUtils.m)),
         child: Padding(
           padding: EdgeInsets.all(SizeUtils.s),
-          child: Column(
-            children: [
-              Text(title ?? '',
-                  style: StyleText.textPortfolio(
-                    fontWeight: FontWeight.bold,
-                    fontSize:
-                        TextStyleSize.textTitleSectionSize(context.screenWidth),
-                  )),
-              child,
-            ],
-          ),
+          child: height != null
+              ? SingleChildScrollView(child: content)
+              : content,
         ),
       ),
     );
@@ -600,15 +863,6 @@ Widget _buildPowered() {
         ),
       ),
     ),
-  );
-}
-
-Widget buildAvatar(BuildContext context, AppLocalizations? al,
-    {double? maxRadius}) {
-  return CircleAvatar(
-    maxRadius: maxRadius ?? SizeUtils.xxl3,
-    backgroundColor: UtilsColor.colorSecondaryWhite,
-    backgroundImage: AssetImage(AssetsUtil.imgAlbertoGuaman),
   );
 }
 
