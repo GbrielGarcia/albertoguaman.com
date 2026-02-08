@@ -1,7 +1,9 @@
 import 'package:albertoguaman/src/widget/size_text.dart';
 import 'package:albertoguaman/src/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+/// Fuente Alegreya declarada en pubspec (assets). No depende de AssetManifest.
+const String _kAlegreyaFontFamily = 'Alegreya';
 
 class StyleText {
   static TextStyle textStyleOriginalDark({
@@ -15,7 +17,6 @@ class StyleText {
   }) {
     double calculatedFontSize = fontSize ?? 25.0;
 
-    // Si minFontSize y maxFontSize están definidos, ajustamos el tamaño
     if (context != null && (minFontSize != null || maxFontSize != null)) {
       final screenWidth = MediaQuery.of(context).size.width;
       calculatedFontSize = (screenWidth * 0.05).clamp(
@@ -24,12 +25,11 @@ class StyleText {
       );
     }
 
-    return GoogleFonts.alegreya(
-      textStyle: TextStyle(
-        fontSize: calculatedFontSize,
-        color: color ?? UtilsColor.colorPrimaryDark,
-        fontWeight: fontWeight ?? FontWeight.w100,
-      ),
+    return TextStyle(
+      fontFamily: _kAlegreyaFontFamily,
+      fontSize: calculatedFontSize,
+      color: color ?? UtilsColor.colorPrimaryDark,
+      fontWeight: fontWeight ?? FontWeight.w100,
     );
   }
 
@@ -39,26 +39,30 @@ class StyleText {
     FontWeight? fontWeight,
     Color? colorBackgroundColor,
   }) {
-    return GoogleFonts.alegreya(
-        textStyle: TextStyle(
-            fontSize: fontSize ?? SizeUtils.l,
-            color: color ?? UtilsColor.colorSecondaryWhite,
-            fontWeight: fontWeight ?? FontWeight.w100,
-            backgroundColor: colorBackgroundColor ?? Colors.transparent));
+    return TextStyle(
+      fontFamily: _kAlegreyaFontFamily,
+      fontSize: fontSize ?? SizeUtils.l,
+      color: color ?? UtilsColor.colorSecondaryWhite,
+      fontWeight: fontWeight ?? FontWeight.w100,
+      backgroundColor: colorBackgroundColor ?? Colors.transparent,
+    );
   }
 
+  /// Estilo tipo script; usa Alegreya como fallback para no depender de google_fonts/AssetManifest.
   static TextStyle textPortfolioDancingScript({
     double? fontSize,
     Color? color,
     FontWeight? fontWeight,
     Color? colorBackgroundColor,
   }) {
-    return GoogleFonts.kaushanScript(
-        textStyle: TextStyle(
-            fontSize: fontSize ?? SizeUtils.l2,
-            color: color ?? UtilsColor.colorPrimaryDark,
-            fontWeight: fontWeight ?? FontWeight.bold,
-            backgroundColor: colorBackgroundColor ?? Colors.transparent));
+    return TextStyle(
+      fontFamily: _kAlegreyaFontFamily,
+      fontSize: fontSize ?? SizeUtils.l2,
+      color: color ?? UtilsColor.colorPrimaryDark,
+      fontWeight: fontWeight ?? FontWeight.bold,
+      fontStyle: FontStyle.italic,
+      backgroundColor: colorBackgroundColor ?? Colors.transparent,
+    );
   }
 }
 

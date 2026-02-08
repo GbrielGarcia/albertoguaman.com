@@ -4,6 +4,8 @@ class Experience {
   final String type;
   final String data;
   final String country;
+  /// Tecnologías destacadas (se muestra aparte, no en la lista de descripción).
+  final String? stack;
 
   Experience({
     required this.title,
@@ -11,38 +13,86 @@ class Experience {
     required this.type,
     required this.data,
     required this.country,
+    this.stack,
   });
 }
 
 List<Experience> infoExperienceModel = [
   Experience(
-    title: 'SCIDETEC',
+    title: 'NOVISOLUTIONS',
+    stack: 'Sistema de facturación MBA 3, gestión administrativa, control de inventario, ventas, atención al cliente',
     description: [
-      '- Coordinación de plataformas educativas Moodle, incluyendo administración, personalización y soporte a usuarios (docentes y administrativos)',
-      '- Gestión de helpdesk e incidencias, resolviendo problemas técnicos de manera eficiente',
-      '- Desarrollo e implementación de aplicaciones móviles con Flutter para automatizar procesos académicos y administrativos',
-      '- Mantenimiento preventivo de infraestructura tecnológica y soporte helpdesk, asegurando la continuidad operativa institucional',
-      '- Capacitación a docentes en el uso de tecnologías emergentes y herramientas digitales educativas',
-      '- Diseño y ejecución de campañas publicitarias en Facebook e Instagram Ads (Meta Business Suite), optimizando segmentación, rendimiento y alcance',
-      '- Actualización y mantenimiento de contenido digital, mejorando la visibilidad online mediante buenas prácticas SEO',
-      '- Gestión de la comunidad online, incluyendo respuesta a consultas e interacción con usuarios para fortalecer la presencia digital de la empresa',
+      '- Administro la operación diaria del local, asegurando el correcto funcionamiento de las actividades comerciales.',
+      '- Superviso los procesos de ventas, facturación e inventario utilizando el sistema MBA 3.',
+      '- Coordino al personal del local, organizando turnos y asignando responsabilidades.',
+      '- Controlo el stock, así como los ingresos y egresos de productos.',
+      '- Garantizo una atención eficiente al cliente y una correcta gestión postventa.',
+      '- Implemento mejoras operativas para optimizar tiempos y el orden administrativo.',
     ],
-    type: 'Administrador & Desarrollador Full Stack Web - Mobile',
-    data: 'Marzo de 2022 - Abril de 2024 (2 año 1 meses) ',
-    country: 'Ecuador ',
+    type: 'Administrador Comercial del Local Importadora Novoa - Bomboli Shopping',
+    data: 'Enero 2026 – Actualidad',
+    country: 'Ecuador',
+  ),
+  Experience(
+    title: 'NOVISOLUTIONS',
+    stack: 'Sistema de facturación MBA 3, atención al cliente, gestión de ventas, control de inventario',
+    description: [
+      '- Gestioné el proceso completo de venta de productos tecnológicos, desde la atención al cliente hasta la facturación.',
+      '- Utilicé el sistema de facturación MBA 3 para registrar ventas, emitir comprobantes y controlar el inventario.',
+      '- Asesoré a clientes en la selección de equipos y soluciones tecnológicas según sus necesidades.',
+      '- Mantuve un control preciso de stock y movimientos de productos.',
+      '- Garanticé una atención personalizada, fortaleciendo la confianza y fidelización de clientes.',
+      '- Coordiné con el área administrativa para asegurar la correcta facturación y cierre de ventas.',
+    ],
+    type: 'Asesor Comercial en Soluciones Tecnológicas en Novicompu',
+    data: 'Octubre 2025 – Diciembre 2025 (3 meses)',
+    country: 'Ecuador',
+  ),
+  Experience(
+    title: 'SCIDETEC',
+    stack: 'Meta Business Suite, Moodle, sistema propio de Helpdesk, CMS y LMS',
+    description: [
+      '- Dirigí el área de helpdesk, administrando la recepción y resolución de incidencias técnicas mediante un sistema de soporte interno.',
+      '- Proporcioné soporte continuo a clientes y personal, garantizando la operatividad de las soluciones implementadas.',
+      '- Administré plataformas educativas y sitios web (CMS y Moodle), asegurando su seguridad y disponibilidad permanente.',
+      '- Implementé mejoras en el flujo de soporte, reduciendo tiempos de resolución y optimizando la experiencia del usuario.',
+      '- Organicé capacitaciones técnicas para personal docente y administrativo sobre el uso de herramientas digitales.',
+    ],
+    type: 'Coordinador de Helpdesk y Soporte Técnico',
+    data: 'Febrero 2025 – Julio 2025 (6 meses)',
+    country: 'Ecuador',
+  ),
+  Experience(
+    title: 'SCIDETEC',
+    stack: 'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL',
+    description: [
+      '- Gestioné plataformas educativas Moodle: administración, personalización y asistencia a docentes y administrativos.',
+      '- Atendí incidencias técnicas y helpdesk, resolviendo problemas de manera ágil y eficiente.',
+      '- Desarrollé aplicaciones móviles con Flutter para procesos académicos y administrativos.',
+      '- Aseguré el mantenimiento de la infraestructura tecnológica, garantizando su disponibilidad.',
+      '- Capacité a docentes en tecnologías educativas emergentes.',
+      '- Diseñé campañas digitales en Meta Business Suite, optimizando alcance y segmentación.',
+      '- Actualicé y gestioné contenido digital con técnicas SEO para mejorar la visibilidad institucional.',
+      '- Interactué con la comunidad online, fortaleciendo la presencia digital de la empresa.',
+    ],
+    type: 'Administrador y Desarrollador Full Stack Web - Mobile',
+    data: 'Marzo 2022 – Octubre 2024 (2 años 7 meses)',
+    country: 'Ecuador',
   ),
   Experience(
     title: 'TINGUAR',
+    stack: 'Flutter, Dart, Firebase, WordPress, Odoo, WooCommerce, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS',
     description: [
-      '- Diseño y desarrollo de aplicaciones móviles multiplataforma con Flutter, integrando autenticación, notificaciones push, mapas interactivos y bases de datos en tiempo real (Firebase/Firestore)',
-      '- Creación de sitios web modernos, accesibles y responsivos utilizando Webflow y desarrollo personalizado con HTML, CSS y JavaScript, garantizando compatibilidad multiplataforma y experiencia de usuario fluida',
-      '- Implementación de soluciones e-commerce con WordPress, WooCommerce y Odoo, desarrollando módulos a medida, configurando pasarelas de pago e integrando herramientas de gestión empresarial',
-      '- Optimización técnica y de contenidos para SEO, velocidad de carga y accesibilidad, mejorando el posicionamiento en buscadores y la conversión de usuarios',
-      '- Integración de componentes dinámicos como formularios inteligentes, chats en línea y enlaces de contacto directo',
-      '- Consultoría técnica personalizada, acompañando a clientes en todas las etapas del proyecto: análisis, desarrollo, despliegue y soporte postproducción',
+      '- Emprendimiento propio desde 2020, enfocado en desarrollo web, móvil y soluciones digitales.',
+      '- Desarrollé aplicaciones móviles multiplataforma en Flutter, integrando autenticación, notificaciones y bases de datos en tiempo real.',
+      '- Creé sitios web responsivos en Webflow y con desarrollo personalizado (HTML, CSS, JS).',
+      '- Implementé soluciones e-commerce con WordPress, WooCommerce y Odoo, incluyendo pasarelas de pago y módulos personalizados.',
+      '- Optimicé sitios web en SEO, rendimiento y accesibilidad, aumentando visibilidad y conversión.',
+      '- Integré funcionalidades dinámicas como chats en línea y formularios inteligentes.',
+      '- Brindé consultoría técnica en todas las fases del proyecto: análisis, desarrollo, despliegue y soporte.',
     ],
-    type: 'Desarrollador Full Stack Web & Mobile',
-    data: 'Febrero de 2020 - Enero de 2022 (1 año 11 meses) ',
-    country: 'Ecuador ',
+    type: 'Emprendimiento · Desarrollador Full Stack Web & Mobile',
+    data: 'Desde 2020',
+    country: 'Ecuador',
   )
 ];

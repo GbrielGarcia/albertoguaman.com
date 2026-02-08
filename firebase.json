@@ -1,16 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}
+{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"android":{"default":{"projectId":"alberto-guaman-dev","appId":"1:756264995890:android:d21f6c42d805f9d589402b","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"alberto-guaman-dev","configurations":{"android":"1:756264995890:android:d21f6c42d805f9d589402b","web":"1:756264995890:web:194d6e6828b82fc789402b","windows":"1:756264995890:web:298b513bc4dc8c1489402b"}}}}}}

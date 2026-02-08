@@ -21,20 +21,37 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: AssetsUtil.projectOne,
+      type: ['Web', 'Tinguar'],
+      title: 'Gestión de Finanzas Personales',
+      description:
+          'Panel de control financiero con acceso por usuario. Sistema de gestión de finanzas personales desarrollado en Tinguar.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://tinguar.com/finanzastga2/'),
+  ProjectModel(
+      photo: AssetsUtil.projectOne,
+      type: ['Web', 'JavaScript', 'Tinguar'],
+      title: 'Calculadora de porcentaje por tarjeta',
+      description:
+          'Herramienta para ingresar montos y obtener el total con precios financiados (efectivo, débito, crédito 3/6/9/12 meses). Desarrollada para Importadora Novoa Bomboli.',
+      buttonText: 'ver proyecto',
+      buttonVoidCall: 'https://tinguar.com/porcentaje-tarjeta/'),
+  ProjectModel(
+      photo: AssetsUtil.projectOne,
       type: ['PhP', 'Laravel', 'MySql'],
       title: 'Gestión integral de Cuentas',
       description:
           'Gestión integral de ventas 24/7 para servicios de Streaming, con recarga de saldo.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tinguar.com/streaming-saas/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Flutter', 'Firebase', 'Dart'],
-      title: 'Creacion de enlaces cortos',
-      description:
-          'Creacion y Generador de enlaces cortos para WhatsApp con mensaje personalizado.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tunegocio.tinguar.com/'),
+      buttonVoidCall:
+          'https://tinguar.com/productos/streaming-distribuidores/'),
+  // ProjectModel(
+  //     photo: AssetsUtil.projectOne,
+  //     type: ['Flutter', 'Firebase', 'Dart'],
+  //     title: 'Creacion de enlaces cortos',
+  //     description:
+  //         'Creacion y Generador de enlaces cortos para WhatsApp con mensaje personalizado.',
+  //     buttonText: 'ver proyecto',
+  //     buttonVoidCall: 'https://tunegocio.tinguar.com/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
       type: ['WordPress', 'Elementor', 'Hostinger'],
@@ -51,17 +68,17 @@ List<ProjectModel> infoProjectModel = [
           'Aquí puedes consultar los horarios de corte de energía programados por CNEL en tu zona.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: [
-        'Php',
-        'Meta (FACEBOOK)',
-      ],
-      title: 'Chat Bot Energia',
-      description:
-          'Consulta los cortes de energía de manera rápida y sencilla a través de nuestro chatbot en WhatsApp.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
+  // ProjectModel(
+  //     photo: AssetsUtil.projectOne,
+  //     type: [
+  //       'Php',
+  //       'Meta (FACEBOOK)',
+  //     ],
+  //     title: 'Chat Bot Energia',
+  //     description:
+  //         'Consulta los cortes de energía de manera rápida y sencilla a través de nuestro chatbot en WhatsApp.',
+  //     buttonText: 'ver proyecto',
+  //     buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
       type: ['Flutter', 'Dart', 'Firebase'],
