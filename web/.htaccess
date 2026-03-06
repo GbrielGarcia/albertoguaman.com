@@ -1,5 +1,5 @@
 # SPA fallback: todas las rutas sirven index.html para que go_router maneje la app.
-# Necesario en Hostinger (Apache) para que /bio, /cualquier-ruta carguen la app.
+# Necesario en Hostinger (Apache) para que /bio, /marcimex y rutas directas carguen la app.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -9,5 +9,5 @@
   RewriteCond %{REQUEST_FILENAME} !-d
 
   # Cualquier otra petición → index.html (la app Flutter gestiona la ruta)
-  RewriteRule . /index.html [L]
+  RewriteRule ^(.*)$ index.html [L,QSA]
 </IfModule>

@@ -5,10 +5,20 @@ import 'package:go_router/go_router.dart';
 
 import '../src/home/home.dart';
 import '../src/utils/utils.dart';
+import '../src/utils/seo.dart';
 import 'router.dart';
 
 /// Rutas válidas de la app. Cualquier otra ruta se redirige a inicio.
 const _validPaths = ['/', '/bio', '/marcimex'];
+
+void _updateSeoForRoute(GoRouterState state) {
+  String path = state.uri.path;
+  if (path.endsWith('/') && path.length > 1) path = path.substring(0, path.length - 1);
+  final data = pageSeoData[path];
+  if (data != null) {
+    setPageSEO(title: data.$1, description: data.$2, path: path);
+  }
+}
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -17,6 +27,8 @@ final goRouter = GoRouter(
     final normalized = path.endsWith('/') && path.length > 1
         ? path.substring(0, path.length - 1)
         : path;
+    // Typo común: /marcinex → /marcimex
+    if (normalized == '/marcinex') return '/marcimex';
     if (_validPaths.contains(normalized)) return null;
     return '/';
   },
@@ -27,18 +39,21 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/',
       pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
         return transitionPageRouter(state.pageKey, const HomeSrc());
       },
     ),
     GoRoute(
       path: '/marcimex',
       pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
         return transitionPageRouter(state.pageKey, const MarcimexSales());
       },
     ),
     GoRoute(
       path: '/bio',
       pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
         return transitionPageRouter(state.pageKey, const Bio());
       },
     ),
