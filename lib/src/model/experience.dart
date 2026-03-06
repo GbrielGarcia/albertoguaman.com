@@ -4,6 +4,7 @@ class Experience {
   final String type;
   final String data;
   final String country;
+
   /// Tecnologías destacadas (se muestra aparte, no en la lista de descripción).
   final String? stack;
 
@@ -19,8 +20,25 @@ class Experience {
 
 List<Experience> infoExperienceModel = [
   Experience(
+    title: 'GRUPO CONSENSO',
+    stack:
+        'Sistema SAP, análisis de clientes, análisis de buró crediticio, gestión de cartera, análisis de productos por ítem',
+    description: [
+      '- Utilizo el sistema SAP para el análisis integral de clientes y productos.',
+      '- Realizo análisis de buró crediticio para evaluación y aprobación de solicitudes.',
+      '- Gestiono la cartera de clientes, asegurando el seguimiento y control de cuentas.',
+      '- Analizo el ingreso y comportamiento financiero del cliente para toma de decisiones.',
+      '- Elaboro análisis detallado de productos por ítem para control y optimización comercial.',
+      '- Apoyo en la gestión administrativa y financiera basada en indicadores del sistema.',
+    ],
+    type: 'Analista Comercial / Gestión de Cartera',
+    data: 'Marzo 2026 – Actualidad',
+    country: 'Ecuador',
+  ),
+  Experience(
     title: 'NOVISOLUTIONS',
-    stack: 'Sistema de facturación MBA 3, gestión administrativa, control de inventario, ventas, atención al cliente',
+    stack:
+        'Sistema de facturación MBA 3, gestión administrativa, control de inventario, ventas, atención al cliente',
     description: [
       '- Administro la operación diaria del local, asegurando el correcto funcionamiento de las actividades comerciales.',
       '- Superviso los procesos de ventas, facturación e inventario utilizando el sistema MBA 3.',
@@ -29,13 +47,15 @@ List<Experience> infoExperienceModel = [
       '- Garantizo una atención eficiente al cliente y una correcta gestión postventa.',
       '- Implemento mejoras operativas para optimizar tiempos y el orden administrativo.',
     ],
-    type: 'Administrador Comercial del Local Importadora Novoa - Bomboli Shopping',
-    data: 'Enero 2026 – Actualidad',
+    type:
+        'Administrador Comercial del Local Importadora Novoa - Bomboli Shopping',
+    data: 'Enero 2026 – Febrero 2026 (1 mes)',
     country: 'Ecuador',
   ),
   Experience(
     title: 'NOVISOLUTIONS',
-    stack: 'Sistema de facturación MBA 3, atención al cliente, gestión de ventas, control de inventario',
+    stack:
+        'Sistema de facturación MBA 3, atención al cliente, gestión de ventas, control de inventario',
     description: [
       '- Gestioné el proceso completo de venta de productos tecnológicos, desde la atención al cliente hasta la facturación.',
       '- Utilicé el sistema de facturación MBA 3 para registrar ventas, emitir comprobantes y controlar el inventario.',
@@ -64,7 +84,8 @@ List<Experience> infoExperienceModel = [
   ),
   Experience(
     title: 'SCIDETEC',
-    stack: 'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL',
+    stack:
+        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL',
     description: [
       '- Gestioné plataformas educativas Moodle: administración, personalización y asistencia a docentes y administrativos.',
       '- Atendí incidencias técnicas y helpdesk, resolviendo problemas de manera ágil y eficiente.',
@@ -81,7 +102,8 @@ List<Experience> infoExperienceModel = [
   ),
   Experience(
     title: 'TINGUAR',
-    stack: 'Flutter, Dart, Firebase, WordPress, Odoo, WooCommerce, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS',
+    stack:
+        'Flutter, Dart, Firebase, WordPress, Odoo, WooCommerce, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS',
     description: [
       '- Emprendimiento propio desde 2020, enfocado en desarrollo web, móvil y soluciones digitales.',
       '- Desarrollé aplicaciones móviles multiplataforma en Flutter, integrando autenticación, notificaciones y bases de datos en tiempo real.',

@@ -1,4 +1,5 @@
 import 'package:albertoguaman/src/home/bio.dart';
+import 'package:albertoguaman/src/marcimex/marcimex_sales.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,7 +8,7 @@ import '../src/utils/utils.dart';
 import 'router.dart';
 
 /// Rutas válidas de la app. Cualquier otra ruta se redirige a inicio.
-const _validPaths = ['/', '/bio'];
+const _validPaths = ['/', '/bio', '/marcimex'];
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -27,6 +28,12 @@ final goRouter = GoRouter(
       path: '/',
       pageBuilder: (BuildContext context, GoRouterState state) {
         return transitionPageRouter(state.pageKey, const HomeSrc());
+      },
+    ),
+    GoRoute(
+      path: '/marcimex',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return transitionPageRouter(state.pageKey, const MarcimexSales());
       },
     ),
     GoRoute(
