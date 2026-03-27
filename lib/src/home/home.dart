@@ -81,19 +81,6 @@ class _PortfolioScreenState extends State<HomeSrc>
     final al = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: UtilsColor.colorPink,
-        backgroundColor: Colors.transparent,
-        // elevation: 0,
-        // centerTitle: true,
-        // title: _buildPowered(),
-        // actionsIconTheme: const IconThemeData(
-        //   color: Colors.white,
-        // ),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-      ),
       drawer: context.isMobile || context.isMobileLarge
           ? Container(
               width: context.screenWidth / 2,
@@ -115,56 +102,72 @@ class _PortfolioScreenState extends State<HomeSrc>
             )
           : null,
       backgroundColor: UtilsColor.colorPrimaryDark,
-      body: Responsive(
-        mobile: SingleChildScrollView(
-          controller: _scrollController,
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            children: [
-              SizedBox(height: SizeUtils.xl1),
-              buildRowName(context),
-              SizedBox(height: SizeUtils.xl),
-              _buildSectionsRow(context, sections),
-              SizedBox(height: SizeUtils.xl),
-              _buildSectionContent('', sectionKeys['Sobre Mí']!),
-              _buildAboutMe(al),
-              _buildSectionContent('', sectionKeys['Proyectos']!),
-              _buildProject(al, context),
-              _buildSectionContent('', sectionKeys['Publicaciones']!),
-              _buildPublications(al),
-              _buildSectionContent('', sectionKeys['Experiencia']!),
-              _buildExperience(al),
-              footerData(al, context.screenWidth),
-              SizedBox(height: SizeUtils.xl1),
-            ],
-          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => laucherURL('https://wa.me/593992889078'),
+        backgroundColor: const Color(0xFF25D366),
+        foregroundColor: Colors.white,
+        elevation: 10,
+        icon: const Icon(Icons.chat),
+        label: const Text(
+          'WhatsApp',
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        desktop: SingleChildScrollView(
-          controller: _scrollController,
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            children: [
-              SizedBox(height: SizeUtils.xl1),
-              buildRowName(context),
-              SizedBox(height: SizeUtils.l),
-              _buildSectionsRow(context, sections),
-              SizedBox(height: SizeUtils.l),
+      ),
+      body: animatedBackground(
+        Responsive(
+          mobile: SingleChildScrollView(
+            controller: _scrollController,
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                SizedBox(height: SizeUtils.xl1),
+                buildRowName(context),
+                SizedBox(height: SizeUtils.xl),
+                _buildSectionsRow(context, sections),
+                SizedBox(height: SizeUtils.xl),
+                _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                _buildAboutMe(al),
+                _buildSectionContent('', sectionKeys['Proyectos']!),
+                _buildProject(al, context),
+                _buildSectionContent('', sectionKeys['Publicaciones']!),
+                _buildPublications(al),
+                _buildSectionContent('', sectionKeys['Experiencia']!),
+                _buildExperience(al),
+                footerData(al, context.screenWidth),
+                SizedBox(height: SizeUtils.xl1),
+              ],
+            ),
+          ),
+          desktop: SingleChildScrollView(
+            controller: _scrollController,
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                SizedBox(height: SizeUtils.xl1),
+                buildRowName(context),
+                SizedBox(height: SizeUtils.l),
+                _buildSectionsRow(context, sections),
+                SizedBox(height: SizeUtils.l),
 
-              _buildSectionContent('', sectionKeys['Sobre Mí']!),
-              _buildAboutMe(al),
-              _buildSectionContent('', sectionKeys['Proyectos']!),
-              _buildProject(al, context),
-              _buildSectionContent('', sectionKeys['Publicaciones']!),
-              _buildPublications(al),
-              _buildSectionContent('', sectionKeys['Experiencia']!),
-              _buildExperience(al),
-              // iconDataRow(),
-              // SizedBox(height: SizeUtils.xl),
-              footerData(al, context.screenWidth),
-              SizedBox(height: SizeUtils.xl1),
-            ],
+                _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                _buildAboutMe(al),
+                _buildSectionContent('', sectionKeys['Proyectos']!),
+                _buildProject(al, context),
+                _buildSectionContent('', sectionKeys['Publicaciones']!),
+                _buildPublications(al),
+                _buildSectionContent('', sectionKeys['Experiencia']!),
+                _buildExperience(al),
+                // iconDataRow(),
+                // SizedBox(height: SizeUtils.xl),
+                footerData(al, context.screenWidth),
+                SizedBox(height: SizeUtils.xl1),
+              ],
+            ),
           ),
         ),
+        this,
+        particleCount: 110,
       ),
     );
   }
@@ -842,28 +845,6 @@ class _PortfolioScreenState extends State<HomeSrc>
               fontSize: SizeUtils.s1)),
     );
   }
-}
-
-Widget _buildPowered() {
-  return tooltipW(
-    'https://tinguar.com/',
-    InkWell(
-      onTap: () => laucherURL('https://tinguar.com/'),
-      child: RichText(
-        text: TextSpan(
-          style: StyleText.textPortfolio(
-              color: UtilsColor.colorPrimaryDark), // Default style
-          children: <TextSpan>[
-            TextSpan(text: 'Impulsado por '.toUpperCase()),
-            TextSpan(
-              text: 'Tinguar'.toUpperCase(),
-              style: StyleText.textPortfolioDancingScript(),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
 
 Widget buildRowName(

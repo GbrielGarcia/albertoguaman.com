@@ -24,6 +24,18 @@ class Bio extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: UtilsColor.colorPrimaryDark,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => laucherURL('https://wa.me/593992889078'),
+        backgroundColor: const Color(0xFF25D366),
+        foregroundColor: Colors.white,
+        elevation: 10,
+        icon: const Icon(Icons.chat),
+        label: const Text(
+          'WhatsApp',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -79,16 +91,15 @@ class Bio extends StatelessWidget {
                       button.name,
                     );
                   }),
+              if (al != null) ...[
+                SizedBox(height: SizeUtils.xl),
+                footerData(al, context.screenWidth),
+                SizedBox(height: SizeUtils.xl1),
+              ],
             ],
           ),
         ),
       ),
-      bottomNavigationBar: al != null
-          ? Padding(
-              padding: EdgeInsets.symmetric(vertical: SizeUtils.s1),
-              child: footerData(al, context.screenWidth),
-            )
-          : null,
     );
   }
 }

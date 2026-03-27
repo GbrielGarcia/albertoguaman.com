@@ -56,7 +56,6 @@ flutter:
   assets:
     - assets/img/
     - assets/img/project/
-    - assets/img/marcimex/
   #   - images/a_dot_ham.jpeg
 
   fonts:
