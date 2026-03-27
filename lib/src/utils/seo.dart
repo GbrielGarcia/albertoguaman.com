@@ -23,9 +23,4 @@ Map<String, (String title, String description)> get pageSeoData => {
         'Sobre mí',
         'Conoce a Alberto Guaman. Perfil profesional, trayectoria y datos de contacto.',
       ),
-      '/marcimex': (
-        'Asesor Comercial Marcimex',
-        'Asesoría comercial Marcimex con Alberto Guaman. Motos Daytona, '
-            'crédito directo, Comercial Bombolí. Contacto por WhatsApp.',
-      ),
     };
