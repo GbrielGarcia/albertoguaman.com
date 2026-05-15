@@ -53,52 +53,62 @@ class Bio extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: ResponsiveCenter(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: SizeUtils.xl1),
-              buildRowName(context, visibility: true),
-              SizedBox(
-                width: getWidthText(context),
-                child: Center(
-                  child: Text(
-                    al?.descriptionAbout ?? '',
-                    style: StyleText.textPortfolio(
-                      fontWeight: FontWeight.bold,
-                      fontSize: TextStyleSize.textDescriptionSize(
-                          context.screenWidth),
-                    ),
-                    textAlign: TextAlign.center,
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: BubbleBackgroundLayer(
+              child: SingleChildScrollView(
+                child: ResponsiveCenter(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: SizeUtils.xl1),
+                      buildRowName(context, visibility: true),
+                      SizedBox(
+                        width: getWidthText(context),
+                        child: Center(
+                          child: Text(
+                            al?.descriptionAbout ?? '',
+                            style: StyleText.textPortfolio(
+                              fontWeight: FontWeight.bold,
+                              fontSize: TextStyleSize.textDescriptionSize(
+                                  context.screenWidth),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: SizeUtils.xl),
+                      containerBottom(() {
+                        context.go('/');
+                      }, 'https://www.albertoguaman.com/inicio', 'Portafolio',
+                          width: double.infinity),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: infoButtonModel.length,
+                          itemBuilder: (context, index) {
+                            final button = infoButtonModel[index];
+                            return containerBottom(
+                              () => laucherURL(button.url),
+                              button.url,
+                              button.name,
+                            );
+                          }),
+                      if (al != null) ...[
+                        SizedBox(height: SizeUtils.xl),
+                        footerData(al, context.screenWidth),
+                        SizedBox(height: SizeUtils.xl1),
+                      ],
+                    ],
                   ),
                 ),
               ),
-              SizedBox(height: SizeUtils.xl),
-              containerBottom(() {
-                context.go('/');
-              }, 'https://www.albertoguaman.com/inicio', 'Portafolio',
-                  width: double.infinity),
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: infoButtonModel.length,
-                  itemBuilder: (context, index) {
-                    final button = infoButtonModel[index];
-                    return containerBottom(
-                      () => laucherURL(button.url),
-                      button.url,
-                      button.name,
-                    );
-                  }),
-              if (al != null) ...[
-                SizedBox(height: SizeUtils.xl),
-                footerData(al, context.screenWidth),
-                SizedBox(height: SizeUtils.xl1),
-              ],
-            ],
+            ),
           ),
-        ),
+          const BubbleBackgroundToggleOverlay(),
+        ],
       ),
     );
   }

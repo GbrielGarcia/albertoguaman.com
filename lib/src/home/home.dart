@@ -33,8 +33,7 @@ final List<Color> _animatedBarColors = [
   Colors.orangeAccent,
 ];
 
-class _PortfolioScreenState extends State<HomeSrc>
-    with TickerProviderStateMixin {
+class _PortfolioScreenState extends State<HomeSrc> {
   late List<bool> inHovered;
   late List<bool> inHoveredBook;
 
@@ -50,8 +49,7 @@ class _PortfolioScreenState extends State<HomeSrc>
     _colorBarTimer = Timer.periodic(const Duration(milliseconds: 2500), (_) {
       if (mounted) {
         setState(() {
-          _barColorIndex =
-              (_barColorIndex + 1) % _animatedBarColors.length;
+          _barColorIndex = (_barColorIndex + 1) % _animatedBarColors.length;
         });
       }
     });
@@ -114,60 +112,67 @@ class _PortfolioScreenState extends State<HomeSrc>
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
       ),
-      body: animatedBackground(
-        Responsive(
-          mobile: SingleChildScrollView(
-            controller: _scrollController,
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                SizedBox(height: SizeUtils.xl1),
-                buildRowName(context),
-                SizedBox(height: SizeUtils.xl),
-                _buildSectionsRow(context, sections),
-                SizedBox(height: SizeUtils.xl),
-                _buildSectionContent('', sectionKeys['Sobre Mí']!),
-                _buildAboutMe(al),
-                _buildSectionContent('', sectionKeys['Proyectos']!),
-                _buildProject(al, context),
-                _buildSectionContent('', sectionKeys['Publicaciones']!),
-                _buildPublications(al),
-                _buildSectionContent('', sectionKeys['Experiencia']!),
-                _buildExperience(al),
-                footerData(al, context.screenWidth),
-                SizedBox(height: SizeUtils.xl1),
-              ],
-            ),
-          ),
-          desktop: SingleChildScrollView(
-            controller: _scrollController,
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                SizedBox(height: SizeUtils.xl1),
-                buildRowName(context),
-                SizedBox(height: SizeUtils.l),
-                _buildSectionsRow(context, sections),
-                SizedBox(height: SizeUtils.l),
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: BubbleBackgroundLayer(
+              particleCount: 110,
+              child: Responsive(
+                mobile: SingleChildScrollView(
+                  controller: _scrollController,
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      SizedBox(height: SizeUtils.xl1),
+                      buildRowName(context),
+                      SizedBox(height: SizeUtils.xl),
+                      _buildSectionsRow(context, sections),
+                      SizedBox(height: SizeUtils.xl),
+                      _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                      _buildAboutMe(al),
+                      _buildSectionContent('', sectionKeys['Proyectos']!),
+                      _buildProject(al, context),
+                      _buildSectionContent('', sectionKeys['Publicaciones']!),
+                      _buildPublications(al),
+                      _buildSectionContent('', sectionKeys['Experiencia']!),
+                      _buildExperience(al),
+                      footerData(al, context.screenWidth),
+                      SizedBox(height: SizeUtils.xl1),
+                    ],
+                  ),
+                ),
+                desktop: SingleChildScrollView(
+                  controller: _scrollController,
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      SizedBox(height: SizeUtils.xl1),
+                      buildRowName(context),
+                      SizedBox(height: SizeUtils.l),
+                      _buildSectionsRow(context, sections),
+                      SizedBox(height: SizeUtils.l),
 
-                _buildSectionContent('', sectionKeys['Sobre Mí']!),
-                _buildAboutMe(al),
-                _buildSectionContent('', sectionKeys['Proyectos']!),
-                _buildProject(al, context),
-                _buildSectionContent('', sectionKeys['Publicaciones']!),
-                _buildPublications(al),
-                _buildSectionContent('', sectionKeys['Experiencia']!),
-                _buildExperience(al),
-                // iconDataRow(),
-                // SizedBox(height: SizeUtils.xl),
-                footerData(al, context.screenWidth),
-                SizedBox(height: SizeUtils.xl1),
-              ],
+                      _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                      _buildAboutMe(al),
+                      _buildSectionContent('', sectionKeys['Proyectos']!),
+                      _buildProject(al, context),
+                      _buildSectionContent('', sectionKeys['Publicaciones']!),
+                      _buildPublications(al),
+                      _buildSectionContent('', sectionKeys['Experiencia']!),
+                      _buildExperience(al),
+                      // iconDataRow(),
+                      // SizedBox(height: SizeUtils.xl),
+                      footerData(al, context.screenWidth),
+                      SizedBox(height: SizeUtils.xl1),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-        this,
-        particleCount: 110,
+          const BubbleBackgroundToggleOverlay(),
+        ],
       ),
     );
   }
@@ -194,11 +199,9 @@ class _PortfolioScreenState extends State<HomeSrc>
             if (isTimeline) {
               return Padding(
                 padding: EdgeInsets.only(
-                    bottom: companyIndex < companies.length - 1
-                        ? SizeUtils.xl
-                        : 0),
-                child: _buildCompanyTimeline(
-                    context, companyName, experiences),
+                    bottom:
+                        companyIndex < companies.length - 1 ? SizeUtils.xl : 0),
+                child: _buildCompanyTimeline(context, companyName, experiences),
               );
             }
             final experience = experiences.single;
@@ -243,8 +246,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                           shape: BoxShape.circle,
                           color: UtilsColor.colorYellow,
                           border: Border.all(
-                              color: UtilsColor.colorSecondaryWhite,
-                              width: 2),
+                              color: UtilsColor.colorSecondaryWhite, width: 2),
                         ),
                       ),
                       if (i < experiences.length - 1)
@@ -266,8 +268,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (int i = 0; i < experiences.length; i++) ...[
-                      _buildTimelineExperienceContent(
-                          context, experiences[i],
+                      _buildTimelineExperienceContent(context, experiences[i],
                           isLast: i == experiences.length - 1),
                       if (i < experiences.length - 1)
                         SizedBox(height: SizeUtils.xl),
@@ -362,12 +363,11 @@ class _PortfolioScreenState extends State<HomeSrc>
             SizedBox(height: SizeUtils.m),
             Text(experience.type,
                 style: StyleText.textPortfolio(
-                  fontSize: TextStyleSize.textDescriptionSize(
-                      context.screenWidth),
+                  fontSize:
+                      TextStyleSize.textDescriptionSize(context.screenWidth),
                   fontWeight: FontWeight.bold,
                 )),
-            if (experience.stack != null &&
-                experience.stack!.isNotEmpty) ...[
+            if (experience.stack != null && experience.stack!.isNotEmpty) ...[
               SizedBox(height: SizeUtils.m),
               Container(
                 padding: EdgeInsets.symmetric(
@@ -534,8 +534,7 @@ class _PortfolioScreenState extends State<HomeSrc>
               Text(project.title,
                   style: StyleText.textPortfolio(
                     color: UtilsColor.colorPrimaryDark,
-                    fontSize:
-                        TextStyleSize.textTitleSize(context.screenWidth),
+                    fontSize: TextStyleSize.textTitleSize(context.screenWidth),
                     fontWeight: FontWeight.bold,
                   )),
               SizedBox(height: SizeUtils.m),
@@ -545,8 +544,8 @@ class _PortfolioScreenState extends State<HomeSrc>
                 overflow: TextOverflow.ellipsis,
                 style: StyleText.textPortfolio(
                     color: UtilsColor.colorPrimaryDark,
-                    fontSize: TextStyleSize.textDescriptionSize(
-                        context.screenWidth)),
+                    fontSize:
+                        TextStyleSize.textDescriptionSize(context.screenWidth)),
               ),
             ],
           ),
@@ -597,8 +596,8 @@ class _PortfolioScreenState extends State<HomeSrc>
                 child: Text(
                   'Clic para ver la lista de proyectos',
                   style: StyleText.textPortfolio(
-                    fontSize: TextStyleSize.textDescriptionSize(
-                        context.screenWidth),
+                    fontSize:
+                        TextStyleSize.textDescriptionSize(context.screenWidth),
                     color: UtilsColor.colorSecondaryWhite,
                   ),
                 ),
@@ -705,7 +704,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                   '+593 99 288 9078', al.contacMe),
               containerBottom(
                   () => laucherURL(
-                      'https://drive.google.com/file/d/18jFg4BXgPFWq1vjJT83cUB9OuJaEMYmH/view?usp=sharing'),
+                      'https://drive.google.com/file/d/1a2k7bVqQhXEaGzKVKIHVjFjkQLAJZfGX/view?usp=sharing'),
                   'Google Drive',
                   'cv 2026'),
               Flexible(
@@ -728,8 +727,7 @@ class _PortfolioScreenState extends State<HomeSrc>
                           decoration: BoxDecoration(
                             color: color,
                             border: Border.all(color: color),
-                            borderRadius:
-                                BorderRadius.circular(SizeUtils.m),
+                            borderRadius: BorderRadius.circular(SizeUtils.m),
                           ),
                           child: Padding(
                             padding: EdgeInsets.all(SizeUtils.s),
@@ -756,8 +754,7 @@ class _PortfolioScreenState extends State<HomeSrc>
         Text(title ?? '',
             style: StyleText.textPortfolio(
               fontWeight: FontWeight.bold,
-              fontSize:
-                  TextStyleSize.textTitleSectionSize(context.screenWidth),
+              fontSize: TextStyleSize.textTitleSectionSize(context.screenWidth),
             )),
         child,
       ],
@@ -772,9 +769,8 @@ class _PortfolioScreenState extends State<HomeSrc>
             borderRadius: BorderRadius.circular(SizeUtils.m)),
         child: Padding(
           padding: EdgeInsets.all(SizeUtils.s),
-          child: height != null
-              ? SingleChildScrollView(child: content)
-              : content,
+          child:
+              height != null ? SingleChildScrollView(child: content) : content,
         ),
       ),
     );

@@ -7,4 +7,5 @@ export 'icon_data_row.dart';
 export 'container_button.dart';
 export 'tooltip.dart';
 export 'animated_background.dart';
+export 'bubble_background_effect.dart';
 export 'animated_3d.dart';
