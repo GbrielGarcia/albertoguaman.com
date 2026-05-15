@@ -4,6 +4,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '/provider/provider.dart';
+import 'package:albertoguaman/src/widget/bubble_background_effect.dart';
 import 'package:albertoguaman/l10n/app_localizations.dart';
 
 import 'router/routers.dart';
@@ -25,7 +26,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => LocaleProvider())
+        ChangeNotifierProvider(create: (context) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => BubbleBackgroundProvider()),
       ],
       child: const MyApp(),
     );
