@@ -40,7 +40,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
   final ScrollController _scrollController = ScrollController();
   Timer? _colorBarTimer;
   int _barColorIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -691,21 +690,22 @@ class _PortfolioScreenState extends State<HomeSrc> {
               width: double.infinity),
           _buildContainerInfo(
             al,
-            Text(al!.descriptionAbout,
-                style: StyleText.textPortfolio(
-                  fontSize:
-                      TextStyleSize.textDescriptionSize(context.screenWidth),
-                )),
+            const AboutProfileContent(),
             title: 'sobre mi'.toUpperCase(),
           ),
           Row(
             children: [
               containerBottom(() => laucherURL('https://wa.me/593992889078'),
-                  '+593 99 288 9078', al.contacMe),
+                  '+593 99 288 9078', al!.contacMe),
+              containerBottom(
+                  () => laucherURL(
+                      'https://drive.google.com/file/d/1AkA38GCdki-msEphpH351B-TKZpkZqKg/view?usp=sharing'),
+                  'https://drive.google.com/file/d/1AkA38GCdki-msEphpH351B-TKZpkZqKg/view?usp=sharing',
+                  'cv dev 2026'),
               containerBottom(
                   () => laucherURL(
                       'https://drive.google.com/file/d/1a2k7bVqQhXEaGzKVKIHVjFjkQLAJZfGX/view?usp=sharing'),
-                  'Google Drive',
+                  'https://drive.google.com/file/d/1a2k7bVqQhXEaGzKVKIHVjFjkQLAJZfGX/view?usp=sharing',
                   'cv 2026'),
               Flexible(
                   flex: 1,

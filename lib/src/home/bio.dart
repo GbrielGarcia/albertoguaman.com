@@ -67,16 +67,9 @@ class Bio extends StatelessWidget {
                       buildRowName(context, visibility: true),
                       SizedBox(
                         width: getWidthText(context),
-                        child: Center(
-                          child: Text(
-                            al?.descriptionAbout ?? '',
-                            style: StyleText.textPortfolio(
-                              fontWeight: FontWeight.bold,
-                              fontSize: TextStyleSize.textDescriptionSize(
-                                  context.screenWidth),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                        child: const AboutProfileContent(
+                          textAlign: TextAlign.center,
+                          descriptionBold: true,
                         ),
                       ),
                       SizedBox(height: SizeUtils.xl),

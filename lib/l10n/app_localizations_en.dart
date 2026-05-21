@@ -107,6 +107,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'A proactive professional with experience in operational management, business consulting, technology product promotion, technical support, and helpdesk coordination. I have managed administrative and business processes, providing strategic customer service, driving sales, and ensuring efficient operations through organization, monitoring, and continuous oversight. I have experience in personalized consulting, sales promotion, customer management, technical issue resolution, digital platform administration, and user training, enhancing both the customer experience and the operational efficiency of the departments under my responsibility. I complement my profile with knowledge of web and mobile development, databases, and technological tools, which allows me to quickly adapt to new systems, understand digital processes holistically, and provide commercial, administrative, and technical solutions focused on results and continuous improvement.';
 
   @override
+  String get descriptionAboutDevelopment =>
+      'Senior software development technologist with experience in technical support, analysis and management of digital platforms, incident administration, and user support in technology environments. I have worked with platforms such as Moodle, WordPress, Odoo, WooCommerce, Webflow, and Meta Business Suite, performing operational administration, content updates, requirements tracking, and support to ensure their proper operation.\n\nIn addition, I have experience developing and implementing mobile applications and web solutions, mainly with Flutter, Firebase, HTML, CSS, and databases, participating in projects focused on process automation, operational optimization, and improving the user experience. I am characterized by my analytical skills, organization, rapid adaptation to new systems, and a focus on continuous improvement.';
+
+  @override
+  String get aboutProfileDevelopment => 'Development';
+
+  @override
+  String get aboutProfileAdvisor => 'Advisor';
+
+  @override
   String get experience => 'Experience';
 
   @override
