@@ -699,13 +699,13 @@ class _PortfolioScreenState extends State<HomeSrc> {
                   '+593 99 288 9078', al!.contacMe),
               containerBottom(
                   () => laucherURL(
-                      'https://drive.google.com/file/d/1AkA38GCdki-msEphpH351B-TKZpkZqKg/view?usp=sharing'),
-                  'https://drive.google.com/file/d/1AkA38GCdki-msEphpH351B-TKZpkZqKg/view?usp=sharing',
+                      'https://drive.google.com/file/d/1XbG61R2I64cfWkmzlqfyjISbiBmWS_MH/view?usp=drive_link'),
+                  'https://drive.google.com/file/d/1XbG61R2I64cfWkmzlqfyjISbiBmWS_MH/view?usp=drive_link',
                   'cv dev 2026'),
               containerBottom(
                   () => laucherURL(
-                      'https://drive.google.com/file/d/1a2k7bVqQhXEaGzKVKIHVjFjkQLAJZfGX/view?usp=sharing'),
-                  'https://drive.google.com/file/d/1a2k7bVqQhXEaGzKVKIHVjFjkQLAJZfGX/view?usp=sharing',
+                      'https://drive.google.com/file/d/1_4DSujr2Va6QjAjF_ChlQpuonvjUZZCl/view?usp=drive_link'),
+                  'https://drive.google.com/file/d/1_4DSujr2Va6QjAjF_ChlQpuonvjUZZCl/view?usp=drive_link',
                   'cv 2026'),
               Flexible(
                   flex: 1,

@@ -31,30 +31,28 @@ List<Experience> infoExperienceModel = [
       '- Atención y asesoramiento comercial personalizado.',
       '- Coordinación de procesos financieros para toma de decisiones.',
     ],
-    type: 'Analista Comercial / Gestión de Cartera',
+    type: 'Asesor Comercial',
     data: 'Febrero 2026 – Actualidad',
     country: 'Ecuador',
   ),
   Experience(
     title: 'NOVISOLUTIONS',
     stack:
-        'Sistema de facturación MBA 3, atención al cliente, gestión de ventas, control de inventario',
+        'Sistema de facturación MBA 3, control de inventario, auditoría de caja, KPIs de ventas, gestión de personal.',
     description: [
-      '- Gestión integral de ventas, facturación y cierre comercial.',
-      '- Atención y asesoría personalizada a clientes.',
-      '- Administración operativa y supervisión diaria del local.',
-      '- Control de inventario, stock y movimientos en MBA 3.',
-      '- Coordinación de personal y asignación de tareas.',
-      '- Gestión postventa y fidelización de clientes.',
-      '- Control administrativo, cierres de caja y documentación.',
-      '- Optimización de procesos y eficiencia operativa.',
+      '- Administración integral de la operación diaria y supervisión del local comercial.',
+      '- Coordinación de personal, asignación de tareas y liderazgo del equipo de trabajo.',
+      '- Control riguroso de inventario, stock y movimientos de mercancía mediante MBA 3.',
+      '- Gestión del ciclo completo de ventas, facturación y asesoría comercial de alto nivel.',
+      '- Dirección de estrategias de postventa, resolución de incidencias y fidelización de clientes.',
+      '- Ejecución de procesos administrativos, cierres de caja, arqueos y validación de documentación.',
     ],
-    type: 'Asesor Comercial & Administrador Comercial en Novicompu',
-    data: 'Septiembre 2025 – Enero 2026 (5 meses) ',
+    type: 'Administrador de Tienda y Gestión Comercial',
+    data: 'Julio 2025 – Enero 2026 (7 meses)',
     country: 'Ecuador',
   ),
   Experience(
-    title: 'SCIDETEC',
+    title: 'SCIEDTEC',
     stack:
         'Meta Business Suite, Moodle, sistema propio de Helpdesk, CMS y LMS.',
     description: [
@@ -66,13 +64,13 @@ List<Experience> infoExperienceModel = [
       '- Capacitación técnica a personal docente y administrativo.',
     ],
     type: 'Coordinador de Helpdesk y Soporte Técnico',
-    data: 'Febrero 2025 – Julio 2025 (6 meses)',
+    data: 'Diciembre 2024 – Junio 2025 (7 meses)',
     country: 'Ecuador',
   ),
   Experience(
-    title: 'SCIDETEC',
+    title: 'SCIEDTEC',
     stack:
-        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL',
+        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL.',
     description: [
       '- Administración y optimización de plataformas Moodle para procesos académicos y administrativos.',
       '- Soporte técnico y resolución ágil de incidencias (helpdesk).',
@@ -84,13 +82,13 @@ List<Experience> infoExperienceModel = [
       '- Fortalecimiento de presencia digital e interacción con la comunidad online.',
     ],
     type: 'Administrador y Desarrollador Full Stack Web - Mobile',
-    data: 'Marzo 2022 – Enero 2025 (2 años 10 meses)',
+    data: 'Enero 2022 – Septiembre 2024 (2 años 9 meses)',
     country: 'Ecuador',
   ),
   Experience(
     title: 'TINGUAR',
     stack:
-        'Flutter, Dart, Firebase, WordPress, Odoo, WooCommerce, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS',
+        'Flutter, Dart, Firebase, WordPress, WooCommerce, Odoo, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS.',
     description: [
       '- Desarrollo de aplicaciones móviles multiplataforma con Flutter y Firebase.',
       '- Creación de sitios web responsivos y desarrollo web personalizado.',
@@ -99,8 +97,8 @@ List<Experience> infoExperienceModel = [
       '- Optimización SEO, rendimiento y experiencia de usuario.',
       '- Gestión técnica completa: análisis, desarrollo, despliegue y soporte.',
     ],
-    type: 'Emprendimiento · Desarrollador Full Stack Web & Mobile',
-    data: 'Desde 2020',
+    type: 'Desarrollador Full Stack Web & Mobile',
+    data: 'Enero 2020 – Diciembre 2021 (2 años)',
     country: 'Ecuador',
   )
 ];
