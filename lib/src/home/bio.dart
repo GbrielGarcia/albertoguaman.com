@@ -43,10 +43,10 @@ class Bio extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           color: UtilsColor.colorSecondaryWhite,
           onPressed: () => context.go('/'),
-          tooltip: 'Volver al inicio',
+          tooltip: al?.backToHome ?? 'Volver al inicio',
         ),
         title: Text(
-          'Sobre mí',
+          al?.aboutMe ?? 'Sobre mí',
           style: StyleText.textPortfolio(
             fontSize: TextStyleSize.textTitleSize(context.screenWidth),
             fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class Bio extends StatelessWidget {
                       SizedBox(height: SizeUtils.xl),
                       containerBottom(() {
                         context.go('/');
-                      }, 'https://www.albertoguaman.com/inicio', 'Portafolio',
+                      }, 'https://www.albertoguaman.com/', al?.portfolio ?? 'Portafolio',
                           width: double.infinity),
                       ListView.builder(
                           shrinkWrap: true,

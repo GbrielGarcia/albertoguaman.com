@@ -46,8 +46,12 @@ class BubbleBackgroundProvider extends ChangeNotifier {
   }
 }
 
-/// Aplica [animatedBackground] al [child] solo si la preferencia está activa.
-/// Mantiene un [SingleTickerProviderStateMixin] local para no forzar mixins en cada pantalla.
+/// Aplica [animatedBackground] al fondo solo si la preferencia está activa.
+///
+/// Las partículas van en una capa separada (no envuelven el contenido) para
+/// evitar remounts del árbol al alternar, y se usa [TickerProviderStateMixin]
+/// porque [AnimatedBackground] crea el ticker en `attach` y lo libera en
+/// `detach` (puede ocurrir varias veces al pulsar el switch rápido).
 class BubbleBackgroundLayer extends StatefulWidget {
   const BubbleBackgroundLayer({
     super.key,
@@ -63,18 +67,29 @@ class BubbleBackgroundLayer extends StatefulWidget {
 }
 
 class _BubbleBackgroundLayerState extends State<BubbleBackgroundLayer>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Consumer<BubbleBackgroundProvider>(
-      builder: (context, prefs, _) {
-        if (!prefs.bubblesEnabled) return widget.child;
-        return animatedBackground(
-          widget.child,
-          this,
-          particleCount: widget.particleCount,
+      builder: (context, prefs, child) {
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            if (prefs.bubblesEnabled)
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: animatedBackground(
+                    const SizedBox.expand(),
+                    this,
+                    particleCount: widget.particleCount,
+                  ),
+                ),
+              ),
+            child!,
+          ],
         );
       },
+      child: widget.child,
     );
   }
 }

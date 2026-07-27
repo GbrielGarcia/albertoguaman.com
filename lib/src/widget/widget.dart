@@ -8,5 +8,5 @@ export 'container_button.dart';
 export 'tooltip.dart';
 export 'animated_background.dart';
 export 'bubble_background_effect.dart';
-export 'animated_3d.dart';
 export 'about_profile_content.dart';
+export 'current_role_highlight.dart';

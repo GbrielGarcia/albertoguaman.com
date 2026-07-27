@@ -1,12 +1,13 @@
 {
-    "name": "albertoguaman",
-    "short_name": "albertoguaman",
-    "start_url": ".",
+    "name": "Alberto Guaman | Portafolio",
+    "short_name": "A. Guaman",
+    "start_url": "/",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Portafolio multiplataforma",
+    "background_color": "#151515",
+    "theme_color": "#151515",
+    "description": "Portafolio de Alberto Guaman: desarrollo Flutter/web, soporte técnico y productos digitales.",
     "orientation": "portrait-primary",
+    "lang": "es-EC",
     "prefer_related_applications": false,
     "icons": [
         {

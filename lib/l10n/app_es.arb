@@ -39,20 +39,28 @@
   "project": "Proyectos",
   "publications": "Publicaciones",
   "contacMe": "Contáctame",
-  "aboutMe": "About Me",
+  "aboutMe": "Sobre mí",
   "helloWordIam": "¡Hola, Mundo! Yo soy",
   "freelancer": "Autónomo  ",
+  "quickLinks": "Enlaces rápidos",
+  "projectsTapToExpand": "Clic para ver la lista de proyectos",
+  "moreInfo": "Más información",
+  "pageNotFound": "Página no encontrada",
+  "pageNotFoundHint": "La ruta que buscas no existe.",
+  "backToHome": "Volver al inicio",
+  "portfolio": "Portafolio",
+  "languageToggle": "Idioma",
 
     "helpdeskManagement": "- Gestión de helpdesk e incidencias, resolviendo problemas técnicos de manera eficiente.",
     "dataAnalysisAndMaintenance": "- Análisis de datos y mantenimiento de sitios educativos con Moodle.",
     "processAutomation": "-Automatización de procesos y mantenimiento preventivo de equipos.",
     "flutterDevelopment": "- Desarrollo e implementación de software utilizando Flutter.",
-    "mobileWebInstructor": "- Instructora de cursos de aplicaciones móviles y web.",
+    "mobileWebInstructor": "- Instructor de cursos de aplicaciones móviles y web.",
 
     "mobileWebDevelopment": "- Desarrollo de aplicaciones móviles y web utilizando Flutter.",
     "mobileConsulting": "- Consultoría en el desarrollo de aplicaciones móviles con Flutter.",
     "webDevelopment": "- Desarrollo web con HTML, JavaScript, CSS y Webflow.",
     "onlineStoreCreation": "- Creación de tiendas en línea utilizando Odoo, WooCommerce y WordPress.",
-    "mobileWebInstructorRepeat": "- Instructora de cursos de aplicaciones móviles y web."
+    "mobileWebInstructorRepeat": "- Instructor de cursos de aplicaciones móviles y web."
 
 }

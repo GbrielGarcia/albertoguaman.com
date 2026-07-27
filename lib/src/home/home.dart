@@ -2,19 +2,11 @@ import 'dart:async';
 
 import "package:albertoguaman/src/model/model.dart";
 
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import 'package:albertoguaman/l10n/app_localizations.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
 import "../widget/widget.dart";
-
-final List<String> sections = [
-  'Sobre Mí',
-  'Proyectos',
-  'Publicaciones',
-  'Experiencia'
-];
 
 class HomeSrc extends StatefulWidget {
   const HomeSrc({super.key});
@@ -44,7 +36,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
   void initState() {
     super.initState();
     inHovered = List<bool>.filled(infoProjectModel.length, false);
-    inHoveredBook = List<bool>.filled(infoButtonModel.length, false);
+    inHoveredBook = List<bool>.filled(infoBookModel.length, false);
     _colorBarTimer = Timer.periodic(const Duration(milliseconds: 2500), (_) {
       if (mounted) {
         setState(() {
@@ -73,29 +65,43 @@ class _PortfolioScreenState extends State<HomeSrc> {
     }
   }
 
+  List<({String id, String label})> _sections(AppLocalizations al) => [
+        (id: SectionId.about, label: al.aboutMe),
+        (id: SectionId.projects, label: al.project),
+        (id: SectionId.publications, label: al.publications),
+        (id: SectionId.experience, label: al.experience),
+      ];
+
   @override
   Widget build(BuildContext context) {
-    final al = AppLocalizations.of(context);
+    final al = AppLocalizations.of(context)!;
+    final sections = _sections(al);
+    final isNarrow = context.isMobile || context.isMobileLarge;
 
     return Scaffold(
-      drawer: context.isMobile || context.isMobileLarge
-          ? Container(
-              width: context.screenWidth / 2,
-              decoration: BoxDecoration(
-                  color: UtilsColor.colorPrimaryDark,
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(SizeUtils.m)),
-              child: Column(
-                children: [
-                  SizedBox(height: SizeUtils.xl1),
-                  buildRowName(context,
-                      visibility: true,
-                      visibilityNameW: true,
-                      text: 'Alberto Guaman'.toUpperCase()),
-                  SizedBox(height: SizeUtils.s1),
-                  _buildSectionsColumn(context, sections),
-                ],
+      drawer: isNarrow
+          ? Drawer(
+              backgroundColor: UtilsColor.colorPrimaryDark,
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    SizedBox(height: SizeUtils.xl1),
+                    buildRowName(context,
+                        visibility: true,
+                        visibilityNameW: true,
+                        text: 'Alberto Guaman'.toUpperCase()),
+                    SizedBox(height: SizeUtils.s1),
+                    _buildSectionsColumn(context, sections),
+                  ],
+                ),
               ),
+            )
+          : null,
+      appBar: isNarrow
+          ? AppBar(
+              backgroundColor: UtilsColor.colorPrimaryDark,
+              elevation: 0,
+              iconTheme: IconThemeData(color: UtilsColor.colorSecondaryWhite),
             )
           : null,
       backgroundColor: UtilsColor.colorPrimaryDark,
@@ -128,13 +134,16 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       SizedBox(height: SizeUtils.xl),
                       _buildSectionsRow(context, sections),
                       SizedBox(height: SizeUtils.xl),
-                      _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                      _buildSectionContent('', sectionKeys[SectionId.about]!),
                       _buildAboutMe(al),
-                      _buildSectionContent('', sectionKeys['Proyectos']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.projects]!),
                       _buildProject(al, context),
-                      _buildSectionContent('', sectionKeys['Publicaciones']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.publications]!),
                       _buildPublications(al),
-                      _buildSectionContent('', sectionKeys['Experiencia']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.experience]!),
                       _buildExperience(al),
                       footerData(al, context.screenWidth),
                       SizedBox(height: SizeUtils.xl1),
@@ -151,17 +160,17 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       SizedBox(height: SizeUtils.l),
                       _buildSectionsRow(context, sections),
                       SizedBox(height: SizeUtils.l),
-
-                      _buildSectionContent('', sectionKeys['Sobre Mí']!),
+                      _buildSectionContent('', sectionKeys[SectionId.about]!),
                       _buildAboutMe(al),
-                      _buildSectionContent('', sectionKeys['Proyectos']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.projects]!),
                       _buildProject(al, context),
-                      _buildSectionContent('', sectionKeys['Publicaciones']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.publications]!),
                       _buildPublications(al),
-                      _buildSectionContent('', sectionKeys['Experiencia']!),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.experience]!),
                       _buildExperience(al),
-                      // iconDataRow(),
-                      // SizedBox(height: SizeUtils.xl),
                       footerData(al, context.screenWidth),
                       SizedBox(height: SizeUtils.xl1),
                     ],
@@ -204,10 +213,12 @@ class _PortfolioScreenState extends State<HomeSrc> {
               );
             }
             final experience = experiences.single;
+            final isCurrent =
+                experience.data.toLowerCase().contains('actualidad');
             return Padding(
               padding: EdgeInsets.symmetric(
                   vertical: companyIndex != 1 ? 0 : SizeUtils.s),
-              child: _buildExperienceCard(experience),
+              child: _buildExperienceCard(experience, isCurrent: isCurrent),
             );
           },
         ),
@@ -219,7 +230,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
 
   Widget _buildCompanyTimeline(
       BuildContext context, String companyName, List<Experience> experiences) {
-    return Column(
+    final totalLabel = totalExperienceDurationLabel(experiences);
+    final timeline = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(companyName.toUpperCase(),
@@ -280,6 +292,36 @@ class _PortfolioScreenState extends State<HomeSrc> {
         ),
       ],
     );
+
+    if (totalLabel == null) return timeline;
+
+    // Mismo estilo de etiqueta lateral que el resto de experiencias.
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: SizeUtils.s),
+          child: timeline,
+        ),
+        Positioned(
+          top: -10,
+          right: 0,
+          child: Container(
+            padding: EdgeInsets.all(SizeUtils.m),
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+              shape: BoxShape.rectangle,
+            ),
+            child: Text(
+              'Total: $totalLabel',
+              style: StyleText.textPortfolio(
+                fontSize: SizeUtils.l,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildTimelineExperienceContent(
@@ -300,13 +342,22 @@ class _PortfolioScreenState extends State<HomeSrc> {
             style: StyleText.textPortfolio(
               fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
             )),
+        if (experience.country.isNotEmpty) ...[
+          SizedBox(height: SizeUtils.s),
+          Text(experience.country,
+              style: StyleText.textPortfolio(
+                fontSize:
+                    TextStyleSize.textDescriptionSize(context.screenWidth),
+                color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.75),
+              )),
+        ],
         if (experience.stack != null && experience.stack!.isNotEmpty) ...[
           SizedBox(height: SizeUtils.m),
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: SizeUtils.s, vertical: SizeUtils.m),
             decoration: BoxDecoration(
-              color: UtilsColor.colorYellow.withOpacity(0.15),
+              color: UtilsColor.colorYellow.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(SizeUtils.m),
               border: Border.all(color: UtilsColor.colorYellow, width: 1),
             ),
@@ -345,8 +396,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
     );
   }
 
-  Widget _buildExperienceCard(Experience experience) {
-    return _buildCardInfo(
+  Widget _buildExperienceCard(Experience experience,
+      {bool isCurrent = false}) {
+    final card = _buildCardInfo(
         () {},
         1.0,
         Colors.transparent,
@@ -354,10 +406,12 @@ class _PortfolioScreenState extends State<HomeSrc> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isCurrent) SizedBox(height: SizeUtils.s1),
             Text(experience.title.toUpperCase(),
                 style: StyleText.textPortfolio(
                   fontSize: TextStyleSize.textTitleSize(context.screenWidth),
                   fontWeight: FontWeight.bold,
+                  color: isCurrent ? UtilsColor.colorYellow : null,
                 )),
             SizedBox(height: SizeUtils.m),
             Text(experience.type,
@@ -366,13 +420,23 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       TextStyleSize.textDescriptionSize(context.screenWidth),
                   fontWeight: FontWeight.bold,
                 )),
+            if (experience.country.isNotEmpty) ...[
+              SizedBox(height: SizeUtils.s),
+              Text(experience.country,
+                  style: StyleText.textPortfolio(
+                    fontSize: TextStyleSize.textDescriptionSize(
+                        context.screenWidth),
+                    color: UtilsColor.colorSecondaryWhite
+                        .withValues(alpha: 0.75),
+                  )),
+            ],
             if (experience.stack != null && experience.stack!.isNotEmpty) ...[
               SizedBox(height: SizeUtils.m),
               Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: SizeUtils.s, vertical: SizeUtils.m),
                 decoration: BoxDecoration(
-                  color: UtilsColor.colorYellow.withOpacity(0.15),
+                  color: UtilsColor.colorYellow.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(SizeUtils.m),
                   border: Border.all(color: UtilsColor.colorYellow, width: 1),
                 ),
@@ -416,11 +480,14 @@ class _PortfolioScreenState extends State<HomeSrc> {
         'urlTitle',
         'view',
         experience.data,
-        Colors.transparent,
+        isCurrent ? UtilsColor.colorYellow : Colors.transparent,
         [],
         titleToolTip: true,
         positioned: true,
         elevation: true);
+
+    if (!isCurrent) return card;
+    return CurrentRoleHighlight(child: card);
   }
 
   Widget _buildPublications(AppLocalizations? al) {
@@ -434,9 +501,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
             itemCount: infoBookModel.length,
             itemBuilder: (context, index) {
               final book = infoBookModel[index];
-              if (kDebugMode) {
-                print(index);
-              }
               return Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: index != 1 ? 0 : SizeUtils.s),
@@ -481,7 +545,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
               );
             },
           ),
-          title: 'Publicaciones',
+          title: al?.publications ?? 'Publicaciones',
           color: UtilsColor.colorPrimaryDark),
     );
   }
@@ -543,8 +607,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
                 overflow: TextOverflow.ellipsis,
                 style: StyleText.textPortfolio(
                     color: UtilsColor.colorPrimaryDark,
-                    fontSize:
-                        TextStyleSize.textDescriptionSize(context.screenWidth)),
+                    fontSize: TextStyleSize.textDescriptionSize(
+                        context.screenWidth)),
               ),
             ],
           ),
@@ -561,12 +625,13 @@ class _PortfolioScreenState extends State<HomeSrc> {
     return ResponsiveCenter(
       child: Padding(
         padding: EdgeInsets.all(SizeUtils.s),
-        child: Container(
-          decoration: BoxDecoration(
-            color: UtilsColor.colorPink,
-            border: Border.all(color: UtilsColor.colorPink),
+        child: Material(
+          color: UtilsColor.colorPink,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(SizeUtils.m),
+            side: BorderSide(color: UtilsColor.colorPink),
           ),
+          clipBehavior: Clip.antiAlias,
           child: Theme(
             data: Theme.of(context).copyWith(
               dividerColor: Colors.transparent,
@@ -582,7 +647,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
               tilePadding: EdgeInsets.symmetric(
                   horizontal: SizeUtils.s, vertical: SizeUtils.s),
               title: Text(
-                'Proyectos (${infoProjectModel.length})',
+                '${al?.project ?? 'Proyectos'} (${infoProjectModel.length})',
                 style: StyleText.textPortfolio(
                   fontWeight: FontWeight.bold,
                   fontSize:
@@ -593,10 +658,11 @@ class _PortfolioScreenState extends State<HomeSrc> {
               subtitle: Padding(
                 padding: EdgeInsets.only(top: SizeUtils.s),
                 child: Text(
-                  'Clic para ver la lista de proyectos',
+                  al?.projectsTapToExpand ??
+                      'Clic para ver la lista de proyectos',
                   style: StyleText.textPortfolio(
-                    fontSize:
-                        TextStyleSize.textDescriptionSize(context.screenWidth),
+                    fontSize: TextStyleSize.textDescriptionSize(
+                        context.screenWidth),
                     color: UtilsColor.colorSecondaryWhite,
                   ),
                 ),
@@ -630,7 +696,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
     bool? elevation = false,
   }) {
     return tooltipW(
-      titleToolTip == false ? 'Más información' : '',
+      titleToolTip == false
+          ? (AppLocalizations.of(context)?.moreInfo ?? 'Más información')
+          : '',
       GestureDetector(
         onTap: onTap,
         child: Stack(
@@ -686,17 +754,18 @@ class _PortfolioScreenState extends State<HomeSrc> {
         children: [
           containerBottom(() {
             context.go('/bio');
-          }, 'https://www.albertoguaman.com/bio', 'Enlaces Rapidos',
+          }, 'https://www.albertoguaman.com/bio',
+              al?.quickLinks ?? 'Enlaces rápidos',
               width: double.infinity),
           _buildContainerInfo(
             al,
             const AboutProfileContent(),
-            title: 'sobre mi'.toUpperCase(),
+            title: (al?.aboutMe ?? 'Sobre mí').toUpperCase(),
           ),
           Row(
             children: [
               containerBottom(() => laucherURL('https://wa.me/593992889078'),
-                  '+593 99 288 9078', al!.contacMe),
+                  '+593 99 288 9078', al?.contacMe ?? 'Contáctame'),
               containerBottom(
                   () => laucherURL(
                       'https://drive.google.com/file/d/1XbG61R2I64cfWkmzlqfyjISbiBmWS_MH/view?usp=drive_link'),
@@ -776,19 +845,22 @@ class _PortfolioScreenState extends State<HomeSrc> {
     );
   }
 
-  Widget _buildSectionsRow(BuildContext context, List<String> sections) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: sections
-          .map(
-            (section) => GestureDetector(
-              onTap: () => _scrollToSection(section),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: SizeUtils.s),
+  Widget _buildSectionsRow(
+      BuildContext context, List<({String id, String label})> sections) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: SizeUtils.s),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: SizeUtils.s,
+        runSpacing: SizeUtils.s,
+        children: sections
+            .map(
+              (section) => GestureDetector(
+                onTap: () => _scrollToSection(section.id),
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Text(
-                    section,
+                    section.label,
                     style: StyleText.textPortfolio(
                       fontSize: TextStyleSize.textDescriptionSize(
                           context.screenWidth),
@@ -796,20 +868,21 @@ class _PortfolioScreenState extends State<HomeSrc> {
                   ),
                 ),
               ),
-            ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     );
   }
 
-  Widget _buildSectionsColumn(BuildContext context, List<String> sections) {
+  Widget _buildSectionsColumn(
+      BuildContext context, List<({String id, String label})> sections) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: sections
           .map(
             (section) => GestureDetector(
               onTap: () {
-                _scrollToSection(section);
+                _scrollToSection(section.id);
                 Navigator.pop(context);
               },
               child: Padding(
@@ -817,7 +890,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Text(
-                    section,
+                    section.label,
                     style: StyleText.textPortfolio(
                       fontSize:
                           TextStyleSize.textTitleSize(context.screenWidth),
@@ -883,29 +956,3 @@ Widget buildRowName(
     ),
   );
 }
-
-// Widget animatedText() {
-//   return SizedBox(
-//       child: DefaultTextStyle(
-//     style: StyleText.textPortfolio(
-//         fontWeight: FontWeight.bold,
-//         fontSize: SizeUtils.l1,
-//         colorBackgroundColor: UtilsColor.colorPinkSecondary),
-//     child: AnimatedTextKit(
-//       isRepeatingAnimation: false,
-//       displayFullTextOnTap: true,
-//       repeatForever: false,
-//       animatedTexts: [
-//         TyperAnimatedText(' Alberto Guaman'.toUpperCase(),
-//             speed: Duration(milliseconds: SizeUtils.speed)),
-//         // TyperAnimatedText(' Tecnólogo  en Sistemas'.toUpperCase(),
-//         //     speed: Duration(milliseconds: SizeUtils.speed)),
-//       ],
-//       onTap: () {
-//         if (kDebugMode) {
-//           print("Tap Event");
-//         }
-//       },
-//     ),
-//   ));
-// }

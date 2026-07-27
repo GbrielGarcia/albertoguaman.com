@@ -129,13 +129,37 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contacMe => 'Contáctame';
 
   @override
-  String get aboutMe => 'About Me';
+  String get aboutMe => 'Sobre mí';
 
   @override
   String get helloWordIam => '¡Hola, Mundo! Yo soy';
 
   @override
   String get freelancer => 'Autónomo  ';
+
+  @override
+  String get quickLinks => 'Enlaces rápidos';
+
+  @override
+  String get projectsTapToExpand => 'Clic para ver la lista de proyectos';
+
+  @override
+  String get moreInfo => 'Más información';
+
+  @override
+  String get pageNotFound => 'Página no encontrada';
+
+  @override
+  String get pageNotFoundHint => 'La ruta que buscas no existe.';
+
+  @override
+  String get backToHome => 'Volver al inicio';
+
+  @override
+  String get portfolio => 'Portafolio';
+
+  @override
+  String get languageToggle => 'Idioma';
 
   @override
   String get helpdeskManagement =>
@@ -155,7 +179,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mobileWebInstructor =>
-      '- Instructora de cursos de aplicaciones móviles y web.';
+      '- Instructor de cursos de aplicaciones móviles y web.';
 
   @override
   String get mobileWebDevelopment =>
@@ -175,5 +199,5 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mobileWebInstructorRepeat =>
-      '- Instructora de cursos de aplicaciones móviles y web.';
+      '- Instructor de cursos de aplicaciones móviles y web.';
 }

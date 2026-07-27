@@ -344,6 +344,54 @@ abstract class AppLocalizations {
   /// **'Freelancer '**
   String get freelancer;
 
+  /// No description provided for @quickLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick links'**
+  String get quickLinks;
+
+  /// No description provided for @projectsTapToExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to see the project list'**
+  String get projectsTapToExpand;
+
+  /// No description provided for @moreInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'More information'**
+  String get moreInfo;
+
+  /// No description provided for @pageNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Page not found'**
+  String get pageNotFound;
+
+  /// No description provided for @pageNotFoundHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The route you are looking for does not exist.'**
+  String get pageNotFoundHint;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
+  String get backToHome;
+
+  /// No description provided for @portfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get portfolio;
+
+  /// No description provided for @languageToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageToggle;
+
   /// No description provided for @helpdeskManagement.
   ///
   /// In en, this message translates to:

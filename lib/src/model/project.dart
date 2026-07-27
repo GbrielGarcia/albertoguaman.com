@@ -21,64 +21,37 @@ class ProjectModel {
 List<ProjectModel> infoProjectModel = [
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['Web', 'Tinguar'],
-      title: 'Gestión de Finanzas Personales',
+      type: ['Desktop', 'WhatsApp', 'Tinguar'],
+      title: 'Rapidito',
       description:
-          'Panel de control financiero con acceso por usuario. Sistema de gestión de finanzas personales desarrollado en Tinguar.',
+          'Campañas de WhatsApp desde tu PC (Windows y macOS), con ritmo controlado. Sube tu lista CSV, personaliza mensajes con variables, adjunta archivos y envía con licencia por equipo e auto-update.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tinguar.com/finanzastga2/'),
+      buttonVoidCall: 'https://tinguar.com/productos/rapidito/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['Web', 'JavaScript', 'Tinguar'],
-      title: 'Calculadora de porcentaje por tarjeta',
+      type: ['POS', 'Web', 'Tinguar'],
+      title: 'Mi Negocio Listo',
       description:
-          'Herramienta para ingresar montos y obtener el total con precios financiados (efectivo, débito, crédito 3/6/9/12 meses). Desarrollada para Importadora Novoa Bomboli.',
+          'POS, inventario, caja y catálogo digital para una o varias tiendas. Vende en mostrador y en línea, imprime tickets térmicos y envía comprobantes por WhatsApp. Disponible en web; Android próximamente.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tinguar.com/porcentaje-tarjeta/'),
+      buttonVoidCall: 'https://tinguar.com/productos/mi-negocio-listo/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['PhP', 'Laravel', 'MySql'],
-      title: 'Gestión integral de Cuentas',
+      type: ['Streaming', 'PWA', 'Tinguar'],
+      title: 'Streaming Distribuidores',
       description:
-          'Gestión integral de ventas 24/7 para servicios de Streaming, con recarga de saldo.',
+          'Panel admin y panel cliente para vender por tiempo, controlar vencimientos y renovaciones, con tienda, compras y soporte por tickets en un solo sistema.',
       buttonText: 'ver proyecto',
       buttonVoidCall:
           'https://tinguar.com/productos/streaming-distribuidores/'),
-  // ProjectModel(
-  //     photo: AssetsUtil.projectOne,
-  //     type: ['Flutter', 'Firebase', 'Dart'],
-  //     title: 'Creacion de enlaces cortos',
-  //     description:
-  //         'Creacion y Generador de enlaces cortos para WhatsApp con mensaje personalizado.',
-  //     buttonText: 'ver proyecto',
-  //     buttonVoidCall: 'https://tunegocio.tinguar.com/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['WordPress', 'Elementor', 'Hostinger'],
-      title: 'AxxonImagen',
+      type: ['Web', 'Tinguar'],
+      title: 'Inox Hierro',
       description:
-          'Especialistas en diagnósticos por ecografícas para la ciudad de Santo Domingo.',
+          'Sitio web para empresa ecuatoriana especializada en acero inoxidable: servicios, galería, cotizaciones y presencia digital. Desarrollado por Tinguar.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://axxonimagen.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Flutter', 'Dart', 'Firebase'],
-      title: 'Horarios Energia',
-      description:
-          'Aquí puedes consultar los horarios de corte de energía programados por CNEL en tu zona.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://cnel-ficha.tinguar.com/'),
-  // ProjectModel(
-  //     photo: AssetsUtil.projectOne,
-  //     type: [
-  //       'Php',
-  //       'Meta (FACEBOOK)',
-  //     ],
-  //     title: 'Chat Bot Energia',
-  //     description:
-  //         'Consulta los cortes de energía de manera rápida y sencilla a través de nuestro chatbot en WhatsApp.',
-  //     buttonText: 'ver proyecto',
-  //     buttonVoidCall: 'https://tunegocio.pro/PMGwa'),
+      buttonVoidCall: 'https://inoxhierroec.com/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
       type: ['Flutter', 'Dart', 'Firebase'],
@@ -87,28 +60,4 @@ List<ProjectModel> infoProjectModel = [
           'Sistema Arcano desarrollado en Flutter tanto para (Android & Web) para un cliente en Chile.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://perfil.tarotpragmatico.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Wordpress', 'Elementor', 'Css'],
-      title: 'Sciedtec',
-      description:
-          'Página web desarrollada con WordPress y Elementor para una empresa ecuatoriana dedicada a la educación.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://sciedtec.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Wordpress', 'Elementor', 'Css'],
-      title: 'Lars Tree Services',
-      description:
-          'Página web realizada con CMS para una empresa de EEUU. especialista en servicios de limpieza de árboles.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://larstreeservice.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Wordpress', 'Elementor', 'Css'],
-      title: 'Arminox',
-      description:
-          'Página creada con un CMS para ofrecer servicios de metalurgia en Ecuador.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://arminoxec.com/'),
 ];

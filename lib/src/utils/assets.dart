@@ -1,5 +1,6 @@
 class AssetsUtil {
-    static String projectOne = 'assets/img/project/projecto-desarrollo_web_alberto-guaman.png';
+  static String projectOne =
+      'assets/img/project/projecto-desarrollo_web_alberto-guaman.png';
   static String imgAlbertoGuaman = 'assets/img/tinguar - alberto guaman.png';
   static String imgAlbertoGuamanOriginal = 'assets/img/alberto-guaman.png';
   static String imgBackground = 'assets/img/background.jpg';
@@ -7,6 +8,8 @@ class AssetsUtil {
   static String imgContainerMinecraft = 'assets/img/container.jpeg';
   static String imgContainerMiniMinecraft = 'assets/img/container_mine.png';
   static String imgProyectLogoTinguar = 'assets/img/logo-tinguar.png';
-  static String imgProyectLogoTuEnlaceTinguar = 'assets/img/tu-enlace-logo.png';
-  static String imgProyectLogoTuEnlaceSciedtec = 'assets/img/tu-enlace-logo-sciedtec.png';
+  static String imgProyectLogoTuEnlaceTinguar =
+      'assets/img/tu-enlace-logo.png';
+  static String imgProyectLogoTuEnlaceSciedtec =
+      'assets/img/tu-enlace-logo-sciedtec.png';
 }

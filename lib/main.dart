@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
-import 'package:url_strategy/url_strategy.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '/provider/provider.dart';
@@ -9,11 +10,19 @@ import 'package:albertoguaman/l10n/app_localizations.dart';
 
 import 'router/routers.dart';
 
+Future<void> _initFirebase() async {
+  final supported = kIsWeb ||
+      defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.windows;
+  if (!supported) return;
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setPathUrlStrategy();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
+  usePathUrlStrategy();
+  await _initFirebase();
   runApp(
     const App(),
   );
@@ -37,7 +46,6 @@ class App extends StatelessWidget {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final localProvider = Provider.of<LocaleProvider>(context);
@@ -45,11 +53,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       locale: localProvider.locale,
       debugShowCheckedModeBanner: false,
-      title: 'Alberto Guaman',
-      routerDelegate: goRouter.routerDelegate,
+      title: 'Alberto Guaman | Portafolio',
+      routerConfig: goRouter,
       supportedLocales: AppLocalizations.supportedLocales,
-      routeInformationParser: goRouter.routeInformationParser,
-      routeInformationProvider: goRouter.routeInformationProvider,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       theme: ThemeData(useMaterial3: true),
     );

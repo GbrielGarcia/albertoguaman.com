@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Ensure firebase_options stub for CI
+        run: |
+          if [ ! -f lib/firebase_options.dart ]; then
+            cat > lib/firebase_options.dart <<'EOF'
+          // ignore_for_file: type=lint
+          import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+          import 'package:flutter/foundation.dart'
+              show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
+          class DefaultFirebaseOptions {
+            static FirebaseOptions get currentPlatform {
+              if (kIsWeb) return web;
+              switch (defaultTargetPlatform) {
+                case TargetPlatform.android:
+                case TargetPlatform.windows:
+                  return web;
+                default:
+                  return web;
+              }
+            }
+
+            static const FirebaseOptions web = FirebaseOptions(
+              apiKey: 'ci-placeholder',
+              appId: '1:0:web:0',
+              messagingSenderId: '0',
+              projectId: 'ci-placeholder',
+            );
+          }
+          EOF
+          fi
+      - run: flutter pub get
+      - run: flutter gen-l10n
+      - run: flutter analyze --no-fatal-infos
+      - run: flutter test

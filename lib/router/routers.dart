@@ -1,4 +1,5 @@
 import 'package:albertoguaman/src/home/bio.dart';
+import 'package:albertoguaman/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +14,9 @@ const _validPaths = ['/', '/bio'];
 
 void _updateSeoForRoute(GoRouterState state) {
   String path = state.uri.path;
-  if (path.endsWith('/') && path.length > 1) path = path.substring(0, path.length - 1);
+  if (path.endsWith('/') && path.length > 1) {
+    path = path.substring(0, path.length - 1);
+  }
   final data = pageSeoData[path];
   if (data != null) {
     setPageSEO(title: data.$1, description: data.$2, path: path);
@@ -58,6 +61,7 @@ class _NotFoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final al = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: UtilsColor.colorPrimaryDark,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -83,11 +87,15 @@ class _NotFoundPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.search_off, size: 64, color: Colors.white54),
+                      const Icon(Icons.search_off,
+                          size: 64, color: Colors.white54),
                       const SizedBox(height: 16),
                       Text(
-                        'Página no encontrada',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        al?.pageNotFound ?? 'Página no encontrada',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -95,17 +103,19 @@ class _NotFoundPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'La ruta que buscas no existe.',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: Colors.white70,
-                            ),
+                        al?.pageNotFoundHint ??
+                            'La ruta que buscas no existe.',
+                        style:
+                            Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: Colors.white70,
+                                ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 24),
                       FilledButton.icon(
                         onPressed: onGoHome,
                         icon: const Icon(Icons.home),
-                        label: const Text('Volver al inicio'),
+                        label: Text(al?.backToHome ?? 'Volver al inicio'),
                       ),
                     ],
                   ),

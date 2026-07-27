@@ -138,6 +138,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get freelancer => 'Freelancer ';
 
   @override
+  String get quickLinks => 'Quick links';
+
+  @override
+  String get projectsTapToExpand => 'Tap to see the project list';
+
+  @override
+  String get moreInfo => 'More information';
+
+  @override
+  String get pageNotFound => 'Page not found';
+
+  @override
+  String get pageNotFoundHint =>
+      'The route you are looking for does not exist.';
+
+  @override
+  String get backToHome => 'Back to home';
+
+  @override
+  String get portfolio => 'Portfolio';
+
+  @override
+  String get languageToggle => 'Language';
+
+  @override
   String get helpdeskManagement =>
       'Helpdesk management and issue resolution, efficiently solving technical problems.';
 

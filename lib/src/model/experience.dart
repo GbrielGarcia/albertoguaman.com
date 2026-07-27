@@ -18,7 +18,57 @@ class Experience {
   });
 }
 
+/// Suma duraciones del texto entre paréntesis, p. ej. `(7 meses)` + `(2 años 9 meses)`.
+String? totalExperienceDurationLabel(List<Experience> experiences) {
+  var totalMonths = 0;
+  for (final e in experiences) {
+    totalMonths += _monthsFromExperienceData(e.data);
+  }
+  if (totalMonths <= 0) return null;
+  return _formatDurationMonths(totalMonths);
+}
+
+int _monthsFromExperienceData(String data) {
+  final paren = RegExp(r'\(([^)]+)\)').firstMatch(data);
+  if (paren == null) return 0;
+  final inner = paren.group(1)!;
+  final yearsMatch = RegExp(r'(\d+)\s*años?').firstMatch(inner);
+  final monthsMatch = RegExp(r'(\d+)\s*meses?').firstMatch(inner);
+  final years = yearsMatch != null ? int.parse(yearsMatch.group(1)!) : 0;
+  final months = monthsMatch != null ? int.parse(monthsMatch.group(1)!) : 0;
+  return (years * 12) + months;
+}
+
+String _formatDurationMonths(int totalMonths) {
+  final years = totalMonths ~/ 12;
+  final months = totalMonths % 12;
+  if (years > 0 && months > 0) {
+    final yLabel = years == 1 ? 'año' : 'años';
+    final mLabel = months == 1 ? 'mes' : 'meses';
+    return '$years $yLabel $months $mLabel';
+  }
+  if (years > 0) {
+    return years == 1 ? '1 año' : '$years años';
+  }
+  return months == 1 ? '1 mes' : '$months meses';
+}
+
 List<Experience> infoExperienceModel = [
+  Experience(
+    title: 'MI CHANCE',
+    stack:
+        'Soporte L1/L2, helpdesk, gestión de incidencias, atención a usuarios, diagnóstico técnico, escalamiento.',
+    description: [
+      '- Atención y resolución de incidencias de soporte nivel 1 y nivel 2.',
+      '- Diagnóstico técnico, clasificación y seguimiento de tickets hasta su cierre.',
+      '- Soporte a usuarios internos y puntos de atención en sistemas y operaciones.',
+      '- Escalamiento controlado de casos complejos y acompañamiento en la solución.',
+      '- Documentación de soluciones y mejora continua de procesos de soporte.',
+    ],
+    type: 'Soporte Técnico Nivel 1 y Nivel 2',
+    data: 'Junio 2026 – Actualidad',
+    country: 'Ecuador',
+  ),
   Experience(
     title: 'GRUPO CONSENSO',
     stack:
@@ -32,7 +82,7 @@ List<Experience> infoExperienceModel = [
       '- Coordinación de procesos financieros para toma de decisiones.',
     ],
     type: 'Asesor Comercial',
-    data: 'Febrero 2026 – Actualidad',
+    data: 'Febrero 2026 – Mayo 2026 (4 meses)',
     country: 'Ecuador',
   ),
   Experience(
