@@ -126,6 +126,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get publications => 'Publications';
 
   @override
+  String get content => 'Content';
+
+  @override
+  String get contentHint => 'Blog, LinkedIn and Instagram';
+
+  @override
+  String get contentFilterAll => 'All';
+
+  @override
+  String get contentFilterBlog => 'Blog';
+
+  @override
+  String get contentFilterLinkedIn => 'LinkedIn';
+
+  @override
+  String get contentFilterInstagram => 'Instagram';
+
+  @override
+  String get contentReadMore => 'Open';
+
+  @override
+  String get contentSeeAllBlog => 'See full blog';
+
+  @override
   String get contacMe => 'Contact me';
 
   @override

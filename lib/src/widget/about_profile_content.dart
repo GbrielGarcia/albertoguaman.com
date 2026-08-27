@@ -90,7 +90,7 @@ class _AboutProfileContentState extends State<AboutProfileContent> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildSwitch(al),
+        // _buildSwitch(al),
         SizedBox(height: SizeUtils.m),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),

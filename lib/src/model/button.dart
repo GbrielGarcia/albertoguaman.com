@@ -14,6 +14,14 @@ List<ButtonModel> infoButtonModel = [
       url: 'https://wa.me/593992889078',
       icon: FontAwesomeIcons.whatsapp),
   ButtonModel(
+      name: 'linkedin',
+      url: 'https://www.linkedin.com/in/albertoguaman',
+      icon: FontAwesomeIcons.linkedinIn),
+  ButtonModel(
+      name: 'instagram',
+      url: 'https://www.instagram.com/albertoguamandev/',
+      icon: FontAwesomeIcons.instagram),
+  ButtonModel(
       name: 'tiktok',
       url: 'https://www.tiktok.com/@albertoguaman.com',
       icon: FontAwesomeIcons.tiktok),

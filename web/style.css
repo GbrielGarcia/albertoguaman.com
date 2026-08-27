@@ -1,28 +1,127 @@
 @font-face {
-     font-family: Alegreya;
-        src: url('Alegreya-Regular.ttf') format('truetype');
-  }
+  font-family: Alegreya;
+  src: url('Alegreya-Regular.ttf') format('truetype');
+}
 
-
-
-body, html {
-    font-family: Alegreya, sans-serif;
-
-      height: 100%;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #151515;
-      color: white;
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #151515;
+  color: #ffffff;
+  font-family: Alegreya, "Segoe UI", system-ui, sans-serif;
 }
 
 .custom-cursor {
   cursor: url('mause.png'), auto;
 }
 
-  a {
-    text-decoration: none;
-        font-size: 24px;
+a {
+  text-decoration: none;
+  font-size: 24px;
+}
 
+/* —— Splash de carga —— */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, #1f1f1f 0%, #151515 70%),
+    #151515;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.splash--leave {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash__glow {
+  position: absolute;
+  width: min(520px, 80vw);
+  height: min(520px, 80vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 216, 93, 0.16) 0%, transparent 68%);
+  filter: blur(8px);
+  animation: splash-pulse 2.4s ease-in-out infinite;
+}
+
+.splash__card {
+  position: relative;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 28rem;
+}
+
+.splash__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #fad85d;
+  font-weight: 700;
+}
+
+.splash__name {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.splash__tagline {
+  margin: 0.85rem 0 1.75rem;
+  font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.splash__bar {
+  width: min(220px, 55vw);
+  height: 3px;
+  margin: 0 auto 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.splash__bar span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #fad85d, #f2a0ff, #707eff);
+  animation: splash-slide 1.15s ease-in-out infinite;
+}
+
+.splash__status {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@keyframes splash-slide {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(280%); }
+}
+
+@keyframes splash-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash__glow,
+  .splash__bar span {
+    animation: none;
   }
+  .splash__bar span {
+    width: 100%;
+    transform: none;
+  }
+}

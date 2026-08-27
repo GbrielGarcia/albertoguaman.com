@@ -28,6 +28,7 @@ final List<Color> _animatedBarColors = [
 class _PortfolioScreenState extends State<HomeSrc> {
   late List<bool> inHovered;
   late List<bool> inHoveredBook;
+  // ContentSource? _contentFilter;
 
   final ScrollController _scrollController = ScrollController();
   Timer? _colorBarTimer;
@@ -69,6 +70,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
         (id: SectionId.about, label: al.aboutMe),
         (id: SectionId.projects, label: al.project),
         (id: SectionId.publications, label: al.publications),
+        (id: SectionId.content, label: al.content),
         (id: SectionId.experience, label: al.experience),
       ];
 
@@ -143,6 +145,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
                           '', sectionKeys[SectionId.publications]!),
                       _buildPublications(al),
                       _buildSectionContent(
+                          '', sectionKeys[SectionId.content]!),
+                      // _buildContent(al),
+                      _buildSectionContent(
                           '', sectionKeys[SectionId.experience]!),
                       _buildExperience(al),
                       footerData(al, context.screenWidth),
@@ -168,6 +173,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       _buildSectionContent(
                           '', sectionKeys[SectionId.publications]!),
                       _buildPublications(al),
+                      _buildSectionContent(
+                          '', sectionKeys[SectionId.content]!),
+                      // _buildContent(al),
                       _buildSectionContent(
                           '', sectionKeys[SectionId.experience]!),
                       _buildExperience(al),

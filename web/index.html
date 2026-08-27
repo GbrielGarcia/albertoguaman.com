@@ -145,23 +145,39 @@
         <li><a href="https://inoxhierroec.com/">Inox Hierro</a></li>
         <li><a href="https://perfil.tarotpragmatico.com/">Tarot Pragmático</a></li>
       </ul>
+      <h2>Contenido</h2>
+      <ul>
+        <li><a href="https://tinguar.com/blog/">Blog Tinguar</a></li>
+        <li><a href="https://www.linkedin.com/in/albertoguaman">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/albertoguamandev/">Instagram @albertoguamandev</a></li>
+      </ul>
       <h2>Contacto</h2>
       <p><a href="https://wa.me/593992889078">WhatsApp</a> · <a href="https://github.com/GbrielGarcia">GitHub</a> · <a href="https://tinguar.com/">Tinguar</a></p>
     </main>
   </noscript>
-  <p id="loading-fallback" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;margin:0;font-family:system-ui,sans-serif;opacity:0.7;">
-    Cargando portafolio de Alberto Guaman…
-  </p>
+
+  <div id="loading-fallback" class="splash" role="status" aria-live="polite" aria-label="Cargando portafolio de Alberto Guaman">
+    <div class="splash__glow" aria-hidden="true"></div>
+    <div class="splash__card">
+      <p class="splash__eyebrow">Portafolio</p>
+      <h1 class="splash__name">Alberto Guaman</h1>
+      <p class="splash__tagline">Desarrollo · Soporte · Productos digitales</p>
+      <div class="splash__bar" aria-hidden="true"><span></span></div>
+      <p class="splash__status">Cargando experiencia…</p>
+    </div>
+  </div>
+
   <!--
     Inicialización recomendada en Flutter 3.x (ver docs de web initialization).
     Sustituye el antiguo flutter.js + loadEntrypoint y evita avisos de deprecación.
   -->
   <script src="flutter_bootstrap.js" async></script>
   <script>
-    // Oculta el fallback cuando Flutter arranca (mejora percepción; no afecta SEO).
     window.addEventListener('flutter-first-frame', function () {
       var el = document.getElementById('loading-fallback');
-      if (el) el.remove();
+      if (!el) return;
+      el.classList.add('splash--leave');
+      setTimeout(function () { el.remove(); }, 380);
     });
   </script>
 </body>

@@ -320,6 +320,54 @@ abstract class AppLocalizations {
   /// **'Publications'**
   String get publications;
 
+  /// No description provided for @content.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get content;
+
+  /// No description provided for @contentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog, LinkedIn and Instagram'**
+  String get contentHint;
+
+  /// No description provided for @contentFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get contentFilterAll;
+
+  /// No description provided for @contentFilterBlog.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog'**
+  String get contentFilterBlog;
+
+  /// No description provided for @contentFilterLinkedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get contentFilterLinkedIn;
+
+  /// No description provided for @contentFilterInstagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get contentFilterInstagram;
+
+  /// No description provided for @contentReadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get contentReadMore;
+
+  /// No description provided for @contentSeeAllBlog.
+  ///
+  /// In en, this message translates to:
+  /// **'See full blog'**
+  String get contentSeeAllBlog;
+
   /// No description provided for @contacMe.
   ///
   /// In en, this message translates to:
