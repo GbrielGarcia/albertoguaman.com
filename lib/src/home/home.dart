@@ -4,6 +4,7 @@ import "package:albertoguaman/src/model/model.dart";
 
 import "package:flutter/material.dart";
 import 'package:albertoguaman/l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
 import "../widget/widget.dart";
@@ -28,16 +29,22 @@ final List<Color> _animatedBarColors = [
 class _PortfolioScreenState extends State<HomeSrc> {
   late List<bool> inHovered;
   late List<bool> inHoveredBook;
-  // ContentSource? _contentFilter;
 
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _galleryForwardController = ScrollController();
+  final ScrollController _galleryReverseController = ScrollController();
+  final ScrollController _galleryThirdController = ScrollController();
   Timer? _colorBarTimer;
+  Timer? _galleryAutoScrollTimer;
   int _barColorIndex = 0;
+  bool _navPinned = false;
+
   @override
   void initState() {
     super.initState();
     inHovered = List<bool>.filled(infoProjectModel.length, false);
     inHoveredBook = List<bool>.filled(infoBookModel.length, false);
+    _scrollController.addListener(_onScrollPinNav);
     _colorBarTimer = Timer.periodic(const Duration(milliseconds: 2500), (_) {
       if (mounted) {
         setState(() {
@@ -45,33 +52,68 @@ class _PortfolioScreenState extends State<HomeSrc> {
         });
       }
     });
+    _galleryAutoScrollTimer =
+        Timer.periodic(const Duration(milliseconds: 30), (_) {
+      _moveGalleryRow(_galleryForwardController, 0.45);
+      _moveGalleryRow(_galleryReverseController, 0.38);
+      _moveGalleryRow(_galleryThirdController, 0.32);
+    });
+  }
+
+  void _moveGalleryRow(ScrollController controller, double step) {
+    if (!controller.hasClients) return;
+    final position = controller.position;
+    if (!position.hasContentDimensions) return;
+    final max = position.maxScrollExtent;
+    if (max <= 0) return;
+
+    final next = controller.offset + step;
+    if (next > max) {
+      controller.jumpTo(0);
+    } else {
+      controller.jumpTo(next);
+    }
+  }
+
+  void _onScrollPinNav() {
+    final pinned = _scrollController.offset > 140;
+    if (pinned != _navPinned && mounted) {
+      setState(() => _navPinned = pinned);
+    }
   }
 
   @override
   void dispose() {
     _colorBarTimer?.cancel();
+    _galleryAutoScrollTimer?.cancel();
+    _scrollController.removeListener(_onScrollPinNav);
     _scrollController.dispose();
+    _galleryForwardController.dispose();
+    _galleryReverseController.dispose();
+    _galleryThirdController.dispose();
     super.dispose();
   }
 
   void _scrollToSection(String section) {
     final key = sectionKeys[section];
     if (key?.currentContext != null) {
+      // Deja aire bajo el menú fijo al saltar a una sección.
       Scrollable.ensureVisible(
         key!.currentContext!,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-        alignment: 0.0,
+        alignment: _navPinned ? 0.08 : 0.0,
       );
     }
   }
 
   List<({String id, String label})> _sections(AppLocalizations al) => [
         (id: SectionId.about, label: al.aboutMe),
+        (id: SectionId.experience, label: al.experience),
+        (id: SectionId.skills, label: al.skills),
         (id: SectionId.projects, label: al.project),
         (id: SectionId.publications, label: al.publications),
-        (id: SectionId.content, label: al.content),
-        (id: SectionId.experience, label: al.experience),
+        (id: SectionId.gallery, label: al.gallery),
       ];
 
   @override
@@ -129,66 +171,398 @@ class _PortfolioScreenState extends State<HomeSrc> {
                 mobile: SingleChildScrollView(
                   controller: _scrollController,
                   clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    children: [
-                      SizedBox(height: SizeUtils.xl1),
-                      buildRowName(context),
-                      SizedBox(height: SizeUtils.xl),
-                      _buildSectionsRow(context, sections),
-                      SizedBox(height: SizeUtils.xl),
-                      _buildSectionContent('', sectionKeys[SectionId.about]!),
-                      _buildAboutMe(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.projects]!),
-                      _buildProject(al, context),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.publications]!),
-                      _buildPublications(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.content]!),
-                      // _buildContent(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.experience]!),
-                      _buildExperience(al),
-                      footerData(al, context.screenWidth),
-                      SizedBox(height: SizeUtils.xl1),
-                    ],
-                  ),
+                  child: _buildHomeColumn(al, sections),
                 ),
                 desktop: SingleChildScrollView(
                   controller: _scrollController,
                   clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    children: [
-                      SizedBox(height: SizeUtils.xl1),
-                      buildRowName(context),
-                      SizedBox(height: SizeUtils.l),
-                      _buildSectionsRow(context, sections),
-                      SizedBox(height: SizeUtils.l),
-                      _buildSectionContent('', sectionKeys[SectionId.about]!),
-                      _buildAboutMe(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.projects]!),
-                      _buildProject(al, context),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.publications]!),
-                      _buildPublications(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.content]!),
-                      // _buildContent(al),
-                      _buildSectionContent(
-                          '', sectionKeys[SectionId.experience]!),
-                      _buildExperience(al),
-                      footerData(al, context.screenWidth),
-                      SizedBox(height: SizeUtils.xl1),
-                    ],
-                  ),
+                  child: _buildHomeColumn(al, sections),
                 ),
               ),
             ),
           ),
           const BubbleBackgroundToggleOverlay(),
+          if (_navPinned)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Material(
+                color: UtilsColor.colorPrimaryDark.withValues(alpha: 0.94),
+                elevation: 10,
+                child: SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: SizeUtils.s,
+                      horizontal: SizeUtils.s,
+                    ),
+                    child: _buildSectionsRow(context, sections),
+                  ),
+                ),
+              ),
+            ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildHomeColumn(
+      AppLocalizations al, List<({String id, String label})> sections) {
+    return Column(
+      children: [
+        SizedBox(height: SizeUtils.m),
+        buildRowName(context, animateEntrance: true),
+        SizedBox(height: SizeUtils.m),
+        StaggerFadeIn(
+          index: 4,
+          child: _buildSectionsRow(context, sections),
+        ),
+        SizedBox(height: SizeUtils.s),
+        _buildSectionContent('', sectionKeys[SectionId.about]!),
+        ScrollReveal(
+          controller: _scrollController,
+          child: _buildAboutMe(al),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.experience]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 40),
+          child: _buildExperience(al),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.skills]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 60),
+          child: _buildSkills(al),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.projects]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 60),
+          child: _buildProject(al, context),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.publications]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 60),
+          child: _buildPublications(al),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.gallery]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 60),
+          child: _buildGallery(al),
+        ),
+        footerData(al, context.screenWidth),
+        SizedBox(height: SizeUtils.xl1),
+      ],
+    );
+  }
+
+  Widget _buildGallery(AppLocalizations? al) {
+    final isNarrow = context.isMobile || context.isMobileLarge;
+    final tileSize = isNarrow ? 156.0 : 210.0;
+    final firstRow = <int>[
+      for (var i = 0; i < infoGalleryItems.length; i += 3) i,
+    ];
+    final secondRow = <int>[
+      for (var i = 1; i < infoGalleryItems.length; i += 3) i,
+    ];
+    final thirdRow = <int>[
+      for (var i = 2; i < infoGalleryItems.length; i += 3) i,
+    ];
+
+    return ResponsiveCenter(
+      child: _buildContainerInfo(
+        al,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              al?.galleryHint ??
+                  'Una mirada a algunos momentos de mi día a día.',
+              style: StyleText.textPortfolio(
+                fontSize:
+                    TextStyleSize.textDescriptionSize(context.screenWidth),
+                color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.75),
+              ),
+            ),
+            SizedBox(height: SizeUtils.m),
+            _buildGalleryRow(
+              indexes: firstRow,
+              controller: _galleryForwardController,
+              tileSize: tileSize,
+            ),
+            SizedBox(height: SizeUtils.s),
+            _buildGalleryRow(
+              indexes: secondRow,
+              controller: _galleryReverseController,
+              tileSize: tileSize,
+              reverse: true,
+            ),
+            SizedBox(height: SizeUtils.s),
+            _buildGalleryRow(
+              indexes: thirdRow,
+              controller: _galleryThirdController,
+              tileSize: tileSize,
+            ),
+          ],
+        ),
+        color: Colors.transparent,
+        title: al!.gallery,
+      ),
+    );
+  }
+
+  Widget _buildGalleryRow({
+    required List<int> indexes,
+    required ScrollController controller,
+    required double tileSize,
+    bool reverse = false,
+  }) {
+    return SizedBox(
+      height: tileSize,
+      child: ListView.separated(
+        controller: controller,
+        scrollDirection: Axis.horizontal,
+        reverse: reverse,
+        physics: const BouncingScrollPhysics(),
+        padding: EdgeInsets.symmetric(horizontal: SizeUtils.s),
+        itemCount: indexes.length,
+        separatorBuilder: (_, __) => SizedBox(width: SizeUtils.s),
+        itemBuilder: (context, position) {
+          final index = indexes[position];
+          final item = infoGalleryItems[index];
+          return SizedBox(
+            width: tileSize,
+            child: HoverScale(
+              child: GestureDetector(
+                onTap: () => _openGalleryViewer(index),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(SizeUtils.m),
+                  child: _buildGalleryImage(item.path, index),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildGalleryImage(String path, int index) {
+    return Image.asset(
+      path,
+      fit: BoxFit.cover,
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) return child;
+        return AnimatedOpacity(
+          opacity: frame == null ? 0 : 1,
+          duration: Duration(milliseconds: 280 + (index % 5) * 110),
+          curve: Curves.easeOut,
+          child: AnimatedScale(
+            scale: frame == null ? 0.94 : 1,
+            duration: Duration(milliseconds: 320 + (index % 4) * 90),
+            curve: Curves.easeOutCubic,
+            child: child,
+          ),
+        );
+      },
+      errorBuilder: (_, __, ___) => ColoredBox(
+        color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.08),
+        child: Icon(
+          Icons.image_not_supported_outlined,
+          color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.5),
+        ),
+      ),
+    );
+  }
+
+  void _openGalleryViewer(int initialIndex) {
+    showDialog<void>(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.9),
+      builder: (dialogContext) {
+        var page = initialIndex;
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            final item = infoGalleryItems[page];
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetPadding: EdgeInsets.all(SizeUtils.m),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(dialogContext),
+                      icon: Icon(
+                        Icons.close,
+                        color: UtilsColor.colorSecondaryWhite,
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: InteractiveViewer(
+                      child: Image.asset(
+                        item.path,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: SizeUtils.s),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: page > 0
+                            ? () => setDialogState(() => page--)
+                            : null,
+                        icon: Icon(
+                          Icons.chevron_left,
+                          color: UtilsColor.colorSecondaryWhite,
+                        ),
+                      ),
+                      Text(
+                        '${page + 1} / ${infoGalleryItems.length}',
+                        style: StyleText.textPortfolio(
+                          fontSize: SizeUtils.s1,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: page < infoGalleryItems.length - 1
+                            ? () => setDialogState(() => page++)
+                            : null,
+                        icon: Icon(
+                          Icons.chevron_right,
+                          color: UtilsColor.colorSecondaryWhite,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildSkills(AppLocalizations? al) {
+    final descriptionSize =
+        TextStyleSize.textDescriptionSize(context.screenWidth);
+    final isNarrow = context.isMobile || context.isMobileLarge;
+
+    return ResponsiveCenter(
+      child: _buildContainerInfo(
+        al,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final group in infoSkillGroups) ...[
+              SizedBox(height: SizeUtils.m),
+              Container(
+                padding: EdgeInsets.all(SizeUtils.m),
+                decoration: BoxDecoration(
+                  color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.04),
+                  border: Border.all(
+                    color:
+                        UtilsColor.colorSecondaryWhite.withValues(alpha: 0.18),
+                  ),
+                  borderRadius: BorderRadius.circular(SizeUtils.m),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      group.title.toUpperCase(),
+                      style: StyleText.textPortfolio(
+                        fontSize: descriptionSize,
+                        fontWeight: FontWeight.bold,
+                        color: UtilsColor.colorYellow,
+                      ),
+                    ),
+                    SizedBox(height: SizeUtils.s),
+                    Text(
+                      group.subtitle,
+                      style: StyleText.textPortfolio(
+                        fontSize: descriptionSize * 0.92,
+                        color: UtilsColor.colorSecondaryWhite
+                            .withValues(alpha: 0.7),
+                      ),
+                    ),
+                    SizedBox(height: SizeUtils.m),
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final maxW = constraints.maxWidth;
+                        final columns = isNarrow
+                            ? 2
+                            : maxW > 900
+                                ? 4
+                                : 3;
+                        final gap = SizeUtils.s;
+                        final tileW = (maxW - (gap * (columns - 1))) / columns;
+                        return Wrap(
+                          spacing: gap,
+                          runSpacing: gap,
+                          children: group.items
+                              .map(
+                                (item) => SizedBox(
+                                  width: tileW,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: SizeUtils.s,
+                                      vertical: SizeUtils.m,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: UtilsColor.colorPrimaryDark
+                                          .withValues(alpha: 0.55),
+                                      border: Border.all(
+                                        color: UtilsColor.colorYellow
+                                            .withValues(alpha: 0.35),
+                                      ),
+                                      borderRadius:
+                                          BorderRadius.circular(SizeUtils.m),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        FaIcon(
+                                          item.icon,
+                                          size: descriptionSize,
+                                          color: UtilsColor.colorYellow,
+                                        ),
+                                        SizedBox(width: SizeUtils.s),
+                                        Expanded(
+                                          child: Text(
+                                            item.name,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: StyleText.textPortfolio(
+                                              fontSize: descriptionSize * 0.95,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            SizedBox(height: SizeUtils.s),
+          ],
+        ),
+        color: Colors.transparent,
+        title: al!.skills,
       ),
     );
   }
@@ -404,8 +778,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
     );
   }
 
-  Widget _buildExperienceCard(Experience experience,
-      {bool isCurrent = false}) {
+  Widget _buildExperienceCard(Experience experience, {bool isCurrent = false}) {
     final card = _buildCardInfo(
         () {},
         1.0,
@@ -432,10 +805,10 @@ class _PortfolioScreenState extends State<HomeSrc> {
               SizedBox(height: SizeUtils.s),
               Text(experience.country,
                   style: StyleText.textPortfolio(
-                    fontSize: TextStyleSize.textDescriptionSize(
-                        context.screenWidth),
-                    color: UtilsColor.colorSecondaryWhite
-                        .withValues(alpha: 0.75),
+                    fontSize:
+                        TextStyleSize.textDescriptionSize(context.screenWidth),
+                    color:
+                        UtilsColor.colorSecondaryWhite.withValues(alpha: 0.75),
                   )),
             ],
             if (experience.stack != null && experience.stack!.isNotEmpty) ...[
@@ -494,8 +867,11 @@ class _PortfolioScreenState extends State<HomeSrc> {
         positioned: true,
         elevation: true);
 
-    if (!isCurrent) return card;
-    return CurrentRoleHighlight(child: card);
+    if (!isCurrent) return HoverScale(scale: 1.01, child: card);
+    return HoverScale(
+      scale: 1.01,
+      child: CurrentRoleHighlight(child: card),
+    );
   }
 
   Widget _buildPublications(AppLocalizations? al) {
@@ -512,43 +888,45 @@ class _PortfolioScreenState extends State<HomeSrc> {
               return Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: index != 1 ? 0 : SizeUtils.s),
-                child: _buildCardInfo(
-                  () {
-                    setState(() {
-                      inHoveredBook[index] = !inHoveredBook[index];
-                    });
-                  },
-                  inHoveredBook[index] ? 0.2 : 1.0,
-                  UtilsColor.colorSecondaryWhite,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(book.title,
+                child: HoverScale(
+                  child: _buildCardInfo(
+                    () {
+                      setState(() {
+                        inHoveredBook[index] = !inHoveredBook[index];
+                      });
+                    },
+                    inHoveredBook[index] ? 0.2 : 1.0,
+                    UtilsColor.colorSecondaryWhite,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(book.title,
+                            style: StyleText.textPortfolio(
+                              color: UtilsColor.colorPrimaryDark,
+                              fontSize: TextStyleSize.textTitleSize(
+                                  context.screenWidth),
+                              fontWeight: FontWeight.bold,
+                            )),
+                        SizedBox(height: SizeUtils.m),
+                        Text(
+                          book.description,
+                          maxLines: context.isDesktop ? 4 : 3,
+                          overflow: TextOverflow.ellipsis,
                           style: StyleText.textPortfolio(
-                            color: UtilsColor.colorPrimaryDark,
-                            fontSize: TextStyleSize.textTitleSize(
-                                context.screenWidth),
-                            fontWeight: FontWeight.bold,
-                          )),
-                      SizedBox(height: SizeUtils.m),
-                      Text(
-                        book.description,
-                        maxLines: context.isDesktop ? 4 : 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: StyleText.textPortfolio(
-                            color: UtilsColor.colorPrimaryDark,
-                            fontSize: TextStyleSize.textDescriptionSize(
-                                context.screenWidth)),
-                      ),
-                    ],
+                              color: UtilsColor.colorPrimaryDark,
+                              fontSize: TextStyleSize.textDescriptionSize(
+                                  context.screenWidth)),
+                        ),
+                      ],
+                    ),
+                    book.buttonVoidCall,
+                    book.buttonVoidCall,
+                    book.buttonText,
+                    '${index + 1}',
+                    UtilsColor.colorPink,
+                    [inHoveredBook[index]],
                   ),
-                  book.buttonVoidCall,
-                  book.buttonVoidCall,
-                  book.buttonText,
-                  '${index + 1}',
-                  UtilsColor.colorPink,
-                  [inHoveredBook[index]],
                 ),
               );
             },
@@ -591,41 +969,44 @@ class _PortfolioScreenState extends State<HomeSrc> {
       itemCount: infoProjectModel.length,
       itemBuilder: (context, index) {
         final project = infoProjectModel[index];
-        return _buildCardInfo(
-          () {
-            setState(() {
-              inHovered[index] = !inHovered[index];
-            });
-          },
-          inHovered[index] ? 0.2 : 1.0,
-          UtilsColor.colorYellow,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(project.title,
+        return HoverScale(
+          child: _buildCardInfo(
+            () {
+              setState(() {
+                inHovered[index] = !inHovered[index];
+              });
+            },
+            inHovered[index] ? 0.2 : 1.0,
+            UtilsColor.colorYellow,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(project.title,
+                    style: StyleText.textPortfolio(
+                      color: UtilsColor.colorPrimaryDark,
+                      fontSize:
+                          TextStyleSize.textTitleSize(context.screenWidth),
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: SizeUtils.m),
+                Text(
+                  project.description,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: StyleText.textPortfolio(
-                    color: UtilsColor.colorPrimaryDark,
-                    fontSize: TextStyleSize.textTitleSize(context.screenWidth),
-                    fontWeight: FontWeight.bold,
-                  )),
-              SizedBox(height: SizeUtils.m),
-              Text(
-                project.description,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: StyleText.textPortfolio(
-                    color: UtilsColor.colorPrimaryDark,
-                    fontSize: TextStyleSize.textDescriptionSize(
-                        context.screenWidth)),
-              ),
-            ],
+                      color: UtilsColor.colorPrimaryDark,
+                      fontSize: TextStyleSize.textDescriptionSize(
+                          context.screenWidth)),
+                ),
+              ],
+            ),
+            project.buttonVoidCall,
+            project.buttonVoidCall,
+            project.title,
+            '${index + 1}',
+            UtilsColor.colorBlue,
+            [inHovered[index]],
           ),
-          project.buttonVoidCall,
-          project.buttonVoidCall,
-          project.title,
-          '${index + 1}',
-          UtilsColor.colorBlue,
-          [inHovered[index]],
         );
       },
     );
@@ -669,8 +1050,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
                   al?.projectsTapToExpand ??
                       'Clic para ver la lista de proyectos',
                   style: StyleText.textPortfolio(
-                    fontSize: TextStyleSize.textDescriptionSize(
-                        context.screenWidth),
+                    fontSize:
+                        TextStyleSize.textDescriptionSize(context.screenWidth),
                     color: UtilsColor.colorSecondaryWhite,
                   ),
                 ),
@@ -772,18 +1153,18 @@ class _PortfolioScreenState extends State<HomeSrc> {
           ),
           Row(
             children: [
-              containerBottom(() => laucherURL('https://wa.me/593992889078'),
-                  '+593 99 288 9078', al?.contacMe ?? 'Contáctame'),
-              containerBottom(
-                  () => laucherURL(
-                      'https://drive.google.com/file/d/1XbG61R2I64cfWkmzlqfyjISbiBmWS_MH/view?usp=drive_link'),
-                  'https://drive.google.com/file/d/1XbG61R2I64cfWkmzlqfyjISbiBmWS_MH/view?usp=drive_link',
-                  'cv dev 2026'),
-              containerBottom(
-                  () => laucherURL(
-                      'https://drive.google.com/file/d/1_4DSujr2Va6QjAjF_ChlQpuonvjUZZCl/view?usp=drive_link'),
-                  'https://drive.google.com/file/d/1_4DSujr2Va6QjAjF_ChlQpuonvjUZZCl/view?usp=drive_link',
-                  'cv 2026'),
+              Expanded(
+                child: containerBottom(
+                    () => laucherURL('https://wa.me/593992889078'),
+                    '+593 99 288 9078',
+                    al?.contacMe ?? 'Contáctame',
+                    width: double.infinity),
+              ),
+              Expanded(
+                child: containerBottom(() => laucherURL(AssetsUtil.cvDev2026),
+                    AssetsUtil.cvDev2026, 'cv_sep_2026',
+                    width: double.infinity),
+              ),
               Flexible(
                   flex: 1,
                   child: LayoutBuilder(
@@ -913,6 +1294,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
   }
 
   Widget _buildSectionContent(String title, GlobalKey key) {
+    if (title.isEmpty) {
+      return SizedBox(key: key, height: 0);
+    }
     return Container(
       key: key,
       child: Text(title,
@@ -930,37 +1314,130 @@ Widget buildRowName(
   bool? visibilityNameW = false,
   String? text,
   double? fontSize,
+  bool animateEntrance = false,
 }) {
-  final al = AppLocalizations.of(context);
+  final al = AppLocalizations.of(context)!;
+  final isNarrow = context.isMobile || context.isMobileLarge;
+  final stickerSize = isNarrow ? 112.0 : 158.0;
+
+  Widget wrap(int index, Widget child) {
+    if (!animateEntrance) return child;
+    return StaggerFadeIn(index: index, child: child);
+  }
+
+  if (visibilityNameW == true) {
+    return Column(
+      children: [
+        Text(
+          text ?? 'Alberto Guaman'.toUpperCase(),
+          textAlign: TextAlign.center,
+          style: StyleText.textPortfolio(
+            fontWeight: FontWeight.bold,
+            color: UtilsColor.colorYellow,
+            fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
+          ),
+        ),
+        SizedBox(height: SizeUtils.s),
+        const AvatarSticker(size: 104),
+      ],
+    );
+  }
+
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
-    child: Column(
-      children: [
-        SizedBox(height: SizeUtils.s),
-        Text(text ?? al!.helloWordIam.toUpperCase(),
-            style: StyleText.textPortfolio(
-              fontWeight: FontWeight.bold,
-              color: UtilsColor.colorYellow,
-              fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
-            )),
-        SizedBox(width: SizeUtils.m),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            visibilityNameW == false
-                ? Text('Alberto Guaman'.toUpperCase(),
-                    style: StyleText.textPortfolio(
-                      fontWeight: FontWeight.bold,
-                      fontSize: fontSize ??
-                          TextStyleSize.textTitleSectionSize(
-                              context.screenWidth),
-                    ))
-                : const SizedBox.shrink(),
+    child: ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 680),
+      child: Column(
+        children: [
+          wrap(
+            0,
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: SizeUtils.s,
+                vertical: SizeUtils.s,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              text ?? al.helloWordIam.toUpperCase(),
+                              textAlign: TextAlign.center,
+                              style: StyleText.textPortfolio(
+                                fontWeight: FontWeight.bold,
+                                color: UtilsColor.colorYellow,
+                                fontSize: TextStyleSize.textDescriptionSize(
+                                    context.screenWidth),
+                              ),
+                            ),
+                            SizedBox(height: SizeUtils.s / 2),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Alberto Guaman'.toUpperCase(),
+                                style: StyleText.textPortfolio(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSize ??
+                                      TextStyleSize.textTitleSectionSize(
+                                          context.screenWidth),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: SizeUtils.s / 2),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: isNarrow ? 22 : 34,
+                                  height: 2,
+                                  color: UtilsColor.colorPink,
+                                ),
+                                SizedBox(width: SizeUtils.s),
+                                Flexible(
+                                  child: Text(
+                                    isNarrow
+                                        ? al.administratorItShort
+                                        : al.administratorIt,
+                                    textAlign: TextAlign.center,
+                                    style: StyleText.textPortfolio(
+                                      color: UtilsColor.colorSecondaryWhite
+                                          .withValues(alpha: 0.7),
+                                      fontSize:
+                                          TextStyleSize.textDescriptionSize(
+                                                  context.screenWidth) *
+                                              0.9,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: isNarrow ? SizeUtils.s : SizeUtils.m),
+                      wrap(
+                        1,
+                        AvatarSticker(size: stickerSize),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (visibility == false) ...[
+            SizedBox(height: SizeUtils.m),
+            wrap(2, iconDataRow()),
           ],
-        ),
-        visibility == false ? iconDataRow() : Container()
-      ],
+        ],
+      ),
     ),
   );
 }

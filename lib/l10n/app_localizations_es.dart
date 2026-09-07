@@ -27,10 +27,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get employment => 'Empleo:';
 
   @override
-  String get skills => 'Habilidades:';
+  String get skills => 'Herramientas';
 
   @override
-  String get administratorIt => 'Administrador de TI';
+  String get gallery => 'Galería';
+
+  @override
+  String get galleryHint => 'Una mirada a algunos momentos de mi día a día.';
+
+  @override
+  String get administratorIt =>
+      'Administrador de Tecnologías de la Información';
+
+  @override
+  String get administratorItShort => 'Administrador TI';
 
   @override
   String get seeProject => 'ver proyecto';
@@ -104,11 +114,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get descriptionAbout =>
-      'Profesional proactivo, con experiencia en administración operativa, asesoría comercial, promoción de productos tecnológicos, soporte técnico y coordinación de mesa de ayuda (helpdesk). He gestionado procesos administrativos y comerciales, brindando atención estratégica al cliente, impulsando ventas y garantizando una operación eficiente mediante organización, seguimiento y control continuo.\n\nCuento con experiencia en asesoramiento personalizado, promoción comercial, gestión de clientes, resolución de incidencias técnicas, administración de plataformas digitales y capacitación de usuarios, fortaleciendo tanto la experiencia del cliente como la eficiencia operativa de las áreas a cargo.\n\nComplemento mi perfil con conocimientos en desarrollo web y móvil, bases de datos y herramientas tecnológicas, lo que me permite adaptarme rápidamente a nuevos sistemas, comprender procesos digitales de forma integral y aportar soluciones comerciales, administrativas y técnicas enfocadas en resultados y mejora continua.';
+      'Soy Alberto Guaman. Me muevo entre soporte técnico y desarrollo: tickets, sistemas caídos, apps y sitios que tienen que funcionar en el día a día.\n\nHe dado soporte L1/L2 de informática a sucursales a nivel nacional, coordinado helpdesk, administrado operación comercial y armado productos digitales con Flutter, web y e-commerce.\n\nSi algo se rompe, lo diagnostico; si hay que construir, lo construyo. Ese es el hilo de mi trayectoria.';
 
   @override
   String get descriptionAboutDevelopment =>
-      'Tecnólogo superior en desarrollo de software con experiencia en soporte técnico, análisis y gestión de plataformas digitales, administración de incidencias y acompañamiento a usuarios en entornos tecnológicos. He trabajado con plataformas como Moodle, WordPress, Odoo, WooCommerce, Webflow y Meta Business Suite, realizando administración operativa, actualización de contenidos, seguimiento de requerimientos y soporte para garantizar su correcto funcionamiento.\n\nAdemás, cuento con experiencia en el desarrollo e implementación de aplicaciones móviles y soluciones web, principalmente con Flutter, Firebase, HTML, CSS y bases de datos, participando en proyectos orientados a la automatización de procesos, optimización operativa y mejora de la experiencia del usuario. Me caracterizo por mi capacidad analítica, organización, rápida adaptación a nuevos sistemas y enfoque en la mejora continua.';
+      'Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de productos digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto. También he coordinado helpdesk, administrado plataformas educativas y digitales, y desarrollado apps y sitios con Flutter, Firebase y stack web.\n\nHoy uso Flutter, Dart, Firebase y Git en el día a día. También trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.';
 
   @override
   String get aboutProfileDevelopment => 'Desarrollo';

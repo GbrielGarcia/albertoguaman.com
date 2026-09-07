@@ -29,35 +29,26 @@ List<ProjectModel> infoProjectModel = [
       buttonVoidCall: 'https://tinguar.com/productos/rapidito/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['POS', 'Web', 'Tinguar'],
+      type: ['POS', 'Web', 'Android', 'Tinguar'],
       title: 'Mi Negocio Listo',
       description:
-          'POS, inventario, caja y catálogo digital para una o varias tiendas. Vende en mostrador y en línea, imprime tickets térmicos y envía comprobantes por WhatsApp. Disponible en web; Android próximamente.',
+          'POS, facturación electrónica SRI, inventario, caja y catálogo digital para una o varias tiendas. Vende en mostrador y en línea, imprime tickets térmicos y envía comprobantes por WhatsApp. Web: minegociolisto.com · App Android en Google Play.',
       buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://tinguar.com/productos/mi-negocio-listo/'),
+      buttonVoidCall: 'https://minegociolisto.com/'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['Streaming', 'PWA', 'Tinguar'],
+      type: ['Streaming', 'Web', 'Tinguar'],
       title: 'Streaming Distribuidores',
       description:
-          'Panel admin y panel cliente para vender por tiempo, controlar vencimientos y renovaciones, con tienda, compras y soporte por tickets en un solo sistema.',
+          'Panel de distribuidores para comprar, renovar y administrar cuentas de streaming con saldo, entrega inmediata y renovación sin perder datos.',
       buttonText: 'ver proyecto',
-      buttonVoidCall:
-          'https://tinguar.com/productos/streaming-distribuidores/'),
+      buttonVoidCall: 'https://distribuidores.streamingecu.com/login'),
   ProjectModel(
       photo: AssetsUtil.projectOne,
-      type: ['Web', 'Tinguar'],
-      title: 'Inox Hierro',
-      description:
-          'Sitio web para empresa ecuatoriana especializada en acero inoxidable: servicios, galería, cotizaciones y presencia digital. Desarrollado por Tinguar.',
-      buttonText: 'ver proyecto',
-      buttonVoidCall: 'https://inoxhierroec.com/'),
-  ProjectModel(
-      photo: AssetsUtil.projectOne,
-      type: ['Flutter', 'Dart', 'Firebase'],
+      type: ['Flutter', 'Dart', 'Web'],
       title: 'Tarot Pragmático',
       description:
-          'Sistema Arcano desarrollado en Flutter tanto para (Android & Web) para un cliente en Chile.',
+          'Perfil de Arcano Personal y mapas de tarot en Flutter (Android y Web): cálculo por fecha de nacimiento, mapas anuales y comparación de vínculo.',
       buttonText: 'ver proyecto',
       buttonVoidCall: 'https://perfil.tarotpragmatico.com/'),
 ];

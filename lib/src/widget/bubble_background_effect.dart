@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,6 +69,64 @@ class BubbleBackgroundLayer extends StatefulWidget {
 
 class _BubbleBackgroundLayerState extends State<BubbleBackgroundLayer>
     with TickerProviderStateMixin {
+  final List<_BinaryTrailParticle> _binaryTrail = [];
+  late final AnimationController _binaryTrailTicker;
+  Offset? _lastPointerPosition;
+  DateTime? _lastParticleAt;
+  int _binaryDigit = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _binaryTrailTicker = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..addListener(_updateBinaryTrail);
+  }
+
+  void _onPointerHover(PointerHoverEvent event) {
+    final now = DateTime.now();
+    final movedEnough = _lastPointerPosition == null ||
+        (event.localPosition - _lastPointerPosition!).distance >= 24;
+    final waitedEnough = _lastParticleAt == null ||
+        now.difference(_lastParticleAt!).inMilliseconds >= 60;
+    if (!movedEnough && !waitedEnough) return;
+
+    _lastPointerPosition = event.localPosition;
+    _lastParticleAt = now;
+    _binaryTrail.add(
+      _BinaryTrailParticle(
+        position: event.localPosition,
+        digit: (_binaryDigit++ % 2).toString(),
+        createdAt: now,
+        colorIndex: _binaryDigit % 3,
+      ),
+    );
+    if (_binaryTrail.length > 42) _binaryTrail.removeAt(0);
+    if (!_binaryTrailTicker.isAnimating) {
+      _binaryTrailTicker.repeat();
+    }
+    setState(() {});
+  }
+
+  void _updateBinaryTrail() {
+    if (!mounted) return;
+    final now = DateTime.now();
+    _binaryTrail.removeWhere(
+      (particle) => now.difference(particle.createdAt).inMilliseconds > 1050,
+    );
+    if (_binaryTrail.isEmpty) {
+      _binaryTrailTicker.stop();
+    }
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _binaryTrailTicker.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BubbleBackgroundProvider>(
@@ -85,13 +144,92 @@ class _BubbleBackgroundLayerState extends State<BubbleBackgroundLayer>
                   ),
                 ),
               ),
-            child!,
+            MouseRegion(
+              opaque: false,
+              onHover: _onPointerHover,
+              child: child!,
+            ),
+            if (_binaryTrail.isNotEmpty)
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: CustomPaint(
+                    painter: _BinaryTrailPainter(
+                      particles: List.unmodifiable(_binaryTrail),
+                      now: DateTime.now(),
+                    ),
+                  ),
+                ),
+              ),
           ],
         );
       },
       child: widget.child,
     );
   }
+}
+
+class _BinaryTrailParticle {
+  const _BinaryTrailParticle({
+    required this.position,
+    required this.digit,
+    required this.createdAt,
+    required this.colorIndex,
+  });
+
+  final Offset position;
+  final String digit;
+  final DateTime createdAt;
+  final int colorIndex;
+}
+
+class _BinaryTrailPainter extends CustomPainter {
+  const _BinaryTrailPainter({
+    required this.particles,
+    required this.now,
+  });
+
+  final List<_BinaryTrailParticle> particles;
+  final DateTime now;
+
+  static final _colors = [
+    UtilsColor.colorYellow,
+    UtilsColor.colorPink,
+    UtilsColor.colorBlue,
+  ];
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (final particle in particles) {
+      final age = now.difference(particle.createdAt).inMilliseconds;
+      final progress = (age / 1050).clamp(0.0, 1.0);
+      final opacity = (1 - progress).clamp(0.0, 1.0);
+      final driftX = (particle.colorIndex - 1) * progress * 10;
+      final position = particle.position + Offset(driftX, -22 * progress);
+      final painter = TextPainter(
+        text: TextSpan(
+          text: particle.digit,
+          style: TextStyle(
+            color: _colors[particle.colorIndex].withValues(alpha: opacity),
+            fontFamily: 'Minecraftia',
+            fontSize: 13 + (1 - progress) * 5,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: _colors[particle.colorIndex]
+                    .withValues(alpha: opacity * 0.65),
+                blurRadius: 8,
+              ),
+            ],
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      painter.paint(canvas, position);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _BinaryTrailPainter oldDelegate) => true;
 }
 
 /// Interruptor en la esquina inferior izquierda (opuesta al FAB de WhatsApp a la derecha).
@@ -120,7 +258,8 @@ class BubbleBackgroundToggleOverlay extends StatelessWidget {
                   Icon(
                     prefs.bubblesEnabled ? Icons.blur_on : Icons.blur_off,
                     size: 20,
-                    color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.85),
+                    color:
+                        UtilsColor.colorSecondaryWhite.withValues(alpha: 0.85),
                   ),
                   Tooltip(
                     message: prefs.bubblesEnabled

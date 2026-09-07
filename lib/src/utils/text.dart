@@ -38,6 +38,7 @@ class StyleText {
     Color? color,
     FontWeight? fontWeight,
     Color? colorBackgroundColor,
+    double? height,
   }) {
     return TextStyle(
       fontFamily: _kAlegreyaFontFamily,
@@ -45,6 +46,7 @@ class StyleText {
       color: color ?? UtilsColor.colorSecondaryWhite,
       fontWeight: fontWeight ?? FontWeight.w100,
       backgroundColor: colorBackgroundColor ?? Colors.transparent,
+      height: height,
     );
   }
 

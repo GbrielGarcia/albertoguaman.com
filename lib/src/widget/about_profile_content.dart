@@ -86,28 +86,32 @@ class _AboutProfileContentState extends State<AboutProfileContent> {
     final al = AppLocalizations.of(context)!;
     final descriptionSize =
         TextStyleSize.textDescriptionSize(context.screenWidth);
+    final text = _aboutProfileDevelopment
+        ? al.descriptionAboutDevelopment
+        : al.descriptionAbout;
+    final paragraphs =
+        text.split(RegExp(r'\n\s*\n')).map((p) => p.trim()).where((p) => p.isNotEmpty).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // _buildSwitch(al),
-        SizedBox(height: SizeUtils.m),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: Text(
-            _aboutProfileDevelopment
-                ? al.descriptionAboutDevelopment
-                : al.descriptionAbout,
-            key: ValueKey(_aboutProfileDevelopment),
-            textAlign: widget.textAlign,
-            style: StyleText.textPortfolio(
-              fontSize: descriptionSize,
-              fontWeight: widget.descriptionBold
-                  ? FontWeight.bold
-                  : widget.fontWeight,
+        ...[
+          for (var i = 0; i < paragraphs.length; i++) ...[
+            if (i > 0) SizedBox(height: SizeUtils.m),
+            Text(
+              paragraphs[i],
+              textAlign: widget.textAlign,
+              style: StyleText.textPortfolio(
+                fontSize: descriptionSize,
+                fontWeight: widget.descriptionBold
+                    ? FontWeight.bold
+                    : widget.fontWeight,
+                height: 1.45,
+              ),
             ),
-          ),
-        ),
+          ],
+        ],
       ],
     );
   }

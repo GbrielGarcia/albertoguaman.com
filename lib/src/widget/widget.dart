@@ -10,3 +10,5 @@ export 'animated_background.dart';
 export 'bubble_background_effect.dart';
 export 'about_profile_content.dart';
 export 'current_role_highlight.dart';
+export 'scroll_reveal.dart';
+export 'avatar_sticker.dart';

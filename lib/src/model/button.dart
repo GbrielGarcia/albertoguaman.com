@@ -18,14 +18,6 @@ List<ButtonModel> infoButtonModel = [
       url: 'https://www.linkedin.com/in/albertoguaman',
       icon: FontAwesomeIcons.linkedinIn),
   ButtonModel(
-      name: 'instagram',
-      url: 'https://www.instagram.com/albertoguamandev/',
-      icon: FontAwesomeIcons.instagram),
-  ButtonModel(
-      name: 'tiktok',
-      url: 'https://www.tiktok.com/@albertoguaman.com',
-      icon: FontAwesomeIcons.tiktok),
-  ButtonModel(
       name: 'github',
       url: 'https://github.com/GbrielGarcia',
       icon: FontAwesomeIcons.github),

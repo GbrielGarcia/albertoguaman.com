@@ -27,10 +27,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get employment => 'Employment:';
 
   @override
-  String get skills => 'Skills:';
+  String get skills => 'Tools';
 
   @override
-  String get administratorIt => 'IT Administrator';
+  String get gallery => 'Gallery';
+
+  @override
+  String get galleryHint => 'A glimpse into a few moments from my day to day.';
+
+  @override
+  String get administratorIt => 'Information Technology Administrator';
+
+  @override
+  String get administratorItShort => 'IT Administrator';
 
   @override
   String get seeProject => 'see project';
@@ -104,11 +113,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get descriptionAbout =>
-      'A proactive professional with experience in operational management, business consulting, technology product promotion, technical support, and helpdesk coordination. I have managed administrative and business processes, providing strategic customer service, driving sales, and ensuring efficient operations through organization, monitoring, and continuous oversight. I have experience in personalized consulting, sales promotion, customer management, technical issue resolution, digital platform administration, and user training, enhancing both the customer experience and the operational efficiency of the departments under my responsibility. I complement my profile with knowledge of web and mobile development, databases, and technological tools, which allows me to quickly adapt to new systems, understand digital processes holistically, and provide commercial, administrative, and technical solutions focused on results and continuous improvement.';
+      'I\'m Alberto Guaman. I work between technical support and development: tickets, downed systems, apps and sites that have to work day to day.\n\nI\'ve provided L1/L2 IT support to branches nationwide, coordinated helpdesk, run commercial operations, and built digital products with Flutter, web and e-commerce.\n\nIf something breaks, I diagnose it; if it needs to be built, I build it. That\'s the thread of my path.';
 
   @override
   String get descriptionAboutDevelopment =>
-      'Senior software development technologist with experience in technical support, analysis and management of digital platforms, incident administration, and user support in technology environments. I have worked with platforms such as Moodle, WordPress, Odoo, WooCommerce, Webflow, and Meta Business Suite, performing operational administration, content updates, requirements tracking, and support to ensure their proper operation.\n\nIn addition, I have experience developing and implementing mobile applications and web solutions, mainly with Flutter, Firebase, HTML, CSS, and databases, participating in projects focused on process automation, operational optimization, and improving the user experience. I am characterized by my analytical skills, organization, rapid adaptation to new systems, and a focus on continuous improvement.';
+      'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital products.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support. I\'ve also coordinated helpdesk, administered educational and digital platforms, and developed apps and sites with Flutter, Firebase and a web stack.\n\nDay to day I work with Flutter, Dart, Firebase and Git. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.';
 
   @override
   String get aboutProfileDevelopment => 'Development';

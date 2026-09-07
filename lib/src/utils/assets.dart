@@ -12,4 +12,7 @@ class AssetsUtil {
       'assets/img/tu-enlace-logo.png';
   static String imgProyectLogoTuEnlaceSciedtec =
       'assets/img/tu-enlace-logo-sciedtec.png';
+
+  /// CV servido desde `web/cv/` (ruta pública del sitio).
+  static const String cvDev2026 = '/cv/cv_sep_2026.pdf';
 }

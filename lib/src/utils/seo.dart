@@ -16,9 +16,9 @@ void setPageSEO({
 Map<String, (String title, String description)> get pageSeoData => {
       '/': (
         'Portafolio · Desarrollo, Soporte y Productos Digitales',
-        'Portafolio de Alberto Guaman (Ecuador): soporte técnico L1/L2 en Mi Chance, '
-            'desarrollo Flutter/web, productos Tinguar (Rapidito, Mi Negocio Listo, '
-            'Streaming Distribuidores) e Inox Hierro.',
+        'Portafolio de Alberto Guaman (Ecuador): soporte técnico L1/L2 IT '
+            '(más de 16 sucursales), desarrollo Flutter/web y productos Tinguar '
+            '(Rapidito, Mi Negocio Listo, Streaming Distribuidores).',
       ),
       '/bio': (
         'Sobre mí · Perfil profesional',

@@ -48,6 +48,9 @@ flutter:
   assets:
     - assets/img/
     - assets/img/project/
+    - assets/img/gallery/
+    - assets/img/avatar/
+    - assets/cv/
 
   fonts:
     - family: Minecraftia

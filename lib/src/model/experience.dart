@@ -57,32 +57,16 @@ List<Experience> infoExperienceModel = [
   Experience(
     title: 'MI CHANCE',
     stack:
-        'Soporte L1/L2, helpdesk, gestión de incidencias, atención a usuarios, diagnóstico técnico, escalamiento.',
+        'Soporte L1/L2 IT, helpdesk, gestión de incidencias, soporte a sucursales, diagnóstico técnico, escalamiento.',
     description: [
-      '- Atención y resolución de incidencias de soporte nivel 1 y nivel 2.',
+      '- Soporte técnico nivel 1 y nivel 2 en Informática / IT a más de 16 sucursales a nivel nacional.',
+      '- Atención y resolución de incidencias de hardware, software y sistemas operativos.',
       '- Diagnóstico técnico, clasificación y seguimiento de tickets hasta su cierre.',
-      '- Soporte a usuarios internos y puntos de atención en sistemas y operaciones.',
-      '- Escalamiento controlado de casos complejos y acompañamiento en la solución.',
-      '- Documentación de soluciones y mejora continua de procesos de soporte.',
+      '- Soporte remoto y acompañamiento a usuarios de puntos de atención en todo el país.',
+      '- Escalamiento controlado de casos complejos y documentación de soluciones.',
     ],
-    type: 'Soporte Técnico Nivel 1 y Nivel 2',
-    data: 'Junio 2026 – Actualidad',
-    country: 'Ecuador',
-  ),
-  Experience(
-    title: 'GRUPO CONSENSO',
-    stack:
-        'RPX, SAP 3, análisis crediticio, buró de crédito, gestión de cartera, crédito directo, evaluación financiera, validación documental, atención al cliente.',
-    description: [
-      '- Evaluación y análisis de clientes para aprobación de crédito directo.',
-      '- Gestión y seguimiento de cartera de clientes.',
-      '- Análisis de buró crediticio y riesgo financiero.',
-      '- Registro y validación de operaciones en RPX y SAP 3.',
-      '- Atención y asesoramiento comercial personalizado.',
-      '- Coordinación de procesos financieros para toma de decisiones.',
-    ],
-    type: 'Asesor Comercial',
-    data: 'Febrero 2026 – Mayo 2026 (4 meses)',
+    type: 'Soporte Técnico Nivel 1 y Nivel 2 en Informática / IT',
+    data: 'Febrero 2026 – Agosto 2026 (7 meses)',
     country: 'Ecuador',
   ),
   Experience(

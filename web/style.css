@@ -29,7 +29,7 @@ a {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 40%, #1f1f1f 0%, #151515 70%),
+    radial-gradient(ellipse 70% 55% at 50% 45%, #202020 0%, #151515 72%),
     #151515;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
@@ -50,11 +50,92 @@ a {
   animation: splash-pulse 2.4s ease-in-out infinite;
 }
 
+.splash__stickers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.splash__sticker {
+  position: absolute;
+  width: clamp(48px, 8vw, 96px);
+  height: auto;
+  opacity: 0;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+  animation: sticker-arrive 0.72s cubic-bezier(0.2, 0.85, 0.25, 1.2) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.splash__sticker--crown {
+  top: 11%;
+  left: 8%;
+  --from-x: -120px;
+  --rotation: -10deg;
+  --delay: 0.05s;
+}
+
+.splash__sticker--smile {
+  top: 13%;
+  right: 9%;
+  --from-x: 120px;
+  --rotation: 9deg;
+  --delay: 0.14s;
+}
+
+.splash__sticker--spark-left {
+  top: 51%;
+  left: 17%;
+  width: clamp(38px, 6vw, 68px);
+  --from-x: -100px;
+  --rotation: 12deg;
+  --delay: 0.25s;
+}
+
+.splash__sticker--spark-right {
+  top: 54%;
+  right: 18%;
+  width: clamp(38px, 6vw, 68px);
+  --from-x: 100px;
+  --rotation: -10deg;
+  --delay: 0.33s;
+}
+
+.splash__sticker--bolt {
+  bottom: 9%;
+  left: 9%;
+  --from-x: -130px;
+  --rotation: -8deg;
+  --delay: 0.42s;
+}
+
+.splash__sticker--wow {
+  right: 8%;
+  bottom: 8%;
+  --from-x: 130px;
+  --rotation: 8deg;
+  --delay: 0.5s;
+}
+
 .splash__card {
   position: relative;
   text-align: center;
+  width: min(28rem, calc(100vw - 3rem));
+  box-sizing: border-box;
   padding: 2rem 1.5rem;
-  max-width: 28rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  animation: splash-card-enter 0.65s ease-out both;
+}
+
+.splash__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 22%;
+  right: 22%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #fad85d, transparent);
 }
 
 .splash__eyebrow {
@@ -105,6 +186,15 @@ a {
   color: rgba(255, 255, 255, 0.55);
 }
 
+.splash__dots::after {
+  content: "…";
+  display: inline-block;
+  width: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: splash-dots 1.15s steps(4, end) infinite;
+}
+
 @keyframes splash-slide {
   0% { transform: translateX(-120%); }
   100% { transform: translateX(280%); }
@@ -115,13 +205,41 @@ a {
   50% { opacity: 1; transform: scale(1.06); }
 }
 
+@keyframes splash-card-enter {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes splash-dots {
+  0% { width: 0; }
+  100% { width: 1.3em; }
+}
+
+@keyframes sticker-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from-x)) scale(0.65) rotate(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(var(--rotation));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .splash__glow,
-  .splash__bar span {
+  .splash__bar span,
+  .splash__sticker,
+  .splash__card,
+  .splash__dots::after {
     animation: none;
   }
   .splash__bar span {
     width: 100%;
     transform: none;
+  }
+  .splash__sticker {
+    opacity: 1;
+    transform: rotate(var(--rotation));
   }
 }
