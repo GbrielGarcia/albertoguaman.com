@@ -1,10 +1,24 @@
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../model/model.dart';
 import '../utils/utils.dart';
 import 'widget.dart';
+
+Widget _socialIcon(String name) {
+  final asset = switch (name) {
+    'whatsapp' => 'assets/img/social/whatsapp.png',
+    'linkedin' => 'assets/img/social/linkedin.png',
+    'github' => 'assets/img/social/github.png',
+    _ => 'assets/img/social/github.png',
+  };
+
+  return Image.asset(
+    asset,
+    width: SizeUtils.l2,
+    height: SizeUtils.l2,
+    filterQuality: FilterQuality.high,
+  );
+}
 
 Widget iconDataRow({WrapAlignment alignment = WrapAlignment.center}) {
   return Padding(
@@ -20,11 +34,7 @@ Widget iconDataRow({WrapAlignment alignment = WrapAlignment.center}) {
               color: UtilsColor.colorSecondaryWhite,
               shape: const CircleBorder(),
               child: IconButton(
-                icon: FaIcon(
-                  button.icon,
-                  color: UtilsColor.colorPrimaryDark,
-                  size: SizeUtils.l2,
-                ),
+                icon: _socialIcon(button.name),
                 onPressed: () => laucherURL(button.url),
                 hoverColor: UtilsColor.colorPinkSecondary,
               ),

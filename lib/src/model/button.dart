@@ -1,24 +1,13 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 class ButtonModel {
   final String name;
   final String url;
-  final FaIconData icon;
 
-  ButtonModel({required this.name, required this.url, required this.icon});
+  const ButtonModel({required this.name, required this.url});
 }
 
-List<ButtonModel> infoButtonModel = [
+const List<ButtonModel> infoButtonModel = [
+  ButtonModel(name: 'whatsapp', url: 'https://wa.me/593992889078'),
   ButtonModel(
-      name: 'whatsapp',
-      url: 'https://wa.me/593992889078',
-      icon: FontAwesomeIcons.whatsapp),
-  ButtonModel(
-      name: 'linkedin',
-      url: 'https://www.linkedin.com/in/albertoguaman',
-      icon: FontAwesomeIcons.linkedinIn),
-  ButtonModel(
-      name: 'github',
-      url: 'https://github.com/GbrielGarcia',
-      icon: FontAwesomeIcons.github),
+      name: 'linkedin', url: 'https://www.linkedin.com/in/albertoguaman'),
+  ButtonModel(name: 'github', url: 'https://github.com/GbrielGarcia'),
 ];

@@ -50,6 +50,7 @@ flutter:
     - assets/img/project/
     - assets/img/gallery/
     - assets/img/avatar/
+    - assets/img/social/
     - assets/cv/
 
   fonts:
