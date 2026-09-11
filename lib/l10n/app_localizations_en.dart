@@ -36,6 +36,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get galleryHint => 'A glimpse into a few moments from my day to day.';
 
   @override
+  String get clients => 'Clients';
+
+  @override
+  String get clientsHint => 'Clients developed with Tinguar.';
+
+  @override
   String get administratorIt => 'Information Technology Administrator';
 
   @override
@@ -117,7 +123,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get descriptionAboutDevelopment =>
-      'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital products.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support. I\'ve also coordinated helpdesk, administered educational and digital platforms, and developed apps and sites with Flutter, Firebase and a web stack.\n\nDay to day I work with Flutter, Dart, Firebase and Git. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.';
+      'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital solutions.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support.\n\nThis coverage includes technical support and assistance for more than 200 internal employees. I also develop Java modules for an MDM platform focused on tracking and managing enterprise devices.\n\nMy experience combines Java, MDM, Flutter, Dart, Firebase, Git and a web stack. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.';
 
   @override
   String get aboutProfileDevelopment => 'Development';

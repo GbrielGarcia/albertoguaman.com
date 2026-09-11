@@ -36,6 +36,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get galleryHint => 'Una mirada a algunos momentos de mi día a día.';
 
   @override
+  String get clients => 'Clientes';
+
+  @override
+  String get clientsHint => 'Clientes desarrollados con Tinguar.';
+
+  @override
   String get administratorIt =>
       'Administrador de Tecnologías de la Información';
 
@@ -118,7 +124,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get descriptionAboutDevelopment =>
-      'Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de productos digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto. También he coordinado helpdesk, administrado plataformas educativas y digitales, y desarrollado apps y sitios con Flutter, Firebase y stack web.\n\nHoy uso Flutter, Dart, Firebase y Git en el día a día. También trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.';
+      'Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de soluciones digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto.\n\nEsta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos. También desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.\n\nMi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web. Además, trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.';
 
   @override
   String get aboutProfileDevelopment => 'Desarrollo';

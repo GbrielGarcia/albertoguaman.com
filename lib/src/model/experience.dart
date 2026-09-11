@@ -57,15 +57,17 @@ List<Experience> infoExperienceModel = [
   Experience(
     title: 'MI CHANCE',
     stack:
-        'Soporte L1/L2 IT, helpdesk, gestión de incidencias, soporte a sucursales, diagnóstico técnico, escalamiento.',
+        'Java, MDM, rastreo y gestión de equipos empresariales, soporte L1/L2 IT, helpdesk, gestión de incidencias.',
     description: [
+      '- Desarrollo de módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.',
       '- Soporte técnico nivel 1 y nivel 2 en Informática / IT a más de 16 sucursales a nivel nacional.',
+      '- Atención y acompañamiento tecnológico a más de 200 colaboradores internos.',
       '- Atención y resolución de incidencias de hardware, software y sistemas operativos.',
       '- Diagnóstico técnico, clasificación y seguimiento de tickets hasta su cierre.',
       '- Soporte remoto y acompañamiento a usuarios de puntos de atención en todo el país.',
       '- Escalamiento controlado de casos complejos y documentación de soluciones.',
     ],
-    type: 'Soporte Técnico Nivel 1 y Nivel 2 en Informática / IT',
+    type: 'Desarrollo Java para MDM y Soporte Técnico L1/L2 IT',
     data: 'Febrero 2026 – Agosto 2026 (7 meses)',
     country: 'Ecuador',
   ),

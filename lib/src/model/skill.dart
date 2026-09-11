@@ -28,6 +28,7 @@ const List<SkillGroup> infoSkillGroups = [
     title: 'Desarrollo',
     subtitle: 'Apps, web y datos',
     items: [
+      SkillItem(name: 'Java', icon: FontAwesomeIcons.java),
       SkillItem(name: 'Flutter', icon: FontAwesomeIcons.flutter),
       SkillItem(name: 'Dart', icon: FontAwesomeIcons.code),
       SkillItem(name: 'Firebase', icon: FontAwesomeIcons.fire),
@@ -43,8 +44,12 @@ const List<SkillGroup> infoSkillGroups = [
     title: 'Soporte / IT',
     subtitle: 'Helpdesk y operación técnica',
     items: [
+      SkillItem(
+          name: 'MDM / gestión de equipos',
+          icon: FontAwesomeIcons.mobileScreen),
       SkillItem(name: 'Helpdesk', icon: FontAwesomeIcons.headset),
-      SkillItem(name: 'Soporte L1 / L2', icon: FontAwesomeIcons.screwdriverWrench),
+      SkillItem(
+          name: 'Soporte L1 / L2', icon: FontAwesomeIcons.screwdriverWrench),
       SkillItem(name: 'Incidencias', icon: FontAwesomeIcons.ticket),
       SkillItem(name: 'Hardware / software', icon: FontAwesomeIcons.laptop),
       SkillItem(name: 'Moodle', icon: FontAwesomeIcons.graduationCap),
@@ -70,7 +75,9 @@ const List<SkillGroup> infoSkillGroups = [
       SkillItem(name: 'Cursor', icon: FontAwesomeIcons.terminal),
       SkillItem(name: 'Claude (Anthropic)', icon: FontAwesomeIcons.robot),
       SkillItem(name: 'Modelos predictivos', icon: FontAwesomeIcons.brain),
-      SkillItem(name: 'Asistentes de código', icon: FontAwesomeIcons.wandMagicSparkles),
+      SkillItem(
+          name: 'Asistentes de código',
+          icon: FontAwesomeIcons.wandMagicSparkles),
     ],
   ),
 ];

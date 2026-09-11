@@ -152,6 +152,18 @@ abstract class AppLocalizations {
   /// **'A glimpse into a few moments from my day to day.'**
   String get galleryHint;
 
+  /// No description provided for @clients.
+  ///
+  /// In en, this message translates to:
+  /// **'Clients'**
+  String get clients;
+
+  /// No description provided for @clientsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Clients developed with Tinguar.'**
+  String get clientsHint;
+
   /// No description provided for @administratorIt.
   ///
   /// In en, this message translates to:
@@ -305,7 +317,7 @@ abstract class AppLocalizations {
   /// No description provided for @descriptionAboutDevelopment.
   ///
   /// In en, this message translates to:
-  /// **'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital products.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support. I\'ve also coordinated helpdesk, administered educational and digital platforms, and developed apps and sites with Flutter, Firebase and a web stack.\n\nDay to day I work with Flutter, Dart, Firebase and Git. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.'**
+  /// **'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital solutions.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support.\n\nThis coverage includes technical support and assistance for more than 200 internal employees. I also develop Java modules for an MDM platform focused on tracking and managing enterprise devices.\n\nMy experience combines Java, MDM, Flutter, Dart, Firebase, Git and a web stack. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.'**
   String get descriptionAboutDevelopment;
 
   /// No description provided for @aboutProfileDevelopment.

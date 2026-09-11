@@ -5,3 +5,4 @@ export 'experience.dart';
 export 'content_post.dart';
 export 'skill.dart';
 export 'gallery.dart';
+export 'client.dart';

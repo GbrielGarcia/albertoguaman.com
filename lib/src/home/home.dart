@@ -34,6 +34,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
   final ScrollController _galleryForwardController = ScrollController();
   final ScrollController _galleryReverseController = ScrollController();
   final ScrollController _galleryThirdController = ScrollController();
+  final ScrollController _clientsForwardController = ScrollController();
+  final ScrollController _clientsReverseController = ScrollController();
   Timer? _colorBarTimer;
   Timer? _galleryAutoScrollTimer;
   int _barColorIndex = 0;
@@ -54,13 +56,15 @@ class _PortfolioScreenState extends State<HomeSrc> {
     });
     _galleryAutoScrollTimer =
         Timer.periodic(const Duration(milliseconds: 30), (_) {
-      _moveGalleryRow(_galleryForwardController, 0.45);
-      _moveGalleryRow(_galleryReverseController, 0.38);
-      _moveGalleryRow(_galleryThirdController, 0.32);
+      _moveHorizontalRow(_galleryForwardController, 0.45);
+      _moveHorizontalRow(_galleryReverseController, 0.38);
+      _moveHorizontalRow(_galleryThirdController, 0.32);
+      _moveHorizontalRow(_clientsForwardController, 0.55);
+      _moveHorizontalRow(_clientsReverseController, 0.48);
     });
   }
 
-  void _moveGalleryRow(ScrollController controller, double step) {
+  void _moveHorizontalRow(ScrollController controller, double step) {
     if (!controller.hasClients) return;
     final position = controller.position;
     if (!position.hasContentDimensions) return;
@@ -91,6 +95,8 @@ class _PortfolioScreenState extends State<HomeSrc> {
     _galleryForwardController.dispose();
     _galleryReverseController.dispose();
     _galleryThirdController.dispose();
+    _clientsForwardController.dispose();
+    _clientsReverseController.dispose();
     super.dispose();
   }
 
@@ -112,6 +118,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
         (id: SectionId.experience, label: al.experience),
         (id: SectionId.skills, label: al.skills),
         (id: SectionId.projects, label: al.project),
+        (id: SectionId.clients, label: al.clients),
         (id: SectionId.publications, label: al.publications),
         (id: SectionId.gallery, label: al.gallery),
       ];
@@ -241,6 +248,12 @@ class _PortfolioScreenState extends State<HomeSrc> {
           controller: _scrollController,
           delay: const Duration(milliseconds: 60),
           child: _buildProject(al, context),
+        ),
+        _buildSectionContent('', sectionKeys[SectionId.clients]!),
+        ScrollReveal(
+          controller: _scrollController,
+          delay: const Duration(milliseconds: 60),
+          child: _buildClients(al),
         ),
         _buildSectionContent('', sectionKeys[SectionId.publications]!),
         ScrollReveal(
@@ -563,6 +576,89 @@ class _PortfolioScreenState extends State<HomeSrc> {
         ),
         color: Colors.transparent,
         title: al!.skills,
+      ),
+    );
+  }
+
+  Widget _buildClients(AppLocalizations? al) {
+    final descriptionSize =
+        TextStyleSize.textDescriptionSize(context.screenWidth);
+    final firstRow = <String>[
+      for (var i = 0; i < infoClientNames.length; i += 2) infoClientNames[i],
+    ];
+    final secondRow = <String>[
+      for (var i = 1; i < infoClientNames.length; i += 2) infoClientNames[i],
+    ];
+
+    return ResponsiveCenter(
+      child: _buildContainerInfo(
+        al,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildClientsRow(
+              names: firstRow,
+              controller: _clientsForwardController,
+              descriptionSize: descriptionSize,
+            ),
+            SizedBox(height: SizeUtils.s),
+            _buildClientsRow(
+              names: secondRow,
+              controller: _clientsReverseController,
+              descriptionSize: descriptionSize,
+              reverse: true,
+            ),
+          ],
+        ),
+        color: Colors.transparent,
+        title: al!.clients,
+      ),
+    );
+  }
+
+  Widget _buildClientsRow({
+    required List<String> names,
+    required ScrollController controller,
+    required double descriptionSize,
+    bool reverse = false,
+  }) {
+    // Repetir para que siempre haya recorrido horizontal.
+    const repeats = 4;
+    final items = <String>[
+      for (var r = 0; r < repeats; r++) ...names,
+    ];
+    final rowHeight = descriptionSize * 2.2;
+
+    return SizedBox(
+      height: rowHeight,
+      child: ListView.separated(
+        controller: controller,
+        scrollDirection: Axis.horizontal,
+        reverse: reverse,
+        physics: const BouncingScrollPhysics(),
+        itemCount: items.length,
+        separatorBuilder: (_, __) => SizedBox(width: SizeUtils.s),
+        itemBuilder: (context, index) {
+          return Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(
+              horizontal: SizeUtils.m,
+              vertical: SizeUtils.s,
+            ),
+            decoration: BoxDecoration(
+              color: UtilsColor.colorSecondaryWhite,
+              borderRadius: BorderRadius.circular(SizeUtils.m),
+            ),
+            child: Text(
+              items[index],
+              style: StyleText.textPortfolio(
+                fontSize: descriptionSize * 0.92,
+                fontWeight: FontWeight.w600,
+                color: UtilsColor.colorPrimaryDark,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

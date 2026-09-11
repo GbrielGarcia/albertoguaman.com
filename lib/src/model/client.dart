@@ -1,0 +1,20 @@
+/// Clientes trabajados con Tinguar (portafolio tinguar.com).
+const List<String> infoClientNames = [
+  'All Clean Ways',
+  'EMAPASOSQ-EP',
+  'Tatiana Jiménez Abogada',
+  'LiliBot',
+  'Tarot Pragmático',
+  'Tarot Pragmático - Calculadora de Arcanos',
+  'Streaming Ecuador',
+  'Axxo Imagen',
+  'Inox Hierro',
+  'Sciedtec',
+  'Lars Tree Services',
+  'Ml Digital',
+  'Arminox',
+  'David Streaming',
+  'Daniel Jaramillo Abogado',
+  'Agleview Restoration LLC',
+  'Lili Gestion',
+];

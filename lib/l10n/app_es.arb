@@ -9,6 +9,8 @@
   "skills": "Herramientas",
   "gallery": "Galería",
   "galleryHint": "Una mirada a algunos momentos de mi día a día.",
+  "clients": "Clientes",
+  "clientsHint": "Clientes desarrollados con Tinguar.",
   "administratorIt": "Administrador de Tecnologías de la Información",
   "administratorItShort": "Administrador TI",
   "seeProject": "ver proyecto",
@@ -35,7 +37,7 @@
   "view": "Visualizar",
 
   "descriptionAbout": "Soy Alberto Guaman. Me muevo entre soporte técnico y desarrollo: tickets, sistemas caídos, apps y sitios que tienen que funcionar en el día a día.\n\nHe dado soporte L1/L2 de informática a sucursales a nivel nacional, coordinado helpdesk, administrado operación comercial y armado productos digitales con Flutter, web y e-commerce.\n\nSi algo se rompe, lo diagnostico; si hay que construir, lo construyo. Ese es el hilo de mi trayectoria.",
-  "descriptionAboutDevelopment": "Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de productos digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto. También he coordinado helpdesk, administrado plataformas educativas y digitales, y desarrollado apps y sitios con Flutter, Firebase y stack web.\n\nHoy uso Flutter, Dart, Firebase y Git en el día a día. También trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.",
+  "descriptionAboutDevelopment": "Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de soluciones digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto.\n\nEsta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos. También desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.\n\nMi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web. Además, trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.",
   "aboutProfileDevelopment": "Desarrollo",
   "aboutProfileAdvisor": "Asesor",
   "experience": "Experiencia",
