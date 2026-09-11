@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/utils.dart';
 import 'animated_background.dart';
+import 'year_float_background.dart';
 
 /// Preferencia global: mostrar u ocultar el fondo de partículas (burbujas).
 /// Por defecto está desactivado; si el usuario lo activa, se persiste con [SharedPreferences] (en web, `localStorage`).
@@ -134,6 +135,9 @@ class _BubbleBackgroundLayerState extends State<BubbleBackgroundLayer>
         return Stack(
           fit: StackFit.expand,
           children: [
+            const Positioned.fill(
+              child: YearFloatBackground(),
+            ),
             if (prefs.bubblesEnabled)
               Positioned.fill(
                 child: IgnorePointer(

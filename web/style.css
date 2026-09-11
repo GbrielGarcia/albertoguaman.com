@@ -45,9 +45,26 @@ a {
   width: min(520px, 80vw);
   height: min(520px, 80vw);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(250, 216, 93, 0.16) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(112, 126, 255, 0.18) 0%, transparent 68%);
   filter: blur(8px);
   animation: splash-pulse 2.4s ease-in-out infinite;
+}
+
+.splash__years {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.splash__year {
+  position: absolute;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .splash__stickers {
@@ -55,6 +72,7 @@ a {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  z-index: 1;
 }
 
 .splash__sticker {
@@ -119,6 +137,7 @@ a {
 
 .splash__card {
   position: relative;
+  z-index: 2;
   text-align: center;
   width: min(28rem, calc(100vw - 3rem));
   box-sizing: border-box;
@@ -135,7 +154,7 @@ a {
   left: 22%;
   right: 22%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #fad85d, transparent);
+  background: linear-gradient(90deg, transparent, #707eff, transparent);
 }
 
 .splash__eyebrow {
@@ -143,7 +162,7 @@ a {
   font-size: 0.75rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #fad85d;
+  color: #707eff;
   font-weight: 700;
 }
 

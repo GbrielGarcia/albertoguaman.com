@@ -25,20 +25,26 @@ Widget iconDataRow({WrapAlignment alignment = WrapAlignment.center}) {
     padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
     child: Wrap(
       alignment: alignment,
-      spacing: SizeUtils.s1,
+      spacing: SizeUtils.m,
       runSpacing: SizeUtils.s1,
       children: infoButtonModel.map((button) {
         return tooltipW(
-            button.url,
-            Material(
-              color: UtilsColor.colorSecondaryWhite,
-              shape: const CircleBorder(),
-              child: IconButton(
-                icon: _socialIcon(button.name),
-                onPressed: () => laucherURL(button.url),
-                hoverColor: UtilsColor.colorPinkSecondary,
+          button.url,
+          Material(
+            color: UtilsColor.colorSecondaryWhite,
+            elevation: 0,
+            shape: const CircleBorder(),
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () => laucherURL(button.url),
+              hoverColor: UtilsColor.colorPinkSecondary.withValues(alpha: 0.35),
+              child: Padding(
+                padding: EdgeInsets.all(SizeUtils.s),
+                child: _socialIcon(button.name),
               ),
-            ));
+            ),
+          ),
+        );
       }).toList(),
     ),
   );

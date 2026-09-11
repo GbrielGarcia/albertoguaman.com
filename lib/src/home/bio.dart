@@ -61,26 +61,45 @@ class Bio extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const SiteNav(),
+                      SizedBox(height: SizeUtils.l),
                       buildRowName(context, animateEntrance: true),
                       SizedBox(height: SizeUtils.l),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.all(SizeUtils.s),
+                        padding: EdgeInsets.all(SizeUtils.l),
                         decoration: BoxDecoration(
-                          color: UtilsColor.colorBlue,
-                          border: Border.all(color: UtilsColor.colorBlue),
-                          borderRadius: BorderRadius.circular(SizeUtils.m),
+                          color:
+                              UtilsColor.colorSurface.withValues(alpha: 0.85),
+                          border: Border.all(
+                            color: UtilsColor.colorSecondaryWhite
+                                .withValues(alpha: 0.08),
+                          ),
+                          borderRadius: BorderRadius.circular(SizeUtils.l),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              (al?.aboutMe ?? 'Sobre mí').toUpperCase(),
-                              style: StyleText.textPortfolio(
-                                fontSize: titleSize,
-                                fontWeight: FontWeight.bold,
-                                color: UtilsColor.colorSecondaryWhite,
-                              ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 4,
+                                  height: titleSize * 0.7,
+                                  decoration: BoxDecoration(
+                                    color: UtilsColor.colorBlue,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                                SizedBox(width: SizeUtils.s),
+                                Text(
+                                  (al?.aboutMe ?? 'Sobre mí').toUpperCase(),
+                                  style: StyleText.textPortfolio(
+                                    fontSize: titleSize,
+                                    fontWeight: FontWeight.w700,
+                                    color: UtilsColor.colorSecondaryWhite,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: SizeUtils.m),
                             const AboutProfileContent(
@@ -96,7 +115,7 @@ class Bio extends StatelessWidget {
                         style: StyleText.textPortfolio(
                           fontSize: bodySize,
                           fontWeight: FontWeight.bold,
-                          color: UtilsColor.colorYellow,
+                          color: UtilsColor.colorBlue,
                         ),
                       ),
                       SizedBox(height: SizeUtils.m),
@@ -118,6 +137,7 @@ class Bio extends StatelessWidget {
                           '+593 99 288 9078',
                           al?.contacMe ?? 'Contáctame',
                           width: double.infinity,
+                          variant: PortfolioButtonVariant.solid,
                         ),
                       ] else
                         Row(
@@ -144,6 +164,7 @@ class Bio extends StatelessWidget {
                                 '+593 99 288 9078',
                                 al?.contacMe ?? 'Contáctame',
                                 width: double.infinity,
+                                variant: PortfolioButtonVariant.solid,
                               ),
                             ),
                           ],

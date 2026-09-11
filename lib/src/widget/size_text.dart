@@ -1,4 +1,3 @@
-
 import '../utils/utils.dart';
 
 extension DoubleX on double {

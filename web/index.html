@@ -29,6 +29,7 @@
   <meta name="keywords" content="Alberto Guaman, portafolio, Flutter, Dart, desarrollo web, aplicaciones móviles, soporte técnico, helpdesk, Tinguar, Rapidito, Mi Negocio Listo, Mi Chance, Ecuador, Santo Domingo">
   <meta name="author" content="Alberto Guaman">
   <link rel="canonical" href="https://albertoguaman.com/">
+  <link rel="alternate" type="application/rss+xml" title="Alberto Guaman Blog RSS" href="https://albertoguaman.com/blog/rss.xml">
   <link rel="alternate" hreflang="es" href="https://albertoguaman.com/">
   <link rel="alternate" hreflang="x-default" href="https://albertoguaman.com/">
 
@@ -131,6 +132,11 @@
       <h2>Secciones</h2>
       <ul>
         <li><a href="https://albertoguaman.com/">Inicio / Portafolio</a></li>
+        <li><a href="https://albertoguaman.com/casos">Casos de estudio</a></li>
+        <li><a href="https://albertoguaman.com/recomendaciones">Recomendaciones</a></li>
+        <li><a href="https://albertoguaman.com/blog">Blog</a></li>
+        <li><a href="https://albertoguaman.com/galeria">Galería</a></li>
+        <li><a href="https://albertoguaman.com/contacto">Contacto</a></li>
         <li><a href="https://albertoguaman.com/bio">Sobre mí</a></li>
       </ul>
       <h2>Proyectos destacados</h2>
@@ -146,11 +152,12 @@
         <li><a href="https://www.linkedin.com/in/albertoguaman">LinkedIn</a></li>
       </ul>
       <h2>Contacto</h2>
-      <p><a href="https://wa.me/593992889078">WhatsApp</a> · <a href="https://github.com/GbrielGarcia">GitHub</a> · <a href="https://tinguar.com/">Tinguar</a></p>
+      <p><a href="mailto:contacto@albertoguaman.com">contacto@albertoguaman.com</a> · <a href="https://wa.me/593992889078">WhatsApp</a> · <a href="https://github.com/GbrielGarcia">GitHub</a> · <a href="https://tinguar.com/">Tinguar</a></p>
     </main>
   </noscript>
 
   <div id="loading-fallback" class="splash" role="status" aria-live="polite" aria-label="Cargando portafolio de Alberto Guaman">
+    <div class="splash__years" aria-hidden="true" id="splash-years"></div>
     <div class="splash__glow" aria-hidden="true"></div>
     <div class="splash__stickers" aria-hidden="true">
       <img class="splash__sticker splash__sticker--crown" src="stickers/crown.png" alt="">
@@ -165,7 +172,7 @@
       <h1 class="splash__name">Alberto Guaman</h1>
       <p class="splash__tagline">Desarrollo · Soporte · Productos digitales</p>
       <div class="splash__bar" aria-hidden="true"><span></span></div>
-      <p class="splash__status">Preparando experiencia<span class="splash__dots" aria-hidden="true"></span></p>
+      <p class="splash__status">Cargando<span class="splash__dots" aria-hidden="true"></span></p>
     </div>
   </div>
 
@@ -175,6 +182,40 @@
   -->
   <script src="flutter_bootstrap.js" async></script>
   <script>
+    (function () {
+      var year = String(new Date().getFullYear());
+      var host = document.getElementById('splash-years');
+      if (host) {
+        var specs = [
+          [6, 8, 7.5, 0.01, -8],
+          [55, 4, 4.5, 0.014, 10],
+          [78, 18, 10, 0.008, -5],
+          [12, 32, 3, 0.016, 12],
+          [42, 28, 6, 0.01, -12],
+          [68, 42, 3.4, 0.013, 6],
+          [2, 55, 8.5, 0.007, 8],
+          [35, 58, 4, 0.012, -16],
+          [82, 62, 5.5, 0.01, 3],
+          [18, 78, 6.8, 0.009, -3],
+          [58, 82, 2.9, 0.015, 18],
+          [88, 88, 8, 0.008, -9],
+          [48, 14, 2.4, 0.016, 22],
+          [28, 45, 11, 0.007, -2]
+        ];
+        for (var i = 0; i < specs.length; i++) {
+          var s = specs[i];
+          var el = document.createElement('span');
+          el.className = 'splash__year';
+          el.textContent = year;
+          el.style.left = s[0] + '%';
+          el.style.top = s[1] + '%';
+          el.style.fontSize = 'clamp(1.2rem, ' + s[2] + 'vw, ' + (s[2] * 1.4) + 'rem)';
+          el.style.opacity = String(s[3]);
+          el.style.transform = 'rotate(' + s[4] + 'deg)';
+          host.appendChild(el);
+        }
+      }
+    })();
     window.addEventListener('flutter-first-frame', function () {
       var el = document.getElementById('loading-fallback');
       if (!el) return;
