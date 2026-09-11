@@ -42,6 +42,89 @@ class AppLocalizationsEs extends AppLocalizations {
   String get clientsHint => 'Clientes desarrollados con Tinguar.';
 
   @override
+  String get blog => 'Blog';
+
+  @override
+  String get blogHint => 'Artículos sobre desarrollo, Flutter, web y más.';
+
+  @override
+  String get blogRss => 'RSS del blog';
+
+  @override
+  String get blogEmptyFilter => 'No hay artículos en esta categoría.';
+
+  @override
+  String get home => 'Inicio';
+
+  @override
+  String get homeHeroLead =>
+      'Desarrollo, soporte IT y productos digitales que tienen que funcionar en el día a día. De tickets y MDM a Flutter, web y e-commerce.';
+
+  @override
+  String get contact => 'Contacto';
+
+  @override
+  String get contactHint =>
+      'Escríbeme a contacto@albertoguaman.com, por WhatsApp o descarga el CV.';
+
+  @override
+  String get contactEmail => 'contacto@albertoguaman.com';
+
+  @override
+  String get cvPreview => 'Vista previa del CV';
+
+  @override
+  String get downloadCv => 'Descargar CV';
+
+  @override
+  String get availabilityOpen => 'Abierto a oportunidades';
+
+  @override
+  String get availabilityRole => 'Especialista IP · Desarrollo / Soporte IT';
+
+  @override
+  String get cvPageTitle => 'CV';
+
+  @override
+  String get cvPageHint => 'Vista previa e impresión del currículum.';
+
+  @override
+  String get printCv => 'Imprimir';
+
+  @override
+  String get contactFormTitle => 'Formulario de contacto';
+
+  @override
+  String get contactFormName => 'Nombre';
+
+  @override
+  String get contactFormEmail => 'Email';
+
+  @override
+  String get contactFormTopic => 'Tema';
+
+  @override
+  String get contactFormMessage => 'Mensaje';
+
+  @override
+  String get contactFormSubmit => 'Enviar';
+
+  @override
+  String get contactFormRequired => 'Completa nombre, email y mensaje.';
+
+  @override
+  String get contactTopicGeneral => 'Consulta general';
+
+  @override
+  String get contactTopicJob => 'Oportunidad laboral';
+
+  @override
+  String get contactTopicProject => 'Proyecto / desarrollo';
+
+  @override
+  String get themeToggle => 'Tema';
+
+  @override
   String get administratorIt =>
       'Administrador de Tecnologías de la Información';
 
@@ -137,6 +220,50 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get project => 'Proyectos';
+
+  @override
+  String get caseStudies => 'Casos de estudio';
+
+  @override
+  String get caseStudiesHint =>
+      'Problema, solución y resultados de proyectos reales.';
+
+  @override
+  String get navCaseStudies => 'Casos';
+
+  @override
+  String get navTestimonials => 'Reseñas';
+
+  @override
+  String get caseStudyProblem => 'Problema';
+
+  @override
+  String get caseStudySolution => 'Solución';
+
+  @override
+  String get caseStudyResults => 'Resultados';
+
+  @override
+  String get caseStudyStack => 'Stack';
+
+  @override
+  String get testimonials => 'Recomendaciones';
+
+  @override
+  String get testimonialsHint =>
+      'Reseñas de clientes en proyectos con Tinguar.';
+
+  @override
+  String get testimonialsGoogleCertified => 'Reseñas certificadas por Google';
+
+  @override
+  String get exploreMore => 'Explorar';
+
+  @override
+  String get exploreCasesCta => 'Ver casos de estudio';
+
+  @override
+  String get exploreReviewsCta => 'Ver recomendaciones';
 
   @override
   String get publications => 'Publicaciones';

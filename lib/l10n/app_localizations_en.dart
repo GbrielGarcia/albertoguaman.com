@@ -42,6 +42,89 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clientsHint => 'Clients developed with Tinguar.';
 
   @override
+  String get blog => 'Blog';
+
+  @override
+  String get blogHint => 'Articles about development, Flutter, web and more.';
+
+  @override
+  String get blogRss => 'Blog RSS';
+
+  @override
+  String get blogEmptyFilter => 'No articles in this category.';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get homeHeroLead =>
+      'Development, IT support and digital products that have to work day to day. From tickets and MDM to Flutter, web and e-commerce.';
+
+  @override
+  String get contact => 'Contact';
+
+  @override
+  String get contactHint =>
+      'Email contacto@albertoguaman.com, WhatsApp, or download the CV.';
+
+  @override
+  String get contactEmail => 'contacto@albertoguaman.com';
+
+  @override
+  String get cvPreview => 'CV preview';
+
+  @override
+  String get downloadCv => 'Download CV';
+
+  @override
+  String get availabilityOpen => 'Open to opportunities';
+
+  @override
+  String get availabilityRole => 'IP Specialist · Development / IT Support';
+
+  @override
+  String get cvPageTitle => 'CV';
+
+  @override
+  String get cvPageHint => 'Preview and print the résumé.';
+
+  @override
+  String get printCv => 'Print';
+
+  @override
+  String get contactFormTitle => 'Contact form';
+
+  @override
+  String get contactFormName => 'Name';
+
+  @override
+  String get contactFormEmail => 'Email';
+
+  @override
+  String get contactFormTopic => 'Topic';
+
+  @override
+  String get contactFormMessage => 'Message';
+
+  @override
+  String get contactFormSubmit => 'Send';
+
+  @override
+  String get contactFormRequired => 'Please fill name, email and message.';
+
+  @override
+  String get contactTopicGeneral => 'General inquiry';
+
+  @override
+  String get contactTopicJob => 'Job opportunity';
+
+  @override
+  String get contactTopicProject => 'Project / development';
+
+  @override
+  String get themeToggle => 'Theme';
+
+  @override
   String get administratorIt => 'Information Technology Administrator';
 
   @override
@@ -136,6 +219,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get project => 'Projects';
+
+  @override
+  String get caseStudies => 'Case studies';
+
+  @override
+  String get caseStudiesHint =>
+      'Problem, solution and outcomes from real projects.';
+
+  @override
+  String get navCaseStudies => 'Cases';
+
+  @override
+  String get navTestimonials => 'Reviews';
+
+  @override
+  String get caseStudyProblem => 'Problem';
+
+  @override
+  String get caseStudySolution => 'Solution';
+
+  @override
+  String get caseStudyResults => 'Results';
+
+  @override
+  String get caseStudyStack => 'Stack';
+
+  @override
+  String get testimonials => 'Testimonials';
+
+  @override
+  String get testimonialsHint => 'Client reviews from projects with Tinguar.';
+
+  @override
+  String get testimonialsGoogleCertified => 'Reviews certified by Google';
+
+  @override
+  String get exploreMore => 'Explore';
+
+  @override
+  String get exploreCasesCta => 'View case studies';
+
+  @override
+  String get exploreReviewsCta => 'View testimonials';
 
   @override
   String get publications => 'Publications';

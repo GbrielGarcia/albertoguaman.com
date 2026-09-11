@@ -3,4 +3,5 @@ void setPageSEO({
   required String title,
   required String description,
   String? path,
+  String? imageUrl,
 }) {}

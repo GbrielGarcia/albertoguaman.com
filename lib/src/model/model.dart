@@ -6,3 +6,6 @@ export 'content_post.dart';
 export 'skill.dart';
 export 'gallery.dart';
 export 'client.dart';
+export 'blog_post.dart';
+export 'case_study.dart';
+export 'testimonial.dart';

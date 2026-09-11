@@ -164,6 +164,168 @@ abstract class AppLocalizations {
   /// **'Clients developed with Tinguar.'**
   String get clientsHint;
 
+  /// No description provided for @blog.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog'**
+  String get blog;
+
+  /// No description provided for @blogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles about development, Flutter, web and more.'**
+  String get blogHint;
+
+  /// No description provided for @blogRss.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog RSS'**
+  String get blogRss;
+
+  /// No description provided for @blogEmptyFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No articles in this category.'**
+  String get blogEmptyFilter;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @homeHeroLead.
+  ///
+  /// In en, this message translates to:
+  /// **'Development, IT support and digital products that have to work day to day. From tickets and MDM to Flutter, web and e-commerce.'**
+  String get homeHeroLead;
+
+  /// No description provided for @contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get contact;
+
+  /// No description provided for @contactHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email contacto@albertoguaman.com, WhatsApp, or download the CV.'**
+  String get contactHint;
+
+  /// No description provided for @contactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'contacto@albertoguaman.com'**
+  String get contactEmail;
+
+  /// No description provided for @cvPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'CV preview'**
+  String get cvPreview;
+
+  /// No description provided for @downloadCv.
+  ///
+  /// In en, this message translates to:
+  /// **'Download CV'**
+  String get downloadCv;
+
+  /// No description provided for @availabilityOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open to opportunities'**
+  String get availabilityOpen;
+
+  /// No description provided for @availabilityRole.
+  ///
+  /// In en, this message translates to:
+  /// **'IP Specialist · Development / IT Support'**
+  String get availabilityRole;
+
+  /// No description provided for @cvPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CV'**
+  String get cvPageTitle;
+
+  /// No description provided for @cvPageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview and print the résumé.'**
+  String get cvPageHint;
+
+  /// No description provided for @printCv.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get printCv;
+
+  /// No description provided for @contactFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact form'**
+  String get contactFormTitle;
+
+  /// No description provided for @contactFormName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contactFormName;
+
+  /// No description provided for @contactFormEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get contactFormEmail;
+
+  /// No description provided for @contactFormTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic'**
+  String get contactFormTopic;
+
+  /// No description provided for @contactFormMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get contactFormMessage;
+
+  /// No description provided for @contactFormSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get contactFormSubmit;
+
+  /// No description provided for @contactFormRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill name, email and message.'**
+  String get contactFormRequired;
+
+  /// No description provided for @contactTopicGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General inquiry'**
+  String get contactTopicGeneral;
+
+  /// No description provided for @contactTopicJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Job opportunity'**
+  String get contactTopicJob;
+
+  /// No description provided for @contactTopicProject.
+  ///
+  /// In en, this message translates to:
+  /// **'Project / development'**
+  String get contactTopicProject;
+
+  /// No description provided for @themeToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeToggle;
+
   /// No description provided for @administratorIt.
   ///
   /// In en, this message translates to:
@@ -343,6 +505,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Projects'**
   String get project;
+
+  /// No description provided for @caseStudies.
+  ///
+  /// In en, this message translates to:
+  /// **'Case studies'**
+  String get caseStudies;
+
+  /// No description provided for @caseStudiesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem, solution and outcomes from real projects.'**
+  String get caseStudiesHint;
+
+  /// No description provided for @navCaseStudies.
+  ///
+  /// In en, this message translates to:
+  /// **'Cases'**
+  String get navCaseStudies;
+
+  /// No description provided for @navTestimonials.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews'**
+  String get navTestimonials;
+
+  /// No description provided for @caseStudyProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem'**
+  String get caseStudyProblem;
+
+  /// No description provided for @caseStudySolution.
+  ///
+  /// In en, this message translates to:
+  /// **'Solution'**
+  String get caseStudySolution;
+
+  /// No description provided for @caseStudyResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Results'**
+  String get caseStudyResults;
+
+  /// No description provided for @caseStudyStack.
+  ///
+  /// In en, this message translates to:
+  /// **'Stack'**
+  String get caseStudyStack;
+
+  /// No description provided for @testimonials.
+  ///
+  /// In en, this message translates to:
+  /// **'Testimonials'**
+  String get testimonials;
+
+  /// No description provided for @testimonialsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Client reviews from projects with Tinguar.'**
+  String get testimonialsHint;
+
+  /// No description provided for @testimonialsGoogleCertified.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews certified by Google'**
+  String get testimonialsGoogleCertified;
+
+  /// No description provided for @exploreMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get exploreMore;
+
+  /// No description provided for @exploreCasesCta.
+  ///
+  /// In en, this message translates to:
+  /// **'View case studies'**
+  String get exploreCasesCta;
+
+  /// No description provided for @exploreReviewsCta.
+  ///
+  /// In en, this message translates to:
+  /// **'View testimonials'**
+  String get exploreReviewsCta;
 
   /// No description provided for @publications.
   ///

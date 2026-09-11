@@ -37,6 +37,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => BubbleBackgroundProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeModeProvider()),
       ],
       child: const MyApp(),
     );
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localProvider = Provider.of<LocaleProvider>(context);
+    final themeProvider = Provider.of<ThemeModeProvider>(context);
 
     return MaterialApp.router(
       locale: localProvider.locale,
@@ -57,7 +59,35 @@ class MyApp extends StatelessWidget {
       routerConfig: goRouter,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      theme: ThemeData(useMaterial3: true),
+      themeMode: themeProvider.mode,
+      theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color(0xFFECE9E2),
+        colorScheme: const ColorScheme.light(
+          primary: Color(0xFF707EFF),
+          secondary: Color(0xFFFAD85D),
+          surface: Color(0xFFFFFFFF),
+          onPrimary: Color(0xFFFFFFFF),
+          onSecondary: Color(0xFF151515),
+          onSurface: Color(0xFF151515),
+        ),
+        fontFamily: 'Alegreya',
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF151515),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFF707EFF),
+          secondary: Color(0xFFFAD85D),
+          surface: Color(0xFF1C1C1C),
+          onPrimary: Color(0xFFFFFFFF),
+          onSecondary: Color(0xFF151515),
+          onSurface: Color(0xFFFFFFFF),
+        ),
+        fontFamily: 'Alegreya',
+      ),
     );
   }
 }

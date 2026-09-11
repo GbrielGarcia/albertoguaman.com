@@ -1,5 +1,13 @@
+import 'package:albertoguaman/src/blog/blog_detail_page.dart';
+import 'package:albertoguaman/src/blog/blog_list_page.dart';
+import 'package:albertoguaman/src/cases/case_studies_page.dart';
+import 'package:albertoguaman/src/contact/contact_page.dart';
+import 'package:albertoguaman/src/cv/cv_page.dart';
+import 'package:albertoguaman/src/gallery/gallery_page.dart';
 import 'package:albertoguaman/src/home/bio.dart';
 import 'package:albertoguaman/l10n/app_localizations.dart';
+import 'package:albertoguaman/src/model/model.dart';
+import 'package:albertoguaman/src/recommendations/recommendations_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,13 +17,46 @@ import '../src/utils/seo.dart';
 import '../src/widget/bubble_background_effect.dart';
 import 'router.dart';
 
-/// Rutas válidas de la app. Cualquier otra ruta se redirige a inicio.
-const _validPaths = ['/', '/bio'];
+bool _isValidPath(String path) {
+  if (path == '/' ||
+      path == '/bio' ||
+      path == '/blog' ||
+      path == '/galeria' ||
+      path == '/contacto' ||
+      path == '/cv' ||
+      path == '/casos' ||
+      path == '/recomendaciones') {
+    return true;
+  }
+  if (path.startsWith('/blog/')) {
+    final slug = path.substring('/blog/'.length);
+    return slug.isNotEmpty &&
+        !slug.contains('/') &&
+        blogPostBySlug(slug) != null;
+  }
+  return false;
+}
 
 void _updateSeoForRoute(GoRouterState state) {
   String path = state.uri.path;
   if (path.endsWith('/') && path.length > 1) {
     path = path.substring(0, path.length - 1);
+  }
+  if (path.startsWith('/blog/') && path != '/blog') {
+    final slug = path.substring('/blog/'.length);
+    final post = blogPostBySlug(slug);
+    if (post != null) {
+      final image = post.imageAsset.isNotEmpty
+          ? 'https://albertoguaman.com/${post.imageAsset}'
+          : null;
+      setPageSEO(
+        title: post.title,
+        description: post.excerpt,
+        path: path,
+        imageUrl: image,
+      );
+      return;
+    }
   }
   final data = pageSeoData[path];
   if (data != null) {
@@ -30,7 +71,7 @@ final goRouter = GoRouter(
     final normalized = path.endsWith('/') && path.length > 1
         ? path.substring(0, path.length - 1)
         : path;
-    if (_validPaths.contains(normalized)) return null;
+    if (_isValidPath(normalized)) return null;
     return '/';
   },
   errorBuilder: (context, state) => _NotFoundPage(
@@ -49,6 +90,60 @@ final goRouter = GoRouter(
       pageBuilder: (BuildContext context, GoRouterState state) {
         _updateSeoForRoute(state);
         return transitionPageRouter(state.pageKey, const Bio());
+      },
+    ),
+    GoRoute(
+      path: '/blog',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(state.pageKey, const BlogListPage());
+      },
+    ),
+    GoRoute(
+      path: '/blog/:slug',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        final slug = state.pathParameters['slug'] ?? '';
+        return transitionPageRouter(
+          state.pageKey,
+          BlogDetailPage(slug: slug),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/galeria',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(state.pageKey, const GalleryPage());
+      },
+    ),
+    GoRoute(
+      path: '/casos',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(state.pageKey, const CaseStudiesPage());
+      },
+    ),
+    GoRoute(
+      path: '/recomendaciones',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(
+            state.pageKey, const RecommendationsPage());
+      },
+    ),
+    GoRoute(
+      path: '/contacto',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(state.pageKey, const ContactPage());
+      },
+    ),
+    GoRoute(
+      path: '/cv',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(state.pageKey, const CvPage());
       },
     ),
   ],
@@ -92,23 +187,19 @@ class _NotFoundPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         al?.pageNotFound ?? 'Página no encontrada',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        al?.pageNotFoundHint ??
-                            'La ruta que buscas no existe.',
-                        style:
-                            Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                  color: Colors.white70,
-                                ),
+                        al?.pageNotFoundHint ?? 'La ruta que buscas no existe.',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: Colors.white70,
+                            ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 24),

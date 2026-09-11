@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Alberto Guaman · Blog</title>
+    <link>https://albertoguaman.com/blog</link>
+    <description>Artículos sobre desarrollo, Flutter, web y tecnología.</description>
+    <language>es-ec</language>
+    <item>
+      <title>Arquitectura Flutter por capas: ordena tu proyecto sin pelearte con el caos</title>
+      <link>https://albertoguaman.com/blog/flutter-arquitectura-por-capas</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-arquitectura-por-capas</guid>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Cómo organizar un proyecto Flutter en capas (Data, Domain, UI, Core y Routes): carpetas, responsabilidades y un flujo claro de punta a punta.</description>
+    </item>
+    <item>
+      <title>Uptime Kuma en ZimaOS: instálalo desde la App Store y monitorea tus servicios</title>
+      <link>https://albertoguaman.com/blog/zimaos-uptime-kuma-app-store</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/zimaos-uptime-kuma-app-store</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Qué es Uptime Kuma, cómo instalarlo desde la App Store de ZimaOS y cómo recibir alertas (incluido un extra con bot de Telegram) sin vivir pegado al panel.</description>
+    </item>
+    <item>
+      <title>Hospedar Astro o Vue en ZimaOS con Docker y Cloudflare Tunnel</title>
+      <link>https://albertoguaman.com/blog/zimaos-astro-docker-hosting</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/zimaos-astro-docker-hosting</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Proceso real: build estático, Nginx en Docker, docker-compose en ZimaOS y dominio público con Cloudflare Tunnel sin abrir puertos.</description>
+    </item>
+    <item>
+      <title>ZimaOS y Cloudflare Tunnels: expón tu NAS sin abrir puertos</title>
+      <link>https://albertoguaman.com/blog/zimaos-cloudflare-tunnels</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/zimaos-cloudflare-tunnels</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Cómo usar Cloudflare Tunnels con ZimaOS para acceder a tu servidor desde fuera sin reenvío de puertos ni exponer la red de casa.</description>
+    </item>
+    <item>
+      <title>ZimaOS: un NAS en casa sin pelearte tanto con Linux</title>
+      <link>https://albertoguaman.com/blog/zimaos-servidor-personal-nas</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/zimaos-servidor-personal-nas</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Qué es ZimaOS, para qué sirve y qué puedes correr en tu propio servidor: archivos, multimedia, Docker, IA local y más.</description>
+    </item>
+    <item>
+      <title>Cómo usar la calculadora de porcentaje por tarjeta</title>
+      <link>https://albertoguaman.com/blog/como-usar-calculadora-porcentaje-tarjeta</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/como-usar-calculadora-porcentaje-tarjeta</guid>
+      <pubDate>Fri, 23 Jan 2026 00:00:00 +0000</pubDate>
+      <description>Guía paso a paso para usar la herramienta de porcentaje por tarjeta en tinguar.com: ingresar montos, ver precios con financiamiento (corriente, débito, cuotas) y generar proformas para tus clientes.</description>
+    </item>
+    <item>
+      <title>Paywall.js: La Librería JavaScript para Crear Paywalls Inteligentes</title>
+      <link>https://albertoguaman.com/blog/paywall-js-introduccion</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/paywall-js-introduccion</guid>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 +0000</pubDate>
+      <description>Descubre Paywall.js, una librería JavaScript que te permite crear paywalls dinámicos y efectivos para tu sitio web. Aprende cómo implementar restricciones de acceso basadas en fechas de vencimiento.</description>
+    </item>
+    <item>
+      <title>SQL Básico: Lo Esencial que Todo Principiante Debe Saber para Dominar las Bases de Datos</title>
+      <link>https://albertoguaman.com/blog/sql-basico</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/sql-basico</guid>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <description>Descubre los fundamentos de SQL con ejemplos claros y prácticos. Aprende los comandos esenciales y buenas prácticas para empezar a dominar las bases de datos relacionales.</description>
+    </item>
+    <item>
+      <title>Paywall Flutter: Crea Paywalls en Flutter en 5 Minutos</title>
+      <link>https://albertoguaman.com/blog/paywall-flutter</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/paywall-flutter</guid>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Descubre Paywall Flutter, un widget simple que te permite crear paywalls en tu app Flutter en solo 5 minutos. Aprende a implementar restricciones de contenido basadas en fechas de vencimiento.</description>
+    </item>
+    <item>
+      <title>Generar Imágenes de Modelos de Ropa con IA</title>
+      <link>https://albertoguaman.com/blog/generar-imagenes-de-modelos-de-ropa-con-ia</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/generar-imagenes-de-modelos-de-ropa-con-ia</guid>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Descubre cómo crear imágenes de modelos de ropa realistas usando Inteligencia Artificial. Te mostramos dos métodos: con imagen de referencia y con descripción detallada en texto.</description>
+    </item>
+    <item>
+      <title>Introducción a Lit HTML: Creando Interfaces Web Modernas</title>
+      <link>https://albertoguaman.com/blog/introduccion-lit-html</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/introduccion-lit-html</guid>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Descubre Lit HTML, una librería ligera de Google para crear componentes web reutilizables. Aprende a construir interfaces modernas y eficientes con esta tecnología del futuro.</description>
+    </item>
+    <item>
+      <title>Introducción a los Paradigmas de Programación con Dart</title>
+      <link>https://albertoguaman.com/blog/introduccion-paradigmas-dart</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/introduccion-paradigmas-dart</guid>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Explora los diferentes paradigmas de programación usando Dart como lenguaje. Desde programación orientada a objetos hasta programación funcional, descubre cómo Dart implementa cada enfoque.</description>
+    </item>
+    <item>
+      <title>Guía Completa de Tipos de Datos en JavaScript: Cómo y Cuándo Utilizarlos</title>
+      <link>https://albertoguaman.com/blog/javascript-tipos</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/javascript-tipos</guid>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Domina los tipos de datos en JavaScript con esta guía completa. Aprende sobre primitivos, objetos, arrays y cuándo usar cada uno para escribir código más robusto y eficiente.</description>
+    </item>
+    <item>
+      <title>Cómo Activar el Modo Transparente en LazyVim y Personalizar tu Terminal XFCE</title>
+      <link>https://albertoguaman.com/blog/lazyvim-transparent</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/lazyvim-transparent</guid>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Aprende a configurar LazyVim con transparencia y personaliza tu terminal XFCE para una experiencia de desarrollo más atractiva y profesional.</description>
+    </item>
+    <item>
+      <title>Cómo Iniciar un Repositorio en Git: Una Guía Paso a Paso</title>
+      <link>https://albertoguaman.com/blog/git-repositorio</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/git-repositorio</guid>
+      <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Aprende a crear y configurar tu primer repositorio Git desde cero. Desde la inicialización hasta el primer commit, te guiamos en todo el proceso.</description>
+    </item>
+    <item>
+      <title>Introducción a Astro: El Framework Web del Futuro</title>
+      <link>https://albertoguaman.com/blog/introduccion-astro</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/introduccion-astro</guid>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <description>Descubre Astro, el framework web que está revolucionando el desarrollo frontend. Aprende sus características únicas y por qué es la elección perfecta para sitios web modernos.</description>
+    </item>
+    <item>
+      <title>Manejando Estados con Flutter Utilizando Provider</title>
+      <link>https://albertoguaman.com/blog/flutter-provider</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-provider</guid>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Aprende a gestionar el estado de tu aplicación Flutter de manera eficiente usando Provider. Descubre patrones de diseño y mejores prácticas para aplicaciones escalables.</description>
+    </item>
+    <item>
+      <title>Escalabilidad de Texto Responsivo en Flutter</title>
+      <link>https://albertoguaman.com/blog/flutter-responsive</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-responsive</guid>
+      <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Descubre cómo crear aplicaciones Flutter que se adapten perfectamente a diferentes tamaños de pantalla. Aprende técnicas de diseño responsivo para una experiencia de usuario óptima.</description>
+    </item>
+    <item>
+      <title>Guía Completa sobre Enum y Enum Avanzados en Flutter</title>
+      <link>https://albertoguaman.com/blog/flutter-enum</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-enum</guid>
+      <pubDate>Sun, 22 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Domina el uso de enumeraciones en Flutter y Dart. Desde conceptos básicos hasta técnicas avanzadas, aprende a crear código más limpio y mantenible.</description>
+    </item>
+    <item>
+      <title>Guía para Crear y Desplegar una Página con Astro en GitHub Pages</title>
+      <link>https://albertoguaman.com/blog/astro-github-pages</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/astro-github-pages</guid>
+      <pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Aprende paso a paso cómo crear un sitio web con Astro y publicarlo gratis en GitHub Pages. Ideal para portafolios, blogs y proyectos personales.</description>
+    </item>
+    <item>
+      <title>Cómo Desplegar tu Sitio Flutter Web en Firebase Hosting</title>
+      <link>https://albertoguaman.com/blog/flutter-firebase</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-firebase</guid>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Guía completa para desplegar tu aplicación Flutter Web en Firebase Hosting. Desde la configuración hasta el despliegue, aprende a publicar tu app en la nube de Google.</description>
+    </item>
+    <item>
+      <title>Guía Completa de Dart: Fundamentos y Ejemplos Prácticos</title>
+      <link>https://albertoguaman.com/blog/dart-fundamentos</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/dart-fundamentos</guid>
+      <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Aprende Dart desde cero con esta guía completa. Desde sintaxis básica hasta conceptos avanzados, domina el lenguaje que impulsa Flutter.</description>
+    </item>
+    <item>
+      <title>Alterna entre Modo Oscuro y Claro en Flutter</title>
+      <link>https://albertoguaman.com/blog/flutter-dark-mode</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/flutter-dark-mode</guid>
+      <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Aprende cómo implementar el modo oscuro y claro en tus aplicaciones Flutter de forma sencilla y profesional. Incluye ejemplos prácticos y consejos de diseño.</description>
+    </item>
+    <item>
+      <title>Optimiza el DOM: Manipulación Eficiente sin Sacrificar Rendimiento</title>
+      <link>https://albertoguaman.com/blog/dom-optimizacion</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/dom-optimizacion</guid>
+      <pubDate>Fri, 13 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Descubre técnicas avanzadas para optimizar la manipulación del DOM en JavaScript. Aprende a crear aplicaciones web más rápidas y responsivas.</description>
+    </item>
+    <item>
+      <title>Crea tu Blog de Calidad con Python y Pelican: Guía Completa para Principiantes</title>
+      <link>https://albertoguaman.com/blog/blog-python-pelican</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/blog-python-pelican</guid>
+      <pubDate>Tue, 10 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Aprende a crear un blog profesional usando Python y Pelican. Desde la instalación hasta el despliegue, construye tu presencia online con herramientas gratuitas y poderosas.</description>
+    </item>
+    <item>
+      <title>Códigos de Estado HTTP: Más Allá del 404, Todo lo que Necesitas Saber</title>
+      <link>https://albertoguaman.com/blog/codigos-http</link>
+      <guid isPermaLink="true">https://albertoguaman.com/blog/codigos-http</guid>
+      <pubDate>Sat, 07 Dec 2024 00:00:00 +0000</pubDate>
+      <description>Domina los códigos de estado HTTP con esta guía completa. Desde respuestas exitosas hasta errores del servidor, entiende cómo funciona la comunicación web.</description>
+    </item>
+  </channel>
+</rss>

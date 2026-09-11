@@ -9,7 +9,10 @@ abstract final class SectionId {
   static const gallery = 'gallery';
   static const projects = 'projects';
   static const publications = 'publications';
+  static const blog = 'blog';
   static const content = 'content';
+  static const caseStudies = 'caseStudies';
+  static const testimonials = 'testimonials';
 }
 
 final Map<String, GlobalKey> sectionKeys = {
@@ -20,5 +23,8 @@ final Map<String, GlobalKey> sectionKeys = {
   SectionId.gallery: GlobalKey(),
   SectionId.projects: GlobalKey(),
   SectionId.publications: GlobalKey(),
+  SectionId.blog: GlobalKey(),
   SectionId.content: GlobalKey(),
+  SectionId.caseStudies: GlobalKey(),
+  SectionId.testimonials: GlobalKey(),
 };

@@ -9,6 +9,7 @@ void setPageSEO({
   required String title,
   required String description,
   String? path,
+  String? imageUrl,
 }) {
   final normalizedPath = (path == null || path.isEmpty || path == '/')
       ? '/'
@@ -17,6 +18,11 @@ void setPageSEO({
       normalizedPath == '/' ? '$_baseUrl/' : '$_baseUrl$normalizedPath';
   final fullTitle =
       title.contains(_siteName) ? title : '$title | $_siteName';
+  final ogImage = (imageUrl != null && imageUrl.isNotEmpty)
+      ? (imageUrl.startsWith('http')
+          ? imageUrl
+          : '$_baseUrl${imageUrl.startsWith('/') ? imageUrl : '/$imageUrl'}')
+      : _ogImage;
 
   html.document.title = fullTitle;
 
@@ -24,16 +30,17 @@ void setPageSEO({
   _setMeta('property', 'og:title', fullTitle);
   _setMeta('property', 'og:description', description);
   _setMeta('property', 'og:url', pageUrl);
-  _setMeta('property', 'og:type', 'website');
+  _setMeta('property', 'og:type',
+      normalizedPath.startsWith('/blog/') ? 'article' : 'website');
   _setMeta('property', 'og:site_name', _siteName);
-  _setMeta('property', 'og:image', _ogImage);
-  _setMeta('property', 'og:image:secure_url', _ogImage);
+  _setMeta('property', 'og:image', ogImage);
+  _setMeta('property', 'og:image:secure_url', ogImage);
   _setMeta('property', 'og:locale', 'es_EC');
 
   _setMeta('name', 'twitter:card', 'summary_large_image');
   _setMeta('name', 'twitter:title', fullTitle);
   _setMeta('name', 'twitter:description', description);
-  _setMeta('name', 'twitter:image', _ogImage);
+  _setMeta('name', 'twitter:image', ogImage);
 
   _setCanonical(pageUrl);
 }
