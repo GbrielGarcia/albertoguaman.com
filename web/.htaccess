@@ -1,6 +1,6 @@
 # SPA fallback: todas las rutas sirven index.html (Flutter / go_router).
-# Necesario en Hostinger para rutas como /bio u otras internas de la app.
-# IMPORTANTE: Subir este archivo a la misma carpeta que index.html (ej. public_html).
+# Necesario en Hostinger para rutas como /blog, /casos, /cv, etc.
+# IMPORTANTE: Subir este archivo a public_html (misma carpeta que index.html).
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -11,16 +11,30 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Si existe un archivo o carpeta real, servirlo
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+  # Carpetas reales que chocan con rutas SPA (/blog → blog/rss.xml, /cv → pdf).
+  # Sin esto, /blog/ y /cv/ dan 403 (Options -Indexes + RewriteCond !-d).
+  RewriteRule ^(blog|cv)/?$ index.html [L,QSA]
 
-  # Cualquier otra petición → index.html
+  # Archivos reales (main.dart.js, assets, blog/rss.xml, cv/*.pdf, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Cualquier otra petición (incl. /blog/slug) → index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.html [L,QSA]
 </IfModule>
 
 # Evitar listado de directorios
 Options -Indexes
+
+# Headers de seguridad (sin CSP estricta: Flutter Web / CanvasKit la rompen)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+</IfModule>
 
 # Compresión
 <IfModule mod_deflate.c>
