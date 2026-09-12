@@ -42,6 +42,7 @@ class BlogPostCard extends StatelessWidget {
                   child: Image.asset(
                     post.imageAsset,
                     fit: BoxFit.cover,
+                    semanticLabel: post.title,
                     errorBuilder: (_, __, ___) => ColoredBox(
                       color: UtilsColor.colorBlue.withValues(alpha: 0.35),
                       child: Icon(

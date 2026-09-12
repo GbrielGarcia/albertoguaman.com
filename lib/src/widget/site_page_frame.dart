@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// Marco de página con header fijo (menú arriba).
-class SitePageFrame extends StatelessWidget {
+class SitePageFrame extends StatefulWidget {
   const SitePageFrame({
     super.key,
     required this.title,
@@ -24,14 +24,22 @@ class SitePageFrame extends StatelessWidget {
   final bool showWhatsAppFab;
 
   @override
+  State<SitePageFrame> createState() => _SitePageFrameState();
+}
+
+class _SitePageFrameState extends State<SitePageFrame> {
+  final GlobalKey _mainContentKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
+    final al = AppLocalizations.of(context);
     final isNarrow = context.isMobile || context.isMobileLarge;
     final titleSize = TextStyleSize.textTitleSectionSize(context.screenWidth);
 
     return Scaffold(
       backgroundColor: UtilsColor.colorBg,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: showWhatsAppFab
+      floatingActionButton: widget.showWhatsAppFab
           ? FloatingActionButton.extended(
               onPressed: () => laucherURL('https://wa.me/593992889078'),
               backgroundColor: const Color(0xFF25D366),
@@ -73,15 +81,22 @@ class SitePageFrame extends StatelessWidget {
                 axis: Axis.vertical,
                 onNavigate: () => Navigator.pop(context),
               ),
-              if (actions.isNotEmpty) ...[
+              SizedBox(height: SizeUtils.l),
+              const Row(
+                children: [
+                  LocaleToggleButton(),
+                  ThemeToggleButton(),
+                ],
+              ),
+              if (widget.actions.isNotEmpty) ...[
                 SizedBox(height: SizeUtils.l),
-                ...actions,
+                ...widget.actions,
               ],
             ],
           ),
         ),
       ),
-      appBar: SiteHeader(actions: actions),
+      appBar: SiteHeader(actions: widget.actions),
       body: Stack(
         children: [
           Positioned.fill(
@@ -118,24 +133,48 @@ class SitePageFrame extends StatelessWidget {
                 ),
                 child: Center(
                   child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: maxWidth),
+                    constraints: BoxConstraints(maxWidth: widget.maxWidth),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
-                          title,
-                          style: StyleText.textPortfolio(
-                            fontSize: titleSize * 1.05,
-                            fontWeight: FontWeight.w800,
-                            color: UtilsColor.colorSecondaryWhite,
-                            height: 1.05,
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: TextButton(
+                            onPressed: () {
+                              final ctx = _mainContentKey.currentContext;
+                              if (ctx != null) {
+                                Scrollable.ensureVisible(
+                                  ctx,
+                                  duration: const Duration(milliseconds: 280),
+                                  curve: Curves.easeOut,
+                                );
+                              }
+                            },
+                            child: Text(
+                                al?.skipToContent ?? 'Saltar al contenido'),
                           ),
                         ),
-                        if (subtitle != null &&
-                            subtitle!.trim().isNotEmpty) ...[
+                        SizedBox(height: SizeUtils.s),
+                        KeyedSubtree(
+                          key: _mainContentKey,
+                          child: Semantics(
+                            header: true,
+                            child: Text(
+                              widget.title,
+                              style: StyleText.textPortfolio(
+                                fontSize: titleSize * 1.05,
+                                fontWeight: FontWeight.w800,
+                                color: UtilsColor.colorSecondaryWhite,
+                                height: 1.05,
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (widget.subtitle != null &&
+                            widget.subtitle!.trim().isNotEmpty) ...[
                           SizedBox(height: SizeUtils.m),
                           Text(
-                            subtitle!,
+                            widget.subtitle!,
                             style: StyleText.textPortfolio(
                               fontSize: TextStyleSize.textDescriptionSize(
                                   context.screenWidth),
@@ -145,7 +184,11 @@ class SitePageFrame extends StatelessWidget {
                           ),
                         ],
                         SizedBox(height: SizeUtils.xl),
-                        body,
+                        Semantics(
+                          container: true,
+                          label: widget.title,
+                          child: widget.body,
+                        ),
                         SizedBox(height: SizeUtils.xxl),
                         footerData(
                           AppLocalizations.of(context),

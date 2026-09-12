@@ -125,6 +125,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeToggle => 'Tema';
 
   @override
+  String get skipToContent => 'Saltar al contenido';
+
+  @override
   String get administratorIt =>
       'Administrador de Tecnologías de la Información';
 

@@ -17,7 +17,8 @@ import '../src/utils/seo.dart';
 import '../src/widget/bubble_background_effect.dart';
 import 'router.dart';
 
-bool _isValidPath(String path) {
+/// Rutas conocidas de la app (útil para tests y redirects).
+bool isValidAppPath(String path) {
   if (path == '/' ||
       path == '/bio' ||
       path == '/blog' ||
@@ -71,7 +72,7 @@ final goRouter = GoRouter(
     final normalized = path.endsWith('/') && path.length > 1
         ? path.substring(0, path.length - 1)
         : path;
-    if (_isValidPath(normalized)) return null;
+    if (isValidAppPath(normalized)) return null;
     return '/';
   },
   errorBuilder: (context, state) => _NotFoundPage(

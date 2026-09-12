@@ -326,6 +326,12 @@ abstract class AppLocalizations {
   /// **'Theme'**
   String get themeToggle;
 
+  /// No description provided for @skipToContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip to content'**
+  String get skipToContent;
+
   /// No description provided for @administratorIt.
   ///
   /// In en, this message translates to:

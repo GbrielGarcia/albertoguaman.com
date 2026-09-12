@@ -116,6 +116,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                               child: Image.asset(
                                 p.imageAsset,
                                 fit: BoxFit.cover,
+                                semanticLabel: p.title,
                               ),
                             ),
                           ),
@@ -215,6 +216,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                       child: Image.asset(
                                         asset,
                                         fit: BoxFit.contain,
+                                        semanticLabel: p.title,
                                       ),
                                     ),
                                   );

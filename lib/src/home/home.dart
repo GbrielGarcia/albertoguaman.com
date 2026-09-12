@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import "package:albertoguaman/src/model/model.dart";
+import "package:albertoguaman/src/home/home_hero.dart";
 
 import "package:flutter/material.dart";
 import 'package:albertoguaman/l10n/app_localizations.dart';
@@ -201,7 +202,13 @@ class _PortfolioScreenState extends State<HomeSrc> {
               // —— Hero ——
               StaggerFadeIn(
                 index: 0,
-                child: _buildHomeHero(al, titleSize, bodySize, isNarrow),
+                child: HomeHero(
+                  al: al,
+                  titleSize: titleSize,
+                  bodySize: bodySize,
+                  isNarrow: isNarrow,
+                  onDownloadCv: () => laucherURL(AssetsUtil.cvDev2026),
+                ),
               ),
               SizedBox(height: SizeUtils.xl),
               // —— Ancla CV ——
@@ -273,93 +280,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHomeHero(
-    AppLocalizations al,
-    double titleSize,
-    double bodySize,
-    bool isNarrow,
-  ) {
-    final copy = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          al.administratorIt,
-          style: StyleText.textPortfolio(
-            fontSize: bodySize * 0.95,
-            fontWeight: FontWeight.w600,
-            color: UtilsColor.colorBlue,
-          ).copyWith(letterSpacing: 0.4),
-        ),
-        SizedBox(height: SizeUtils.m),
-        Text(
-          'Alberto Guaman',
-          style: StyleText.textPortfolio(
-            fontSize: isNarrow ? titleSize * 1.15 : titleSize * 1.35,
-            fontWeight: FontWeight.w800,
-            color: UtilsColor.colorSecondaryWhite,
-            height: 1.05,
-          ),
-        ),
-        SizedBox(height: SizeUtils.l),
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 560),
-          child: Text(
-            al.homeHeroLead,
-            style: StyleText.textPortfolio(
-              fontSize: bodySize * 1.05,
-              color: UtilsColor.colorMuted,
-              height: 1.55,
-            ),
-          ),
-        ),
-        SizedBox(height: SizeUtils.xl),
-        Wrap(
-          spacing: SizeUtils.s,
-          runSpacing: SizeUtils.s,
-          children: [
-            _HeroCta(
-              label: al.contact,
-              onTap: () => context.go('/contacto'),
-              solid: true,
-            ),
-            _HeroCta(
-              label: al.navCaseStudies,
-              onTap: () => context.go('/casos'),
-            ),
-            _HeroCta(
-              label: al.downloadCv,
-              onTap: () => laucherURL(AssetsUtil.cvDev2026),
-            ),
-          ],
-        ),
-        SizedBox(height: SizeUtils.l),
-        iconDataRow(),
-      ],
-    );
-
-    final avatar = OpenToWorkAvatar(size: isNarrow ? 168 : 230);
-
-    if (isNarrow) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          avatar,
-          SizedBox(height: SizeUtils.xl),
-          copy,
-        ],
-      );
-    }
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(child: copy),
-        SizedBox(width: SizeUtils.xl),
-        avatar,
-      ],
     );
   }
 
@@ -1531,54 +1451,3 @@ Widget buildRowName(
   );
 }
 
-class _HeroCta extends StatelessWidget {
-  const _HeroCta({
-    required this.label,
-    required this.onTap,
-    this.solid = false,
-  });
-
-  final String label;
-  final VoidCallback onTap;
-  final bool solid;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: solid ? UtilsColor.colorBlue : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: solid ? UtilsColor.colorBlue : UtilsColor.hairline,
-            ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: SizeUtils.l,
-              vertical: SizeUtils.s1 * 0.75,
-            ),
-            child: Text(
-              label,
-              style: StyleText.textPortfolio(
-                fontSize:
-                    TextStyleSize.textDescriptionSize(context.screenWidth) *
-                        0.95,
-                fontWeight: FontWeight.w700,
-                color: solid
-                    ? (UtilsColor.useLight
-                        ? Colors.white
-                        : UtilsColor.colorSecondaryWhite)
-                    : UtilsColor.colorSecondaryWhite,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

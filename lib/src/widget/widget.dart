@@ -20,4 +20,5 @@ export 'site_page_frame.dart';
 export 'cv_preview.dart';
 export 'availability_badge.dart';
 export 'theme_toggle_button.dart';
+export 'locale_toggle_button.dart';
 export 'portfolio_scaffold.dart';
