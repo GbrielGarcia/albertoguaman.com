@@ -105,7 +105,7 @@ class OpenToWorkAvatar extends StatelessWidget {
                   ),
                 ),
               ),
-              // Avatar recortado en círculo
+              // Foto de perfil en círculo
               Container(
                 width: size,
                 height: size,
@@ -118,10 +118,7 @@ class OpenToWorkAvatar extends StatelessWidget {
                   ),
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: Padding(
-                  padding: EdgeInsets.all(size * 0.04),
-                  child: AvatarSticker(size: size * 0.88),
-                ),
+                child: AvatarSticker(size: size),
               ),
             ],
           ),
