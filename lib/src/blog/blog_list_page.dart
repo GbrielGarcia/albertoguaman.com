@@ -6,15 +6,15 @@ import 'package:albertoguaman/src/widget/widget.dart';
 import 'package:flutter/material.dart';
 
 /// Filtros principales del blog (no todas las tags sueltas).
-const List<({String id, String labelEs, String labelEn})> _blogFilters = [
-  (id: 'all', labelEs: 'Todo', labelEn: 'All'),
-  (id: 'flutter', labelEs: 'Flutter', labelEn: 'Flutter'),
-  (id: 'web', labelEs: 'Web', labelEn: 'Web'),
-  (id: 'linux', labelEs: 'Linux / Homelab', labelEn: 'Linux / Homelab'),
-  (id: 'javascript', labelEs: 'JavaScript', labelEn: 'JavaScript'),
-  (id: 'ia', labelEs: 'IA', labelEn: 'AI'),
-  (id: 'datos', labelEs: 'Datos / SQL', labelEn: 'Data / SQL'),
-  (id: 'tutorial', labelEs: 'Tutoriales', labelEn: 'Tutorials'),
+const List<({String id, String label})> _blogFilters = [
+  (id: 'all', label: 'Todo'),
+  (id: 'flutter', label: 'Flutter'),
+  (id: 'web', label: 'Web'),
+  (id: 'linux', label: 'Linux / Homelab'),
+  (id: 'javascript', label: 'JavaScript'),
+  (id: 'ia', label: 'IA'),
+  (id: 'datos', label: 'Datos / SQL'),
+  (id: 'tutorial', label: 'Tutoriales'),
 ];
 
 bool _postMatchesFilter(BlogPost post, String filterId) {
@@ -83,7 +83,6 @@ class _BlogListPageState extends State<BlogListPage> {
   @override
   Widget build(BuildContext context) {
     final al = AppLocalizations.of(context)!;
-    final isEn = Localizations.localeOf(context).languageCode == 'en';
     final isNarrow = context.isMobile || context.isMobileLarge;
     final posts = _filtered;
     final bodySize = TextStyleSize.textDescriptionSize(context.screenWidth);
@@ -119,9 +118,7 @@ class _BlogListPageState extends State<BlogListPage> {
                       ),
                     ),
                   _FilterLink(
-                    label: isEn
-                        ? _blogFilters[i].labelEn
-                        : _blogFilters[i].labelEs,
+                    label: _blogFilters[i].label,
                     active: _selected == _blogFilters[i].id,
                     bodySize: bodySize,
                     onTap: () =>
@@ -135,7 +132,7 @@ class _BlogListPageState extends State<BlogListPage> {
           Divider(color: UtilsColor.hairline, height: 1),
           SizedBox(height: SizeUtils.l),
           Text(
-            '${posts.length} ${isEn ? 'articles' : 'artículos'}',
+            '${posts.length} artículos',
             style: StyleText.textPortfolio(
               fontSize: bodySize * 0.85,
               color: UtilsColor.colorMuted,

@@ -20,6 +20,7 @@ class SiteNav extends StatelessWidget {
           AppLocalizations al) =>
       [
         (path: '/', label: (a) => a.home),
+        (path: '/servicios', label: (_) => 'Servicios'),
         (path: '/casos', label: (a) => a.navCaseStudies),
         (path: '/recomendaciones', label: (a) => a.navTestimonials),
         (path: '/blog', label: (a) => a.blog),

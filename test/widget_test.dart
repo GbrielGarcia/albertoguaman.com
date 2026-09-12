@@ -1,5 +1,4 @@
 import 'package:albertoguaman/l10n/app_localizations.dart';
-import 'package:albertoguaman/provider/locale.dart';
 import 'package:albertoguaman/provider/theme_mode.dart';
 import 'package:albertoguaman/router/routers.dart';
 import 'package:albertoguaman/src/model/blog_post.dart';
@@ -24,6 +23,9 @@ void main() {
     expect(isValidAppPath('/recomendaciones'), isTrue);
     expect(isValidAppPath('/cv'), isTrue);
     expect(isValidAppPath('/contacto'), isTrue);
+    expect(isValidAppPath('/servicios'), isTrue);
+    expect(isValidAppPath('/faq'), isTrue);
+    expect(isValidAppPath('/changelog'), isTrue);
     expect(isValidAppPath('/no-existe'), isFalse);
     expect(isValidAppPath('/blog/no-existe-slug'), isFalse);
 
@@ -41,6 +43,9 @@ void main() {
       '/casos',
       '/recomendaciones',
       '/galeria',
+      '/servicios',
+      '/faq',
+      '/changelog',
     ]) {
       expect(pageSeoData.containsKey(path), isTrue, reason: path);
       expect(pageSeoData[path]!.$1.isNotEmpty, isTrue);
@@ -55,13 +60,12 @@ void main() {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => LocaleProvider()),
           ChangeNotifierProvider(create: (_) => BubbleBackgroundProvider()),
           ChangeNotifierProvider(create: (_) => ThemeModeProvider()),
         ],
         child: MaterialApp.router(
           locale: const Locale('es'),
-          supportedLocales: AppLocalizations.supportedLocales,
+          supportedLocales: const [Locale('es')],
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           routerConfig: goRouter,
         ),

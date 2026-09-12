@@ -1,5 +1,4 @@
 import 'package:albertoguaman/src/utils/utils.dart';
-import 'package:albertoguaman/src/widget/locale_toggle_button.dart';
 import 'package:albertoguaman/src/widget/site_nav.dart';
 import 'package:albertoguaman/src/widget/theme_toggle_button.dart';
 import 'package:flutter/material.dart';
@@ -53,10 +52,7 @@ class SiteHeader extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         ...actions,
-        if (showChromeToggles) ...[
-          const LocaleToggleButton(),
-          const ThemeToggleButton(),
-        ],
+        if (showChromeToggles) const ThemeToggleButton(),
       ],
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(_navHeight),

@@ -7,6 +7,9 @@ class CaseStudy {
   final String solution;
   final String stack;
   final List<String> results;
+  final String? beforeLabel;
+  final String? afterLabel;
+  final List<String> metrics;
   final String? linkUrl;
   final String? linkLabel;
 
@@ -18,6 +21,9 @@ class CaseStudy {
     required this.solution,
     required this.stack,
     required this.results,
+    this.beforeLabel,
+    this.afterLabel,
+    this.metrics = const [],
     this.linkUrl,
     this.linkLabel,
   });
@@ -36,6 +42,16 @@ const List<CaseStudy> infoCaseStudies = [
         'y la gestión de equipos, y operé helpdesk con diagnóstico, tickets, '
         'soporte remoto y escalamiento controlado.',
     stack: 'Java · MDM · Helpdesk · Soporte L1/L2 · Incidencias',
+    beforeLabel:
+        'Soporte disperso, poca trazabilidad de equipos y tickets sin cierre claro.',
+    afterLabel:
+        'MDM en producción + helpdesk con ciclo de ticket documentado a escala nacional.',
+    metrics: [
+      '+16 sucursales',
+      '+200 colaboradores',
+      '7 meses de operación',
+      'Tickets: diagnóstico → cierre',
+    ],
     results: [
       '+16 sucursales atendidas a nivel nacional',
       '+200 colaboradores con acompañamiento tecnológico',
@@ -54,6 +70,15 @@ const List<CaseStudy> infoCaseStudies = [
         'y Mi Negocio Listo (POS, inventario, caja y catálogo digital), '
         'además de sitios y paneles para clientes del portafolio.',
     stack: 'Flutter · Dart · Web · WhatsApp · POS · Facturación SRI',
+    beforeLabel:
+        'Campañas manuales y venta sin un sistema propio de inventario/caja.',
+    afterLabel:
+        'Productos en producción con licencia, auto-update, POS + SRI y catálogo online.',
+    metrics: [
+      '2 productos bandera',
+      'Windows / macOS + Android / Web',
+      'Clientes con sitios públicos',
+    ],
     results: [
       'Rapidito: envíos por CSV, variables, adjuntos y licencia por equipo',
       'Mi Negocio Listo: POS + SRI + catálogo online + tickets térmicos',
@@ -69,9 +94,18 @@ const List<CaseStudy> infoCaseStudies = [
     problem:
         'Los distribuidores necesitaban comprar, renovar y administrar cuentas '
         'con saldo, entrega inmediata y sin perder datos en renovaciones.',
-    solution: 'Panelé un panel web de distribuidores con flujo de recargas, '
+    solution: 'Armé un panel web de distribuidores con flujo de recargas, '
         'gestión de inventario en tiempo real y renovación controlada.',
     stack: 'PHP · MySQL · Laravel · Bootstrap',
+    beforeLabel:
+        'Renovaciones frágiles y riesgo de perder datos de cuenta al renovar.',
+    afterLabel:
+        'Panel en producción con saldo, entrega inmediata y renovación segura.',
+    metrics: [
+      'Panel 24/7',
+      'Inventario en tiempo real',
+      'Renovación sin pérdida de datos',
+    ],
     results: [
       'Panel de distribuidores en producción',
       'Renovación sin pérdida de datos de cuenta',

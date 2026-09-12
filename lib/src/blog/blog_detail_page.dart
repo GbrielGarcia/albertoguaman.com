@@ -149,8 +149,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: UtilsColor.colorYellow
-                                      .withValues(alpha: 0.18),
+                                  color: UtilsColor.colorYellowSoft,
                                   borderRadius:
                                       BorderRadius.circular(SizeUtils.m),
                                 ),
@@ -158,7 +157,8 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                   cat,
                                   style: StyleText.textPortfolio(
                                     fontSize: bodySize * 0.8,
-                                    color: UtilsColor.colorYellow,
+                                    color: UtilsColor.colorYellowInk,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
@@ -170,11 +170,12 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState !=
                                 ConnectionState.done) {
-                              return const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 48),
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 48),
                                 child: Center(
                                   child: CircularProgressIndicator(
-                                    color: Color(0xFFFAD85D),
+                                    color: UtilsColor.colorYellow,
                                   ),
                                 ),
                               );
@@ -283,22 +284,21 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                 ),
                                 code: StyleText.textPortfolio(
                                   fontSize: bodySize * 0.9,
-                                  color: UtilsColor.colorYellow,
+                                  color: UtilsColor.colorYellowInk,
                                 ).copyWith(
-                                  backgroundColor: UtilsColor
-                                      .colorSecondaryWhite
-                                      .withValues(alpha: 0.1),
+                                  backgroundColor: UtilsColor.colorYellowSoft,
                                   fontFamily: 'monospace',
                                 ),
                                 codeblockPadding: EdgeInsets.all(SizeUtils.m),
                                 codeblockDecoration: BoxDecoration(
-                                  color: UtilsColor.colorSecondaryWhite
-                                      .withValues(alpha: 0.08),
+                                  color: UtilsColor.useLight
+                                      ? UtilsColor.colorElevated
+                                      : UtilsColor.colorSecondaryWhite
+                                          .withValues(alpha: 0.08),
                                   borderRadius:
                                       BorderRadius.circular(SizeUtils.m),
                                   border: Border.all(
-                                    color: UtilsColor.colorSecondaryWhite
-                                        .withValues(alpha: 0.12),
+                                    color: UtilsColor.hairline,
                                   ),
                                 ),
                                 blockquoteDecoration: BoxDecoration(
@@ -306,7 +306,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                       .withValues(alpha: 0.04),
                                   border: Border(
                                     left: BorderSide(
-                                      color: UtilsColor.colorYellow,
+                                      color: UtilsColor.colorYellowInk,
                                       width: 3,
                                     ),
                                   ),
@@ -314,7 +314,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                 blockquotePadding: EdgeInsets.all(SizeUtils.m),
                                 a: StyleText.textPortfolio(
                                   fontSize: bodySize,
-                                  color: UtilsColor.colorYellow,
+                                  color: UtilsColor.colorYellowInk,
                                 ).copyWith(
                                   decoration: TextDecoration.underline,
                                 ),
@@ -326,7 +326,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                                 tableHead: StyleText.textPortfolio(
                                   fontSize: bodySize * 0.95,
                                   fontWeight: FontWeight.bold,
-                                  color: UtilsColor.colorYellow,
+                                  color: UtilsColor.colorYellowInk,
                                 ),
                                 tableBody: StyleText.textPortfolio(
                                   fontSize: bodySize * 0.92,
@@ -366,7 +366,7 @@ class _BlogDetailPageState extends State<BlogDetailPage> {
                           icon: const Icon(Icons.arrow_back),
                           label: Text(al?.blog ?? 'Blog'),
                           style: TextButton.styleFrom(
-                            foregroundColor: UtilsColor.colorYellow,
+                            foregroundColor: UtilsColor.colorYellowInk,
                           ),
                         ),
                         SizedBox(height: SizeUtils.xl1),

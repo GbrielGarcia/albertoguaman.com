@@ -59,4 +59,17 @@ Map<String, (String title, String description)> get pageSeoData => {
         'CV · Currículum',
         'Vista previa e impresión del CV de Alberto Guaman.',
       ),
+      '/servicios': (
+        'Servicios · Soporte, Flutter, web y e-commerce',
+        'Paquetes de servicio: soporte técnico, apps Flutter, desarrollo web, '
+            'e-commerce y software a medida.',
+      ),
+      '/faq': (
+        'Cómo trabajo · FAQ',
+        'Proceso, tiempos, herramientas y comunicación con Alberto Guaman.',
+      ),
+      '/changelog': (
+        'Cambios · albertoguaman.com',
+        'Qué he ido cambiando en el portafolio y cuándo.',
+      ),
     };

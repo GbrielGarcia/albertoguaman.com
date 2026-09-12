@@ -82,12 +82,7 @@ class _SitePageFrameState extends State<SitePageFrame> {
                 onNavigate: () => Navigator.pop(context),
               ),
               SizedBox(height: SizeUtils.l),
-              const Row(
-                children: [
-                  LocaleToggleButton(),
-                  ThemeToggleButton(),
-                ],
-              ),
+              const ThemeToggleButton(),
               if (widget.actions.isNotEmpty) ...[
                 SizedBox(height: SizeUtils.l),
                 ...widget.actions,

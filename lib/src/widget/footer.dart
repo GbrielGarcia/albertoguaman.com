@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:albertoguaman/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/utils.dart';
 
 Widget footerData(AppLocalizations? al, double screenWidth) {
+  final linkStyle = StyleText.textPortfolio(
+    fontSize: TextStyleSize.textDescriptionSize(screenWidth) * 0.82,
+    fontWeight: FontWeight.w600,
+    color: UtilsColor.colorBlue,
+  );
+
   return Padding(
     padding: EdgeInsets.symmetric(vertical: SizeUtils.l),
     child: Column(
@@ -40,6 +47,31 @@ Widget footerData(AppLocalizations? al, double screenWidth) {
               ),
             ],
           ),
+        ),
+        SizedBox(height: SizeUtils.m),
+        Builder(
+          builder: (context) {
+            Widget link(String label, String path) {
+              return GestureDetector(
+                onTap: () => context.go(path),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Text(label, style: linkStyle),
+                ),
+              );
+            }
+
+            return Wrap(
+              alignment: WrapAlignment.center,
+              spacing: SizeUtils.m,
+              runSpacing: SizeUtils.s / 2,
+              children: [
+                link('Servicios', '/servicios'),
+                link('FAQ', '/faq'),
+                link('Cambios', '/changelog'),
+              ],
+            );
+          },
         ),
       ],
     ),

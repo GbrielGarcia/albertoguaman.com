@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 
 // ignore_for_file: type=lint
@@ -93,693 +92,690 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('es')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('es')];
 
   /// No description provided for @hello.
   ///
-  /// In en, this message translates to:
-  /// **'Hello'**
+  /// In es, this message translates to:
+  /// **'Hola'**
   String get hello;
 
   /// No description provided for @proyectRealized.
   ///
-  /// In en, this message translates to:
-  /// **'Realized Projects'**
+  /// In es, this message translates to:
+  /// **'Proyectos Realiados'**
   String get proyectRealized;
 
   /// No description provided for @selectLanguage.
   ///
-  /// In en, this message translates to:
-  /// **'Select language'**
+  /// In es, this message translates to:
+  /// **'Seleccionar idioma'**
   String get selectLanguage;
 
   /// No description provided for @company.
   ///
-  /// In en, this message translates to:
-  /// **'Company:'**
+  /// In es, this message translates to:
+  /// **'Empresa:'**
   String get company;
 
   /// No description provided for @country.
   ///
-  /// In en, this message translates to:
-  /// **'Country:'**
+  /// In es, this message translates to:
+  /// **'País:'**
   String get country;
 
   /// No description provided for @employment.
   ///
-  /// In en, this message translates to:
-  /// **'Employment:'**
+  /// In es, this message translates to:
+  /// **'Empleo:'**
   String get employment;
 
   /// No description provided for @skills.
   ///
-  /// In en, this message translates to:
-  /// **'Tools'**
+  /// In es, this message translates to:
+  /// **'Herramientas'**
   String get skills;
 
   /// No description provided for @gallery.
   ///
-  /// In en, this message translates to:
-  /// **'Gallery'**
+  /// In es, this message translates to:
+  /// **'Galería'**
   String get gallery;
 
   /// No description provided for @galleryHint.
   ///
-  /// In en, this message translates to:
-  /// **'A glimpse into a few moments from my day to day.'**
+  /// In es, this message translates to:
+  /// **'Una mirada a algunos momentos de mi día a día.'**
   String get galleryHint;
 
   /// No description provided for @clients.
   ///
-  /// In en, this message translates to:
-  /// **'Clients'**
+  /// In es, this message translates to:
+  /// **'Clientes'**
   String get clients;
 
   /// No description provided for @clientsHint.
   ///
-  /// In en, this message translates to:
-  /// **'Clients developed with Tinguar.'**
+  /// In es, this message translates to:
+  /// **'Clientes desarrollados con Tinguar.'**
   String get clientsHint;
 
   /// No description provided for @blog.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Blog'**
   String get blog;
 
   /// No description provided for @blogHint.
   ///
-  /// In en, this message translates to:
-  /// **'Articles about development, Flutter, web and more.'**
+  /// In es, this message translates to:
+  /// **'Artículos sobre desarrollo, Flutter, web y más.'**
   String get blogHint;
 
   /// No description provided for @blogRss.
   ///
-  /// In en, this message translates to:
-  /// **'Blog RSS'**
+  /// In es, this message translates to:
+  /// **'RSS del blog'**
   String get blogRss;
 
   /// No description provided for @blogEmptyFilter.
   ///
-  /// In en, this message translates to:
-  /// **'No articles in this category.'**
+  /// In es, this message translates to:
+  /// **'No hay artículos en esta categoría.'**
   String get blogEmptyFilter;
 
   /// No description provided for @home.
   ///
-  /// In en, this message translates to:
-  /// **'Home'**
+  /// In es, this message translates to:
+  /// **'Inicio'**
   String get home;
 
   /// No description provided for @homeHeroLead.
   ///
-  /// In en, this message translates to:
-  /// **'Development, IT support and digital products that have to work day to day. From tickets and MDM to Flutter, web and e-commerce.'**
+  /// In es, this message translates to:
+  /// **'Tecnólogo superior en desarrollo de software. Combino desarrollo, soporte IT / helpdesk y sistemas para entregar soluciones que tienen que funcionar en operación real.'**
   String get homeHeroLead;
 
   /// No description provided for @contact.
   ///
-  /// In en, this message translates to:
-  /// **'Contact'**
+  /// In es, this message translates to:
+  /// **'Contacto'**
   String get contact;
 
   /// No description provided for @contactHint.
   ///
-  /// In en, this message translates to:
-  /// **'Email contacto@albertoguaman.com, WhatsApp, or download the CV.'**
+  /// In es, this message translates to:
+  /// **'Escríbeme a contacto@albertoguaman.com, por WhatsApp o descarga el CV.'**
   String get contactHint;
 
   /// No description provided for @contactEmail.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'contacto@albertoguaman.com'**
   String get contactEmail;
 
   /// No description provided for @cvPreview.
   ///
-  /// In en, this message translates to:
-  /// **'CV preview'**
+  /// In es, this message translates to:
+  /// **'Vista previa del CV'**
   String get cvPreview;
 
   /// No description provided for @downloadCv.
   ///
-  /// In en, this message translates to:
-  /// **'Download CV'**
+  /// In es, this message translates to:
+  /// **'Descargar CV'**
   String get downloadCv;
 
   /// No description provided for @availabilityOpen.
   ///
-  /// In en, this message translates to:
-  /// **'Open to opportunities'**
+  /// In es, this message translates to:
+  /// **'Abierto a oportunidades'**
   String get availabilityOpen;
 
   /// No description provided for @availabilityRole.
   ///
-  /// In en, this message translates to:
-  /// **'IP Specialist · Development / IT Support'**
+  /// In es, this message translates to:
+  /// **'Tecnólogo en software · Desarrollo / Soporte IT'**
   String get availabilityRole;
 
   /// No description provided for @cvPageTitle.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'CV'**
   String get cvPageTitle;
 
   /// No description provided for @cvPageHint.
   ///
-  /// In en, this message translates to:
-  /// **'Preview and print the résumé.'**
+  /// In es, this message translates to:
+  /// **'Vista previa e impresión del currículum.'**
   String get cvPageHint;
 
   /// No description provided for @printCv.
   ///
-  /// In en, this message translates to:
-  /// **'Print'**
+  /// In es, this message translates to:
+  /// **'Imprimir'**
   String get printCv;
 
   /// No description provided for @contactFormTitle.
   ///
-  /// In en, this message translates to:
-  /// **'Contact form'**
+  /// In es, this message translates to:
+  /// **'Formulario de contacto'**
   String get contactFormTitle;
 
   /// No description provided for @contactFormName.
   ///
-  /// In en, this message translates to:
-  /// **'Name'**
+  /// In es, this message translates to:
+  /// **'Nombre'**
   String get contactFormName;
 
   /// No description provided for @contactFormEmail.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Email'**
   String get contactFormEmail;
 
   /// No description provided for @contactFormTopic.
   ///
-  /// In en, this message translates to:
-  /// **'Topic'**
+  /// In es, this message translates to:
+  /// **'Tema'**
   String get contactFormTopic;
 
   /// No description provided for @contactFormMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Message'**
+  /// In es, this message translates to:
+  /// **'Mensaje'**
   String get contactFormMessage;
 
   /// No description provided for @contactFormSubmit.
   ///
-  /// In en, this message translates to:
-  /// **'Send'**
+  /// In es, this message translates to:
+  /// **'Enviar'**
   String get contactFormSubmit;
 
   /// No description provided for @contactFormRequired.
   ///
-  /// In en, this message translates to:
-  /// **'Please fill name, email and message.'**
+  /// In es, this message translates to:
+  /// **'Completa nombre, email y mensaje.'**
   String get contactFormRequired;
 
   /// No description provided for @contactTopicGeneral.
   ///
-  /// In en, this message translates to:
-  /// **'General inquiry'**
+  /// In es, this message translates to:
+  /// **'Consulta general'**
   String get contactTopicGeneral;
 
   /// No description provided for @contactTopicJob.
   ///
-  /// In en, this message translates to:
-  /// **'Job opportunity'**
+  /// In es, this message translates to:
+  /// **'Oportunidad laboral'**
   String get contactTopicJob;
 
   /// No description provided for @contactTopicProject.
   ///
-  /// In en, this message translates to:
-  /// **'Project / development'**
+  /// In es, this message translates to:
+  /// **'Proyecto / desarrollo'**
   String get contactTopicProject;
 
   /// No description provided for @themeToggle.
   ///
-  /// In en, this message translates to:
-  /// **'Theme'**
+  /// In es, this message translates to:
+  /// **'Tema'**
   String get themeToggle;
 
   /// No description provided for @skipToContent.
   ///
-  /// In en, this message translates to:
-  /// **'Skip to content'**
+  /// In es, this message translates to:
+  /// **'Saltar al contenido'**
   String get skipToContent;
 
   /// No description provided for @administratorIt.
   ///
-  /// In en, this message translates to:
-  /// **'Information Technology Administrator'**
+  /// In es, this message translates to:
+  /// **'Tecnólogo superior en desarrollo de software'**
   String get administratorIt;
 
   /// No description provided for @administratorItShort.
   ///
-  /// In en, this message translates to:
-  /// **'IT Administrator'**
+  /// In es, this message translates to:
+  /// **'Tecnólogo en software'**
   String get administratorItShort;
 
   /// No description provided for @seeProject.
   ///
-  /// In en, this message translates to:
-  /// **'see project'**
+  /// In es, this message translates to:
+  /// **'ver proyecto'**
   String get seeProject;
 
   /// No description provided for @webDeveloperAndDataAnalyst.
   ///
-  /// In en, this message translates to:
-  /// **'Web developer and data analyst'**
+  /// In es, this message translates to:
+  /// **'Desarrollador web y analista de datos'**
   String get webDeveloperAndDataAnalyst;
 
   /// No description provided for @services.
   ///
-  /// In en, this message translates to:
-  /// **'Services'**
+  /// In es, this message translates to:
+  /// **'Servicios de'**
   String get services;
 
   /// No description provided for @servicesApp.
   ///
-  /// In en, this message translates to:
-  /// **'Hi Alberto, I want more information about app development:'**
+  /// In es, this message translates to:
+  /// **'Hola Alberto, quiero más información sobre desarrollo de apps:'**
   String get servicesApp;
 
   /// No description provided for @servicesAppTitle.
   ///
-  /// In en, this message translates to:
-  /// **'App development'**
+  /// In es, this message translates to:
+  /// **'Desarrollo de apps'**
   String get servicesAppTitle;
 
   /// No description provided for @servicesDevWeb.
   ///
-  /// In en, this message translates to:
-  /// **'Hi Alberto, I would like more information about website development:'**
+  /// In es, this message translates to:
+  /// **'Hola Alberto, quiero más información sobre desarrollo de sitios web:'**
   String get servicesDevWeb;
 
   /// No description provided for @servicesDevWebTitle.
   ///
-  /// In en, this message translates to:
-  /// **'Website development'**
+  /// In es, this message translates to:
+  /// **'Desarrollo de sitios web'**
   String get servicesDevWebTitle;
 
   /// No description provided for @servicesDisWeb.
   ///
-  /// In en, this message translates to:
-  /// **'Hi Alberto, I want more information about web site design:'**
+  /// In es, this message translates to:
+  /// **'Hola Alberto, quiero más información sobre diseño de sitios web:'**
   String get servicesDisWeb;
 
   /// No description provided for @servicesDisWebTitle.
   ///
-  /// In en, this message translates to:
-  /// **'Website design'**
+  /// In es, this message translates to:
+  /// **'Diseño de sitios web'**
   String get servicesDisWebTitle;
 
   /// No description provided for @madeWithFlutter.
   ///
-  /// In en, this message translates to:
-  /// **'Made with Flutter'**
+  /// In es, this message translates to:
+  /// **'Realizado con Flutter'**
   String get madeWithFlutter;
 
   /// No description provided for @desingFlutter.
   ///
-  /// In en, this message translates to:
-  /// **'Flutter Designs'**
+  /// In es, this message translates to:
+  /// **'Diseños con Flutter'**
   String get desingFlutter;
 
   /// No description provided for @resource.
   ///
-  /// In en, this message translates to:
-  /// **'Resources'**
+  /// In es, this message translates to:
+  /// **'Recursos de'**
   String get resource;
 
   /// No description provided for @portfolioStyle.
   ///
-  /// In en, this message translates to:
-  /// **'My portfolio in the style of'**
+  /// In es, this message translates to:
+  /// **'Mi portafolio con estilo de'**
   String get portfolioStyle;
 
   /// No description provided for @professionalWebsite.
   ///
-  /// In en, this message translates to:
-  /// **'Professional Website'**
+  /// In es, this message translates to:
+  /// **'Sitio web Profesional'**
   String get professionalWebsite;
 
   /// No description provided for @informationAbout.
   ///
-  /// In en, this message translates to:
-  /// **'Hello Alberto, I would like more information about:'**
+  /// In es, this message translates to:
+  /// **'Hola Alberto, quiero más información sobre:'**
   String get informationAbout;
 
   /// No description provided for @meetMe.
   ///
-  /// In en, this message translates to:
-  /// **'Meet with me'**
+  /// In es, this message translates to:
+  /// **'Reúnete conmigo'**
   String get meetMe;
 
   /// No description provided for @open.
   ///
-  /// In en, this message translates to:
-  /// **'Open'**
+  /// In es, this message translates to:
+  /// **'Abrir'**
   String get open;
 
   /// No description provided for @googlePlay.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Google Play'**
   String get googlePlay;
 
   /// No description provided for @github.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'GitHub'**
   String get github;
 
   /// No description provided for @original.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'original'**
   String get original;
 
   /// No description provided for @readMyBlog.
   ///
-  /// In en, this message translates to:
-  /// **'Read my Blog'**
+  /// In es, this message translates to:
+  /// **'Lee mi Blog'**
   String get readMyBlog;
 
   /// No description provided for @view.
   ///
-  /// In en, this message translates to:
-  /// **'View'**
+  /// In es, this message translates to:
+  /// **'Visualizar'**
   String get view;
 
   /// No description provided for @descriptionAbout.
   ///
-  /// In en, this message translates to:
-  /// **'I\'m Alberto Guaman. I work between technical support and development: tickets, downed systems, apps and sites that have to work day to day.\n\nI\'ve provided L1/L2 IT support to branches nationwide, coordinated helpdesk, run commercial operations, and built digital products with Flutter, web and e-commerce.\n\nIf something breaks, I diagnose it; if it needs to be built, I build it. That\'s the thread of my path.'**
+  /// In es, this message translates to:
+  /// **'Soy Alberto Guaman. Me muevo entre soporte técnico y desarrollo: tickets, sistemas caídos, apps y sitios que tienen que funcionar en el día a día.\n\nHe dado soporte L1/L2 de informática a sucursales a nivel nacional, coordinado helpdesk, administrado operación comercial y armado productos digitales con Flutter, web y e-commerce.\n\nSi algo se rompe, lo diagnostico; si hay que construir, lo construyo. Ese es el hilo de mi trayectoria.'**
   String get descriptionAbout;
 
   /// No description provided for @descriptionAboutDevelopment.
   ///
-  /// In en, this message translates to:
-  /// **'I\'m Alberto Guaman, a software development technologist. I work between technical support / IT and building digital solutions.\n\nI\'ve provided L1/L2 IT support to more than 16 branches nationwide: hardware, software, tickets and remote user support.\n\nThis coverage includes technical support and assistance for more than 200 internal employees. I also develop Java modules for an MDM platform focused on tracking and managing enterprise devices.\n\nMy experience combines Java, MDM, Flutter, Dart, Firebase, Git and a web stack. I also use AI — Cursor, Claude (Anthropic) and predictive models — to write, review and debug faster, without giving up judgment on what ships.'**
+  /// In es, this message translates to:
+  /// **'Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de soluciones digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto.\n\nEsta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos. También desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.\n\nMi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web. Además, trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.'**
   String get descriptionAboutDevelopment;
 
   /// No description provided for @aboutProfileDevelopment.
   ///
-  /// In en, this message translates to:
-  /// **'Development'**
+  /// In es, this message translates to:
+  /// **'Desarrollo'**
   String get aboutProfileDevelopment;
 
   /// No description provided for @aboutProfileAdvisor.
   ///
-  /// In en, this message translates to:
-  /// **'Advisor'**
+  /// In es, this message translates to:
+  /// **'Asesor'**
   String get aboutProfileAdvisor;
 
   /// No description provided for @experience.
   ///
-  /// In en, this message translates to:
-  /// **'Experience'**
+  /// In es, this message translates to:
+  /// **'Experiencia'**
   String get experience;
 
   /// No description provided for @project.
   ///
-  /// In en, this message translates to:
-  /// **'Projects'**
+  /// In es, this message translates to:
+  /// **'Proyectos'**
   String get project;
 
   /// No description provided for @caseStudies.
   ///
-  /// In en, this message translates to:
-  /// **'Case studies'**
+  /// In es, this message translates to:
+  /// **'Casos de estudio'**
   String get caseStudies;
 
   /// No description provided for @caseStudiesHint.
   ///
-  /// In en, this message translates to:
-  /// **'Problem, solution and outcomes from real projects.'**
+  /// In es, this message translates to:
+  /// **'Problema, solución y resultados de proyectos reales.'**
   String get caseStudiesHint;
 
   /// No description provided for @navCaseStudies.
   ///
-  /// In en, this message translates to:
-  /// **'Cases'**
+  /// In es, this message translates to:
+  /// **'Casos'**
   String get navCaseStudies;
 
   /// No description provided for @navTestimonials.
   ///
-  /// In en, this message translates to:
-  /// **'Reviews'**
+  /// In es, this message translates to:
+  /// **'Reseñas'**
   String get navTestimonials;
 
   /// No description provided for @caseStudyProblem.
   ///
-  /// In en, this message translates to:
-  /// **'Problem'**
+  /// In es, this message translates to:
+  /// **'Problema'**
   String get caseStudyProblem;
 
   /// No description provided for @caseStudySolution.
   ///
-  /// In en, this message translates to:
-  /// **'Solution'**
+  /// In es, this message translates to:
+  /// **'Solución'**
   String get caseStudySolution;
 
   /// No description provided for @caseStudyResults.
   ///
-  /// In en, this message translates to:
-  /// **'Results'**
+  /// In es, this message translates to:
+  /// **'Resultados'**
   String get caseStudyResults;
 
   /// No description provided for @caseStudyStack.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Stack'**
   String get caseStudyStack;
 
   /// No description provided for @testimonials.
   ///
-  /// In en, this message translates to:
-  /// **'Testimonials'**
+  /// In es, this message translates to:
+  /// **'Recomendaciones'**
   String get testimonials;
 
   /// No description provided for @testimonialsHint.
   ///
-  /// In en, this message translates to:
-  /// **'Client reviews from projects with Tinguar.'**
+  /// In es, this message translates to:
+  /// **'Reseñas de clientes en proyectos con Tinguar.'**
   String get testimonialsHint;
 
   /// No description provided for @testimonialsGoogleCertified.
   ///
-  /// In en, this message translates to:
-  /// **'Reviews certified by Google'**
+  /// In es, this message translates to:
+  /// **'Reseñas certificadas por Google'**
   String get testimonialsGoogleCertified;
 
   /// No description provided for @exploreMore.
   ///
-  /// In en, this message translates to:
-  /// **'Explore'**
+  /// In es, this message translates to:
+  /// **'Explorar'**
   String get exploreMore;
 
   /// No description provided for @exploreCasesCta.
   ///
-  /// In en, this message translates to:
-  /// **'View case studies'**
+  /// In es, this message translates to:
+  /// **'Ver casos de estudio'**
   String get exploreCasesCta;
 
   /// No description provided for @exploreReviewsCta.
   ///
-  /// In en, this message translates to:
-  /// **'View testimonials'**
+  /// In es, this message translates to:
+  /// **'Ver recomendaciones'**
   String get exploreReviewsCta;
 
   /// No description provided for @publications.
   ///
-  /// In en, this message translates to:
-  /// **'Publications'**
+  /// In es, this message translates to:
+  /// **'Publicaciones'**
   String get publications;
 
   /// No description provided for @content.
   ///
-  /// In en, this message translates to:
-  /// **'Content'**
+  /// In es, this message translates to:
+  /// **'Contenido'**
   String get content;
 
   /// No description provided for @contentHint.
   ///
-  /// In en, this message translates to:
-  /// **'Blog, LinkedIn and Instagram'**
+  /// In es, this message translates to:
+  /// **'Blog, LinkedIn e Instagram'**
   String get contentHint;
 
   /// No description provided for @contentFilterAll.
   ///
-  /// In en, this message translates to:
-  /// **'All'**
+  /// In es, this message translates to:
+  /// **'Todo'**
   String get contentFilterAll;
 
   /// No description provided for @contentFilterBlog.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Blog'**
   String get contentFilterBlog;
 
   /// No description provided for @contentFilterLinkedIn.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'LinkedIn'**
   String get contentFilterLinkedIn;
 
   /// No description provided for @contentFilterInstagram.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Instagram'**
   String get contentFilterInstagram;
 
   /// No description provided for @contentReadMore.
   ///
-  /// In en, this message translates to:
-  /// **'Open'**
+  /// In es, this message translates to:
+  /// **'Abrir'**
   String get contentReadMore;
 
   /// No description provided for @contentSeeAllBlog.
   ///
-  /// In en, this message translates to:
-  /// **'See full blog'**
+  /// In es, this message translates to:
+  /// **'Ver blog completo'**
   String get contentSeeAllBlog;
 
   /// No description provided for @contacMe.
   ///
-  /// In en, this message translates to:
-  /// **'Contact me'**
+  /// In es, this message translates to:
+  /// **'Contáctame'**
   String get contacMe;
 
   /// No description provided for @aboutMe.
   ///
-  /// In en, this message translates to:
-  /// **'About Me'**
+  /// In es, this message translates to:
+  /// **'Sobre mí'**
   String get aboutMe;
 
   /// No description provided for @helloWordIam.
   ///
-  /// In en, this message translates to:
-  /// **'Hello, World! I am'**
+  /// In es, this message translates to:
+  /// **'¡Hola, Mundo! Yo soy'**
   String get helloWordIam;
 
   /// No description provided for @freelancer.
   ///
-  /// In en, this message translates to:
-  /// **'Freelancer '**
+  /// In es, this message translates to:
+  /// **'Autónomo  '**
   String get freelancer;
 
   /// No description provided for @quickLinks.
   ///
-  /// In en, this message translates to:
-  /// **'Quick links'**
+  /// In es, this message translates to:
+  /// **'Enlaces rápidos'**
   String get quickLinks;
 
   /// No description provided for @projectsTapToExpand.
   ///
-  /// In en, this message translates to:
-  /// **'Tap to see the project list'**
+  /// In es, this message translates to:
+  /// **'Clic para ver la lista de proyectos'**
   String get projectsTapToExpand;
 
   /// No description provided for @moreInfo.
   ///
-  /// In en, this message translates to:
-  /// **'More information'**
+  /// In es, this message translates to:
+  /// **'Más información'**
   String get moreInfo;
 
   /// No description provided for @pageNotFound.
   ///
-  /// In en, this message translates to:
-  /// **'Page not found'**
+  /// In es, this message translates to:
+  /// **'Página no encontrada'**
   String get pageNotFound;
 
   /// No description provided for @pageNotFoundHint.
   ///
-  /// In en, this message translates to:
-  /// **'The route you are looking for does not exist.'**
+  /// In es, this message translates to:
+  /// **'La ruta que buscas no existe.'**
   String get pageNotFoundHint;
 
   /// No description provided for @backToHome.
   ///
-  /// In en, this message translates to:
-  /// **'Back to home'**
+  /// In es, this message translates to:
+  /// **'Volver al inicio'**
   String get backToHome;
 
   /// No description provided for @portfolio.
   ///
-  /// In en, this message translates to:
-  /// **'Portfolio'**
+  /// In es, this message translates to:
+  /// **'Portafolio'**
   String get portfolio;
 
   /// No description provided for @languageToggle.
   ///
-  /// In en, this message translates to:
-  /// **'Language'**
+  /// In es, this message translates to:
+  /// **'Idioma'**
   String get languageToggle;
 
   /// No description provided for @helpdeskManagement.
   ///
-  /// In en, this message translates to:
-  /// **'Helpdesk management and issue resolution, efficiently solving technical problems.'**
+  /// In es, this message translates to:
+  /// **'- Gestión de helpdesk e incidencias, resolviendo problemas técnicos de manera eficiente.'**
   String get helpdeskManagement;
 
   /// No description provided for @dataAnalysisAndMaintenance.
   ///
-  /// In en, this message translates to:
-  /// **'Data analysis and maintenance of educational sites with Moodle.'**
+  /// In es, this message translates to:
+  /// **'- Análisis de datos y mantenimiento de sitios educativos con Moodle.'**
   String get dataAnalysisAndMaintenance;
 
   /// No description provided for @processAutomation.
   ///
-  /// In en, this message translates to:
-  /// **'Process automation and preventive maintenance of equipment.'**
+  /// In es, this message translates to:
+  /// **'-Automatización de procesos y mantenimiento preventivo de equipos.'**
   String get processAutomation;
 
   /// No description provided for @flutterDevelopment.
   ///
-  /// In en, this message translates to:
-  /// **'Development and implementation of software using Flutter.'**
+  /// In es, this message translates to:
+  /// **'- Desarrollo e implementación de software utilizando Flutter.'**
   String get flutterDevelopment;
 
   /// No description provided for @mobileWebInstructor.
   ///
-  /// In en, this message translates to:
-  /// **'Instructor of mobile and web application courses.'**
+  /// In es, this message translates to:
+  /// **'- Instructor de cursos de aplicaciones móviles y web.'**
   String get mobileWebInstructor;
 
   /// No description provided for @mobileWebDevelopment.
   ///
-  /// In en, this message translates to:
-  /// **'Development of mobile and web applications using Flutter.'**
+  /// In es, this message translates to:
+  /// **'- Desarrollo de aplicaciones móviles y web utilizando Flutter.'**
   String get mobileWebDevelopment;
 
   /// No description provided for @mobileConsulting.
   ///
-  /// In en, this message translates to:
-  /// **'Consulting on the development of mobile applications with Flutter.'**
+  /// In es, this message translates to:
+  /// **'- Consultoría en el desarrollo de aplicaciones móviles con Flutter.'**
   String get mobileConsulting;
 
   /// No description provided for @webDevelopment.
   ///
-  /// In en, this message translates to:
-  /// **'Web development with HTML, JavaScript, CSS, and Webflow.'**
+  /// In es, this message translates to:
+  /// **'- Desarrollo web con HTML, JavaScript, CSS y Webflow.'**
   String get webDevelopment;
 
   /// No description provided for @onlineStoreCreation.
   ///
-  /// In en, this message translates to:
-  /// **'Creation of online stores using Odoo, WooCommerce, and WordPress.'**
+  /// In es, this message translates to:
+  /// **'- Creación de tiendas en línea utilizando Odoo, WooCommerce y WordPress.'**
   String get onlineStoreCreation;
 
   /// No description provided for @mobileWebInstructorRepeat.
   ///
-  /// In en, this message translates to:
-  /// **'Instructor of mobile and web application courses.'**
+  /// In es, this message translates to:
+  /// **'- Instructor de cursos de aplicaciones móviles y web.'**
   String get mobileWebInstructorRepeat;
 }
 
@@ -794,7 +790,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'es'].contains(locale.languageCode);
+      <String>['es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -803,8 +799,6 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
     case 'es':
       return AppLocalizationsEs();
   }

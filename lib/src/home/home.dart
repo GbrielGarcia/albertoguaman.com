@@ -5,7 +5,6 @@ import "package:albertoguaman/src/home/home_hero.dart";
 
 import "package:flutter/material.dart";
 import 'package:albertoguaman/l10n/app_localizations.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:go_router/go_router.dart";
 import "../utils/utils.dart";
 import "../widget/widget.dart";
@@ -202,12 +201,19 @@ class _PortfolioScreenState extends State<HomeSrc> {
               // —— Hero ——
               StaggerFadeIn(
                 index: 0,
-                child: HomeHero(
-                  al: al,
-                  titleSize: titleSize,
-                  bodySize: bodySize,
-                  isNarrow: isNarrow,
-                  onDownloadCv: () => laucherURL(AssetsUtil.cvDev2026),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    HomeHero(
+                      al: al,
+                      titleSize: titleSize,
+                      bodySize: bodySize,
+                      isNarrow: isNarrow,
+                      onDownloadCv: () => laucherURL(AssetsUtil.cvDev2026),
+                    ),
+                    SizedBox(height: SizeUtils.l),
+                    const AvailabilityPanel(),
+                  ],
                 ),
               ),
               SizedBox(height: SizeUtils.xl),
@@ -254,7 +260,12 @@ class _PortfolioScreenState extends State<HomeSrc> {
               ScrollReveal(
                 controller: _scrollController,
                 delay: const Duration(milliseconds: 60),
-                child: _buildSkills(al),
+                child: _buildContainerInfo(
+                  al,
+                  const InteractiveSkills(),
+                  color: Colors.transparent,
+                  title: al.skills,
+                ),
               ),
               _buildSectionContent('', sectionKeys[SectionId.projects]!),
               ScrollReveal(
@@ -279,122 +290,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildSkills(AppLocalizations? al) {
-    final descriptionSize =
-        TextStyleSize.textDescriptionSize(context.screenWidth);
-    final isNarrow = context.isMobile || context.isMobileLarge;
-
-    return ResponsiveCenter(
-      child: _buildContainerInfo(
-        al,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            for (final group in infoSkillGroups) ...[
-              SizedBox(height: SizeUtils.m),
-              Container(
-                padding: EdgeInsets.all(SizeUtils.m),
-                decoration: BoxDecoration(
-                  color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.04),
-                  border: Border.all(
-                    color:
-                        UtilsColor.colorSecondaryWhite.withValues(alpha: 0.18),
-                  ),
-                  borderRadius: BorderRadius.circular(SizeUtils.m),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      group.title.toUpperCase(),
-                      style: StyleText.textPortfolio(
-                        fontSize: descriptionSize,
-                        fontWeight: FontWeight.bold,
-                        color: UtilsColor.colorYellow,
-                      ),
-                    ),
-                    SizedBox(height: SizeUtils.s),
-                    Text(
-                      group.subtitle,
-                      style: StyleText.textPortfolio(
-                        fontSize: descriptionSize * 0.92,
-                        color: UtilsColor.colorSecondaryWhite
-                            .withValues(alpha: 0.7),
-                      ),
-                    ),
-                    SizedBox(height: SizeUtils.m),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        final maxW = constraints.maxWidth;
-                        final columns = isNarrow
-                            ? 2
-                            : maxW > 900
-                                ? 4
-                                : 3;
-                        final gap = SizeUtils.s;
-                        final tileW = (maxW - (gap * (columns - 1))) / columns;
-                        return Wrap(
-                          spacing: gap,
-                          runSpacing: gap,
-                          children: group.items
-                              .map(
-                                (item) => SizedBox(
-                                  width: tileW,
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: SizeUtils.s,
-                                      vertical: SizeUtils.m,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: UtilsColor.colorPrimaryDark
-                                          .withValues(alpha: 0.55),
-                                      border: Border.all(
-                                        color: UtilsColor.colorYellow
-                                            .withValues(alpha: 0.35),
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(SizeUtils.m),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        FaIcon(
-                                          item.icon,
-                                          size: descriptionSize,
-                                          color: UtilsColor.colorYellow,
-                                        ),
-                                        SizedBox(width: SizeUtils.s),
-                                        Expanded(
-                                          child: Text(
-                                            item.name,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: StyleText.textPortfolio(
-                                              fontSize: descriptionSize * 0.95,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-            SizedBox(height: SizeUtils.s),
-          ],
-        ),
-        color: Colors.transparent,
-        title: al!.skills,
       ),
     );
   }
@@ -552,7 +447,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
                         height: 12,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: UtilsColor.colorYellow,
+                          color: UtilsColor.colorYellowBright,
                           border: Border.all(
                               color: UtilsColor.colorSecondaryWhite, width: 2),
                         ),
@@ -562,7 +457,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
                           child: Center(
                             child: Container(
                               width: 2,
-                              color: UtilsColor.colorYellow,
+                              color: UtilsColor.colorYellowBright,
                             ),
                           ),
                         ),
@@ -632,7 +527,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
             style: StyleText.textPortfolio(
               fontSize: TextStyleSize.textDescriptionSize(context.screenWidth),
               fontWeight: FontWeight.bold,
-              color: UtilsColor.colorYellow,
+              color: UtilsColor.colorYellowInk,
             )),
         SizedBox(height: SizeUtils.s),
         Text(experience.data,
@@ -654,9 +549,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
             padding: EdgeInsets.symmetric(
                 horizontal: SizeUtils.s, vertical: SizeUtils.m),
             decoration: BoxDecoration(
-              color: UtilsColor.colorYellow.withValues(alpha: 0.15),
+              color: UtilsColor.colorYellowSoft,
               borderRadius: BorderRadius.circular(SizeUtils.m),
-              border: Border.all(color: UtilsColor.colorYellow, width: 1),
+              border: Border.all(color: UtilsColor.colorYellowInk, width: 1),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -666,14 +561,14 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       fontSize: TextStyleSize.textDescriptionSize(
                           context.screenWidth),
                       fontWeight: FontWeight.bold,
-                      color: UtilsColor.colorYellow,
+                      color: UtilsColor.colorYellowInk,
                     )),
                 Expanded(
                   child: Text(experience.stack!,
                       style: StyleText.textPortfolio(
                         fontSize: TextStyleSize.textDescriptionSize(
                             context.screenWidth),
-                        color: UtilsColor.colorYellow,
+                        color: UtilsColor.colorYellowInk,
                       )),
                 ),
               ],
@@ -707,7 +602,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
                 style: StyleText.textPortfolio(
                   fontSize: TextStyleSize.textTitleSize(context.screenWidth),
                   fontWeight: FontWeight.bold,
-                  color: isCurrent ? UtilsColor.colorYellow : null,
+                  color: isCurrent ? UtilsColor.colorYellowInk : null,
                 )),
             SizedBox(height: SizeUtils.m),
             Text(experience.type,
@@ -732,9 +627,9 @@ class _PortfolioScreenState extends State<HomeSrc> {
                 padding: EdgeInsets.symmetric(
                     horizontal: SizeUtils.s, vertical: SizeUtils.m),
                 decoration: BoxDecoration(
-                  color: UtilsColor.colorYellow.withValues(alpha: 0.15),
+                  color: UtilsColor.colorYellowSoft,
                   borderRadius: BorderRadius.circular(SizeUtils.m),
-                  border: Border.all(color: UtilsColor.colorYellow, width: 1),
+                  border: Border.all(color: UtilsColor.colorYellowInk, width: 1),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -744,14 +639,14 @@ class _PortfolioScreenState extends State<HomeSrc> {
                           fontSize: TextStyleSize.textDescriptionSize(
                               context.screenWidth),
                           fontWeight: FontWeight.bold,
-                          color: UtilsColor.colorYellow,
+                          color: UtilsColor.colorYellowInk,
                         )),
                     Expanded(
                       child: Text(experience.stack!,
                           style: StyleText.textPortfolio(
                             fontSize: TextStyleSize.textDescriptionSize(
                                 context.screenWidth),
-                            color: UtilsColor.colorYellow,
+                            color: UtilsColor.colorYellowInk,
                           )),
                     ),
                   ],
@@ -776,7 +671,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
         'urlTitle',
         'view',
         experience.data,
-        isCurrent ? UtilsColor.colorYellow : Colors.transparent,
+        isCurrent ? UtilsColor.colorYellowBright : Colors.transparent,
         [],
         titleToolTip: true,
         positioned: true,

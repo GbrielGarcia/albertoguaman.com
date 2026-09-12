@@ -69,15 +69,15 @@ class BlogPostCard extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: UtilsColor.colorYellow
-                                  .withValues(alpha: 0.18),
+                              color: UtilsColor.colorYellowSoft,
                               borderRadius: BorderRadius.circular(SizeUtils.m),
                             ),
                             child: Text(
                               cat,
                               style: StyleText.textPortfolio(
                                 fontSize: bodySize * 0.78,
-                                color: UtilsColor.colorYellow,
+                                color: UtilsColor.colorYellowInk,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
@@ -95,9 +95,7 @@ class BlogPostCard extends StatelessWidget {
                     ),
                     SizedBox(height: SizeUtils.s),
                     Text(
-                      post.localizedExcerpt(
-                        Localizations.localeOf(context).languageCode == 'en',
-                      ),
+                      post.localizedExcerpt(false),
                       maxLines: compact ? 3 : 4,
                       overflow: TextOverflow.ellipsis,
                       style: StyleText.textPortfolio(
@@ -121,7 +119,7 @@ class BlogPostCard extends StatelessWidget {
                       style: StyleText.textPortfolio(
                         fontSize: bodySize * 0.9,
                         fontWeight: FontWeight.w700,
-                        color: UtilsColor.colorYellow,
+                        color: UtilsColor.colorYellowInk,
                       ),
                     ),
                   ],

@@ -82,6 +82,63 @@ class _CaseStudyArticle extends StatelessWidget {
           ),
         ),
         SizedBox(height: SizeUtils.xl),
+        if (study.beforeLabel != null || study.afterLabel != null) ...[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (study.beforeLabel != null)
+                Expanded(
+                  child: _MetricBox(
+                    label: 'Antes',
+                    body: study.beforeLabel!,
+                    bodySize: bodySize,
+                  ),
+                ),
+              if (study.beforeLabel != null && study.afterLabel != null)
+                SizedBox(width: SizeUtils.m),
+              if (study.afterLabel != null)
+                Expanded(
+                  child: _MetricBox(
+                    label: 'Después',
+                    body: study.afterLabel!,
+                    bodySize: bodySize,
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(height: SizeUtils.l),
+        ],
+        if (study.metrics.isNotEmpty) ...[
+          Wrap(
+            spacing: SizeUtils.s,
+            runSpacing: SizeUtils.s / 2,
+            children: [
+              for (final m in study.metrics)
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeUtils.s,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: UtilsColor.colorBlue.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(SizeUtils.m),
+                    border: Border.all(
+                      color: UtilsColor.colorBlue.withValues(alpha: 0.35),
+                    ),
+                  ),
+                  child: Text(
+                    m,
+                    style: StyleText.textPortfolio(
+                      fontSize: bodySize * 0.85,
+                      fontWeight: FontWeight.w700,
+                      color: UtilsColor.colorBlue,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(height: SizeUtils.l),
+        ],
         _Block(label: al.caseStudyProblem, body: study.problem, bodySize: bodySize),
         SizedBox(height: SizeUtils.l),
         _Block(label: al.caseStudySolution, body: study.solution, bodySize: bodySize),
@@ -173,6 +230,52 @@ class _Block extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _MetricBox extends StatelessWidget {
+  const _MetricBox({
+    required this.label,
+    required this.body,
+    required this.bodySize,
+  });
+
+  final String label;
+  final String body;
+  final double bodySize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(SizeUtils.m),
+      decoration: BoxDecoration(
+        color: UtilsColor.colorElevated.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: UtilsColor.hairline),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label.toUpperCase(),
+            style: StyleText.textPortfolio(
+              fontSize: bodySize * 0.75,
+              fontWeight: FontWeight.w800,
+              color: UtilsColor.colorYellowInk,
+            ),
+          ),
+          SizedBox(height: SizeUtils.s / 2),
+          Text(
+            body,
+            style: StyleText.textPortfolio(
+              fontSize: bodySize * 0.92,
+              color: UtilsColor.colorSecondaryWhite.withValues(alpha: 0.9),
+              height: 1.4,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -22,9 +22,22 @@ class UtilsColor {
   /// Azul violeta original.
   static Color get colorBlue => const Color(0xFF707EFF);
 
-  static Color get colorYellow => const Color(0xFFFAD85D);
+  /// Amarillo brillante fijo (decoración, glow, partículas).
+  static const Color colorYellowBright = Color(0xFFFAD85D);
+
+  /// Amarillo de UI/texto: en claro es tinta oscura legible; en oscuro el brillante.
+  static Color get colorYellow =>
+      useLight ? const Color(0xFF6B5200) : colorYellowBright;
+
+  /// Alias explícito para texto/enlaces (mismo criterio que [colorYellow]).
+  static Color get colorYellowInk => colorYellow;
+
+  /// Fondo suave para chips/tags amarillos.
+  static Color get colorYellowSoft =>
+      useLight ? const Color(0xFFF7E9A8) : colorYellowBright.withValues(alpha: 0.18);
 
   static Color get colorPink => const Color(0xFFF2A0FF);
+
   static Color get colorPinkSecondary => const Color(0xFFFDADC6);
 
   static Color get colorMuted =>

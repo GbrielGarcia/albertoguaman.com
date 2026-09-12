@@ -196,7 +196,7 @@ class _BinaryTrailPainter extends CustomPainter {
   final DateTime now;
 
   static final _colors = [
-    UtilsColor.colorYellow,
+    UtilsColor.colorYellowBright,
     UtilsColor.colorPink,
     UtilsColor.colorBlue,
   ];
@@ -271,9 +271,9 @@ class BubbleBackgroundToggleOverlay extends StatelessWidget {
                         : 'Activar fondo animado',
                     child: Switch.adaptive(
                       value: prefs.bubblesEnabled,
-                      activeThumbColor: UtilsColor.colorYellow,
+                      activeThumbColor: UtilsColor.colorYellowBright,
                       activeTrackColor:
-                          UtilsColor.colorYellow.withValues(alpha: 0.45),
+                          UtilsColor.colorYellowBright.withValues(alpha: 0.45),
                       inactiveThumbColor: Colors.white54,
                       inactiveTrackColor: Colors.white24,
                       onChanged: (v) => unawaited(prefs.setBubblesEnabled(v)),

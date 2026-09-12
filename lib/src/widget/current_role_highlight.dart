@@ -45,7 +45,7 @@ class _CurrentRoleHighlightState extends State<CurrentRoleHighlight>
       builder: (context, child) {
         final t = _pulse.value;
         final glow = Color.lerp(
-          UtilsColor.colorYellow,
+          UtilsColor.colorYellowBright,
           UtilsColor.colorPink,
           t,
         )!;

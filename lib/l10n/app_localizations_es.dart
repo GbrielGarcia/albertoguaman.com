@@ -58,7 +58,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get homeHeroLead =>
-      'Desarrollo, soporte IT y productos digitales que tienen que funcionar en el día a día. De tickets y MDM a Flutter, web y e-commerce.';
+      'Tecnólogo superior en desarrollo de software. Combino desarrollo, soporte IT / helpdesk y sistemas para entregar soluciones que tienen que funcionar en operación real.';
 
   @override
   String get contact => 'Contacto';
@@ -80,7 +80,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get availabilityOpen => 'Abierto a oportunidades';
 
   @override
-  String get availabilityRole => 'Especialista IP · Desarrollo / Soporte IT';
+  String get availabilityRole =>
+      'Tecnólogo en software · Desarrollo / Soporte IT';
 
   @override
   String get cvPageTitle => 'CV';
@@ -128,11 +129,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get skipToContent => 'Saltar al contenido';
 
   @override
-  String get administratorIt =>
-      'Administrador de Tecnologías de la Información';
+  String get administratorIt => 'Tecnólogo superior en desarrollo de software';
 
   @override
-  String get administratorItShort => 'Administrador TI';
+  String get administratorItShort => 'Tecnólogo en software';
 
   @override
   String get seeProject => 'ver proyecto';

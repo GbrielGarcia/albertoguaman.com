@@ -19,6 +19,7 @@ export 'site_header.dart';
 export 'site_page_frame.dart';
 export 'cv_preview.dart';
 export 'availability_badge.dart';
+export 'availability_panel.dart';
+export 'interactive_skills.dart';
 export 'theme_toggle_button.dart';
-export 'locale_toggle_button.dart';
 export 'portfolio_scaffold.dart';

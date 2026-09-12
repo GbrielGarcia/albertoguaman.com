@@ -35,7 +35,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => BubbleBackgroundProvider()),
         ChangeNotifierProvider(create: (_) => ThemeModeProvider()),
       ],
@@ -49,15 +48,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localProvider = Provider.of<LocaleProvider>(context);
     final themeProvider = Provider.of<ThemeModeProvider>(context);
 
     return MaterialApp.router(
-      locale: localProvider.locale,
+      locale: const Locale('es'),
       debugShowCheckedModeBanner: false,
       title: 'Alberto Guaman | Portafolio',
       routerConfig: goRouter,
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: const [Locale('es')],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       themeMode: themeProvider.mode,
       theme: ThemeData(

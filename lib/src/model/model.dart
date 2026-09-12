@@ -9,3 +9,8 @@ export 'client.dart';
 export 'blog_post.dart';
 export 'case_study.dart';
 export 'testimonial.dart';
+export 'service_offer.dart';
+export 'faq_item.dart';
+export 'changelog_entry.dart';
+export 'availability.dart';
+export 'skill_projects.dart';

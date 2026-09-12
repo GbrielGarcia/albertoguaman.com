@@ -21,6 +21,9 @@ Widget _socialIcon(String name) {
 }
 
 Widget iconDataRow({WrapAlignment alignment = WrapAlignment.center}) {
+  // Los PNG son oscuros: el círculo debe ser claro en ambos temas.
+  const circleBg = Color(0xFFFFFFFF);
+
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: SizeUtils.s1),
     child: Wrap(
@@ -31,9 +34,11 @@ Widget iconDataRow({WrapAlignment alignment = WrapAlignment.center}) {
         return tooltipW(
           button.url,
           Material(
-            color: UtilsColor.colorSecondaryWhite,
+            color: circleBg,
             elevation: 0,
-            shape: const CircleBorder(),
+            shape: CircleBorder(
+              side: BorderSide(color: UtilsColor.hairline),
+            ),
             child: InkWell(
               customBorder: const CircleBorder(),
               onTap: () => laucherURL(button.url),
