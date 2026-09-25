@@ -41,8 +41,8 @@ El `.htaccess` reescribe `/blog` y `/cv` a `index.html` porque esas carpetas exi
 
 | Archivo | Uso |
 |---|---|
-| `web/cv/cv_sep_2026.pdf` | CV **oficial** (desarrollo / IT) — enlace del sitio |
-| `assets/cv/cv_sep_agg_2026.pdf` | CV **alternativo** (comercial / administración) — no público por defecto |
+| `web/cv/cv_sep_2026.pdf` | CV **principal** (Java / MDM · Soporte L1/L2 IT · Full Stack) — enlace del sitio |
+| `web/cv/cv_sep_agg_2026.pdf` | Copia / variante agregada |
 
 El sitio está en **español** únicamente.
 

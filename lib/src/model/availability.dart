@@ -23,7 +23,7 @@ const AvailabilityInfo siteAvailability = AvailabilityInfo(
   workMode: 'Remoto · híbrido · presencial según acuerdo',
   contract: 'Tiempo completo · proyectos · soporte continuo',
   preferredStack:
-      'Flutter / Dart · Java / MDM · soporte IT · web · e-commerce operativo',
+      'Java · MDM · Soporte L1/L2 IT · Flutter · Dart · Firebase · Full Stack',
   note:
-      'Busco roles donde pueda combinar desarrollo y operación técnica con impacto medible.',
+      'Busco roles de desarrollo (Java/MDM/Flutter) y soporte técnico L1/L2 IT donde pueda aportar criterio, seguimiento y resultados.',
 );

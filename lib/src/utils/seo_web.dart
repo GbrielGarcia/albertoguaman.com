@@ -3,7 +3,7 @@ import 'dart:html' as html;
 
 const String _siteName = 'Alberto Guaman';
 const String _baseUrl = 'https://albertoguaman.com';
-const String _ogImage = 'https://albertoguaman.com/og-image.png';
+const String _ogImage = 'https://albertoguaman.com/alberto_cv_photo.jpg';
 
 void setPageSEO({
   required String title,

@@ -106,7 +106,10 @@ class _AboutProfileContentState extends State<AboutProfileContent> {
                 fontSize: descriptionSize,
                 fontWeight: widget.descriptionBold
                     ? FontWeight.bold
-                    : widget.fontWeight,
+                    : (widget.fontWeight == FontWeight.normal
+                        ? FontWeight.w400
+                        : widget.fontWeight),
+                color: UtilsColor.colorSecondaryWhite,
                 height: 1.45,
               ),
             ),

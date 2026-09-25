@@ -29,6 +29,7 @@ const List<SkillGroup> infoSkillGroups = [
     subtitle: 'Apps, web y datos',
     items: [
       SkillItem(name: 'Java', icon: FontAwesomeIcons.java),
+      SkillItem(name: 'MDM', icon: FontAwesomeIcons.mobileScreen),
       SkillItem(name: 'Flutter', icon: FontAwesomeIcons.flutter),
       SkillItem(name: 'Dart', icon: FontAwesomeIcons.code),
       SkillItem(name: 'Firebase', icon: FontAwesomeIcons.fire),

@@ -5,6 +5,7 @@ import 'package:albertoguaman/src/changelog/changelog_page.dart';
 import 'package:albertoguaman/src/contact/contact_page.dart';
 import 'package:albertoguaman/src/cv/cv_page.dart';
 import 'package:albertoguaman/src/faq/faq_page.dart';
+import 'package:albertoguaman/src/flores_amarillas/flores_amarillas_page.dart';
 import 'package:albertoguaman/src/gallery/gallery_page.dart';
 import 'package:albertoguaman/src/home/bio.dart';
 import 'package:albertoguaman/l10n/app_localizations.dart';
@@ -32,7 +33,8 @@ bool isValidAppPath(String path) {
       path == '/recomendaciones' ||
       path == '/servicios' ||
       path == '/faq' ||
-      path == '/changelog') {
+      path == '/changelog' ||
+      path == '/flores-amarillas') {
     return true;
   }
   if (path.startsWith('/blog/')) {
@@ -67,7 +69,12 @@ void _updateSeoForRoute(GoRouterState state) {
   }
   final data = pageSeoData[path];
   if (data != null) {
-    setPageSEO(title: data.$1, description: data.$2, path: path);
+    setPageSEO(
+      title: data.$1,
+      description: data.$2,
+      path: path,
+      imageUrl: defaultShareImagePath,
+    );
   }
 }
 
@@ -172,6 +179,16 @@ final goRouter = GoRouter(
       pageBuilder: (BuildContext context, GoRouterState state) {
         _updateSeoForRoute(state);
         return transitionPageRouter(state.pageKey, const ChangelogPage());
+      },
+    ),
+    GoRoute(
+      path: '/flores-amarillas',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(
+          state.pageKey,
+          const FloresAmarillasPage(),
+        );
       },
     ),
   ],

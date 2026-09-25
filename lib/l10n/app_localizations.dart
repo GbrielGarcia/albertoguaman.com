@@ -193,7 +193,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeHeroLead.
   ///
   /// In es, this message translates to:
-  /// **'Tecnólogo superior en desarrollo de software. Combino desarrollo, soporte IT / helpdesk y sistemas para entregar soluciones que tienen que funcionar en operación real.'**
+  /// **'Me gusta el día a día de un equipo o un local: inventarios al día, personas coordinadas, clientes bien atendidos y soporte cuando algo falla. Trabajo con calma, seguimiento y ganas de que las cosas funcionen de verdad.'**
   String get homeHeroLead;
 
   /// No description provided for @contact.
@@ -235,7 +235,7 @@ abstract class AppLocalizations {
   /// No description provided for @availabilityRole.
   ///
   /// In es, this message translates to:
-  /// **'Tecnólogo en software · Desarrollo / Soporte IT'**
+  /// **'Administrador Operativo · Inventarios · Soporte Técnico'**
   String get availabilityRole;
 
   /// No description provided for @cvPageTitle.
@@ -331,13 +331,13 @@ abstract class AppLocalizations {
   /// No description provided for @administratorIt.
   ///
   /// In es, this message translates to:
-  /// **'Tecnólogo superior en desarrollo de software'**
+  /// **'Administrador Operativo | Inventarios | Coordinación de Equipos | Atención al Cliente | Soporte Técnico'**
   String get administratorIt;
 
   /// No description provided for @administratorItShort.
   ///
   /// In es, this message translates to:
-  /// **'Tecnólogo en software'**
+  /// **'Administrador Operativo | Inventarios | Soporte Técnico'**
   String get administratorItShort;
 
   /// No description provided for @seeProject.
@@ -475,13 +475,13 @@ abstract class AppLocalizations {
   /// No description provided for @descriptionAbout.
   ///
   /// In es, this message translates to:
-  /// **'Soy Alberto Guaman. Me muevo entre soporte técnico y desarrollo: tickets, sistemas caídos, apps y sitios que tienen que funcionar en el día a día.\n\nHe dado soporte L1/L2 de informática a sucursales a nivel nacional, coordinado helpdesk, administrado operación comercial y armado productos digitales con Flutter, web y e-commerce.\n\nSi algo se rompe, lo diagnostico; si hay que construir, lo construyo. Ese es el hilo de mi trayectoria.'**
+  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
   String get descriptionAbout;
 
   /// No description provided for @descriptionAboutDevelopment.
   ///
   /// In es, this message translates to:
-  /// **'Soy Alberto Guaman, tecnólogo en desarrollo de software. Trabajo entre soporte técnico / IT y la construcción de soluciones digitales.\n\nHe dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional: hardware, software, tickets y acompañamiento remoto.\n\nEsta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos. También desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.\n\nMi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web. Además, trabajo con IA — Cursor, Claude (Anthropic) y modelos predictivos — para escribir, revisar y depurar más rápido, sin soltar el criterio de lo que se entrega.'**
+  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
   String get descriptionAboutDevelopment;
 
   /// No description provided for @aboutProfileDevelopment.
@@ -493,7 +493,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutProfileAdvisor.
   ///
   /// In es, this message translates to:
-  /// **'Asesor'**
+  /// **'Soporte / IT'**
   String get aboutProfileAdvisor;
 
   /// No description provided for @experience.

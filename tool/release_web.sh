@@ -17,6 +17,12 @@ flutter build web --release --no-wasm-dry-run
 echo "==> sync .htaccess → build/web"
 cp -f web/.htaccess build/web/.htaccess
 
+if [[ -d web/audio ]]; then
+  echo "==> sync web/audio → build/web/audio"
+  mkdir -p build/web/audio
+  cp -f web/audio/* build/web/audio/ 2>/dev/null || true
+fi
+
 echo
 echo "✓ Listo: $ROOT/build/web"
 echo

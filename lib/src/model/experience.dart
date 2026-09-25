@@ -53,11 +53,12 @@ String _formatDurationMonths(int totalMonths) {
   return months == 1 ? '1 mes' : '$months meses';
 }
 
+/// Experiencia alineada al CV principal (`cv_sep_2026.pdf`).
 List<Experience> infoExperienceModel = [
   Experience(
     title: 'MI CHANCE',
     stack:
-        'Java, MDM, rastreo y gestión de equipos empresariales, soporte L1/L2 IT, helpdesk, gestión de incidencias.',
+        'Java, MDM, rastreo y gestión de equipos empresariales, soporte L1/L2 IT, helpdesk y gestión de incidencias.',
     description: [
       '- Desarrollo de módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.',
       '- Soporte técnico nivel 1 y nivel 2 en Informática / IT a más de 16 sucursales a nivel nacional.',
@@ -74,7 +75,7 @@ List<Experience> infoExperienceModel = [
   Experience(
     title: 'NOVISOLUTIONS',
     stack:
-        'Sistema de facturación MBA 3, control de inventario, auditoría de caja, KPIs de ventas, gestión de personal.',
+        'Sistema de facturación MBA 3, control de inventario, auditoría de caja, KPIs de ventas y gestión de personal.',
     description: [
       '- Administración integral de la operación diaria y supervisión del local comercial.',
       '- Coordinación de personal, asignación de tareas y liderazgo del equipo de trabajo.',
@@ -106,7 +107,7 @@ List<Experience> infoExperienceModel = [
   Experience(
     title: 'SCIEDTEC',
     stack:
-        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO, MySQL.',
+        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO y MySQL.',
     description: [
       '- Administración y optimización de plataformas Moodle para procesos académicos y administrativos.',
       '- Soporte técnico y resolución ágil de incidencias (helpdesk).',
@@ -124,7 +125,7 @@ List<Experience> infoExperienceModel = [
   Experience(
     title: 'TINGUAR',
     stack:
-        'Flutter, Dart, Firebase, WordPress, WooCommerce, Odoo, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL, VPS.',
+        'Flutter, Dart, Firebase, WordPress, WooCommerce, Odoo, Webflow, HTML, CSS, JavaScript, Git, PostgreSQL, MySQL y VPS.',
     description: [
       '- Desarrollo de aplicaciones móviles multiplataforma con Flutter y Firebase.',
       '- Creación de sitios web responsivos y desarrollo web personalizado.',
@@ -136,5 +137,5 @@ List<Experience> infoExperienceModel = [
     type: 'Desarrollador Full Stack Web & Mobile',
     data: 'Enero 2020 – Diciembre 2021 (2 años)',
     country: 'Ecuador',
-  )
+  ),
 ];

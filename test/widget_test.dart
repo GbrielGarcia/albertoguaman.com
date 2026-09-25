@@ -26,6 +26,7 @@ void main() {
     expect(isValidAppPath('/servicios'), isTrue);
     expect(isValidAppPath('/faq'), isTrue);
     expect(isValidAppPath('/changelog'), isTrue);
+    expect(isValidAppPath('/flores-amarillas'), isTrue);
     expect(isValidAppPath('/no-existe'), isFalse);
     expect(isValidAppPath('/blog/no-existe-slug'), isFalse);
 
@@ -46,6 +47,7 @@ void main() {
       '/servicios',
       '/faq',
       '/changelog',
+      '/flores-amarillas',
     ]) {
       expect(pageSeoData.containsKey(path), isTrue, reason: path);
       expect(pageSeoData[path]!.$1.isNotEmpty, isTrue);

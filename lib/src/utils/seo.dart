@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 
 import 'seo_stub.dart' if (dart.library.html) 'seo_web.dart' as impl;
 
+/// Imagen por defecto al compartir (foto del CV, servida desde `web/`).
+const String defaultShareImagePath = '/alberto_cv_photo.jpg';
+
 /// Actualiza título y meta description de la página (solo web con JS). En WASM no hace nada.
 void setPageSEO({
   required String title,
@@ -21,16 +24,14 @@ void setPageSEO({
 /// Datos SEO por ruta: título (corto) y descripción.
 Map<String, (String title, String description)> get pageSeoData => {
       '/': (
-        'Portafolio · Desarrollo, Soporte y Productos Digitales',
-        'Portafolio de Alberto Guaman (Ecuador): desarrollo Java para MDM y '
-            'gestión de equipos empresariales, soporte L1/L2 IT '
-            '(más de 16 sucursales), desarrollo Flutter/web y productos Tinguar '
-            '(Rapidito, Mi Negocio Listo, Streaming Distribuidores).',
+        'Portafolio · Java / MDM · Soporte L1/L2 IT · Full Stack',
+        'Portafolio de Alberto Guaman (Ecuador): desarrollo Java para MDM, '
+            'soporte técnico L1/L2 a sucursales, Flutter, Dart, Firebase y productos digitales.',
       ),
       '/bio': (
         'Sobre mí · Perfil profesional',
-        'Conoce a Alberto Guaman: trayectoria en soporte técnico, desarrollo full stack '
-            'web y móvil, gestión comercial y productos digitales. Contacto y redes.',
+        'Conoce a Alberto Guaman: tecnólogo en desarrollo de software, Java/MDM, '
+            'soporte L1/L2 IT, Flutter y stack web. Contacto y redes.',
       ),
       '/blog': (
         'Blog · Desarrollo, Flutter y tecnología',
@@ -71,5 +72,9 @@ Map<String, (String title, String description)> get pageSeoData => {
       '/changelog': (
         'Cambios · albertoguaman.com',
         'Qué he ido cambiando en el portafolio y cuándo.',
+      ),
+      '/flores-amarillas': (
+        'Flores amarillas',
+        'Un regalo digital especial.',
       ),
     };

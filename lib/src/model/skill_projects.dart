@@ -3,6 +3,7 @@ import 'package:albertoguaman/src/model/project.dart';
 /// Mapeo herramienta → proyectos donde la usé (stack interactivo).
 const Map<String, List<String>> skillToProjectTitles = {
   'Java': ['MDM · Mi Chance (experiencia)'],
+  'MDM': ['MDM · Mi Chance (experiencia)'],
   'Flutter': [
     'Tarot Pragmático - Calculadora de Arcanos',
     'Mi Negocio Listo',
