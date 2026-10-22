@@ -193,7 +193,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeHeroLead.
   ///
   /// In es, this message translates to:
-  /// **'Me gusta el día a día de un equipo o un local: inventarios al día, personas coordinadas, clientes bien atendidos y soporte cuando algo falla. Trabajo con calma, seguimiento y ganas de que las cosas funcionen de verdad.'**
+  /// **''**
   String get homeHeroLead;
 
   /// No description provided for @contact.
@@ -235,7 +235,7 @@ abstract class AppLocalizations {
   /// No description provided for @availabilityRole.
   ///
   /// In es, this message translates to:
-  /// **'Administrador Operativo · Inventarios · Soporte Técnico'**
+  /// **'Encargado Comercial · Inventarios · Soporte Técnico'**
   String get availabilityRole;
 
   /// No description provided for @cvPageTitle.
@@ -331,13 +331,13 @@ abstract class AppLocalizations {
   /// No description provided for @administratorIt.
   ///
   /// In es, this message translates to:
-  /// **'Administrador Operativo | Inventarios | Coordinación de Equipos | Atención al Cliente | Soporte Técnico'**
+  /// **'Encargado Comercial | Inventarios | Coordinación de Equipos | Atención al Cliente | Soporte Técnico'**
   String get administratorIt;
 
   /// No description provided for @administratorItShort.
   ///
   /// In es, this message translates to:
-  /// **'Administrador Operativo | Inventarios | Soporte Técnico'**
+  /// **'Encargado Comercial | Inventarios | Soporte Técnico'**
   String get administratorItShort;
 
   /// No description provided for @seeProject.
@@ -475,13 +475,13 @@ abstract class AppLocalizations {
   /// No description provided for @descriptionAbout.
   ///
   /// In es, this message translates to:
-  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
+  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nMi experiencia combina Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
   String get descriptionAbout;
 
   /// No description provided for @descriptionAboutDevelopment.
   ///
   /// In es, this message translates to:
-  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
+  /// **'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nMi experiencia combina Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.'**
   String get descriptionAboutDevelopment;
 
   /// No description provided for @aboutProfileDevelopment.

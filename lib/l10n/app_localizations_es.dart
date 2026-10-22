@@ -57,8 +57,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get home => 'Inicio';
 
   @override
-  String get homeHeroLead =>
-      'Me gusta el día a día de un equipo o un local: inventarios al día, personas coordinadas, clientes bien atendidos y soporte cuando algo falla. Trabajo con calma, seguimiento y ganas de que las cosas funcionen de verdad.';
+  String get homeHeroLead => '';
 
   @override
   String get contact => 'Contacto';
@@ -81,7 +80,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get availabilityRole =>
-      'Administrador Operativo · Inventarios · Soporte Técnico';
+      'Encargado Comercial · Inventarios · Soporte Técnico';
 
   @override
   String get cvPageTitle => 'CV';
@@ -130,11 +129,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get administratorIt =>
-      'Administrador Operativo | Inventarios | Coordinación de Equipos | Atención al Cliente | Soporte Técnico';
+      'Encargado Comercial | Inventarios | Coordinación de Equipos | Atención al Cliente | Soporte Técnico';
 
   @override
   String get administratorItShort =>
-      'Administrador Operativo | Inventarios | Soporte Técnico';
+      'Encargado Comercial | Inventarios | Soporte Técnico';
 
   @override
   String get seeProject => 'ver proyecto';
@@ -208,11 +207,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get descriptionAbout =>
-      'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.';
+      'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nMi experiencia combina Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.';
 
   @override
   String get descriptionAboutDevelopment =>
-      'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nTambién desarrollo módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales. Mi experiencia combina Java, MDM, Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.';
+      'Soy tecnólogo en desarrollo de software. Trabajo entre el desarrollo de soluciones y el soporte técnico / IT. He dado soporte L1/L2 de informática a más de 16 sucursales a nivel nacional (hardware, software, tickets y acompañamiento remoto). Esta cobertura incluye la atención y el acompañamiento tecnológico a más de 200 colaboradores internos.\n\nMi experiencia combina Flutter, Dart, Firebase, Git y stack web; además, uso IA (Cursor, Claude / Anthropic y modelos predictivos) para escribir, revisar y depurar con mayor rapidez y criterio técnico.';
 
   @override
   String get aboutProfileDevelopment => 'Desarrollo';

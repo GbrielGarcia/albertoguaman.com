@@ -21,7 +21,7 @@ const List<FaqItem> infoFaqHowIWork = [
   FaqItem(
     question: '¿Con qué herramientas trabajas?',
     answer:
-        'Flutter/Dart, web (HTML/CSS/JS, Astro, WordPress), Java para MDM, Git, Firebase, '
+        'Flutter/Dart, web (HTML/CSS/JS, Astro, WordPress), Git, Firebase, '
         'helpdesk y stack de operación (inventario, facturación, paneles). Uso IA (Cursor, Claude) '
         'para acelerar sin soltar el criterio de lo que se entrega.',
   ),

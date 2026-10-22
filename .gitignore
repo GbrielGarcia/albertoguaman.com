@@ -46,3 +46,6 @@ lib/firebase_options.dart
 android/app/google-services.json
 .firebase
 firebase.json
+
+# Archivos personales que no se publican (p. ej. fotos de la antigua página /nosotros)
+_local/

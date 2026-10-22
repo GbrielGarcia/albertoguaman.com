@@ -28,8 +28,6 @@ const List<SkillGroup> infoSkillGroups = [
     title: 'Desarrollo',
     subtitle: 'Apps, web y datos',
     items: [
-      SkillItem(name: 'Java', icon: FontAwesomeIcons.java),
-      SkillItem(name: 'MDM', icon: FontAwesomeIcons.mobileScreen),
       SkillItem(name: 'Flutter', icon: FontAwesomeIcons.flutter),
       SkillItem(name: 'Dart', icon: FontAwesomeIcons.code),
       SkillItem(name: 'Firebase', icon: FontAwesomeIcons.fire),
@@ -45,9 +43,6 @@ const List<SkillGroup> infoSkillGroups = [
     title: 'Soporte / IT',
     subtitle: 'Helpdesk y operación técnica',
     items: [
-      SkillItem(
-          name: 'MDM / gestión de equipos',
-          icon: FontAwesomeIcons.mobileScreen),
       SkillItem(name: 'Helpdesk', icon: FontAwesomeIcons.headset),
       SkillItem(
           name: 'Soporte L1 / L2', icon: FontAwesomeIcons.screwdriverWrench),

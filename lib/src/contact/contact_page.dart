@@ -62,8 +62,6 @@ class ContactPage extends StatelessWidget {
             height: isNarrow ? 480 : 720,
           ),
           SizedBox(height: SizeUtils.l),
-          const AvailabilityPanel(),
-          SizedBox(height: SizeUtils.xl),
           const ContactForm(),
           SizedBox(height: SizeUtils.l),
           containerBottom(

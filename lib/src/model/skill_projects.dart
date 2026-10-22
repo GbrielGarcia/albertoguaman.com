@@ -2,8 +2,6 @@ import 'package:albertoguaman/src/model/project.dart';
 
 /// Mapeo herramienta → proyectos donde la usé (stack interactivo).
 const Map<String, List<String>> skillToProjectTitles = {
-  'Java': ['MDM · Mi Chance (experiencia)'],
-  'MDM': ['MDM · Mi Chance (experiencia)'],
   'Flutter': [
     'Tarot Pragmático - Calculadora de Arcanos',
     'Mi Negocio Listo',
@@ -39,11 +37,10 @@ const Map<String, List<String>> skillToProjectTitles = {
     'Mi Negocio Listo',
   ],
   'PostgreSQL': ['Rapidito'],
-  'MDM / gestión de equipos': ['MDM · Mi Chance (experiencia)'],
-  'Helpdesk': ['MDM · Mi Chance (experiencia)'],
-  'Soporte L1 / L2': ['MDM · Mi Chance (experiencia)'],
-  'Incidencias': ['MDM · Mi Chance (experiencia)'],
-  'Hardware / software': ['MDM · Mi Chance (experiencia)'],
+  'Helpdesk': ['Soporte L1/L2 · Mi Chance (experiencia)'],
+  'Soporte L1 / L2': ['Soporte L1/L2 · Mi Chance (experiencia)'],
+  'Incidencias': ['Soporte L1/L2 · Mi Chance (experiencia)'],
+  'Hardware / software': ['Soporte L1/L2 · Mi Chance (experiencia)'],
   'WordPress': ['EMAPASOSQ-EP', 'Inox Hierro', 'Lars Tree Services'],
   'WooCommerce': ['Inox Hierro'],
   'Webflow': [],

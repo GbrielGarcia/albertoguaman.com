@@ -53,14 +53,13 @@ String _formatDurationMonths(int totalMonths) {
   return months == 1 ? '1 mes' : '$months meses';
 }
 
-/// Experiencia alineada al CV principal (`cv_sep_2026.pdf`).
+/// Experiencia alineada a los CVs (`2026_cv_st.pdf` y variantes).
 List<Experience> infoExperienceModel = [
   Experience(
     title: 'MI CHANCE',
     stack:
-        'Java, MDM, rastreo y gestión de equipos empresariales, soporte L1/L2 IT, helpdesk y gestión de incidencias.',
+        'Soporte L1/L2 IT, helpdesk, gestión de incidencias, soporte a sucursales, diagnóstico técnico, escalamiento.',
     description: [
-      '- Desarrollo de módulos con Java para una plataforma MDM orientada al rastreo y la gestión de equipos empresariales.',
       '- Soporte técnico nivel 1 y nivel 2 en Informática / IT a más de 16 sucursales a nivel nacional.',
       '- Atención y acompañamiento tecnológico a más de 200 colaboradores internos.',
       '- Atención y resolución de incidencias de hardware, software y sistemas operativos.',
@@ -68,7 +67,7 @@ List<Experience> infoExperienceModel = [
       '- Soporte remoto y acompañamiento a usuarios de puntos de atención en todo el país.',
       '- Escalamiento controlado de casos complejos y documentación de soluciones.',
     ],
-    type: 'Desarrollo Java para MDM y Soporte Técnico L1/L2 IT',
+    type: 'Soporte Técnico L1/L2 IT',
     data: 'Febrero 2026 – Agosto 2026 (7 meses)',
     country: 'Ecuador',
   ),
@@ -84,42 +83,25 @@ List<Experience> infoExperienceModel = [
       '- Dirección de estrategias de postventa, resolución de incidencias y fidelización de clientes.',
       '- Ejecución de procesos administrativos, cierres de caja, arqueos y validación de documentación.',
     ],
-    type: 'Administrador de Tienda y Gestión Comercial',
+    type: 'Encargado Comercial',
     data: 'Julio 2025 – Enero 2026 (7 meses)',
     country: 'Ecuador',
   ),
   Experience(
     title: 'SCIEDTEC',
     stack:
-        'Meta Business Suite, Moodle, sistema propio de Helpdesk, CMS y LMS.',
+        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, Helpdesk, CMS, LMS, HTML, CSS, SEO y MySQL.',
     description: [
-      '- Coordinación y gestión integral del área de soporte técnico.',
-      '- Administración y resolución eficiente de incidencias mediante sistema helpdesk.',
-      '- Soporte continuo a clientes y personal interno.',
-      '- Gestión y mantenimiento de plataformas educativas y sitios web.',
-      '- Optimización de procesos de soporte y reducción de tiempos de respuesta.',
-      '- Capacitación técnica a personal docente y administrativo.',
-    ],
-    type: 'Coordinador de Helpdesk y Soporte Técnico',
-    data: 'Diciembre 2024 – Junio 2025 (7 meses)',
-    country: 'Ecuador',
-  ),
-  Experience(
-    title: 'SCIEDTEC',
-    stack:
-        'Flutter, Dart, Firebase, Moodle, Power BI, Meta Business Suite, HTML, CSS, SEO y MySQL.',
-    description: [
-      '- Administración y optimización de plataformas Moodle para procesos académicos y administrativos.',
-      '- Soporte técnico y resolución ágil de incidencias (helpdesk).',
+      '- Coordinación del área de soporte técnico: helpdesk, incidencias y acompañamiento a clientes y personal interno.',
+      '- Optimización de procesos de soporte, reducción de tiempos de respuesta y capacitación técnica.',
+      '- Administración de plataformas Moodle, sitios web institucionales y disponibilidad de infraestructura.',
       '- Desarrollo de aplicaciones móviles con Flutter para gestión institucional.',
-      '- Mantenimiento y disponibilidad de infraestructura tecnológica.',
-      '- Capacitación a personal docente en herramientas tecnológicas.',
-      '- Gestión de campañas digitales y segmentación estratégica en Meta Business Suite.',
-      '- Optimización SEO y actualización de contenido institucional.',
+      '- Campañas digitales y segmentación en Meta Business Suite; SEO y actualización de contenido.',
       '- Fortalecimiento de presencia digital e interacción con la comunidad online.',
     ],
-    type: 'Administrador y Desarrollador Full Stack Web - Mobile',
-    data: 'Enero 2022 – Septiembre 2024 (2 años 9 meses)',
+    type:
+        'Coordinador de Helpdesk y Soporte Técnico · Full Stack Web - Mobile',
+    data: 'Enero 2022 – Junio 2025 (3 años 6 meses)',
     country: 'Ecuador',
   ),
   Experience(

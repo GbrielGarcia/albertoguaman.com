@@ -129,7 +129,7 @@ class Bio extends StatelessWidget {
                         containerBottom(
                           () => laucherURL(AssetsUtil.cvDev2026),
                           AssetsUtil.cvDev2026,
-                          'cv_sep_2026',
+                          '2026_cv_st',
                           width: double.infinity,
                         ),
                         containerBottom(
@@ -154,7 +154,7 @@ class Bio extends StatelessWidget {
                               child: containerBottom(
                                 () => laucherURL(AssetsUtil.cvDev2026),
                                 AssetsUtil.cvDev2026,
-                                'cv_sep_2026',
+                                '2026_cv_st',
                                 width: double.infinity,
                               ),
                             ),

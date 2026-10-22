@@ -6,6 +6,7 @@ import 'package:albertoguaman/src/contact/contact_page.dart';
 import 'package:albertoguaman/src/cv/cv_page.dart';
 import 'package:albertoguaman/src/faq/faq_page.dart';
 import 'package:albertoguaman/src/flores_amarillas/flores_amarillas_page.dart';
+import 'package:albertoguaman/src/nosotros/nosotros_page.dart';
 import 'package:albertoguaman/src/gallery/gallery_page.dart';
 import 'package:albertoguaman/src/home/bio.dart';
 import 'package:albertoguaman/l10n/app_localizations.dart';
@@ -34,7 +35,8 @@ bool isValidAppPath(String path) {
       path == '/servicios' ||
       path == '/faq' ||
       path == '/changelog' ||
-      path == '/flores-amarillas') {
+      path == '/flores-amarillas' ||
+      path == '/nosotros') {
     return true;
   }
   if (path.startsWith('/blog/')) {
@@ -188,6 +190,16 @@ final goRouter = GoRouter(
         return transitionPageRouter(
           state.pageKey,
           const FloresAmarillasPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/nosotros',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        _updateSeoForRoute(state);
+        return transitionPageRouter(
+          state.pageKey,
+          const NosotrosPage(),
         );
       },
     ),

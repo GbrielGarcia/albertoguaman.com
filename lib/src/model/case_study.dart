@@ -31,21 +31,20 @@ class CaseStudy {
 
 const List<CaseStudy> infoCaseStudies = [
   CaseStudy(
-    title: 'MDM y soporte IT a escala nacional',
+    title: 'Soporte IT a escala nacional',
     contextLabel: 'MI CHANCE',
-    role: 'Desarrollo Java (MDM) + Soporte L1/L2 IT',
+    role: 'Soporte Técnico L1/L2 IT',
     problem:
-        'Había que rastrear y gestionar equipos empresariales, y al mismo tiempo '
-        'sostener soporte técnico L1/L2 en más de 16 sucursales con cientos de colaboradores.',
+        'Había que sostener soporte técnico L1/L2 en más de 16 sucursales '
+        'con cientos de colaboradores: hardware, software, tickets y acompañamiento remoto.',
     solution:
-        'Desarrollé módulos en Java para una plataforma MDM orientada al rastreo '
-        'y la gestión de equipos, y operé helpdesk con diagnóstico, tickets, '
-        'soporte remoto y escalamiento controlado.',
-    stack: 'Java · MDM · Helpdesk · Soporte L1/L2 · Incidencias',
+        'Operé helpdesk con diagnóstico, clasificación de tickets, soporte remoto '
+        'y escalamiento controlado hasta el cierre documentado.',
+    stack: 'Helpdesk · Soporte L1/L2 · Incidencias · Hardware / software',
     beforeLabel:
-        'Soporte disperso, poca trazabilidad de equipos y tickets sin cierre claro.',
+        'Soporte disperso y tickets sin cierre claro en puntos de atención.',
     afterLabel:
-        'MDM en producción + helpdesk con ciclo de ticket documentado a escala nacional.',
+        'Helpdesk con ciclo de ticket documentado a escala nacional.',
     metrics: [
       '+16 sucursales',
       '+200 colaboradores',
@@ -55,8 +54,8 @@ const List<CaseStudy> infoCaseStudies = [
     results: [
       '+16 sucursales atendidas a nivel nacional',
       '+200 colaboradores con acompañamiento tecnológico',
-      'Módulos MDM en producción para rastreo y gestión de equipos',
       'Ciclo de tickets desde diagnóstico hasta cierre documentado',
+      'Escalamiento controlado de casos complejos',
     ],
   ),
   CaseStudy(

@@ -45,18 +45,6 @@ class HomeHero extends StatelessWidget {
             height: 1.05,
           ),
         ),
-        SizedBox(height: SizeUtils.l),
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 560),
-          child: Text(
-            al.homeHeroLead,
-            style: StyleText.textPortfolio(
-              fontSize: bodySize * 1.05,
-              color: UtilsColor.colorMuted,
-              height: 1.55,
-            ),
-          ),
-        ),
         SizedBox(height: SizeUtils.xl),
         Wrap(
           spacing: SizeUtils.s,

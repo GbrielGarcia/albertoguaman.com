@@ -211,8 +211,6 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       isNarrow: isNarrow,
                       onDownloadCv: () => laucherURL(AssetsUtil.cvDev2026),
                     ),
-                    SizedBox(height: SizeUtils.l),
-                    const AvailabilityPanel(),
                   ],
                 ),
               ),
@@ -1015,7 +1013,7 @@ class _PortfolioScreenState extends State<HomeSrc> {
                       child: containerBottom(
                         () => laucherURL(AssetsUtil.cvDev2026),
                         AssetsUtil.cvDev2026,
-                        'cv_sep_2026',
+                        '2026_cv_st',
                         width: double.infinity,
                       ),
                     ),

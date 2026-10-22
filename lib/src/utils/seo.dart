@@ -24,13 +24,13 @@ void setPageSEO({
 /// Datos SEO por ruta: título (corto) y descripción.
 Map<String, (String title, String description)> get pageSeoData => {
       '/': (
-        'Portafolio · Java / MDM · Soporte L1/L2 IT · Full Stack',
-        'Portafolio de Alberto Guaman (Ecuador): desarrollo Java para MDM, '
-            'soporte técnico L1/L2 a sucursales, Flutter, Dart, Firebase y productos digitales.',
+        'Portafolio · Soporte L1/L2 IT · Flutter · Full Stack',
+        'Portafolio de Alberto Guaman (Ecuador): soporte técnico L1/L2 IT, '
+            'Flutter, Dart, Firebase y productos digitales.',
       ),
       '/bio': (
         'Sobre mí · Perfil profesional',
-        'Conoce a Alberto Guaman: tecnólogo en desarrollo de software, Java/MDM, '
+        'Conoce a Alberto Guaman: tecnólogo en desarrollo de software, '
             'soporte L1/L2 IT, Flutter y stack web. Contacto y redes.',
       ),
       '/blog': (
@@ -49,7 +49,7 @@ Map<String, (String title, String description)> get pageSeoData => {
       ),
       '/casos': (
         'Casos de estudio · Problema, solución y resultados',
-        'Casos de estudio de Alberto Guaman: MDM e IT a escala nacional, '
+        'Casos de estudio de Alberto Guaman: soporte IT a escala nacional, '
             'productos Tinguar y paneles operativos en producción.',
       ),
       '/recomendaciones': (
@@ -76,5 +76,9 @@ Map<String, (String title, String description)> get pageSeoData => {
       '/flores-amarillas': (
         'Flores amarillas',
         'Un regalo digital especial.',
+      ),
+      '/nosotros': (
+        'Nosotros · Johanna & Gabriel',
+        'Una historia en fotos: casa, mesas y momentos de Johanna y Gabriel.',
       ),
     };
