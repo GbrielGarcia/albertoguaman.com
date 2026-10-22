@@ -1,0 +1,159 @@
+---
+// Contacto (← lib/src/contact/contact_page.dart + contact_form.dart).
+// El formulario no envía nada a un servidor: arma un correo (mailto) o, si se elige, un mensaje de WhatsApp.
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import { SITE } from '../data/site';
+import { AVAILABILITY } from '../data/profile';
+---
+
+<PageLayout>
+  <PageHeader
+    eyebrow="Contacto"
+    title="Escríbeme"
+    lead={`Escríbeme a ${SITE.email}, por WhatsApp o descarga el CV.`}
+  />
+
+  <div class="layout">
+    <form class="card-box form" data-contact-form data-email={SITE.email} data-whatsapp={SITE.whatsapp}>
+      <h2>Formulario de contacto</h2>
+      <label>
+        Nombre
+        <input name="name" autocomplete="name" required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+      <label>
+        Tema
+        <select name="topic">
+          <option value="Proyecto / desarrollo">Proyecto / desarrollo</option>
+          <option value="Oportunidad laboral">Oportunidad laboral</option>
+          <option value="Consulta general">Consulta general</option>
+        </select>
+      </label>
+      <label>
+        Mensaje
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <div class="submit">
+        <button class="button" type="submit" name="via" value="email">Enviar por email</button>
+        <button class="button button--ghost" type="submit" name="via" value="whatsapp">Enviar por WhatsApp</button>
+      </div>
+      <p class="muted small">Se abre tu app de correo o WhatsApp con el mensaje listo; nada se guarda en este sitio.</p>
+    </form>
+
+    <aside>
+      <h2>Directo</h2>
+      <ContactLinks />
+      <div class="card-box availability">
+        <p class="eyebrow">{AVAILABILITY.status}</p>
+        <p>{AVAILABILITY.location}</p>
+        <p class="muted">{AVAILABILITY.workMode}</p>
+      </div>
+      <p><a href="/cv">Ver el CV en el navegador →</a></p>
+    </aside>
+  </div>
+</PageLayout>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const via = (event.submitter as HTMLButtonElement | null)?.value ?? 'email';
+      const name = String(data.get('name') ?? '').trim();
+      const email = String(data.get('email') ?? '').trim();
+      const topic = String(data.get('topic') ?? '');
+      const message = String(data.get('message') ?? '').trim();
+
+      if (via === 'whatsapp') {
+        const text = encodeURIComponent(`${topic} — ${name}: ${message}`);
+        window.open(`${form.dataset.whatsapp}?text=${text}`, '_blank', 'noopener');
+        return;
+      }
+      const subject = encodeURIComponent(`Contacto web · ${topic}`);
+      const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nTema: ${topic}\n\n${message}`);
+      window.location.href = `mailto:${form.dataset.email}?subject=${subject}&body=${body}`;
+    });
+  });
+</script>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .form h2 {
+    margin: 0;
+    font-size: 1.375rem;
+  }
+
+  label {
+    display: grid;
+    gap: var(--space-xs);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
+  }
+
+  .submit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  .small {
+    font-size: 0.8125rem;
+    margin: 0;
+  }
+
+  aside h2 {
+    font-size: 1.375rem;
+  }
+
+  .availability {
+    margin-block: var(--space-l);
+  }
+
+  .availability p {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import PostGrid from '../../../components/PostGrid.astro';
+import TopicNav from '../../../components/TopicNav.astro';
+import { TOPICS, getPosts, postMatchesTopic, type Topic } from '../../../data/blog';
+import { breadcrumbJsonLd } from '../../../utils/seo';
+
+export async function getStaticPaths() {
+  return TOPICS.map((topic) => ({ params: { topic: topic.id }, props: { topic } }));
+}
+
+interface Props {
+  topic: Topic;
+}
+
+const { topic } = Astro.props;
+const posts = (await getPosts()).filter((p) => postMatchesTopic(p, topic));
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: topic.label, href: `/blog/categoria/${topic.id}` },
+];
+---
+
+<PageLayout
+  title={`${topic.label} · Blog`}
+  description={topic.description}
+  jsonLd={[breadcrumbJsonLd(crumbs)]}
+>
+  <header class="page-head">
+    <Breadcrumbs items={crumbs} />
+    <h1>{topic.label}</h1>
+    <p class="muted prose">{topic.description} {posts.length} artículos.</p>
+  </header>
+
+  <TopicNav active={topic.id} />
+
+  <PostGrid posts={posts} eagerCount={3} />
+</PageLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--space-xl) var(--space-l);
+  }
+</style>

@@ -1,0 +1,373 @@
+---
+// Inicio (← lib/src/home/home.dart + home_hero.dart). Mismas secciones del portafolio,
+// más los últimos artículos del blog arriba, porque el sitio pasa a ser de contenido.
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import PostGrid from '../components/PostGrid.astro';
+import InteractiveSkills from '../components/vue/InteractiveSkills.vue';
+import photo from '../assets/alberto.jpg';
+import { getPosts } from '../data/blog';
+import {
+  ABOUT,
+  AVAILABILITY,
+  CLIENTS,
+  CV_URL,
+  EXPERIENCE,
+  HERO,
+  PROJECTS,
+  PUBLICATIONS,
+  SKILL_GROUPS,
+  skillUsage,
+  totalExperienceLabel,
+} from '../data/profile';
+
+const latest = (await getPosts()).slice(0, 3);
+const totalExperience = totalExperienceLabel();
+
+const sections = [
+  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'experiencia', label: 'Experiencia' },
+  { id: 'herramientas', label: 'Herramientas' },
+  { id: 'proyectos', label: 'Proyectos' },
+  { id: 'clientes', label: 'Clientes' },
+  { id: 'publicaciones', label: 'Publicaciones' },
+];
+---
+
+<PageLayout>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">{HERO.greeting}</p>
+      <h1>Alberto Guaman</h1>
+      <p class="roles muted">{HERO.roles}</p>
+      <p class="availability">
+        <span class="dot" aria-hidden="true"></span>
+        {AVAILABILITY.status} · {AVAILABILITY.location}
+      </p>
+      <div class="cta">
+        <a class="button" href="/contacto">Contacto</a>
+        <a class="button button--ghost" href="/casos">Casos</a>
+        <a class="button button--ghost" href={CV_URL}>Descargar CV</a>
+      </div>
+    </div>
+    <Image
+      src={photo}
+      alt="Alberto Guaman"
+      widths={[240, 480]}
+      sizes="(max-width: 720px) 160px, 240px"
+      loading="eager"
+      class="photo"
+    />
+  </section>
+
+  <nav class="anchors" aria-label="Secciones del inicio">
+    <ul>
+      {sections.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
+    </ul>
+  </nav>
+
+  {latest.length > 0 && (
+    <section class="section" aria-labelledby="ultimos">
+      <div class="section-head">
+        <h2 id="ultimos">Últimos artículos</h2>
+        <a href="/blog">Ver todo el blog →</a>
+      </div>
+      <PostGrid posts={latest} />
+    </section>
+  )}
+
+  <section id="sobre-mi" class="section" aria-labelledby="sobre-mi-title">
+    <h2 id="sobre-mi-title">Sobre mí</h2>
+    <div class="prose">
+      {ABOUT.map((p) => <p>{p}</p>)}
+    </div>
+    <dl class="facts card-box">
+      <div><dt>Modalidad</dt><dd>{AVAILABILITY.workMode}</dd></div>
+      <div><dt>Contrato</dt><dd>{AVAILABILITY.contract}</dd></div>
+      <div><dt>Stack preferido</dt><dd>{AVAILABILITY.preferredStack}</dd></div>
+      <div><dt>Qué busco</dt><dd>{AVAILABILITY.note}</dd></div>
+    </dl>
+  </section>
+
+  <section id="experiencia" class="section" aria-labelledby="experiencia-title">
+    <h2 id="experiencia-title">
+      Experiencia {totalExperience && <span class="muted total">· {totalExperience}</span>}
+    </h2>
+    <ol class="timeline">
+      {EXPERIENCE.map((e, i) => (
+        <li class="card-box">
+          <div class="exp-head">
+            <div>
+              <p class="company">
+                {e.company}
+                {i === 0 && <span class="badge">Más reciente</span>}
+              </p>
+              <h3>{e.role}</h3>
+            </div>
+            <p class="period muted">{e.period} · {e.country}</p>
+          </div>
+          <ul class="highlights">
+            {e.highlights.map((h) => <li>{h}</li>)}
+          </ul>
+          <p class="stack"><strong>Stack:</strong> {e.stack}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section id="herramientas" class="section" aria-labelledby="herramientas-title">
+    <h2 id="herramientas-title">Herramientas</h2>
+    <InteractiveSkills client:visible groups={SKILL_GROUPS} usage={skillUsage()} />
+  </section>
+
+  <section id="proyectos" class="section" aria-labelledby="proyectos-title">
+    <h2 id="proyectos-title">Proyectos</h2>
+    <div class="projects">
+      {PROJECTS.map((p) => (
+        <article class="card-box project">
+          <h3><a href={p.url} target="_blank" rel="noopener">{p.title}</a></h3>
+          <p class="muted">{p.description}</p>
+          <ul class="chips">
+            {p.tags.map((t) => <li>{t}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="clientes" class="section" aria-labelledby="clientes-title">
+    <h2 id="clientes-title">Clientes</h2>
+    <p class="muted">Clientes desarrollados con Tinguar.</p>
+    <ul class="chips clients">
+      {CLIENTS.map((c) => <li>{c}</li>)}
+    </ul>
+  </section>
+
+  <section id="publicaciones" class="section" aria-labelledby="publicaciones-title">
+    <h2 id="publicaciones-title">Publicaciones</h2>
+    <div class="publications">
+      {PUBLICATIONS.map((p) => (
+        <article class="card-box">
+          <p class="eyebrow">{p.type} · {p.date.slice(0, 4)}</p>
+          <h3><a href={p.url} target="_blank" rel="noopener">{p.title}</a></h3>
+          <p class="muted clamp">{p.description}</p>
+          <p class="small muted">DOI: {p.doi}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .roles {
+    font-size: 1.125rem;
+    max-width: 40rem;
+  }
+
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--hairline);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+  }
+
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #3ecf8e;
+    box-shadow: 0 0 0 3px rgb(62 207 142 / 0.25);
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-top: var(--space-l);
+  }
+
+  .photo {
+    width: 240px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--yellow);
+  }
+
+  @media (max-width: 720px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+
+    .photo {
+      order: -1;
+      width: 160px;
+    }
+  }
+
+  .anchors ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-s) 0;
+    display: flex;
+    gap: var(--space-l);
+    overflow-x: auto;
+    border-block: 1px solid var(--hairline);
+  }
+
+  .anchors a {
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .anchors a:hover {
+    color: var(--text);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-m);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-l);
+  }
+
+  .section-head h2 {
+    margin: 0;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-m) var(--space-xl);
+    margin: var(--space-l) 0 0;
+  }
+
+  dt {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+
+  dd {
+    margin: var(--space-xs) 0 0;
+  }
+
+  .total {
+    font-size: 0.6em;
+    font-weight: 400;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .exp-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-l);
+    margin-bottom: var(--space-m);
+  }
+
+  .exp-head h3 {
+    margin: 0;
+  }
+
+  .company {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--blue);
+  }
+
+  .badge {
+    margin-left: var(--space-s);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    background: var(--yellow-soft);
+    color: var(--yellow);
+    letter-spacing: 0;
+  }
+
+  .period {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+  }
+
+  .highlights {
+    padding-left: 1.2rem;
+    margin: 0 0 var(--space-m);
+  }
+
+  .highlights li + li {
+    margin-top: var(--space-xs);
+  }
+
+  .stack {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .projects,
+  .publications {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: var(--space-l);
+  }
+
+  .project h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .project h3 a,
+  .publications h3 a {
+    color: var(--text);
+  }
+
+  .project p {
+    font-size: 1rem;
+  }
+
+  .small {
+    font-size: 0.875rem;
+  }
+
+  .clamp {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .clients {
+    font-size: 0.875rem;
+  }
+</style>

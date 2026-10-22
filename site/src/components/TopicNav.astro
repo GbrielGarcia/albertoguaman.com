@@ -1,0 +1,57 @@
+---
+import { TOPICS } from '../data/blog';
+
+interface Props {
+  /** id del tema activo; undefined = "Todo". */
+  active?: string;
+}
+
+const { active } = Astro.props;
+const items: { id?: string; label: string; href: string }[] = [
+  { label: 'Todo', href: '/blog' },
+  ...TOPICS.map((t) => ({ id: t.id, label: t.label, href: `/blog/categoria/${t.id}` })),
+];
+---
+
+<nav class="topics" aria-label="Temas del blog">
+  <ul>
+    {items.map((item) => (
+      <li>
+        <a href={item.href} aria-current={item.id === active ? 'page' : undefined}>
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  ul {
+    list-style: none;
+    margin: 0 0 var(--space-xl);
+    padding: 0 0 var(--space-s);
+    display: flex;
+    gap: var(--space-l);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  a {
+    display: inline-block;
+    padding-block: var(--space-xs);
+    color: var(--muted);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  a:hover {
+    color: var(--text);
+  }
+
+  a[aria-current='page'] {
+    color: var(--blue);
+    font-weight: 700;
+  }
+</style>

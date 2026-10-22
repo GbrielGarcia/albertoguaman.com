@@ -1,0 +1,70 @@
+---
+// Cambios del sitio (← lib/src/changelog/changelog_page.dart + changelog_entry.dart).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { CHANGELOG } from '../data/work';
+---
+
+<PageLayout>
+  <PageHeader eyebrow="Cambios" title="Qué he ido cambiando" lead="Notas de lo que voy tocando en este sitio." />
+
+  <ol class="log">
+    {CHANGELOG.map((entry) => (
+      <li>
+        <p class="date">{entry.date}</p>
+        <div>
+          <h2>{entry.title}</h2>
+          <ul>
+            {entry.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</PageLayout>
+
+<style>
+  .log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 48rem;
+  }
+
+  .log > li {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-l);
+    padding-block: var(--space-l);
+    border-top: 1px solid var(--hairline);
+  }
+
+  @media (max-width: 640px) {
+    .log > li {
+      grid-template-columns: 1fr;
+      gap: var(--space-xs);
+    }
+  }
+
+  .date {
+    margin: 0.3rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--yellow);
+  }
+
+  h2 {
+    font-size: 1.375rem;
+    margin-bottom: var(--space-s);
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+
+  ul li + li {
+    margin-top: var(--space-xs);
+  }
+</style>

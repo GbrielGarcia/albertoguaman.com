@@ -1,0 +1,59 @@
+---
+// Bloque de anuncio de AdSense. Solo se pinta en producción y si el bloque tiene ID (SITE.adSlots).
+// Reserva alto con CSS para que el anuncio no empuje el contenido al cargar (CLS).
+import { SITE } from '../data/site';
+
+interface Props {
+  slot: keyof typeof SITE.adSlots;
+  /** 'auto' para bloques adaptables; 'vertical' para la barra lateral. */
+  format?: 'auto' | 'vertical' | 'rectangle';
+}
+
+const { slot, format = 'auto' } = Astro.props;
+const id = SITE.adSlots[slot];
+const show = import.meta.env.PROD && id !== '';
+---
+
+{show && (
+  <aside class:list={['ad', `ad--${format}`]} aria-label="Publicidad">
+    <span class="ad-label">Publicidad</span>
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client={SITE.adsenseClient}
+      data-ad-slot={id}
+      data-ad-format={format}
+      data-full-width-responsive="true"
+    />
+    <script is:inline>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+)}
+
+<style>
+  .ad {
+    margin-block: var(--space-xl);
+    text-align: center;
+  }
+
+  .ad--auto {
+    min-height: 280px;
+  }
+
+  .ad--rectangle {
+    min-height: 250px;
+  }
+
+  .ad--vertical {
+    min-height: 600px;
+  }
+
+  .ad-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

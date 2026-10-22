@@ -1,0 +1,145 @@
+---
+// Casos de estudio (← lib/src/cases/case_studies_page.dart + case_study.dart).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { CASE_STUDIES } from '../data/work';
+---
+
+<PageLayout>
+  <PageHeader eyebrow="Casos de estudio" title="Problema, solución y resultados" lead="Problema, solución y resultados de proyectos reales." />
+
+  <div class="cases">
+    {CASE_STUDIES.map((c, i) => (
+      <article class="card-box case">
+        <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {c.context}</p>
+        <h2>{c.title}</h2>
+        <p class="muted role">{c.role}</p>
+
+        {c.metrics.length > 0 && (
+          <ul class="metrics">
+            {c.metrics.map((m) => <li>{m}</li>)}
+          </ul>
+        )}
+
+        <div class="grid">
+          <div>
+            <h3>Problema</h3>
+            <p>{c.problem}</p>
+          </div>
+          <div>
+            <h3>Solución</h3>
+            <p>{c.solution}</p>
+          </div>
+        </div>
+
+        {(c.before || c.after) && (
+          <div class="grid before-after">
+            {c.before && (
+              <div class="ba before">
+                <h3>Antes</h3>
+                <p>{c.before}</p>
+              </div>
+            )}
+            {c.after && (
+              <div class="ba after">
+                <h3>Después</h3>
+                <p>{c.after}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <h3>Resultados</h3>
+        <ul class="results">
+          {c.results.map((r) => <li>{r}</li>)}
+        </ul>
+
+        <p class="stack muted"><strong>Stack:</strong> {c.stack}</p>
+        {c.link && (
+          <a class="button button--ghost" href={c.link.url} target="_blank" rel="noopener">{c.link.label} ↗</a>
+        )}
+      </article>
+    ))}
+  </div>
+
+  <p class="section"><a class="button" href="/contacto">¿Tienes un caso parecido? Escríbeme</a></p>
+</PageLayout>
+
+<style>
+  .cases {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .case h2 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .role {
+    margin-bottom: var(--space-l);
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: var(--space-l) 0 var(--space-s);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0 var(--space-xl);
+  }
+
+  .metrics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+    gap: var(--space-s);
+  }
+
+  .metrics li {
+    padding: var(--space-m);
+    border-radius: var(--radius);
+    background: var(--accent-soft);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.9375rem;
+  }
+
+  .before-after {
+    margin-top: var(--space-m);
+    gap: var(--space-m);
+  }
+
+  .ba {
+    padding: var(--space-m) var(--space-l);
+    border-radius: var(--radius);
+    border: 1px solid var(--hairline);
+  }
+
+  .ba h3 {
+    margin-top: 0;
+  }
+
+  .ba p {
+    margin: 0;
+  }
+
+  .after {
+    border-color: color-mix(in srgb, var(--blue) 50%, transparent);
+  }
+
+  .results {
+    padding-left: 1.2rem;
+  }
+
+  .stack {
+    font-size: 0.9375rem;
+  }
+</style>

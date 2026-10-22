@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://albertoguaman.com/sitemap.xml
+
+# Bloquear ruido de build / tooling si se expone por error
+Disallow: /.well-known/

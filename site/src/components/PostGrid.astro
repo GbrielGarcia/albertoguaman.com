@@ -1,0 +1,24 @@
+---
+import PostCard from './PostCard.astro';
+import type { Post } from '../data/blog';
+
+interface Props {
+  posts: Post[];
+  /** Cuántas tarjetas cargan su imagen sin lazy (las de la primera pantalla). */
+  eagerCount?: number;
+}
+
+const { posts, eagerCount = 0 } = Astro.props;
+---
+
+<div class="grid">
+  {posts.map((post, i) => <PostCard post={post} eager={i < eagerCount} />)}
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: var(--space-l);
+  }
+</style>

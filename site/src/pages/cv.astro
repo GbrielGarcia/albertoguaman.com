@@ -1,0 +1,46 @@
+---
+// CV (← lib/src/cv/cv_page.dart): vista previa del PDF, descarga e impresión.
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { CV_URL } from '../data/profile';
+---
+
+<PageLayout>
+  <PageHeader eyebrow="CV" title="Currículum" lead="Vista previa e impresión del currículum.">
+    <div class="actions">
+      <a class="button" href={CV_URL} download>Descargar CV</a>
+      <a class="button button--ghost" href={CV_URL} target="_blank" rel="noopener">Abrir para imprimir</a>
+    </div>
+  </PageHeader>
+
+  <object class="viewer" data={`${CV_URL}#view=FitH`} type="application/pdf" aria-label="Vista previa del CV de Alberto Guaman">
+    <p class="card-box">
+      Tu navegador no muestra PDFs dentro de la página.
+      <a href={CV_URL}>Abre el CV aquí</a>.
+    </p>
+  </object>
+</PageLayout>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-top: var(--space-l);
+  }
+
+  .viewer {
+    display: block;
+    width: 100%;
+    height: min(85vh, 1100px);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  @media (max-width: 640px) {
+    .viewer {
+      height: 70vh;
+    }
+  }
+</style>

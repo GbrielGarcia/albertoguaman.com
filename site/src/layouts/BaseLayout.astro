@@ -1,0 +1,60 @@
+---
+import Seo from '../components/Seo.astro';
+import { SITE } from '../data/site';
+import '../styles/global.css';
+
+export type Props = import('../components/Seo.astro').Props;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#151515" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="google-adsense-account" content={SITE.adsenseClient} />
+
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/Icon-192.png" />
+    <link
+      rel="preload"
+      href="/fonts/Alegreya-VariableFont_wght.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+
+    <!-- Tema antes del primer pintado para evitar parpadeo (oscuro por defecto). -->
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+          }
+        } catch (_) {}
+      })();
+    </script>
+
+    <Seo {...Astro.props} />
+
+    {import.meta.env.PROD && (
+      <script defer data-domain={SITE.plausibleDomain} src="https://plausible.io/js/script.js" />
+    )}
+
+    <!-- AdSense: habilita los anuncios automáticos y los bloques de <AdSlot>. Solo en producción. -->
+    {import.meta.env.PROD && !Astro.props.noindex && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`}
+        crossorigin="anonymous"
+      />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

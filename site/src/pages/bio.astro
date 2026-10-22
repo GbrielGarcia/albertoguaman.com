@@ -1,0 +1,99 @@
+---
+// Sobre mí (← lib/src/home/bio.dart + about_profile_content.dart).
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import photo from '../assets/alberto.jpg';
+import { ABOUT, AVAILABILITY, EXPERIENCE, HERO } from '../data/profile';
+
+const current = EXPERIENCE[0];
+---
+
+<PageLayout>
+  <section class="bio">
+    <Image src={photo} alt="Alberto Guaman" widths={[200, 400]} sizes="200px" loading="eager" class="photo" />
+    <div>
+      <p class="eyebrow">Sobre mí</p>
+      <h1>Alberto Guaman</h1>
+      <p class="muted roles">{HERO.roles}</p>
+      <div class="prose">
+        {ABOUT.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="card-box current">
+        <p class="eyebrow">Experiencia más reciente</p>
+        <p class="role"><strong>{current.role}</strong> · {current.company}</p>
+        <p class="muted small">{current.period}</p>
+      </div>
+
+      <p class="muted small">{AVAILABILITY.status} · {AVAILABILITY.location} · {AVAILABILITY.workMode}</p>
+
+      <h2>Contacto y CV</h2>
+      <ContactLinks />
+      <p class="more">
+        <a href="/">Ver portafolio completo →</a>
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .bio {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+    padding-block: var(--space-2xl);
+    max-width: 60rem;
+  }
+
+  .photo {
+    width: 200px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--yellow);
+    position: sticky;
+    top: 6rem;
+  }
+
+  @media (max-width: 720px) {
+    .bio {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
+
+    .photo {
+      position: static;
+      width: 140px;
+    }
+  }
+
+  .roles {
+    font-size: 1.0625rem;
+  }
+
+  .current {
+    margin-block: var(--space-l);
+  }
+
+  .current p {
+    margin: 0;
+  }
+
+  .role {
+    margin-top: var(--space-xs) !important;
+  }
+
+  .small {
+    font-size: 0.875rem;
+  }
+
+  h2 {
+    margin-top: var(--space-xl);
+  }
+
+  .more {
+    margin-top: var(--space-l);
+  }
+</style>

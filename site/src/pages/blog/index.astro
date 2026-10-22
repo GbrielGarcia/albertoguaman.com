@@ -1,0 +1,58 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import TopicNav from '../../components/TopicNav.astro';
+import { getPosts } from '../../data/blog';
+import { SITE } from '../../data/site';
+
+const posts = await getPosts();
+const featured = posts.filter((p) => p.data.featured).slice(0, 3);
+const featuredIds = new Set(featured.map((p) => p.id));
+const rest = posts.filter((p) => !featuredIds.has(p.id));
+
+const jsonLd = [
+  {
+    '@type': 'Blog',
+    '@id': `${SITE.url}/blog#blog`,
+    url: `${SITE.url}/blog`,
+    name: `${SITE.name} · Blog`,
+    inLanguage: 'es-EC',
+    publisher: { '@id': `${SITE.url}/#person` },
+  },
+];
+---
+
+<PageLayout jsonLd={jsonLd}>
+  <header class="page-head">
+    <p class="eyebrow">Blog</p>
+    <h1>Desarrollo, Flutter y tecnología</h1>
+    <p class="muted prose">
+      Tutoriales y notas prácticas sobre Flutter, web, servidores en casa y herramientas. {posts.length} artículos ·{' '}
+      <a href="/blog/rss.xml">RSS</a>
+    </p>
+  </header>
+
+  <TopicNav />
+
+  {featured.length > 0 && (
+    <section aria-labelledby="destacados">
+      <h2 id="destacados">Destacados</h2>
+      <PostGrid posts={featured} eagerCount={3} />
+    </section>
+  )}
+
+  <section aria-labelledby="todos">
+    <h2 id="todos">Todos los artículos</h2>
+    <PostGrid posts={rest} />
+  </section>
+</PageLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--space-xl) var(--space-l);
+  }
+
+  section + section {
+    margin-top: var(--space-2xl);
+  }
+</style>

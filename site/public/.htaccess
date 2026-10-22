@@ -1,0 +1,85 @@
+# albertoguaman.com — sitio estático generado por Astro (Hostinger / Apache).
+# Astro genera /ruta.html (build.format: 'file'); aquí se sirven como /ruta, sin .html ni barra final,
+# que es como Google tiene indexadas las URLs desde el sitio anterior.
+
+Options -Indexes -MultiViews
+DirectorySlash Off
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .xml .txt
+ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # www → sin www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # Páginas retiradas del sitio anterior: 410 (Google las saca del índice más rápido que con 404).
+  RewriteRule ^(flores-amarillas|nosotros)/?$ - [G]
+  RewriteRule ^(main\.dart\.js|flutter\.js|flutter_bootstrap\.js|flutter_service_worker\.js|manifest\.json|canvaskit/.*)$ - [G]
+
+  # Sitemap: el anterior estaba en /sitemap.xml; Astro genera /sitemap-index.xml.
+  RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L,R=301]
+
+  # Imágenes del blog servidas por Flutter (/assets/assets/blog/images/…) → blog.
+  RewriteRule ^assets/assets/blog/images/ /blog [L,R=301]
+
+  # Quitar barra final: /blog/ → /blog
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Quitar .html si alguien lo escribe: /faq.html → /faq (index.html → /)
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+  RewriteRule ^ / [L,R=301]
+  RewriteCond %{THE_REQUEST} \s/([^.\s?]+)\.html[\s?]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # Archivos reales (pdf, xml, imágenes, css, js, ads.txt…)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # /ruta → /ruta.html si existe (resuelve /blog, /cv, /blog/slug, /blog/categoria/tema)
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+
+  # Lo demás cae en el 404 real (ya no se manda todo a index.html).
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # Archivos con hash en el nombre (Astro): caché de un año.
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # HTML: siempre revalidar para ver los cambios al publicar.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json application/xml application/rss+xml image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType application/pdf "access plus 7 days"
+</IfModule>

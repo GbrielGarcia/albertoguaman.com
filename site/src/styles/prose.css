@@ -1,0 +1,182 @@
+/* Tipografía del contenido Markdown de los posts. */
+
+.prose-content {
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prose-content > * + * {
+  margin-top: var(--space-m);
+}
+
+.prose-content h2,
+.prose-content h3,
+.prose-content h4 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-s);
+  scroll-margin-top: 5rem;
+}
+
+.prose-content h3 {
+  margin-top: var(--space-l);
+}
+
+.prose-content p,
+.prose-content ul,
+.prose-content ol {
+  margin-block: 0 var(--space-m);
+}
+
+.prose-content ul,
+.prose-content ol {
+  padding-left: 1.4rem;
+}
+
+.prose-content li + li {
+  margin-top: var(--space-xs);
+}
+
+.prose-content li > ul,
+.prose-content li > ol {
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+}
+
+.prose-content img {
+  border-radius: var(--radius);
+  margin-inline: auto;
+}
+
+.prose-content hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin-block: var(--space-xl);
+}
+
+.prose-content blockquote {
+  margin: var(--space-l) 0;
+  padding: var(--space-m) var(--space-l);
+  border-left: 3px solid var(--blue);
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.prose-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose-content strong {
+  font-weight: 700;
+}
+
+/* Código en línea */
+.prose-content :not(pre) > code {
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+  background: var(--elevated);
+  border: 1px solid var(--hairline);
+  font-size: 0.85em;
+}
+
+/* Bloques de código (Shiki con tema claro y oscuro). */
+.prose-content pre {
+  margin-block: var(--space-l);
+  padding: var(--space-m) var(--space-l);
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.prose-content pre.astro-code,
+.prose-content pre.astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+:root[data-theme='light'] .prose-content pre.astro-code,
+:root[data-theme='light'] .prose-content pre.astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+/* HTML heredado del blog Tinguar: trae colores en línea pensados solo para fondo claro. */
+.prose-content h4[style],
+.prose-content p[style] {
+  color: var(--muted) !important;
+}
+
+.prose-content div[style*='background'] {
+  background: var(--surface) !important;
+  border-left-color: var(--blue) !important;
+}
+
+/* Bloque de código con barra (lo arma CodeBlockEnhancer). */
+.prose-content .code-block {
+  margin: var(--space-l) 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.prose-content .code-block pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding: 0.4rem 0.6rem 0.4rem var(--space-l);
+  background: var(--elevated);
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.code-block__copy {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.code-block__copy:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* Tablas: se desplazan en horizontal en pantallas angostas. */
+.prose-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  font-family: var(--font-sans);
+}
+
+.prose-content th,
+.prose-content td {
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--hairline);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose-content th {
+  background: var(--elevated);
+  font-weight: 600;
+}
