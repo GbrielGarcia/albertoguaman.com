@@ -14,7 +14,7 @@ npm run build        # genera dist/
 npm run preview      # sirve dist/ en local
 ```
 
-Requiere Node 22.12 o superior.
+Requiere Node 22.23.4 o superior (en CI se usa Node 24).
 
 ## Escribir un post
 

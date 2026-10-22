@@ -22,6 +22,8 @@ export const SITE = {
     postAside: '',
   },
   plausibleDomain: 'albertoguaman.com',
+  /** Google Analytics 4 de la app web "alberto-guaman-dev" en Firebase (Firebase → Analytics). */
+  gaMeasurementId: 'G-BPC7JT2RGJ',
 } as const;
 
 export const SOCIAL = [
