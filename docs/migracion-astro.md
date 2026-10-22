@@ -184,29 +184,29 @@ El orden prioriza lo que **genera tráfico y dinero**: primero el blog, después
 - [x] `/contacto`: el formulario arma el correo (mailto) o el mensaje de WhatsApp con un script mínimo; no hizo falta Vue.
 - Nota: `/recomendaciones` no lleva datos estructurados de reseñas (Google no los muestra cuando son sobre uno mismo) ni el texto "certificadas por Google".
 
-### Fase 4: islas Vue (1–2 días)
-- [ ] `ThemeToggle.vue` (`client:load`) + un script inline en el `<head>` para evitar el parpadeo de tema.
-- [ ] `InteractiveSkills.vue` (`client:visible`).
-- [ ] `GalleryLightbox.vue` (`client:visible`) para `/galeria`.
-- [ ] `/flores-amarillas` y `/nosotros`: fotos y audio en Astro, con la animación en `YellowFlowers.vue` (`client:visible`) y `<meta name="robots" content="noindex">`.
+### Fase 4: islas interactivas
+- [x] Tema claro/oscuro: se quedó como script mínimo en `ThemeToggle.astro` + script inline en el `<head>` (no hacía falta Vue).
+- [x] `InteractiveSkills.vue` (`client:visible`) en el inicio: al tocar una herramienta muestra los proyectos donde se usó, con enlace.
+- [x] `GalleryLightbox.vue` (`client:visible`) en `/galeria`: 21 fotos en WebP con visor, flechas del teclado y Esc. Sin JavaScript es una grilla de enlaces normales.
+- [x] **Decisión:** `/flores-amarillas` y `/nosotros` no se migran. Responden 410 (eliminadas). Las fotos de "nosotros", que nunca estuvieron en git, quedaron en `_local/` (ignorada por git).
 
-### Fase 5: monetización (½ día)
-- [ ] `public/ads.txt`.
-- [ ] Script de AdSense en `BaseLayout` (solo en producción) y `AdSlot.astro` con un tamaño reservado por CSS para que el anuncio no mueva el contenido (CLS).
-- [ ] Ubicaciones en `PostLayout`: después del primer párrafo, a mitad del artículo y al final, antes de los posts relacionados.
-- [ ] Páginas `/privacidad` y `/terminos` (AdSense las exige) y enlace en el footer.
-- [ ] Banner de consentimiento: el CMP certificado de Google (gratis desde AdSense) si vas a recibir tráfico de la UE o el Reino Unido.
+### Fase 5: monetización
+- [x] `public/ads.txt` con `pub-1686355120044737`.
+- [x] Script de AdSense en `BaseLayout`: solo en el build de producción y nunca en la 404. Con eso funcionan los anuncios automáticos.
+- [x] `AdSlot.astro` con alto reservado por CSS, colocado en `PostLayout` antes del contenido, al final y en la barra lateral. Solo se pinta si el bloque tiene ID en `SITE.adSlots`. Para anuncios dentro del texto se usan los automáticos de AdSense.
+- [x] `/privacidad` (AdSense, cookies, Plausible, LOPDP Ecuador) y `/terminos`, enlazadas en el footer.
+- [ ] **Pendiente (en AdSense):** activar el mensaje de consentimiento de Google para UE/Reino Unido en Privacidad y mensajes.
 
-### Fase 6: corte a producción (½ día)
-- [ ] Ajustar `public/.htaccess` (sección 4) y `astro build`.
-- [ ] Probar en local con Apache o con un subdominio de Hostinger (`nuevo.albertoguaman.com`, con `noindex` mientras tanto).
-- [ ] Correr el script de verificación (sección 5).
-- [ ] Subir `site/dist/` a `public_html/`. Respaldar antes el `public_html` actual para poder volver atrás en minutos.
-- [ ] En Search Console, reenviar el sitemap y usar "Inspeccionar URL" en el home y en 3–4 posts.
-- [ ] Antes de borrar: hacer commit de los cambios pendientes de Flutter (modelos, `nosotros`, CVs nuevos), para que queden en el historial de git.
-- [ ] Una semana estable → mover `site/` a la raíz y borrar `lib/`, `android/`, `windows/`, `linux/`, `test/`, `pubspec.*`, `firebase.json`, `l10n.yaml`, `analysis_options.yaml`, `tool/`, `web/` y `assets/`. Actualizar el README.
+### Fase 6: corte a producción
+- [x] `public/.htaccess` con todas las reglas (sección 4), más 410 para las páginas retiradas y los archivos de Flutter, y `UTF-8` por defecto.
+- [x] Probado con Apache 2.4 en local: `npm run check:urls` → 55/55 correctas (38 URLs del sitemap anterior, redirecciones 301, 410 y 404 reales, canonical de cada página).
+- [x] Commit con el estado final de Flutter (`e8d705b`) antes de borrarlo.
+- [x] `site/` movido a la raíz y Flutter eliminado (`lib/`, `android/`, `windows/`, `linux/`, `test/`, `web/`, `assets/`, `tool/`, `pubspec.*`, Firebase). CI cambiado a `npm ci` + `astro check` + `build`. README nuevo.
+- [ ] **Pendiente (manual):** subir `dist/` a `public_html/` en Hostinger, incluido `.htaccess`. Antes, respaldar el `public_html` actual.
+- [ ] **Pendiente (manual):** `npm run check:urls -- https://albertoguaman.com` contra el sitio real.
+- [ ] **Pendiente (manual):** en Search Console, enviar `https://albertoguaman.com/sitemap-index.xml` e "Inspeccionar URL" en el inicio y en 3–4 posts. En AdSense, agregar el sitio y pedir revisión.
 
-Tiempo total estimado: **7–9 días** de trabajo parcial.
+Estado (22 oct 2026): todo el código está terminado. Solo quedan los pasos manuales marcados como pendientes.
 
 ---
 

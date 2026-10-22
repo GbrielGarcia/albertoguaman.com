@@ -1,61 +1,81 @@
 # albertoguaman.com
 
-Portafolio multiplataforma (Flutter) de Alberto Guaman.
+Blog y portafolio de Alberto Guaman, hecho con [Astro](https://astro.build). Genera HTML estático que se publica en Hostinger (Apache).
 
-Sitio en producción: https://albertoguaman.com
+> Hasta octubre de 2026 el sitio era una app Flutter web. El último commit con ese código es `e8d705b`. La migración está documentada en [`docs/migracion-astro.md`](docs/migracion-astro.md).
 
 ## Desarrollo
 
-```bash
-flutter pub get
-flutter gen-l10n
-flutter run -d chrome -t lib/main.dart
+```sh
+npm install
+npm run dev          # http://localhost:4321
+npm run check        # tipos y errores de Astro
+npm run build        # genera dist/
+npm run preview      # sirve dist/ en local
 ```
 
-## Build de producción (web)
+Requiere Node 22.12 o superior.
 
-Opción recomendada:
+## Escribir un post
 
-```bash
-chmod +x tool/release_web.sh
-./tool/release_web.sh
+1. Crea `src/content/blog/<slug>.md`. El nombre del archivo es la URL: `/blog/<slug>`.
+2. Pon la portada en `src/content/blog/images/` y enlázala con una ruta relativa.
+
+```md
+---
+title: "Título del artículo"
+excerpt: "Resumen de una o dos frases (sale en Google y en las tarjetas)."
+date: "2026-10-22"
+categories: ["Flutter", "Tutorial"]
+tags: ["flutter", "dart"]
+image: ./images/mi-portada.jpg
+readTime: "8 min"
+featured: false
+---
+
+Contenido en Markdown…
 ```
 
-Equivale a `flutter build web --release` y deja el artefacto en `build/web/`, con `.htaccess` sincronizado.
+Las categorías deciden en qué tema aparece el post (`/blog/categoria/<tema>`). Los temas y sus palabras clave están en `src/data/blog.ts`. Con `draft: true` el post solo se ve con `npm run dev`.
 
-### Deploy en Hostinger
+## Estructura
 
-Sube **todo** el contenido de `build/web/` a:
-
-`/domains/albertoguaman.com/public_html`
-
-Checklist:
-
-1. Confirmar que `public_html/.htaccess` es el del repo (rutas SPA).
-2. Probar `/blog`, `/blog/`, `/casos`, `/cv`, `/recomendaciones`, `/contacto`.
-3. Probar archivo real: `/blog/rss.xml` y PDFs en `/cv/*.pdf`.
-
-El `.htaccess` reescribe `/blog` y `/cv` a `index.html` porque esas carpetas existen en disco (RSS / PDFs) y sin la regla Apache responde **403**.
-
-## CVs
-
-| Archivo | Uso |
+| Ruta | Qué hay |
 |---|---|
-| `web/cv/2026_cv_st.pdf` | CV **principal** (Soporte / Técnico) — enlace del sitio |
-| `web/cv/cv_sep_agg_2026.pdf` | Copia / variante agregada |
+| `src/content/blog/` | Posts en Markdown e imágenes |
+| `src/data/site.ts` | Nombre, navegación, SEO por página, AdSense |
+| `src/data/profile.ts` | Perfil, experiencia, herramientas, proyectos, publicaciones |
+| `src/data/work.ts` | Servicios, casos, reseñas, FAQ, changelog |
+| `src/pages/` | Una página por URL |
+| `src/layouts/PostLayout.astro` | Página de cada post (estructura tipo tinguar.com) |
+| `src/components/vue/` | Islas interactivas: galería y stack |
+| `public/` | Archivos con URL fija: `/cv/*.pdf`, `ads.txt`, `.htaccess`, `robots.txt` |
 
-El sitio está en **español** únicamente.
+## Anuncios (AdSense)
 
-## Blog / RSS
+- El script de AdSense (`ca-pub-1686355120044737`) se carga en todas las páginas del build de producción, excepto la 404. Con eso funcionan los **anuncios automáticos** que actives en AdSense.
+- Para bloques fijos, crea un bloque en AdSense (Anuncios → Por bloque de anuncios) y pega su ID en `SITE.adSlots` (`src/data/site.ts`). En los posts hay tres posiciones: antes del contenido (`postTop`), al final (`postBottom`) y en la barra lateral (`postAside`). Si el ID está vacío, ese bloque no se muestra.
+- El aviso de consentimiento para la UE y el Reino Unido se activa desde AdSense (Privacidad y mensajes); no necesita código.
 
-Posts: `assets/blog/posts/` + catálogo en `lib/src/model/blog_post.dart`.
+## Publicar en Hostinger
 
-Regenerar feed:
-
-```bash
-python3 tool/generate_rss.py
+```sh
+npm run build
 ```
 
-## Analytics
+1. Sube **todo el contenido** de `dist/` a `public_html/`, incluido el archivo oculto `.htaccess`, y reemplaza lo anterior. Borra antes los restos del sitio Flutter (`main.dart.js`, `flutter*.js`, `canvaskit/`, `assets/`).
+2. Comprueba que todo responde bien:
 
-Plausible (privacy-friendly) está enganchado en `web/index.html` para `albertoguaman.com`. Si no usas Plausible, elimina el `<script>` correspondiente.
+```sh
+npm run check:urls -- https://albertoguaman.com
+```
+
+El script revisa las 38 URLs que ya estaban en Google, las redirecciones y los 404/410. Debe terminar en `✓ 55 URLs correctas`.
+
+### Cómo se sirven las URLs
+
+Astro genera `blog.html`, `blog/<slug>.html`, etc. (`build.format: 'file'`). El `.htaccess` de `public/` las sirve sin `.html` ni barra final (`/blog/<slug>`), que es como estaban indexadas. Además:
+
+- Redirige `/sitemap.xml` a `/sitemap-index.xml`.
+- Responde 410 en `/nosotros`, `/flores-amarillas` y los archivos de Flutter.
+- Usa la página `404.html` para cualquier ruta que no exista.
