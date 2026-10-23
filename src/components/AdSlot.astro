@@ -4,13 +4,14 @@
 import { SITE } from '../data/site';
 
 interface Props {
-  slot: keyof typeof SITE.adSlots;
+  /** Clave en SITE.adSlots. (No se llama `slot`: Astro reserva ese atributo.) */
+  name: keyof typeof SITE.adSlots;
   /** 'auto' para bloques adaptables; 'vertical' para la barra lateral. */
   format?: 'auto' | 'vertical' | 'rectangle';
 }
 
-const { slot, format = 'auto' } = Astro.props;
-const id = SITE.adSlots[slot];
+const { name, format = 'auto' } = Astro.props;
+const id = SITE.adSlots[name];
 const show = import.meta.env.PROD && id !== '';
 ---
 

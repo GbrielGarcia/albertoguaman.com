@@ -17,6 +17,10 @@ export const SITE = {
    * Vacíos = no se pinta ese bloque y AdSense decide con los anuncios automáticos.
    */
   adSlots: {
+    /** "blog principal": listado de /blog, entre destacados y todos los artículos. */
+    blogIndex: '9643035731',
+    /** In-article (nativo): dentro de cada post, debajo de los dos primeros párrafos. */
+    postInArticle: '2995408893',
     postTop: '',
     postBottom: '',
     postAside: '',

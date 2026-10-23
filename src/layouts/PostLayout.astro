@@ -5,6 +5,7 @@ import type { MarkdownHeading } from 'astro';
 import { Image, getImage } from 'astro:assets';
 import PageLayout from './PageLayout.astro';
 import AdSlot from '../components/AdSlot.astro';
+import InArticleAd from '../components/InArticleAd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CodeBlockEnhancer from '../components/CodeBlockEnhancer.astro';
 import PostGrid from '../components/PostGrid.astro';
@@ -121,13 +122,15 @@ const tagLabel = (tag: string) => tag.charAt(0).toUpperCase() + tag.slice(1);
         </details>
       )}
 
-      <AdSlot slot="postTop" />
+      <AdSlot name="postTop" />
 
       <div class="prose-content">
         <slot />
       </div>
+      <!-- Va justo después del contenido: su script mueve el anuncio dentro del texto. -->
+      <InArticleAd />
 
-      <AdSlot slot="postBottom" />
+      <AdSlot name="postBottom" />
 
       {tags.length > 0 && (
         <section class="post-topics" aria-labelledby="temas">
@@ -161,7 +164,7 @@ const tagLabel = (tag: string) => tag.charAt(0).toUpperCase() + tag.slice(1);
           <p>Desarrollo webs, apps y soporte técnico para negocios.</p>
           <a class="cta-button" href="/contacto">Cuéntame tu proyecto</a>
         </div>
-        <AdSlot slot="postAside" format="vertical" />
+        <AdSlot name="postAside" format="vertical" />
       </div>
     </aside>
   </div>

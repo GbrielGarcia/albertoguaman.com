@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import AdSlot from '../../components/AdSlot.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import TopicNav from '../../components/TopicNav.astro';
 import { getPosts } from '../../data/blog';
@@ -40,6 +41,8 @@ const jsonLd = [
       <PostGrid posts={featured} eagerCount={3} />
     </section>
   )}
+
+  <AdSlot name="blogIndex" />
 
   <section aria-labelledby="todos">
     <h2 id="todos">Todos los artículos</h2>
