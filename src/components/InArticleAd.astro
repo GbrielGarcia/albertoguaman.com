@@ -1,0 +1,59 @@
+---
+// Anuncio "in-article" de AdSense dentro del texto del post, debajo de los dos primeros párrafos
+// (la ubicación que recomienda AdSense). El Markdown se renderiza aparte, así que el bloque va en un
+// <template> y un script lo coloca en su sitio antes de pedir el anuncio.
+// Solo en producción y si SITE.adSlots.postInArticle tiene ID.
+import { SITE } from '../data/site';
+
+const id: string = SITE.adSlots.postInArticle;
+const show = import.meta.env.PROD && id !== '';
+---
+
+{show && (
+  <>
+    <template id="in-article-ad">
+      <aside class="ad-in-article" aria-label="Publicidad">
+        <span class="ad-label">Publicidad</span>
+        <ins
+          class="adsbygoogle"
+          style="display:block; text-align:center;"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client={SITE.adsenseClient}
+          data-ad-slot={id}
+        />
+      </aside>
+    </template>
+    <script is:inline>
+      (function () {
+        var template = document.getElementById('in-article-ad');
+        var content = document.querySelector('.prose-content');
+        if (!template || !content) return;
+        // Párrafos de primer nivel (no los que están dentro de citas o listas).
+        var paragraphs = content.querySelectorAll(':scope > p');
+        var anchor = paragraphs[1] || paragraphs[0];
+        if (!anchor) return;
+        anchor.after(template.content.cloneNode(true));
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      })();
+    </script>
+  </>
+)}
+
+<style is:global>
+  .ad-in-article {
+    margin-block: var(--space-xl);
+    min-height: 200px;
+  }
+
+  .ad-in-article .ad-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import { FOOTER_NAV, SITE, SOCIAL } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <span class="rule" aria-hidden="true"></span>
+
+    <nav aria-label="Secundaria">
+      <ul>
+        {FOOTER_NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <ul class="social">
+      {SOCIAL.map((s) => (
+        <li><a href={s.href} rel="me noopener" target="_blank">{s.label}</a></li>
+      ))}
+      <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    </ul>
+
+    <p class="muted copy">© {year} {SITE.name} · Hecho en Ecuador</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-2xl);
+    padding-block: var(--space-xl);
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+    text-align: center;
+  }
+
+  .rule {
+    width: 3rem;
+    height: 2px;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--blue) 50%, transparent);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-s) var(--space-l);
+  }
+
+  a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  .copy {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+</style>

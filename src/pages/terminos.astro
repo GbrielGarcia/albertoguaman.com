@@ -1,0 +1,50 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE } from '../data/site';
+import '../styles/prose.css';
+
+const updated = '22 de octubre de 2026';
+---
+
+<PageLayout>
+  <PageHeader eyebrow="Legal" title="Términos de uso" lead={`Última actualización: ${updated}.`} />
+
+  <div class="prose-content legal">
+    <h2>Contenido</h2>
+    <p>
+      Los artículos y tutoriales de este sitio se publican con fines informativos y educativos. Hago lo posible para
+      que sean correctos y estén al día, pero la tecnología cambia: revisa la documentación oficial antes de aplicar
+      algo en producción. No me hago responsable de daños derivados del uso de la información publicada.
+    </p>
+
+    <h2>Uso del contenido</h2>
+    <p>
+      Puedes citar y enlazar los artículos indicando la fuente con un enlace al artículo original. Los fragmentos de
+      código se pueden usar libremente en tus proyectos. No está permitido copiar artículos completos para
+      republicarlos.
+    </p>
+
+    <h2>Publicidad y enlaces</h2>
+    <p>
+      El sitio muestra anuncios de Google AdSense y enlaces a sitios externos. Los anuncios no son recomendaciones
+      mías. Consulta la <a href="/privacidad">política de privacidad</a> para saber cómo funcionan las cookies de
+      publicidad.
+    </p>
+
+    <h2>Servicios</h2>
+    <p>
+      La información de <a href="/servicios">servicios</a> es orientativa. El alcance, los plazos y el precio de cada
+      proyecto se acuerdan por escrito antes de empezar.
+    </p>
+
+    <h2>Contacto</h2>
+    <p>Dudas sobre estos términos: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  </div>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: var(--prose);
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+import Seo from '../components/Seo.astro';
+import { SITE } from '../data/site';
+import '../styles/global.css';
+
+export type Props = import('../components/Seo.astro').Props;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#151515" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="google-adsense-account" content={SITE.adsenseClient} />
+
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/Icon-192.png" />
+    <link
+      rel="preload"
+      href="/fonts/Alegreya-VariableFont_wght.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+
+    <!-- Tema antes del primer pintado para evitar parpadeo (oscuro por defecto). -->
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+          }
+        } catch (_) {}
+      })();
+    </script>
+
+    <Seo {...Astro.props} />
+
+    {import.meta.env.PROD && (
+      <script defer data-domain={SITE.plausibleDomain} src="https://plausible.io/js/script.js" />
+    )}
+
+    <!--
+      Google Analytics 4 (propiedad de Firebase "alberto-guaman-dev"). Se usa gtag.js directo en lugar del
+      SDK de Firebase: mismos datos en la consola de Firebase, sin dependencias ni JS extra.
+      Consent Mode v2: en el EEE, Reino Unido y Suiza las cookies quedan denegadas hasta que el visitante
+      acepte en el mensaje de consentimiento de Google (se configura en AdSense → Privacidad y mensajes).
+    -->
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline define:vars={{ gaId: SITE.gaMeasurementId }}>
+          // define:vars envuelve este script en una función: gtag se publica en window a propósito.
+          window.dataLayer = window.dataLayer || [];
+          const gtag = (window.gtag = function () {
+            window.dataLayer.push(arguments);
+          });
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            region: [
+              'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
+              'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH',
+            ],
+          });
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaMeasurementId}`} />
+      </>
+    )}
+
+    <!-- AdSense: habilita los anuncios automáticos y los bloques de <AdSlot>. Solo en producción. -->
+    {import.meta.env.PROD && !Astro.props.noindex && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`}
+        crossorigin="anonymous"
+      />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

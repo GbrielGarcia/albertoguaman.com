@@ -1,0 +1,35 @@
+---
+// Galería (← lib/src/gallery/gallery_page.dart + gallery.dart).
+import { getImage } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import GalleryLightbox from '../components/vue/GalleryLightbox.vue';
+import type { GalleryImage } from '../components/vue/types';
+
+const files = import.meta.glob<{ default: ImageMetadata }>('../assets/gallery/*.{jpg,png}', {
+  eager: true,
+});
+
+const images: GalleryImage[] = await Promise.all(
+  Object.keys(files)
+    .sort()
+    .map(async (path, i) => {
+      const src = files[path].default;
+      const thumb = await getImage({ src, widths: [320, 560], format: 'webp' });
+      const full = await getImage({ src, width: Math.min(src.width, 1200), format: 'webp' });
+      return {
+        thumb: thumb.src,
+        thumbSrcset: thumb.srcSet.attribute,
+        full: full.src,
+        width: src.width,
+        height: src.height,
+        alt: `Foto ${i + 1} de la galería de Alberto Guaman`,
+      };
+    }),
+);
+---
+
+<PageLayout>
+  <PageHeader eyebrow="Galería" title="Momentos del día a día" lead="Una mirada a algunos momentos de mi día a día." />
+  <GalleryLightbox client:visible images={images} />
+</PageLayout>

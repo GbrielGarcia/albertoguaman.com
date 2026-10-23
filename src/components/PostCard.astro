@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate, type Post } from '../data/blog';
+
+interface Props {
+  post: Post;
+  /** Carga inmediata para las tarjetas visibles al abrir la página. */
+  eager?: boolean;
+}
+
+const { post, eager = false } = Astro.props;
+const { title, excerpt, image, date, readTime } = post.data;
+---
+
+<article class="card">
+  {image && (
+    <Image
+      src={image}
+      alt=""
+      widths={[400, 720]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 360px"
+      loading={eager ? 'eager' : 'lazy'}
+      class="cover"
+    />
+  )}
+  <div class="body">
+    <h3><a href={`/blog/${post.id}`}>{title}</a></h3>
+    <p class="excerpt">{excerpt}</p>
+    <p class="meta">
+      <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+      {readTime && <span> · {readTime}</span>}
+    </p>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: color-mix(in srgb, var(--blue) 60%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--elevated);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-m) var(--space-m) var(--space-l);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-s);
+  }
+
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  /* Toda la tarjeta es clicable sin anidar enlaces. */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .excerpt {
+    color: var(--muted);
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .meta {
+    margin: auto 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+</style>

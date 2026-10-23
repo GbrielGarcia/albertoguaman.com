@@ -1,0 +1,18 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="Página no encontrada" description="Esta página no existe o cambió de dirección." noindex>
+  <section class="not-found">
+    <p class="eyebrow">Error 404</p>
+    <h1>Esta página no existe</h1>
+    <p class="muted">Puede que el enlace esté roto o que la página haya cambiado de dirección.</p>
+    <p><a href="/">Volver al inicio</a> · <a href="/blog">Ir al blog</a></p>
+  </section>
+</PageLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--space-2xl);
+  }
+</style>

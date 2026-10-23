@@ -1,0 +1,74 @@
+---
+// Agrega a cada bloque de código una barra con el lenguaje y un botón "Copiar".
+// Sin JavaScript el bloque se ve igual, solo sin la barra.
+---
+
+<script>
+  const LABELS: Record<string, string> = {
+    js: 'JavaScript',
+    javascript: 'JavaScript',
+    jsx: 'JSX',
+    ts: 'TypeScript',
+    typescript: 'TypeScript',
+    tsx: 'TSX',
+    html: 'HTML',
+    css: 'CSS',
+    json: 'JSON',
+    yaml: 'YAML',
+    yml: 'YAML',
+    dart: 'Dart',
+    python: 'Python',
+    py: 'Python',
+    sql: 'SQL',
+    bash: 'Terminal',
+    sh: 'Terminal',
+    shell: 'Terminal',
+    zsh: 'Terminal',
+    console: 'Terminal',
+    powershell: 'PowerShell',
+    ps1: 'PowerShell',
+    batch: 'CMD',
+    dockerfile: 'Dockerfile',
+    docker: 'Dockerfile',
+    nginx: 'Nginx',
+    lua: 'Lua',
+    vue: 'Vue',
+    astro: 'Astro',
+    md: 'Markdown',
+    markdown: 'Markdown',
+    xml: 'XML',
+    ini: 'INI',
+    toml: 'TOML',
+    plaintext: 'Texto',
+    text: 'Texto',
+    txt: 'Texto',
+  };
+
+  document.querySelectorAll<HTMLPreElement>('.prose-content pre.astro-code').forEach((pre) => {
+    if (pre.parentElement?.classList.contains('code-block')) return;
+    const lang = (pre.dataset.language ?? 'text').toLowerCase();
+
+    const figure = document.createElement('figure');
+    figure.className = 'code-block';
+    const bar = document.createElement('div');
+    bar.className = 'code-block__bar';
+    const label = document.createElement('span');
+    label.textContent = LABELS[lang] ?? lang.toUpperCase();
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'code-block__copy';
+    copy.textContent = 'Copiar';
+    copy.setAttribute('aria-label', 'Copiar código');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.innerText.replace(/\n$/, ''));
+        copy.textContent = 'Copiado';
+        setTimeout(() => (copy.textContent = 'Copiar'), 2000);
+      } catch (_) {}
+    });
+
+    bar.append(label, copy);
+    pre.replaceWith(figure);
+    figure.append(bar, pre);
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+// Recomendaciones (← lib/src/recommendations/recommendations_page.dart + testimonial.dart).
+// Sin datos estructurados de reseñas: Google no los muestra para reseñas sobre uno mismo.
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { formatDate } from '../data/blog';
+import { TESTIMONIALS } from '../data/work';
+
+const reviews = [...TESTIMONIALS].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<PageLayout>
+  <PageHeader eyebrow="Recomendaciones" title="Lo que dicen los clientes" lead="Reseñas de clientes en proyectos con Tinguar." />
+
+  <div class="reviews">
+    {reviews.map((t) => (
+      <figure class="card-box review">
+        <blockquote>“{t.quote}”</blockquote>
+        <figcaption>
+          <span class="avatar" aria-hidden="true">{t.initials}</span>
+          <span>
+            <strong>{t.name}</strong>
+            <span class="muted small">Cliente · Tinguar · {formatDate(new Date(`${t.date}T00:00:00Z`))}</span>
+          </span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</PageLayout>
+
+<style>
+  .reviews {
+    columns: 20rem;
+    column-gap: var(--space-l);
+  }
+
+  .review {
+    break-inside: avoid;
+    margin: 0 0 var(--space-l);
+  }
+
+  blockquote {
+    margin: 0 0 var(--space-m);
+    font-size: 1.0625rem;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  figcaption > span:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--blue);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.8125rem;
+  }
+
+  .small {
+    font-size: 0.8125rem;
+    font-family: var(--font-sans);
+  }
+</style>

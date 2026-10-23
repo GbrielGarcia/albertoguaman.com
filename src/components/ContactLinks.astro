@@ -1,0 +1,33 @@
+---
+import { SITE, SOCIAL } from '../data/site';
+import { CV_URL } from '../data/profile';
+---
+
+<ul class="contact-links">
+  <li><a class="button" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+  <li><a class="button button--ghost" href={SITE.whatsapp} target="_blank" rel="noopener">WhatsApp</a></li>
+  <li><a class="button button--ghost" href={CV_URL}>Descargar CV</a></li>
+</ul>
+<ul class="social">
+  {SOCIAL.filter((s) => s.label !== 'WhatsApp').map((s) => (
+    <li><a href={s.href} target="_blank" rel="me noopener">{s.label}</a></li>
+  ))}
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  .social {
+    margin-top: var(--space-m);
+    gap: var(--space-l);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+  }
+</style>

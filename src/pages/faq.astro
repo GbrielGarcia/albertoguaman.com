@@ -1,0 +1,55 @@
+---
+// Cómo trabajo · FAQ (← lib/src/faq/faq_page.dart + faq_item.dart).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { FAQ } from '../data/work';
+
+const jsonLd = [
+  {
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  },
+];
+---
+
+<PageLayout jsonLd={jsonLd}>
+  <PageHeader eyebrow="FAQ" title="Cómo trabajo" lead="Proceso, tiempos, herramientas y comunicación." />
+
+  <div class="faq">
+    {FAQ.map((f, i) => (
+      <details class="card-box" open={i === 0}>
+        <summary>{f.question}</summary>
+        <p>{f.answer}</p>
+      </details>
+    ))}
+  </div>
+
+  <p class="section"><a class="button" href="/contacto">Escribirme</a></p>
+</PageLayout>
+
+<style>
+  .faq {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 48rem;
+  }
+
+  details {
+    padding: var(--space-m) var(--space-l);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1875rem;
+  }
+
+  details p {
+    margin: var(--space-m) 0 0;
+    color: var(--muted);
+  }
+</style>

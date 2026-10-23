@@ -1,0 +1,108 @@
+---
+// Servicios (← lib/src/services/services_page.dart + service_offer.dart).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SITE } from '../data/site';
+import { SERVICES } from '../data/work';
+
+const whatsapp = (title: string) =>
+  `${SITE.whatsapp}?text=${encodeURIComponent(`Hola Alberto, quiero más información sobre: ${title}`)}`;
+
+const jsonLd = [
+  {
+    '@type': 'ItemList',
+    name: 'Servicios de Alberto Guaman',
+    itemListElement: SERVICES.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.description,
+        provider: { '@id': `${SITE.url}/#person` },
+        areaServed: 'EC',
+      },
+    })),
+  },
+];
+---
+
+<PageLayout jsonLd={jsonLd}>
+  <PageHeader
+    eyebrow="Servicios"
+    title="Soporte, Flutter, web y e-commerce"
+    lead="Paquetes claros para soporte, Flutter, web y e-commerce. Copy orientado a resultados, adaptado de mi trabajo con Tinguar."
+  />
+
+  <div class="services">
+    {SERVICES.map((s) => (
+      <article id={s.id} class="card-box service">
+        <p class="eyebrow">{s.title}</p>
+        <h2>{s.outcome}</h2>
+        <p>{s.pitch}</p>
+        <p class="muted">{s.description}</p>
+        <ul class="chips">
+          {s.highlights.map((h) => <li>{h}</li>)}
+        </ul>
+        <h3>Incluye</h3>
+        <ul class="includes">
+          {s.includes.map((item) => <li>{item}</li>)}
+        </ul>
+        <a class="button" href={whatsapp(s.title)} target="_blank" rel="noopener">{s.cta}</a>
+      </article>
+    ))}
+  </div>
+
+  <section class="section closing card-box">
+    <h2>¿No encaja exactamente?</h2>
+    <p class="muted">Cuéntame qué necesitas y lo armamos por etapas.</p>
+    <a class="button" href="/contacto">Hablar de un proyecto</a>
+    <a class="button button--ghost" href="/faq">Cómo trabajo</a>
+  </section>
+</PageLayout>
+
+<style>
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+    gap: var(--space-l);
+  }
+
+  .service {
+    display: flex;
+    flex-direction: column;
+    scroll-margin-top: 5rem;
+  }
+
+  .service h2 {
+    font-size: 1.5rem;
+  }
+
+  .service p {
+    font-size: 1rem;
+  }
+
+  .service h3 {
+    margin-top: var(--space-l);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .includes {
+    padding-left: 1.2rem;
+    margin: 0 0 var(--space-l);
+    font-size: 1rem;
+  }
+
+  .service .button {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .closing .button {
+    margin-right: var(--space-s);
+  }
+</style>

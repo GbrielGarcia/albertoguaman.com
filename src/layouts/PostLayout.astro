@@ -1,0 +1,453 @@
+---
+// Estructura del post basada en tinguar.com/blog/<slug>: cabecera oscura con título y datos,
+// portada que se monta sobre la cabecera, artículo + índice lateral fijo y cierre con temas y compartir.
+import type { MarkdownHeading } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import PageLayout from './PageLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import InArticleAd from '../components/InArticleAd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CodeBlockEnhancer from '../components/CodeBlockEnhancer.astro';
+import PostGrid from '../components/PostGrid.astro';
+import SharePost from '../components/SharePost.astro';
+import { formatDate, topicsOf, type Post } from '../data/blog';
+import { SITE } from '../data/site';
+import { breadcrumbJsonLd } from '../utils/seo';
+import '../styles/prose.css';
+
+interface Props {
+  post: Post;
+  headings: MarkdownHeading[];
+  related: Post[];
+}
+
+const { post, headings, related } = Astro.props;
+const { title, excerpt, image, date, updated, readTime, tags, featured } = post.data;
+const url = `${SITE.url}/blog/${post.id}`;
+const topics = topicsOf(post);
+const toc = headings.filter((h) => h.depth === 2);
+
+// Imagen para compartir: JPEG 1200px (las redes no siempre aceptan WebP/AVIF).
+const share = image ? await getImage({ src: image, width: 1200, format: 'jpeg' }) : undefined;
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  ...(topics[0] ? [{ label: topics[0].label, href: `/blog/categoria/${topics[0].id}` }] : []),
+  { label: title, href: `/blog/${post.id}` },
+];
+
+const jsonLd = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    mainEntityOfPage: url,
+    headline: title,
+    description: excerpt,
+    image: share ? new URL(share.src, SITE.url).href : undefined,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    inLanguage: 'es-EC',
+    keywords: tags.join(', '),
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#person` },
+    isPartOf: { '@id': `${SITE.url}/blog#blog` },
+  },
+  breadcrumbJsonLd(crumbs),
+];
+
+const tagLabel = (tag: string) => tag.charAt(0).toUpperCase() + tag.slice(1);
+---
+
+<PageLayout
+  title={title}
+  description={excerpt}
+  image={share?.src}
+  imageAlt={title}
+  type="article"
+  publishedTime={date}
+  modifiedTime={updated}
+  jsonLd={jsonLd}
+>
+  <header slot="hero" class:list={['post-hero', { 'has-cover': image }]}>
+    <div class="container">
+      <Breadcrumbs items={crumbs.slice(0, -1)} />
+      <div class="hero-grid">
+        <div>
+          <h1>{title}</h1>
+          <p class="lead">{excerpt}</p>
+        </div>
+        <div class="hero-side">
+          <p class="meta">
+            <span class="author">{SITE.name}</span>
+            <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+            {readTime && <span>{readTime} de lectura</span>}
+            {featured && <span class="badge">Destacado</span>}
+          </p>
+          {updated && (
+            <p class="meta updated">
+              Actualizado el <time datetime={updated.toISOString().slice(0, 10)}>{formatDate(updated)}</time>
+            </p>
+          )}
+          <hr />
+          <SharePost url={url} title={title} />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {image && (
+    <figure class="post-cover">
+      <Image
+        src={image}
+        alt={title}
+        widths={[480, 800, 1200]}
+        sizes="(max-width: 1180px) 100vw, 1150px"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  )}
+
+  <div class="post-body">
+    <article class="post-article">
+      {toc.length >= 3 && (
+        <details class="toc-mobile">
+          <summary>En este artículo</summary>
+          <ol>
+            {toc.map((h) => (
+              <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ol>
+        </details>
+      )}
+
+      <AdSlot name="postTop" />
+
+      <div class="prose-content">
+        <slot />
+      </div>
+      <!-- Va justo después del contenido: su script mueve el anuncio dentro del texto. -->
+      <InArticleAd />
+
+      <AdSlot name="postBottom" />
+
+      {tags.length > 0 && (
+        <section class="post-topics" aria-labelledby="temas">
+          <h2 id="temas">Temas de este artículo</h2>
+          <ul>
+            {tags.map((tag) => <li>{tagLabel(tag)}</li>)}
+          </ul>
+        </section>
+      )}
+
+      <footer class="post-end">
+        <a class="back" href="/blog">← Más artículos</a>
+        <SharePost url={url} title={title} />
+      </footer>
+    </article>
+
+    <aside class="post-aside" aria-label="Índice y contacto">
+      <div class="sticky">
+        {toc.length >= 3 && (
+          <nav aria-labelledby="toc-title">
+            <p id="toc-title" class="aside-title">En este artículo</p>
+            <ol>
+              {toc.map((h) => (
+                <li><a href={`#${h.slug}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </nav>
+        )}
+        <div class="cta">
+          <p class="aside-title">¿Necesitas algo parecido?</p>
+          <p>Desarrollo webs, apps y soporte técnico para negocios.</p>
+          <a class="cta-button" href="/contacto">Cuéntame tu proyecto</a>
+        </div>
+        <AdSlot name="postAside" format="vertical" />
+      </div>
+    </aside>
+  </div>
+
+  {related.length > 0 && (
+    <section class="related" aria-labelledby="relacionados">
+      <h2 id="relacionados">Sigue leyendo</h2>
+      <PostGrid posts={related} />
+    </section>
+  )}
+
+  <CodeBlockEnhancer />
+</PageLayout>
+
+<style>
+  /* —— Cabecera —— */
+  .post-hero {
+    background:
+      radial-gradient(ellipse 60% 80% at 85% 0%, var(--accent-soft), transparent 70%),
+      var(--surface);
+    border-bottom: 1px solid var(--hairline);
+    padding-block: var(--space-xl);
+  }
+
+  .post-hero.has-cover {
+    /* Espacio para que la portada se monte sobre la franja. */
+    padding-bottom: clamp(6rem, 14vw, 11rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 1.3rem + 3.2vw, 3.25rem);
+    margin-bottom: var(--space-m);
+  }
+
+  .lead {
+    font-size: 1.1875rem;
+    color: var(--muted);
+    max-width: 44rem;
+    margin: 0;
+  }
+
+  .hero-side {
+    align-self: end;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-m);
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+
+  .meta.updated {
+    margin-top: var(--space-xs);
+  }
+
+  .author {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .badge {
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    margin: var(--space-m) 0;
+  }
+
+  @media (min-width: 960px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) 18rem;
+      gap: var(--space-2xl);
+    }
+  }
+
+  /* —— Portada —— */
+  .post-cover {
+    margin: calc(-1 * clamp(5rem, 13vw, 10rem)) auto 0;
+    padding: 0;
+  }
+
+  .post-cover img {
+    width: 100%;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--hairline);
+    background: var(--elevated);
+    box-shadow: 0 24px 48px rgb(0 0 0 / 0.25);
+  }
+
+  /* —— Cuerpo —— */
+  .post-body {
+    display: grid;
+    gap: var(--space-2xl);
+    padding-top: var(--space-xl);
+  }
+
+  .post-article {
+    min-width: 0;
+    max-width: var(--prose);
+  }
+
+  @media (min-width: 1024px) {
+    .post-body {
+      grid-template-columns: minmax(0, 1fr) 16rem;
+      gap: var(--space-2xl);
+    }
+
+    .post-article {
+      max-width: none;
+    }
+
+    .toc-mobile {
+      display: none;
+    }
+  }
+
+  .toc-mobile {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-m) var(--space-l);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+
+  .toc-mobile summary {
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  ol {
+    margin: var(--space-s) 0 0;
+    padding-left: 1.25rem;
+  }
+
+  ol li + li {
+    margin-top: var(--space-s);
+  }
+
+  ol a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  ol a:hover {
+    color: var(--blue);
+    text-decoration: underline;
+  }
+
+  /* —— Aside —— */
+  .post-aside {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .post-aside {
+      display: block;
+    }
+  }
+
+  .sticky {
+    position: sticky;
+    top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+  }
+
+  .aside-title {
+    margin: 0 0 var(--space-s);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .post-aside ol {
+    padding-left: 0;
+    list-style: none;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .cta {
+    padding: var(--space-l);
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+  }
+
+  .cta p:not(.aside-title) {
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius);
+    background: var(--blue);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* —— Cierre del artículo —— */
+  .post-topics {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-l);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .post-topics h2 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--space-m);
+  }
+
+  .post-topics ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+  }
+
+  .post-topics li {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--yellow-soft);
+    color: var(--yellow);
+  }
+
+  .post-end {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-top: var(--space-xl);
+  }
+
+  .back {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .related {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--hairline);
+  }
+</style>
